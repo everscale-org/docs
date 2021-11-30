@@ -8,7 +8,7 @@ Let's discover **Everscale in less than 5 minutes**.
 
 ## Getting Started
 
-Get started by **creating a new contract**.
+Get started by **creating a new smart-contract**.
 
 ## Generate a new project
 
@@ -18,7 +18,7 @@ npm init --force
 npm install --save tondev
 ```
 
-## Generate a new contract
+## Generate a new smart-contract
 
 ```shell
 npx tondev sol create App
