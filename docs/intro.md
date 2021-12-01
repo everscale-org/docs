@@ -8,7 +8,7 @@ Let's discover **Everscale in less than 5 minutes**.
 
 ## Getting Started
 
-Get started by **creating a new smart-contract**.
+Get started by **creating a new DApp**.
 
 ## Generate a new project
 
@@ -18,10 +18,113 @@ npm init --force
 npm install --save tondev
 ```
 
+## Setup local environment
+
+Set Local Blockchain [SE (Startup Edition)](https://github.com/tonlabs/tonos-se) as the default network:
+
+```shell
+npx tondev se start
+npx tondev network default se
+```
+
+Configure Giver wallet that will sponsor deploy operation:
+
+```shell
+npx tondev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
+npx tondev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+npx tondev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+```
+
 ## Generate a new smart-contract
 
 ```shell
 npx tondev sol create App
 ```
 
-TBD
+You are got:
+
+```solidity
+pragma ton-solidity >= 0.35.0;
+pragma AbiHeader expire;
+
+// This is class that describes you smart contract.
+contract App {
+    // Contract can have an instance variables.
+    // In this example instance variable `timestamp` is used to store the time of `constructor` or `touch`
+    // function call
+    uint32 public timestamp;
+
+    // Contract can have a `constructor` – function that will be called when contract will be deployed to the blockchain.
+    // In this example constructor adds current time to the instance variable.
+    // All contracts need call tvm.accept(); for succeeded deploy
+    constructor() public {
+        // Check that contract's public key is set
+        require(tvm.pubkey() != 0, 101);
+        // Check that message has signature (msg.pubkey() is not zero) and
+        // message is signed with the owner's private key
+        require(msg.pubkey() == tvm.pubkey(), 102);
+        // The current smart contract agrees to buy some gas to finish the
+        // current transaction. This actions required to process external
+        // messages, which bring no value (henceno gas) with themselves.
+        tvm.accept();
+
+        timestamp = now;
+    }
+
+    function renderHelloWorld () public pure returns (string) {
+        return 'helloWorld';
+    }
+
+    // Updates variable `timestamp` with current blockchain time.
+    function touch() external {
+        // Each function that accepts external message must check that
+        // message is correctly signed.
+        require(msg.pubkey() == tvm.pubkey(), 102);
+        // Tells to the TVM that we accept this message.
+        tvm.accept();
+        // Update timestamp
+        timestamp = now;
+    }
+
+    function sendValue(address dest, uint128 amount, bool bounce) public view {
+        require(msg.pubkey() == tvm.pubkey(), 102);
+        tvm.accept();
+        // It allows to make a transfer with arbitrary settings
+        dest.transfer(amount, bounce, 0);
+    }
+}
+```
+
+For more about [Solidity](https://docs.soliditylang.org/en/v0.8.10/structure-of-a-contract.html) and specific of [Everscale Solidity](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md)
+
+## Compile smart-contract
+
+```shell
+npx tondev sol compile App.sol
+```
+
+## Deploy smart-contract
+
+**Local network:**
+```shell
+npx tondev contract deploy --network se --value 1000000000 App
+```
+
+**Developer network:**
+```shell
+npx tondev contract deploy --network dev --value 1000000000 App
+```
+
+## Interact smart-contract
+
+**Read:**
+```shell
+npx tondev contract run-local --network se App timestamp
+```
+
+**Write:**
+```shell
+npx tondev contract run --network se App touch
+```
+
+For more details see: [Get started with Development Tools](https://github.com/tonlabs/tondev/blob/main/docs/quick_start.md#table-of-contents).
