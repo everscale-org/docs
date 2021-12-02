@@ -6,6 +6,11 @@ sidebar_position: 1
 
 Let's discover **Everscale in less than 5 minutes**.
 
+## Prerequisite
+
+- [Node.js >= 14.x installed](https://nodejs.org)
+- [Docker installed and running](https://docs.docker.com/desktop/#download-and-install)
+
 ## Getting Started
 
 Get started by **creating a new DApp**.
@@ -33,6 +38,14 @@ Configure Giver wallet that will sponsor deploy operation:
 npx tondev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
 npx tondev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
 npx tondev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+```
+
+Generate the keys for contract ownership:
+
+```shell
+npx tondev signer generate coder
+npx tondev signer default coder
+npx tondev signer list 
 ```
 
 ## Generate a new smart-contract
