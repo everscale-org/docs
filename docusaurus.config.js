@@ -43,7 +43,7 @@ const config = {
         title: 'Docs of Everscale',
         logo: {
           alt: 'Docs of Everscale',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
