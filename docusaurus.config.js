@@ -114,6 +114,10 @@ const config = {
                 href: 'https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md',
               },
               {
+                label: 'ABI Specification',
+                href: 'https://docs.ton.dev/86757ecb2/p/40ba94-abi-specification-v2',
+              },
+              {
                 label: 'NFT',
                 href: 'https://github.com/tonlabs/True-NFT',
               },
