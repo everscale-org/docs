@@ -29,7 +29,9 @@ npx tondev se start
 npx tondev network default se
 ```
 
-Configure Giver wallet that will sponsor deploy operation:
+### Configure Giver
+
+Configure Giver wallet that will sponsor **EVER** for deploy operation:
 
 ```shell
 npx tondev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
@@ -37,7 +39,9 @@ npx tondev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc
 npx tondev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
 ```
 
-Generate the keys for contract ownership:
+### Generate the key pair for contract ownership
+
+Key pair file — used in contracts with implemented authorization. It is the file containing private and public keys authorized to access the contract. In `--sign` parameter the corresponding seed phrase may be used instead of it.
 
 ```shell
 npx tondev signer generate coder
@@ -115,7 +119,14 @@ For more about [Solidity](https://docs.soliditylang.org/en/v0.8.10/structure-of-
 npx tondev sol compile App.sol
 ```
 
+You are got:
+
+- `App.abi.json` — **ABI** `*.abi.json` file — a file that describes the contract interface, the methods and parameters used to interact with it, for detail see [ABI Specification V2](https://docs.ton.dev/86757ecb2/p/40ba94-abi-specification-v2).
+- `App.tvc` — **TVC** `*.tvc` file — the compiled smart contract file. Used only when generating contract address and deploying contract code to the blockchain.
+
 ## Deploy smart-contract
+
+> The `1` **EVER** is `1000000000` **nano EVER**
 
 **Local network:**
 ```shell
@@ -125,6 +136,19 @@ npx tondev contract deploy --network se --value 1000000000 App
 **Developer network:**
 ```shell
 npx tondev contract deploy --network dev --value 1000000000 App
+```
+
+## Address smart-contract
+
+Address of smart-contract is calculated from `TVC` and signer public:
+```shell
+npx tondev contract info --network se --signer coder App
+```
+
+Getting only address:
+```shell
+appAddress=$(npx tondev contract info --network se --signer coder App | grep Address | cut -d ' ' -f 4)
+echo $appAddress
 ```
 
 ## Interact smart-contract
