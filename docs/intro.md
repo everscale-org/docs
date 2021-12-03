@@ -5,15 +5,12 @@ sidebar_position: 1
 # Tutorial Intro
 
 Let's discover **Everscale in less than 5 minutes**.
+Get started by **creating a new DApp**.
 
 ## Prerequisite
 
 - [Node.js >= 14.x installed](https://nodejs.org)
 - [Docker installed and running](https://docs.docker.com/desktop/#download-and-install)
-
-## Getting Started
-
-Get started by **creating a new DApp**.
 
 ## Generate a new project
 
@@ -63,13 +60,15 @@ pragma AbiHeader expire;
 // This is class that describes you smart contract.
 contract App {
     // Contract can have an instance variables.
-    // In this example instance variable `timestamp` is used to store the time of `constructor` or `touch`
-    // function call
+    // In this example instance variable `timestamp`
+    // is used to store the time of `constructor`
+    // or `touch` function call.
     uint32 public timestamp;
 
-    // Contract can have a `constructor` – function that will be called when contract will be deployed to the blockchain.
+    // Contract can have a `constructor`. 
+    // The function that will be called when contract will be deployed to the blockchain.
     // In this example constructor adds current time to the instance variable.
-    // All contracts need call tvm.accept(); for succeeded deploy
+    // All contracts need call `tvm.accept()` for succeeded deploy.
     constructor() public {
         // Check that contract's public key is set
         require(tvm.pubkey() != 0, 101);
@@ -78,7 +77,7 @@ contract App {
         require(msg.pubkey() == tvm.pubkey(), 102);
         // The current smart contract agrees to buy some gas to finish the
         // current transaction. This actions required to process external
-        // messages, which bring no value (henceno gas) with themselves.
+        // messages, which bring no value (hence no gas) with themselves.
         tvm.accept();
 
         timestamp = now;
@@ -132,6 +131,7 @@ npx tondev contract deploy --network dev --value 1000000000 App
 
 **Read:**
 ```shell
+npx tondev contract run-local --network se App renderHelloWorld
 npx tondev contract run-local --network se App timestamp
 ```
 
