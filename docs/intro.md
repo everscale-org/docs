@@ -10,6 +10,8 @@ Get started by **creating a new DApp**.
 ## Prerequisite
 
 - [Node.js >= 14.x installed](https://nodejs.org)
+  - [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm)
+  - [NVM-windows](https://github.com/coreybutler/nvm-windows)
 - [Docker installed and running](https://docs.docker.com/desktop/#download-and-install)
 
 ## Generate a new project
