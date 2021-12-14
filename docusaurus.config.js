@@ -67,6 +67,14 @@ const config = {
             title: 'Docs',
             items: [
               {
+                label: 'White Paper',
+                href: 'https://mitja.gitbook.io/everscale-white-paper/',
+              },
+              {
+                label: 'Lite Paper',
+                href: 'https://mitja.gitbook.io/everscale-lite-paper/',
+              },
+              {
                 label: 'Tutorial',
                 to: '/docs/intro',
               },
@@ -77,7 +85,11 @@ const config = {
             items: [
               {
                 label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/ton',
+                href: 'https://stackoverflow.com/questions/tagged/everscale',
+              },
+              {
+                label: 'Subgovernances',
+                href: 'https://gov.gramkit.org/',
               },
             ],
           },
