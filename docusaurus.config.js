@@ -40,10 +40,10 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Docs of Everscale',
+        title: 'Everscale Documentation',
         logo: {
-          alt: 'Docs of Everscale',
-          src: 'img/logo.png',
+          alt: 'Everscale Documentation',
+          src: 'img/logo.svg',
         },
         items: [
           {
@@ -77,6 +77,10 @@ const config = {
               {
                 label: 'Tutorial',
                 to: '/docs/intro',
+              },
+              {
+                label: 'Visual Brand Identity',
+                href: 'https://gramkit.org/en/branding',
               },
             ],
           },
