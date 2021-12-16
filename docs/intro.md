@@ -12,7 +12,7 @@ Get started by **creating a new DApp**.
 - [Node.js >= 14.x installed](https://nodejs.org)
   - [Node Version Manager (NVM)](https://github.com/nvm-sh/nvm)
   - [NVM-windows](https://github.com/coreybutler/nvm-windows)
-- [Docker installed and running](https://docs.docker.com/desktop/#download-and-install)
+- [Docker >= 19.x installed and running](https://docs.docker.com/desktop/#download-and-install)
 
 ## Generate a new project
 
@@ -26,8 +26,15 @@ npm install --save tondev
 
 Set Local Blockchain [SE (Startup Edition)](https://github.com/tonlabs/tonos-se) as the default network:
 
+**Startup `SE` at this step, you may have to wait until the docker image is downloaded:**
 ```shell
 npx tondev se start
+```
+
+A local network explorer is available at [localhost](http://localhost) check it.
+
+**Setting `SE` as default network:** 
+```shell
 npx tondev network default se
 ```
 
@@ -57,7 +64,7 @@ npx tondev signer list
 npx tondev sol create App
 ```
 
-You are got:
+You are got `App.sol`:
 
 ```solidity
 pragma ton-solidity >= 0.35.0;
@@ -142,18 +149,18 @@ npx tondev contract deploy --network dev --value 1000000000 App
 
 ## Address smart-contract
 
-Address of smart-contract is calculated from `TVC` and signer public:
+**Address of smart-contract is calculated from `TVC` and signer (`coder`) public:**
 ```shell
 npx tondev contract info --network se --signer coder App
 ```
 
-Getting only address:
+**Getting only address:**
 ```shell
 appAddress=$(npx tondev contract info --network se --signer coder App | grep Address | cut -d ' ' -f 4)
 echo $appAddress
 ```
 
-## Interact smart-contract
+## Interact with smart-contract
 
 **Read:**
 ```shell
@@ -163,7 +170,7 @@ npx tondev contract run-local --network se App timestamp
 
 **Write:**
 ```shell
-npx tondev contract run --network se App touch
+npx tondev contract run --network se --signer coder App touch
 ```
 
 For more details see: [Get started with Development Tools](https://github.com/tonlabs/tondev/blob/main/docs/quick_start.md#table-of-contents).
