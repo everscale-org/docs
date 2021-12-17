@@ -127,7 +127,7 @@ const config = {
               },
               {
                 label: 'Sample SDK',
-                href: 'https://github.com:tonlabs/sdk-samples',
+                href: 'https://github.com/tonlabs/sdk-samples',
               },
               {
                 label: 'JS Application Kit',
