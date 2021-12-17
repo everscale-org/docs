@@ -102,11 +102,11 @@ const config = {
             items: [
               {
                 label: 'Smart contract-architecture',
-                href: 'https://t.me/BroadcastArchive/16',
+                href: 'https://youtu.be/XKMnroPWXek',
               },
               {
                 label: 'Smart-contract development',
-                href: 'https://t.me/BroadcastArchive/14',
+                href: 'https://youtu.be/YBIaFeaksMY',
               },
               {
                 label: 'Developer Course',
@@ -114,7 +114,7 @@ const config = {
               },
               {
                 label: 'Development of DeBots',
-                href: 'https://t.me/BroadcastArchive/15',
+                href: 'https://youtu.be/vFAatJO6cBM',
               },
             ],
           },
