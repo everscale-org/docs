@@ -110,7 +110,7 @@ const config = {
               },
               {
                 label: 'Developer Course',
-                href: 'https://www.youtube.com/watch?v=ngD88UraMmU&list=PLPj4C8ti8UaSPAP6afsy0wQ53lihBT5l1',
+                href: 'https://www.youtube.com/playlist?list=PLPj4C8ti8UaSPAP6afsy0wQ53lihBT5l1',
               },
               {
                 label: 'Development of DeBots',
