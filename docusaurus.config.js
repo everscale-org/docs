@@ -126,6 +126,14 @@ const config = {
                 href: 'https://github.com/tonlabs/samples',
               },
               {
+                label: 'Sample SDK',
+                href: 'https://github.com:tonlabs/sdk-samples',
+              },
+              {
+                label: 'JS Application Kit',
+                href: 'https://tonlabs.gitbook.io/appkit-js/',
+              },
+              {
                 label: 'Solidity API',
                 href: 'https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md',
               },
