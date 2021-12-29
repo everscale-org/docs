@@ -19,7 +19,7 @@ Get started by **creating a new DApp**.
 ```shell
 mkdir my-project && cd $_
 npm init --force
-npm install --save tondev
+npm install --save everdev
 ```
 
 ## Setup local environment
@@ -28,14 +28,14 @@ Set Local Blockchain [SE (Startup Edition)](https://github.com/tonlabs/tonos-se)
 
 **Startup `SE` at this step, you may have to wait until the docker image is downloaded:**
 ```shell
-npx tondev se start
+npx everdev se start
 ```
 
 A local network explorer is available at [localhost](http://localhost) check it.
 
 **Setting `SE` as default network:** 
 ```shell
-npx tondev network default se
+npx everdev network default se
 ```
 
 ### Configure Giver
@@ -43,9 +43,9 @@ npx tondev network default se
 Configure Giver wallet that will sponsor **EVER** for deploy operation:
 
 ```shell
-npx tondev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
-npx tondev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
-npx tondev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+npx everdev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
+npx everdev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+npx everdev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
 ```
 
 ### Generate the key pair for contract ownership
@@ -53,15 +53,15 @@ npx tondev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fc
 Key pair file — used in contracts with implemented authorization. It is the file containing private and public keys authorized to access the contract. In `--sign` parameter the corresponding seed phrase may be used instead of it.
 
 ```shell
-npx tondev signer generate coder
-npx tondev signer default coder
-npx tondev signer list 
+npx everdev signer generate coder
+npx everdev signer default coder
+npx everdev signer list 
 ```
 
 ## Generate a new smart-contract
 
 ```shell
-npx tondev sol create App
+npx everdev sol create App
 ```
 
 You are got `App.sol`:
@@ -125,7 +125,7 @@ For more about [Solidity](https://docs.soliditylang.org/en/v0.8.10/structure-of-
 ## Compile smart-contract
 
 ```shell
-npx tondev sol compile App.sol
+npx everdev sol compile App.sol
 ```
 
 You are got:
@@ -139,24 +139,24 @@ You are got:
 
 **Local network:**
 ```shell
-npx tondev contract deploy --network se --value 1000000000 App
+npx everdev contract deploy --network se --value 1000000000 App
 ```
 
 **Developer network:**
 ```shell
-npx tondev contract deploy --network dev --value 1000000000 App
+npx everdev contract deploy --network dev --value 1000000000 App
 ```
 
 ## Address smart-contract
 
 **Address of smart-contract is calculated from `TVC` and signer (`coder`) public:**
 ```shell
-npx tondev contract info --network se --signer coder App
+npx everdev contract info --network se --signer coder App
 ```
 
 **Getting only address:**
 ```shell
-appAddress=$(npx tondev contract info --network se --signer coder App | grep Address | cut -d ' ' -f 4)
+appAddress=$(npx everdev contract info --network se --signer coder App | grep Address | cut -d ' ' -f 4)
 echo $appAddress
 ```
 
@@ -164,13 +164,13 @@ echo $appAddress
 
 **Read:**
 ```shell
-npx tondev contract run-local --network se App renderHelloWorld
-npx tondev contract run-local --network se App timestamp
+npx everdev contract run-local --network se App renderHelloWorld
+npx everdev contract run-local --network se App timestamp
 ```
 
 **Write:**
 ```shell
-npx tondev contract run --network se --signer coder App touch
+npx everdev contract run --network se --signer coder App touch
 ```
 
-For more details see: [Get started with Development Tools](https://github.com/tonlabs/tondev/blob/main/docs/quick_start.md#table-of-contents).
+For more details see: [Get started with Development Tools](https://github.com/tonlabs/everdev/blob/main/docs/quick_start.md#table-of-contents).
