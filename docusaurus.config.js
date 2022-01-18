@@ -20,14 +20,10 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: "src",
+          routeBasePath: "/",
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/everscale-org/docs/tree/main/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/everscale-org/docs/tree/main/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -76,7 +72,7 @@ const config = {
               },
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/intro',
               },
               {
                 label: 'Visual Brand Identity',
