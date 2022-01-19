@@ -1,3 +1,9 @@
+---
+sidebar_position: 4
+---
+
+# TIP-4 — Free Software License TON VM Opcode [FB0A]
+
 [https://forum.freeton.org/t/tip-4-free-software-license-ton-vm-opcode-fb0a/2952](https://forum.freeton.org/t/tip-4-free-software-license-ton-vm-opcode-fb0a/2952)
 
 by Mitja Goroshevsky
