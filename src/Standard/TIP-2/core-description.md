@@ -21,7 +21,7 @@ Root is a smart contract contains a Code of Certificate smart contract without d
 
 When a User wishes to register it is calling a Certificate Issuance method in Root, sending a Certificate Data (for example an alphanumeric string of a certificate body).
 
-Root is taking its Public Key and a Code of Certificate smart contract, inserts a Certificate Data sent by a User, calculates the address of Certificate and checks if the address already has a Certificate or any other Code deployed by sending a bounced true message calling “getData” method.
+Root is taking its Public Key and a Code of Certificate smart contract, inserts a Certificate Data sent by a User, calculates the address of Certificate and checks if the address already has a Certificate or any other Code deployed by sending a bounced true message calling `getData` method.
 
 If a contract exists it means that a Certificate with the same Certificate Data already exists. The contract then can return a registration information to the Root which will return it to a User. If a contract does not exist the message will bounce to the Root smart contract which will mean the Certificate can be registered.
 
@@ -31,9 +31,9 @@ Of course additional business logic steps could be included between the last two
 
 ## Resolving
 
-To resolve the Name any User can now call Get method “Resolve” of a Root locally to obtain an Address. Root will use Certificate Code, Root PubKey, insert a name User wishes to resolve into Certificate Code and calculate the address.
+To resolve the Name any User can now call Get method `Resolve` of a Root locally to obtain an Address. Root will use Certificate Code, Root PubKey, insert a name User wishes to resolve into Certificate Code and calculate the address.
 
-To resolve a Root smart contract one can take any Certificate Core and resolve for the “Root” name.
+To resolve a Root smart contract one can take any Certificate Core and resolve for the `Root` name.
 
 A user application can cash the Certificate Code smart contract and Root PubKey once, after which resolving any name is achieved locally with a simple address calculation, with no need for network connection at all.
 
@@ -51,15 +51,15 @@ Of course search is one of the most important features of any name system. Knowi
 
 Let’s consider a DeNS Root is a smart contract which contains a Code of the Name Identity Certificate (NIC) smart contract. The Root has methods for Identity Registering, NIC Code Retrieval, Root PubKey retrieval, Version history.
 
-When a User wishes to register an Identity it is calling a “RegName” method in DeNS Root with the signed message of UTF-8 string (Name) together with a Registration Bid (a hash of a Bid Value in TONs with some salt) with value attached 1 TON.
+When a User wishes to register an Identity it is calling a «RegName» method in DeNS Root with the signed message of UTF-8 string (Name) together with a Registration Bid (a hash of a Bid Value in TONs with some salt) with value attached 1 TON.
 
-DeNS Root is taking its Public Key and a NIC Code inserts a Name, calculates the NIC address and checks if the address already has a NIC Code deployed by sending a bounced true message calling method “getName”. Return to User a Whois Information.
+DeNS Root is taking its Public Key and a NIC Code inserts a Name, calculates the NIC address and checks if the address already has a NIC Code deployed by sending a bounced true message calling method «getName». Return to User a Whois Information.
 
 If it bounces or a registration period in Whois is less than 28 days DeNS Root will send the name into an Auction Smart Contract together with a Registration Bid Hash and a number of years before expiration. First bidder determines the duration of the auctioned name. Other users will be able to Bid for the same name but only for same duration with their Bids following exactly the same process. Auction duration is minimum 7 days per year of name duration but no more than 28 days. At the end of the Auction all participants will submit to the Auction contract a message signed from the address of the original bid together with their original bid price and salt. The winner of the auction will be determined by the highest bid per day and will pay the second higher price for the Name Certificate.
 
 Once DeNS Root knows the Auction result it will wait until registration period ends if the name certificate has existed before or immediately deploy the NIC smart contract into the address calculated as a NIC Contract Code with a Name inserted into initial data and PubKey of the Owner passed in its constructor.
 
-To resolve the Name any User can now call Get method “Resolve” of DeNS Root locally to obtain an Address. DeNS Root will use Code of NIC smart contract, a DeNS Root PubKey, insert any name they are wishing to resolve into NIC Code and calculate the address.
+To resolve the Name any User can now call Get method «Resolve» of DeNS Root locally to obtain an Address. DeNS Root will use Code of NIC smart contract, a DeNS Root PubKey, insert any name they are wishing to resolve into NIC Code and calculate the address.
 
 Since most of the time a user application will just cash the Code of NIC smart contract and DeNS PubKey, resolving any name is achieved locally with a simple address calculation, with no need for network connection at all.
 
