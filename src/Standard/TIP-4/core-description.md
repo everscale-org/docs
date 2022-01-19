@@ -1,1 +1,112 @@
+[https://forum.freeton.org/t/tip-4-free-software-license-ton-vm-opcode-fb0a/2952](https://forum.freeton.org/t/tip-4-free-software-license-ton-vm-opcode-fb0a/2952)
 
+by Mitja Goroshevsky
+
+*with special thanks to Sergey Yaroslavtsev*
+
+### **Introduction**
+
+Many members of our community have asked questions about Free TON code philosophy. Why we call it Free Software? What is a relationship between Free TON and Free Software? What is the difference between Free Software and Open Source? I have decided to combine this with an idea I have regarding gas payment redistribution in TON. You will see below why it is related.
+
+The concept of Free Software predates open source. Richard Stallman has started the free-software movement in 1983 with a launch of GNU Project while open-source movement has been derived from Free Software only in 1998.
+
+To clarify, the Free Software is not in conflict with Open Source. As explained below it follows all the same principles and the differences seems more ideological. Yet TON project did not have any problem with open-source nature of it software. It is all open sourced. The problem was exactly about the Freedom of people to use it. That is why Free TON is heavily influenced by Free Software movement. Declaration of Decentralisation is, in many ways, inspired by Stallman’s “The GNU Manifesto” [1].
+
+In “Why Open Source misses the point of Free Software” Stallman writes among other things: “The terms “free software” and “open source” stand for almost the same range of programs. However, they say different things about those programs, based on different values. The free software movement campaigns for freedom for the users of computing; it is a movement for freedom and justice. By contrast, the open source idea values mainly practical advantage and does not campaign for principles. This is why we do not agree with open source, and do not use that term.”[2]
+
+It seems Free TON is in agreement with this line of thought. While all our software is open source it is the Freedom to run the software what has launched this network.
+
+Now let’s talk about Copyright and Licensing as they relate to the Free Software in general and Blockchain in particular. Before we start I need to say that blockchain may potentially provide a solution to some of the free software inherited business model problems.
+
+We all remember that free in the free software stands for freedom and not for zero price. The ability to get paid for a software should not be based on restrictions imposed by its license. But what it should be based upon then? There are several business models for free software non of which really works. What works is a business model that is not exactly related to the software itself and therefore can not be attributed to it. Such as charging for support or for portions of the software which are closed source. It all seems quite unnatural. It also prevents one of the major points of free software — an open collaboration of the community around software projects.
+
+Donald Fischer article title “Open source creators: Red Hat got $34 billion and you got $0. Here’s why” [3] is self explanatory. IBM has bought a commercial company that was built on top of many developers’ contribution to its code. Those developers never got any part out of the value they have created.
+
+### **Aligning the incentives**
+
+Many free and open source software projects struggle to introduce a sustainable business model. This is one of the reasons why most of the open source software contributors work for large corporations. When a venture capital provides funding to a software project it expects multiple return on its capital. With commercial software it is quite straight forward — a company is charging money for its software use and if successful passes profits to its stakeholders. With free software its quite difficult. That is why there are very few (or should we say: not enough) commercially successful open source software companies.
+
+Blockchain introduces a unique opportunity for Free Software developers to align their commercial interests with those of users for the benefit of the whole ecosystem. As an Internet of Value protocol, Blockchain has built-in network incentive mechanism — network fees (or gas).
+
+To remind:
+
+Miners in Proof-Of-Work collect miner rewards and network fees to compensate them for resources spent to secure the network and process transactions. Both security computations and transaction processing are separate resources, thus requiring separate fees.
+
+In Proof-Of-Stake Validators commit funds and processing power to secure the network and process transactions (in a form of smart contract execution in TON). For this they also get separate rewards: block rewards in a form of token emission and transaction reward in a form of a fee. Please note, rewards are separated in both cases.
+
+We propose to extend the reward model to transaction facilitators. It would be logical to pay part of the fees to the smart contract developer who is initiating the transaction which pays the fee. This will attract both Developers and Users which will increase network usage and total transaction fees for all network participants.
+
+### **On-chain licensing fees**
+
+Somewhat naive mechanism but with the same underlying idea is proposed by Near blockchain.
+
+“The developerReward are allocated by per block per account, as they can be efficiently done every time the transaction or receipts is being processed by the contract.” [4]
+
+The problem with this approach lays in the fact that network fees not only pays for resources but also provide an important anti spam mechanism. One can use the developer kick-back to simply lower an attack costs. To mitigate that risk we propose a use of a special **Payout Contract**. This contract is going to pay the collected Copyleft fees to developers only after certain threshold in both amount of fees and time frame are surpassed.
+
+In this respect the Developer motivation is again aligned with the Network security model — it is not practical to break the network where one receives a long term rent.
+
+### **Some technical details**
+
+Technically we introduce a TVM Opcode FB0A. Contract may include that code together with a License information and address of its developer.
+
+Collator will include a reward related to gas fees from these transactions into the block for the address indicated in the TVM instruction in the amount corresponding to the indicated License. The percentage of gas fees depends on the license type such as that the most free software compatible license provides more gas.
+
+FB0A - COPYLEFT (n x y - ), looks up for the license rule for ‘n’ in ConfigParam (for example 42) and creates output action to send part of the tokens it collected from gas fees to Payout contract indicated in ConfigParam for address x:y, where x - is 32 bit signed integer for workchain and y is 256 bit unsigned integer for contract address in this workchain. It will not throw any exceptions if n or the address are incorrect.
+
+Generally allowed licenses are those supported by Free Software Foundation as described here: [https://www.gnu.org/licenses/license-list.html#SoftwareLicenses 2](https://www.gnu.org/licenses/license-list.html#SoftwareLicenses)
+
+**License types payout**
+
+[GPL-Compatible Free Software Licenses 2](https://www.gnu.org/licenses/license-list.html#SoftwareLicenses) → 30% fees
+
+[GPL-Incompatible Free Software Licenses](https://www.gnu.org/licenses/license-list.html#GPLIncompatibleLicenses) → 20% fees
+
+To implement we add network config parameter: license fees threshold value
+
+Collator check threshold each time the instruction is executed. After threshold is reached collator sends value to Developer Account defined in contract instruction FB0A
+
+TVM creates special out action with Developer Account (last call of FB0A matters)
+
+If account is been deleted, the executor sends value to Developer Account or to ValueFlow if it is not enough (this case must be checked in Validator)
+
+Executor analyzes special out action and counts value then sends message to developer account (payment for transaction gets from value)
+
+We add fields to json objects and QServer for SDK
+
+Collator and Validator must check fees from ValueFlow with Developer correction
+
+### **Copyright discussion**
+
+“What is the proper way to decide copyright policy? If copyright is a bargain made on behalf of the public, it should serve the public interest above all. The government’s duty when selling the public’s freedom is to sell only what it must, and sell it as dearly as possible. At the very least, we should pare back the extent of copyright as much as possible while maintaining a comparable level of publication.” [5]
+
+- One important dimension of copyright is its duration
+- Another dimension of copyright policy is the extent of fair use: some ways of reproducing all or part of a published work that are legally permitted even though it is copyrighted.
+
+(c) Richard Stallman
+
+Both duration and fair use of copyright is balanced in this proposal by virtue of compensating copyright holder by Payout Contract creating an ongoing reward from the network while at the same time not preventing a forking possibility by other developers who then need to improve the software in a way that will bring new users and create new intensive for the new contributor. So both improvements as well as long term rent (subscription) is provided for developers.
+
+The Copyleft spirit is fully supported here as the Fee is collected for developers who facilitates the fees creation in the first place. The freedom to fork is fully executed as well as anyone can fork the code of a smart contract. In the end it is the community of users who chooses which contract to use and the decision is usually based upon the reputation of the code represented by the hash of the code where is no single byte has been changed. Therefore the system is merit-based. Both long term developer’s incentives for original developers and forking is provided.
+
+To recap the proposed system is compatible with all four essential freedoms:
+
+The freedom to run the program as you wish, for any purpose (freedom 0).
+
+The freedom to study how the program works, and change it so it does your computing as you wish (freedom 1). Access to the source code is a precondition for this.
+
+The freedom to redistribute copies so you can help others (freedom 2).
+
+The freedom to distribute copies of your modified versions to others (freedom 3). By doing this you can give the whole community a chance to benefit from your changes. Access to the source code is a precondition for this.
+
+References:
+
+[1] [https://www.gnu.org/gnu/manifesto.html 2](https://www.gnu.org/gnu/manifesto.html)
+
+[2] [https://www.gnu.org/philosophy/open-source-misses-the-point.html](https://www.gnu.org/philosophy/open-source-misses-the-point.html)
+
+[3] [https://blog.tidelift.com/open-source-creators-red-hat-got-34-billion-and-you-got-0.-heres-why](https://blog.tidelift.com/open-source-creators-red-hat-got-34-billion-and-you-got-0.-heres-why)
+
+[4] [https://near.org/papers/economics-in-sharded-blockchain/#developer-business-models](https://near.org/papers/economics-in-sharded-blockchain/#developer-business-models)
+
+[5] [https://www.gnu.org/philosophy/misinterpreting-copyright.en.html](https://www.gnu.org/philosophy/misinterpreting-copyright.en.html)
