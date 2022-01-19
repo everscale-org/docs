@@ -93,4 +93,4 @@ The Certificate is issued by Root for ownership of an item. Let’s call it cert
 ## Reference
 
 - [Contest Proposal: Decentralized Name Service (DeNS)](https://forum.freeton.org/t/contest-proposal-decentralized-name-service-dens/7807)
-- [TIP-21 ReDeNS: a Reverse DeCert](/docs/Standard/TIP-21/core-description)
+- [TIP-21 ReDeNS: a Reverse DeCert](/Standard/TIP-21/core-description)
