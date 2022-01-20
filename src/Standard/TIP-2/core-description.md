@@ -1,9 +1,9 @@
 ---
-label: core description
-sidebar_position: 2
+title: Core description
+sidebar_position: 0
 ---
 
-# TIP-2 Decentralized Certificates (DeCert)
+# DeCert — Decentralized Certificates
 
 ## Abstract
 
@@ -93,4 +93,4 @@ The Certificate is issued by Root for ownership of an item. Let’s call it cert
 ## Reference
 
 - [Contest Proposal: Decentralized Name Service (DeNS)](https://forum.freeton.org/t/contest-proposal-decentralized-name-service-dens/7807)
-- [TIP-21 ReDeNS: a Reverse DeCert](/Standard/TIP-21/core-description)
+- [ReDeNS — Reverse DeCert (TIP-2.1)](/Standard/TIP-2/1)
