@@ -50,9 +50,9 @@ This way we theoretically could use IPFS to store all user interfaces somewhere,
 
 Yet even an IPFS and Web3 combination does not guarantee end-to-end decentralization as described below in more detail.
 
-## User interaction (DeBots)
+## User interaction (DeBot)
 
-A system is needed to create a comprehensive user experience without relying on trusted infrastructure. To achieve this, we introduced technology for writing the user interface inside the smart contract itself. **Decentralized Bots (DeBots)** is a technology enabling end-to-end Decentralization at a user interaction level. Using E2ED, any front-end application (be it in a web browser or a purposely built software) can draw an entire user experience without relying on a server.
+A system is needed to create a comprehensive user experience without relying on trusted infrastructure. To achieve this, we introduced technology for writing the user interface inside the smart contract itself. **Decentralized Bot (DeBot)** is a technology enabling end-to-end Decentralization at a user interaction level. Using E2ED, any front-end application (be it in a web browser or a purposely built software) can draw an entire user experience without relying on a server.
 
 Comparing Web 2.0, Web 3.0 and E2ED based systems (which for the purpose of the diagram below we named Web3.11 as a reminiscent to the famous Windows 3.11), E2ED is not a contradiction to Web3.0 but rather a continuation that closes some centralization loopholes to achieve end-to-end decentralization.
 

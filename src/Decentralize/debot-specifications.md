@@ -19,7 +19,7 @@ Provide a **secure** and **convenient** environment to work with smart-contracts
 - **DeBot protocol** — a set of rules describing the communication between browser and DeBot: how to call DeBot
   functions and how to interpret its answers;
 - **DeBot engine (DEngine)** — a program component that executes DeBot and parses its answer using DeBot protocol;
-- **DeBot browser** — a program, which creates instances of DEngine for executed DeBots and renders the user interface.
+- **DeBot browser** — a program, which creates instances of DEngine for executed DeBot and renders the user interface.
 
 ## Architecture
 
@@ -31,7 +31,7 @@ DeBot platform consists of the following elements:
 - DeBot browser;
 - Target smart contract(s).
 
-One target smart contract can have several DeBots and vise versa. DeBot is deployed to the blockchain. DeBot browser
+One target smart contract can have several DeBot and vise versa. DeBot is deployed to the blockchain. DeBot browser
 runs on client. It downloads DeBot code and runs it inside the DEngine.
 
 ## Proof of State
@@ -44,8 +44,8 @@ blockchain.
 ### Motivation
 
 DeBot is a smart contract and smart contracts are isolated from each other and from the blockchain, their capabilities
-are limited by the commands of the virtual machine on which they are executed. But DeBots must have more possibilities.
-DeBots need to:
+are limited by the commands of the virtual machine on which they are executed. But DeBot must have more possibilities.
+DeBot need to:
 
 - receive input from users;
 - query info about other smart contracts;
@@ -54,28 +54,28 @@ DeBots need to:
 - call external function libraries that allow to do operations that are not supported by VM. For example, work with
   json, convert numbers to string and vice versa, encrypt/decrypt/sign data.
 
-To cover all these needs we should design different **DeBot Interfaces** (`DInterfaces`) which can be used in DeBots and
-which must be supported in DeBots Browsers. These interfaces should match the requirements:
+To cover all these needs we should design different **DeBot Interfaces** (`DInterfaces`) which can be used in DeBot and
+which must be supported in DeBot Browsers. These interfaces should match the requirements:
 
 - **comprehensive** — interfaces should describe all types of communication accessible on modern devices;
 - **universal** — interfaces should be abstract from certain OS and hardware;
 - **atomic** — every communication channel should be separately described in the interface for further flexible resource
   access management;
-- **convenient** — even low-skilled developers should be able to use this interface in their DeBots.
+- **convenient** — even low-skilled developers should be able to use this interface in their DeBot.
 
 In this model DeBot Engine should act like a proxy between DeBot Browser and DeBot. But it can have builtin
 implementation of very basic DInterfaces (e.g. working with json).
 
-Also, we need to describe the manifest for DeBots. DeBot developer will describe all needed interfaces in this manifest
+Also, we need to describe the manifest for DeBot. DeBot developer will describe all needed interfaces in this manifest
 and the DeBot Browser will check it before running DeBot. We need this manifest to keep users secure and private when
-using DeBots.
+using DeBot.
 
 ## Description
 
 Every DeBot must declare which DInterfaces it will use. For this purpose it must have `getRequiredInterfaces()` function
 which returns array of required interfaces.
 
-Every interface must have an `id` which is an unsigned 256-bit integer and an address which is used in DeBots as a
+Every interface must have an `id` which is an unsigned 256-bit integer and an address which is used in DeBot as a
 destination `address` of internal messages. Address must be a standard Everscale address consisting of `DEBOT_WC` (equal
 to `0xDB`) as a `workchain_id` part and interface `id` as `address` part (see _"Telegram Open Network Blockchain"_
 specification, section 3.1.2 for details about TL-B scheme for address).
@@ -83,7 +83,7 @@ specification, section 3.1.2 for details about TL-B scheme for address).
 For example, in solidity `getRequiredInterfaces` can be implemented like this:
 
 ```solidity
-// Base contract for all debots
+// Base contract for all DeBot
 abstract contract Debot {
 
     i32 constant DEBOT_WC = - 31;
@@ -131,7 +131,7 @@ with `getRequiredInterfaces()` this function is defined in the base
 contract [`Debot.sol`](https://github.com/tonlabs/debots/blob/main/Debot.sol).
 
 ```solidity
-// Base contract for all debots
+// Base contract for all DeBots
 abstract contract Debot {
 
     i32 constant DEBOT_WC = - 31;
@@ -201,7 +201,7 @@ Below you can see DeBot start sequence:
 ## DInterface specification
 
 Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used
-in DeBots. All accepted interfaces are published in repo:
+in DeBot. All accepted interfaces are published in repo:
 
 https://github.com/tonlabs/DeBot-IS-consortium
 
@@ -295,19 +295,19 @@ contract ExampleDebot is Debot, RawInput {
 }
 ```
 
-> **Note:** `C++` DeBots are currently in the state of early development, and not all features all completely defined for them yet.
+> **Note:** `C++` DeBot are currently in the state of early development, and not all features all completely defined for them yet.
 
 ## DeBot Special Features
 
-DeBots have 3 special features:
+DeBot have 3 special features:
 
 1. `calling` — get-methods of target smart contracts;
 2. `calling` — external functions of target smart contracts onchain;
-3. `invoking` — other DeBots in a local environment.
+3. `invoking` — other DeBot in a local environment.
 
-Ordinary Everscale smart contracts cannot use 1st and 2nd features because they cannot produce external inbound messages. But DeBots can, due to the fact that they are executed in DEngine, that allows DeBots to generate these kinds of messages, send them to blockchain and return results to DeBots.
+Ordinary Everscale smart contracts cannot use 1st and 2nd features because they cannot produce external inbound messages. But DeBot can, due to the fact that they are executed in DEngine, that allows DeBot to generate these kinds of messages, send them to blockchain and return results to DeBot.
 
-In terms of DeBots, all these features are implemented without [DInterfaces](/Decentralize/debot-specifications#debot-interfaces) but in a native way, like two smart contracts communicating with each other — by sending messages directly to target address.
+In terms of DeBot, all these features are implemented without [DInterfaces](/Decentralize/debot-specifications#debot-interfaces) but in a native way, like two smart contracts communicating with each other — by sending messages directly to target address.
 
 But with only one difference — to call a get-method or call a function onchain DeBot must generate external inbound message, while to invoke another DeBot, it should generate an internal message to the invoked DeBot address.
 
@@ -368,13 +368,13 @@ DEngine executes DeBot and checks if it produces external inbound messages. If t
 3. Requests permission from DeBot Browser to send this message onchain. Request contains information about funds that will be spent if message will be executed onchain and message itself;
 4. If DeBot Browser allows to send message, DEngine sends message to blockchain.
 
-## Invoking DeBots
+## Invoking DeBot
 
 DeBot can call another DeBot by simply sending internal message to it.
 
 After DeBot execution DEngine filters all internal messages produced by DeBot with destination addresses with workchain 0. This filter allows to separate DInterface calls (which have 0xDB workchain id) from DeBot invokes. If there are invoke messages, DEngine sends them to Browser through BrowserCallbacks interface. Browser (or user) has to approve the invoke of a new DeBot, at which point Browser creates a new DEngine instance, downloads target DeBot and transfers the message to it.
 
-Browsers should generally support a common queue for messages from several DeBots.
+Browsers should generally support a common queue for messages from several DeBot.
 
 ## Security notes
 
@@ -386,4 +386,4 @@ Get-method calls are always allowed. Executed by DEngine.
 
 External function calls must be approved by Browser. Executed by DEngine.
 
-Other DeBots calls are always allowed. But executed by Browser which can block invoke if needed.
+Other DeBot calls are always allowed. But executed by Browser which can block invoke if needed.
