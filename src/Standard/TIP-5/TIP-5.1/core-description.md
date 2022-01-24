@@ -46,26 +46,26 @@ contract Selector {
 
 #### How a Contract will Publish the Interfaces it Implements
 
-A contract that is compliant with TIP4 shall implement the following interface (referred as TIP4.sol):
+A contract that is compliant with TIP5.1 shall implement the following interface:
 
 #### Solidity
 
 ```solidity
 interface TIP4 {
     /// @notice Query if a contract implements an interface
-    /// @param interfaceID The interface identifier, as specified in TIP4
-    /// @dev Interface identification is specified in TIP4.
+    /// @param interfaceID The interface identifier, as specified in TIP5.1
+    /// @dev Interface identification is specified in TIP5.1.
     /// @return `true` if the contract implements `interfaceID` and
     ///  `interfaceID` is not 0xffffffff, `false` otherwise
     function supportsInterface(bytes4 interfaceID) external view responsible returns (bool);
 }
 ```
 
-The interface identifier for this interface is **TO BE DEFINED**. You can calculate this by running `bytes4(tvm.hash('supportsInterface(bytes4)'))`; or using the Selector contract above.
+The interface identifier for this interface is `0x3204EC29`. You can calculate this by running `tvm.functionId('supportsInterface(bytes4)')`; or using the Selector contract above.
 
 Therefore, the implementing contract will have a `supportsInterface` function that returns:
 
-- `true` when `interfaceID` is `TO BE DEFINED` (TIP4 interface)
+- `true` when `interfaceID` is `0x3204EC29` (TIP5.1 interface)
 - `false` when `interfaceID` is `0xffffffff`
 - `true` for any other `interfaceID` this contract implements
 - `false` for any other `interfaceID`

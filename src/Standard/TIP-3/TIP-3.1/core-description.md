@@ -99,7 +99,7 @@ interface TIP3TokenRoot {
 }
 ```
 
-The token root TIP4 interface ID is **TO BE DEFINED**.
+The token root interface ID is `0x4371D8ED`.
 
 ### Token wallet
 
