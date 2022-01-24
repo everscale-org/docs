@@ -22,9 +22,10 @@ The keywords “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL N
 ### Notes
 
 - We choose Standard Interface Detection to expose the interfaces that a TIP3 smart contract supports.
-- This standard does not define the external methods to initiate transfer, mint or burn tokens. Though it defines the methods, which MUST be called on a recipient token wallet or token root during these operations. Any additional data MUST be encoded in the `_meta` parameter. This allows to detect these operations, without knowing the details of a specific implementation.
-- The rules for decoding `_meta` parameters MUST be defined in a child standards.
+- This standard does not define the external methods to initiate transfer, mint or burn tokens.
+Though it defines the methods, which MUST be called on a recipient token wallet or token root during these operations.
 - The rules for a token wallet ownership MUST be defined in a child standards.
+- A `-1` offset is added to some function IDs derivations, so the preimage of the hash cannot be known, further reducing the chances of a possible collisions.
 
 ### Token root
 
@@ -70,29 +71,31 @@ function walletCode() public view responsible returns (TvmCell);
 
 #### Accept tokens burn
 
-Decreases token total supply by `_value`. The contract MUST check that the sender is a correct token wallet. Before sending this message, caller token wallet MUST decrease its own balance by `_value`. Any additional data MUST be encoded in the `_meta` parameter. If the mint can't be accepted (e.g. invalid sender), this message MUST be bounced.
+Does not have a standard signature, but has a standard function ID `ACCEPT_TOKENS_BURN_ID` obtained as `bytes32(hash('acceptBurn(uint128)') - 1)`. The `uint128 _value` parameter MUST be first. The function name and the rest of the parameters are not fixed by this standard and can be reinvented for each substandard.
+
+Decreases token total supply by `_value`. The contract MUST check that the sender is a correct token wallet. Before sending this message, caller token wallet MUST decrease its own balance by `_value`. If the mint can't be accepted (e.g. invalid sender), this message MUST be bounced.
+
+Any function from the following snippet is a valid example:
 
 ```solidity
-function acceptBurn(
-    uint128 _value,
-    TvmCell _meta
-) external;
+interface TIP3AcceptBurn {
+    function acceptBurn(uint128 _value) functionID(ACCEPT_TOKENS_BURN_ID) external;
+    function acceptBurn2(uint128 _value, uint256 _publicKey, address _owner) functionID(ACCEPT_TOKENS_BURN_ID) external;
+    function acceptBurn3(uint128 _value, TvmCell _meta) functionID(ACCEPT_TOKENS_BURN_ID) external;
+}
 ```
 
 #### Standard interface detection
 
 ```solidity
 interface TIP3TokenRoot {
+    /// @dev Accept burn function ID `ACCEPT_TOKENS_BURN_ID`
+    
     function name() public view responsible returns (string);
     function symbol() public view responsible returns (string);
     function decimals() public view responsible returns (uint8);
     function totalSupply() public view responsible returns (uint128);
     function walletCode() public view responsible returns (TvmCell);
-
-    function acceptBurn(
-        uint128 _value,
-        TvmCell _meta
-    ) external;
 }
 ```
 
@@ -126,44 +129,47 @@ function walletCode() public view responsible returns (TvmCell);
 
 #### Accept tokens transfer
 
-Increases token wallet balance by `_value`. The contract MUST check that the sender is a correct token wallet. Before sending this message, caller token wallet MUST decrease its own balance by `_value`. Any additional data MUST be encoded in the `_meta` parameter. If the transfer can't be accepted (e.g. invalid sender), this message MUST be bounced.
+Does not have a standard signature, but has a standard function ID `ACCEPT_TRANSFER_ID` obtained as `bytes32(hash('acceptTransfer(uint128)') - 1)`. The `uint128 _value` parameter MUST be first. The function name and the rest of the parameters are not fixed by this standard and can be reinvented for each substandard.
+
+Increases token wallet balance by `_value`. The contract MUST check that the sender is a correct token wallet. Before sending this message, caller token wallet MUST decrease its own balance by `_value`. If the transfer can't be accepted (e.g. invalid sender), this message MUST be bounced.
+
+Any function from the following snippet is a valid example:
 
 ```solidity
-function acceptTransfer(
-    uint128 _value,
-    TvmCell _meta
-) external;
+interface TIP3AcceptTransfer {
+    function acceptTransfer(uint128 _value) functionID(ACCEPT_TRANSFER_ID) external;
+    function acceptTransfer2(uint128 _value, uint256 _publicKey, address _owner) functionID(ACCEPT_TRANSFER_ID) external;
+    function acceptTransfer3(uint128 _value, TvmCell _meta) functionID(ACCEPT_TRANSFER_ID) external;
+}
 ```
 
 #### Accept tokens mint
 
-Increases token wallet balance by `_value`. The contract MUST check that the sender is a correct token root. Before sending this message, token root MUST increase the total supply by `_value`. Any additional data MUST be encoded in the `_meta` parameter. If the mint can't be accepted (e.g. invalid sender), this message MUST be bounced.
+Does not have a standard signature, but has a standard function ID `ACCEPT_MINT_ID` obtained as `bytes32(hash('acceptMint(uint128)') - 1)`. The `uint128 _value` parameter MUST be first. The function name and the rest of the parameters are not fixed by this standard and can be reinvented for each substandard.
+
+Increases token wallet balance by `_value`. The contract MUST check that the sender is a correct token root. Before sending this message, token root MUST increase the total supply by `_value`. If the mint can't be accepted (e.g. invalid sender), this message MUST be bounced.
+
+Any function from the following snippet is a valid example:
 
 ```solidity
-function acceptMint(
-    uint128 _value,
-    TvmCell _meta
-) external;
+interface TIP3AcceptMint {
+    function acceptMint(uint128 _value) functionID(ACCEPT_TRANSFER_ID) external;
+    function acceptMint2(uint128 _value, uint256 _publicKey, address _owner) functionID(ACCEPT_TRANSFER_ID) external;
+    function acceptMint3(uint128 _value, TvmCell _meta) functionID(ACCEPT_TRANSFER_ID) external;
+}
 ```
 
 #### Standard interface detection
 
 ```solidity
 interface TIP3TokenWallet {
+    /// @dev Accept transfer function ID - `ACCEPT_TRANSFER_ID`
+    /// @dev Accept mint function ID - `ACCEPT_MINT_ID`
+    
     function root() public view responsible returns (address);
     function balance() public view responsible returns (uint128);
     function walletCode() public view responsible returns (TvmCell);
-
-    function acceptTransfer(
-        uint128 _value,
-        TvmCell _meta
-    ) external;
-
-    function acceptMint(
-        uint128 _value,
-        TvmCell _meta
-    ) external;
 }
 ```
 
-The token wallet TIP4 interface ID is **TO BE DEFINED**.`
+The token wallet TIP4 interface ID is **TO BE DEFINED**.
