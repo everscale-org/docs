@@ -8,8 +8,8 @@ TBD
 ## Main flow
 
 ```shell
-git clone git@github.com:everscale-org/docs.git
-cd Forever
+git clone git@github.com:everscale-org/docs.git everscale-docs
+cd everscale-docs
 git checkout -b feature/name-of-feature origin/main
 ```
 
