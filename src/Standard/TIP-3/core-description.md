@@ -3,7 +3,7 @@ title: Core description
 sidebar_position: 0
 ---
 
-# Distributed token (TIP-3)
+# Fungible Token
 
 ## Abstract
 
