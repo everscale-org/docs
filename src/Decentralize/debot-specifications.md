@@ -133,53 +133,160 @@ contract [`Debot.sol`](https://github.com/tonlabs/debots/blob/main/Debot.sol).
 ```solidity
 // Base contract for all DeBots
 abstract contract Debot {
+    /// @notice ACTION structure
+    struct Action {
+        // String that describes action step, should be printed to user
+        string desc;
+        // Name of debot function that runs this action
+        string name;
+        // Action type
+        uint8 actionType;
+        // Action attributes.
+        // Syntax: "attr1,attr2,attr3=value,...".
+        // Example: "instant,fargs=fooFunc,sign=by-user,func=foo"
+        string attrs;
+        // Context to transit to
+        uint8 to;
+        // Action internal data
+        TvmCell misc;
+    }
 
-    i32 constant DEBOT_WC = - 31;
+    struct Context {
+        uint8 id;           // Context ordinal
+        string desc;        // message to be printed to the user
+        Action[] actions;   // list of actions
+    }
 
-    function getDebotInfo() public functionID(0xDEB) view virtual returns (
-        string name,
-        string version,
-        string publisher,
-        string key,
-        string author,
-        address support,
-        string hello,
-        string language,
-        string dabi,
-        bytes icon
+    string s_dabi;
+
+    /*
+     * Public debot interface
+     */
+
+    /// @notice Returns list of interfaces used by DeBot.
+    function getRequiredInterfaces() public view virtual returns (uint256[] interfaces);
+    /// @notice Used for error handling for external messages if error code >= 400 (TVM) and < 500 (PROCESSING)
+    function getErrorDescription(uint32 error) public pure virtual returns (string desc);
+    /// @notice Invoked by DeBot Browser at debot startup. Returns array of debot contexts.
+    function fetch() public virtual returns (Context[] contexts);
+    /// @notice DeBot entry point.
+    function start() public virtual;
+
+    /// @notice Returns DeBot metadata.
+    /// @return name String with name of debot, e.g. "DePool".
+    /// @return version Semver version of debot, that will be converted to string like "x.y.z".
+    /// @return publisher String with info about who has deployed debot to blokchain, e.g. "TON Labs".
+    /// @return caption (10-20 ch.) String with short description, e.g. "Work with Smthg".
+    /// @return author String with name of author of DeBot, e.g. "Ivan Ivanov".
+    /// @return support Free TON address of author for questions and donations.
+    /// @return hello String with first messsage with DeBot description.
+    /// @return language (ISO-639) String with debot interface language, e.g. "en".
+    /// @return dabi String with debot ABI.
+    function getDebotInfo() public functionID(0xDEB) view virtual returns(
+        string name, string version, string publisher, string caption, string author,
+        address support, string hello, string language, string dabi, bytes icon
     );
 
-}
+    /// @notice Allow to set debot ABI. Do it before using debot.
+    function setABI(string dabi) public {
+        require(tvm.pubkey() == msg.pubkey(), 100);
+        tvm.accept();
+        s_dabi = dabi;
+    }
 
-contract DebotA is Debot {
-
-    function getDebotInfo() public functionID(0xDEB) override view returns (
-        string name,
-        string version,
-        string publisher,
-        string key,
-        string author,
-        address support,
-        string hello,
-        string language,
-        string dabi,
-        bytes icon
+    /// @notice Returns DeBot ABI.
+    /// @dev Deprecated. Remove later. https://github.com/tonlabs/TON-SDK/blob/dc0631a726295c4e7190361c417214c301ec4e01/ton_client/src/debot/dengine.rs#L175
+    function getDebotOptions() public view returns (
+        uint8 options, string debotAbi, string targetAbi, address targetAddr
     ) {
-        name = "DebotAlice";
-        version = "0.1.0";
-        publisher = "Everscale Labs";
-        key = "description";
-        author = "Everscale Labs";
-        support = address.makeAddrStd(
-            0,
-            0x841288ed3b55d9cdafa806807f02a0ae0c169aa5edfe88a789a6482429756a94
-        );
-        hello = "Greetings";
-        language = "en";
-        dabi = m_debotAbi.get();
-        icon = m_icon;
+        debotAbi = s_dabi;
+        targetAbi = "";
+        targetAddr = address(0);
+        options = 1;
     }
 }
+
+contract MyDeBot is Debot {
+    function getErrorDescription(uint32 error) public pure override returns (string desc) {
+        tvm.log(format("getErrorDescription: {}", error));
+        desc = format("some description about code {}", error);
+        // TODO description error codes
+    }
+    function fetch() public override returns (Context[] contexts) {
+        tvm.log("fetch");
+        // TODO fetch Context
+    }
+    function start() public override {
+        tvm.log("start");
+        // TODO start
+    }
+
+    function getDebotInfo() public functionID(0xDEB) view override returns(
+        string name, string version, string publisher, string caption, string author,
+        address support, string hello, string language, string dabi, bytes icon
+    ) {
+        tvm.log("getDebotInfo");
+        name = "MyDeBot";
+        version = "1.0.0-alpha.0";
+        publisher = "Everscale";
+        caption = "My first DeBot";
+        author = "Everscale";
+        support = address.makeAddrStd(0, 0x0);
+        hello = "Hello first user!";
+        language = "en";
+        dabi = s_dabi;
+        icon = "";
+    }
+
+    function getRequiredInterfaces() public view override returns (uint256[] interfaces) {
+        tvm.log("getRequiredInterfaces");
+        // TODO add dependency interfaces
+    }
+}
+```
+**Run debug log:**
+```shell
+npx tonos-cli debot --debug fetch <ADDRESS>
+
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: running getRequiredInterfaces, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:43:58 [INFO] getRequiredInterfaces
+
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: running getDebotInfo, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:43:58 [INFO] getDebotInfo
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: run_debot_external getDebotOptions, args: {}
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: running getDebotOptions, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: run_debot_external fetch, args: {}
+19:43:58 [DEBUG] (1) ton_client::debot::dengine: running fetch, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:43:58 [INFO] fetch
+DeBot Info:
+Name   : MyDeBot
+Version: 1.0.0-alpha.0
+Author : Everscale
+Publisher: Everscale
+Support: 0:0000000000000000000000000000000000000000000000000000000000000000
+Description: My first DeBot
+Hello first user!
+Run the DeBot (y/n)?
+y
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: running getRequiredInterfaces, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:44:02 [INFO] getRequiredInterfaces
+
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: running getDebotInfo, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:44:02 [INFO] getDebotInfo
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: run_debot_external getDebotOptions, args: {}
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: running getDebotOptions, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: run_debot_external fetch, args: {}
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: running fetch, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:44:02 [INFO] fetch
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: switching to 0
+19:44:02 [DEBUG] (1) tonos_cli::debot::callbacks: switched to ctx 0
+
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: run_action: start
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: run_debot_external start, args: {}
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: running start, addr 0:5225bff6b13f40518f523c18c7af8dcc46a3369845d98cc7df4e36acca5f8490
+19:44:02 [INFO] start
+19:44:02 [DEBUG] (1) ton_client::debot::dengine: instant_switch = false, state_to = 0
+19:44:02 [DEBUG] (1) tonos_cli::debot::callbacks: no more actions, exit loop
 ```
 
 1. Before starting the DeBot, DeBot Browser creates new instance of DEngine with address of DeBot;
