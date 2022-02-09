@@ -5,7 +5,7 @@ sidebar_position: 0
 
 # Workflow (TIP-0)
 
-TIP — TIP Is Proposal (TIPs) describe standards for the Everscale blockchain. They may include anything that the community considers in need of improvement or standardization. That can be specifications for core protocol, description of interfaces, smart contract standards and so on.
+TIP — Trustless Improvement Proposal (TIPs) describe standards for the Everscale blockchain. They may include anything that the community considers in need of improvement or standardization. That can be specifications for core protocol, description of interfaces, smart contract standards and so on.
 
 I propose a more relaxed structure more closely resembling Bitcoin BIPs but with quite different proccess (see below).
 
