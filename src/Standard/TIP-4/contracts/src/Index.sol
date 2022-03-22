@@ -1,6 +1,6 @@
 pragma ton-solidity >= 0.58.0;
 
-import './IIndex.sol';
+import 'IIndex.sol';
 
 /**
  * Errors
