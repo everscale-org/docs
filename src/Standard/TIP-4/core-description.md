@@ -40,12 +40,12 @@ Using the Storage contract, you can store NFT-related bytes in blockchain. [TIP-
 | Author                                          | Command                                  |
 |-------------------------------------------------|------------------------------------------|
 | [Aleksand Aleksev](mailto:rualekseev@gmail.com) | [grandbazar.io](https://grandbazar.io)   |
-| [Nikita](https://t.me/kokkekpek)                | [numiz.org](https://numiz.org/)          |
 | Aleksandr Khramtsov                             | [broxus](https://broxus.com/)            |
-| [Anton Platonov](https://t.me/SuperArmor)       | community member                         |
-| Oleg Varnov                                     | [numiz.org](https://numiz.org/)          |
-| Slava semenchuk                                 | [scalepunks.com](https://scalepunks.com) |
 | Andrey Nedobylskiy                              | [svoi.dev](https://svoi.dev)             |
+| [Anton Platonov](https://t.me/SuperArmor)       | community member                         |
+| [Nikita](https://t.me/kokkekpek)                | [numiz.org](https://numiz.org/)          |
+| [Oleg Varnov](https://t.me/id_xz)               | [numiz.org](https://numiz.org/)          |
+| Slava Semenchuk                                 | [scalepunks.com](https://scalepunks.com) |
 
 ## References
 
