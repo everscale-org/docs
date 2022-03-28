@@ -84,6 +84,26 @@ const config = {
             title: 'Community',
             items: [
               {
+                label: 'Grants',
+                href: 'https://l1.tonalliance.org/',
+              },
+              {
+                label: 'Bounties',
+                href: 'https://github.com/EverscaleGuild/bounties/issues',
+              },
+              {
+                label: 'Smart Contracts Chat',
+                href: 'https://t.me/EverscaleSmartContracts',
+              },
+              {
+                label: 'deBots Chat',
+                href: 'https://t.me/everscaledebots',
+              },
+              {
+                label: 'SDK Chat',
+                href: 'https://t.me/ever_sdk',
+              },
+              {
                 label: 'Stack Overflow',
                 href: 'https://stackoverflow.com/questions/tagged/everscale',
               },
