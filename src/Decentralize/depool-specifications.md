@@ -38,7 +38,7 @@ There are two main use cases of DePool:
 
 ## Architecture
 
-![DePool Architecture](/img/depool-architecture.svg)
+![DePool Architecture](depool-architecture.svg)
 
 1. DePool is designed to receive investment stakes from Participants, allocate the pool funds to a validator in order to participate in elections of the GVS and, after the end of the validation cycle, distribute stakes with certain rewards back to the Participants.
 2. DePool is deployed to basechain. But it cannot communicate with Elector directly, because Elector rejects messages from non-masterchain contracts. Thus there are DePool proxies that are deployed to masterchain and deliver messages from DePool to Elector and back. This is done, because DePool is a large and complex contract, and gas and storage fees are 10 times lower in basechain compared to masterchain. Keeping DePool on masterchain would be unreasonably expensive.
@@ -414,7 +414,7 @@ These get-methods are used for local run.
 
 ## Multi-Round elections
 
-![Multi-Round elections](/img/multi-round-elections.png)
+![Multi-Round elections](multi-round-elections.png)
 
 Every round goes through several steps:
 

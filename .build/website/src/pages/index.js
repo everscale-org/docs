@@ -17,7 +17,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/intro">
-            Everscale Tutorial - 5min ⏱️
+            🪤 Everscale Tutorial - 5min ⏱️
           </Link>
         </div>
       </div>

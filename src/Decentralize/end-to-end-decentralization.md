@@ -62,7 +62,7 @@ In practice today what happens in almost 100% of cases is shown in the middle co
 
 Even if Web3.0 is really advanced and stores the application data (say a website), in the IPFS database the Web3.0.js will be called to perform operations with a blockchain and again not the library nor the smart contract it interacts with, and will not be able to verify what has actually happened to the data that was stored and received from the IPFS on the user device.
 
-![Comparing Web 2.0, Web 3.0 and E2ED based systems](/img/comparing-web-systems.png)
+![Comparing Web 2.0, Web 3.0 and E2ED based systems](comparing-web-systems.png)
 
 In E2ED the smart contract contains the actual user interface in a form of DeBot. The DeBot system described herein is just one way of performing user interface functions by a smart contract. The whole graphical user interface could be drawn if needed.
 

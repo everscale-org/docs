@@ -4,6 +4,9 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Docs of Everscale',
@@ -14,26 +17,45 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'everscale-docs',
   projectName: 'docs',
+  scripts: [
+  ],
+  plugins: [require.resolve('docusaurus-lunr-search')],
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity: 'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
+  ],
   presets: [
     [
-      '@docusaurus/preset-classic',
+      'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: "src",
-          routeBasePath: "/",
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/everscale-org/docs/tree/main/',
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
+          showLastUpdateAuthor: false,
+          showLastUpdateTime: true,
+          path: "../../src",
+          routeBasePath: '/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        sitemap: {
+          changefreq: 'weekly',
+          priority: 0.5,
         },
       }),
     ],
   ],
 
   themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
         title: 'Everscale Documentation',
@@ -47,6 +69,26 @@ const config = {
             docId: 'intro',
             position: 'left',
             label: 'Tutorial',
+          },
+          {
+            label: 'Standards',
+            to: '/Standard/workflow'
+          },
+          {
+            label: 'Decentralization',
+            to: '/Decentralize/end-to-end-decentralization'
+          },
+          {
+            label: 'Validate',
+            to: '#'
+          },
+          {
+            label: 'Integrate',
+            to: '#'
+          },
+          {
+            label: 'Learn',
+            to: '#'
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
           {
@@ -172,11 +214,14 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Everscale`,
+        copyright: `Copyright © ${new Date().getFullYear()} Everscale<br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
+        "additionalLanguages": [
+          "solidity"
+        ]
       },
     }),
 };

@@ -23,7 +23,7 @@ Provide a **secure** and **convenient** environment to work with smart-contracts
 
 ## Architecture
 
-![DeBot Architecture](/img/debot-architecture.svg)
+![DeBot Architecture](debot-architecture.svg)
 
 DeBot platform consists of the following elements:
 
@@ -303,7 +303,7 @@ requirement if needed.
 
 Below you can see DeBot start sequence:
 
-![DeBot sequence](/img/debot-sequence.svg)
+![DeBot sequence](debot-sequence.svg)
 
 ## DInterface specification
 
