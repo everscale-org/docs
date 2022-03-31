@@ -90,7 +90,11 @@ const config = {
             label: 'Learn',
             to: '#'
           },
-          //{to: '/blog', label: 'Blog', position: 'left'},
+          {
+            label: 'Blog',
+            href: 'https://blog.everscale.network/',
+            position: 'right',
+          },
           {
             label: 'Status',
             href: 'https://everos.dev/status',
@@ -112,10 +116,6 @@ const config = {
               {
                 label: 'Event Calendar',
                 href: 'https://everscale-org.github.io/Calendar/',
-              },
-              {
-                label: 'Blog',
-                href: 'https://blog.everscale.network/',
               },
               {
                 label: 'Jobs and Vacancy',
