@@ -72,11 +72,11 @@ const config = {
           },
           {
             label: 'Standards',
-            to: '/Standard/workflow'
+            to: '/Standard/'
           },
           {
             label: 'Decentralization',
-            to: '/Decentralize/end-to-end-decentralization'
+            to: '/Decentralization/'
           },
           {
             label: 'Validate',
@@ -102,8 +102,20 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: 'About',
             items: [
+              {
+                label: 'Event Calendar',
+                href: 'https://everscale-org.github.io/Calendar/',
+              },
+              {
+                label: 'Blog',
+                href: 'https://blog.everscale.network/',
+              },
+              {
+                label: 'Jobs and Vacancy',
+                href: 'https://github.com/everscale-org/job/issues',
+              },
               {
                 label: 'White Paper',
                 href: 'https://mitja.gitbook.io/everscale-white-paper/',
@@ -113,12 +125,16 @@ const config = {
                 href: 'https://mitja.gitbook.io/everscale-lite-paper/',
               },
               {
-                label: 'Tutorial',
-                to: '/intro',
+                label: 'Weekly Meetup',
+                href: 'https://www.youtube.com/c/Everscale_community/search?query=Weekly%20Meetup',
               },
               {
                 label: 'Visual Brand Identity',
                 href: 'https://gramkit.org/en/branding',
+              },
+              {
+                label: 'Subgovernances',
+                href: 'https://gov.gramkit.org/',
               },
             ],
           },
@@ -138,7 +154,11 @@ const config = {
                 href: 'https://t.me/EverscaleSmartContracts',
               },
               {
-                label: 'deBots Chat',
+                label: 'Incubator Chat',
+                href: 'https://t.me/EverscaleIncubator',
+              },
+              {
+                label: 'DeBots Chat',
                 href: 'https://t.me/everscaledebots',
               },
               {
@@ -149,15 +169,15 @@ const config = {
                 label: 'Stack Overflow',
                 href: 'https://stackoverflow.com/questions/tagged/everscale',
               },
-              {
-                label: 'Subgovernances',
-                href: 'https://gov.gramkit.org/',
-              },
             ],
           },
           {
             title: 'Workshop',
             items: [
+              {
+                label: 'Tutorial',
+                to: '/intro',
+              },
               {
                 label: 'Smart contract-architecture',
                 href: 'https://youtu.be/XKMnroPWXek',
@@ -173,6 +193,10 @@ const config = {
               {
                 label: 'Development of DeBots',
                 href: 'https://youtu.be/vFAatJO6cBM',
+              },
+              {
+                label: 'Voice Chat',
+                href: 'https://t.me/EverVoice',
               },
             ],
           },
@@ -214,12 +238,18 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Everscale<br/><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>`,
+        copyright: `Copyright © 2020—${new Date().getFullYear()}
+ <a href="https://everscale.network/">Everscale</a> All rights reserved
+  <a href="https://t.me/EVERSCALE_comm">Touch</a>
+ <br/>
+ <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
+    <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
+ </a>`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-        "additionalLanguages": [
+        additionalLanguages: [
           "solidity"
         ]
       },
