@@ -135,7 +135,7 @@ const config = {
               },
               {
                 label: 'Visual Brand Identity',
-                href: 'https://gramkit.org/en/branding',
+                href: 'https://everscale.network/about/brand',
               },
               {
                 label: 'Subgovernances',
