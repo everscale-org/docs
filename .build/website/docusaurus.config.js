@@ -92,6 +92,11 @@ const config = {
           },
           //{to: '/blog', label: 'Blog', position: 'left'},
           {
+            label: 'Status',
+            href: 'https://everos.dev/status',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/everscale-org/docs/',
             label: 'GitHub',
             position: 'right',
