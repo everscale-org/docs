@@ -7,7 +7,7 @@ const FeatureList = [
   {
     title: '🧰 Start Building',
     description: 'Get started building scalable and decentralized App',
-    link: '#',
+    link: '/building/',
   },
   {
     title: '🗳️ Run a Validator Node',

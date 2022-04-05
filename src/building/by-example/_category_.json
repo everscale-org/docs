@@ -1,0 +1,11 @@
+{
+  "position": 0,
+  "label": "Develop by example",
+  "collapsible": false,
+  "collapsed": false,
+  "link": {
+    "description": "Develop by example... TBD",
+    "slug": "building-by-example",
+    "type": "generated-index"
+  }
+}

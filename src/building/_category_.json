@@ -1,0 +1,12 @@
+{
+  "position": 2,
+  "label": "Start Building",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Start Building... TBD",
+    "slug": "building",
+    "title": "Start Building",
+    "type": "generated-index"
+  }
+}

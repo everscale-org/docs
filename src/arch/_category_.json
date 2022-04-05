@@ -1,0 +1,12 @@
+{
+  "position": 0,
+  "label": "Architecture",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "description": "Architecture... TBD",
+    "slug": "arch",
+    "title": "Architecture",
+    "type": "generated-index"
+  }
+}
