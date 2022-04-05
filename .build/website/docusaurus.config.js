@@ -88,7 +88,7 @@ const config = {
           },
           {
             label: 'Learn',
-            to: '#'
+            to: '/learn'
           },
           {
             label: 'Blog',

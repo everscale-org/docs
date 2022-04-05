@@ -32,7 +32,7 @@ const FeatureList = [
   {
     title: '🎓 Learn How Everscale Works',
     description: 'Get a high-level understanding of Everscale architecture',
-    link: '#',
+    link: '/learn/',
   },
 ];
 

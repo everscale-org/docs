@@ -1,0 +1,13 @@
+@startuml
+skinparam shadowing false
+scale 900 width
+
+actor Alice
+"Contrat A" as [A]
+"Contrat B" as [B]
+
+Alice -> A: 1 External message
+Alice -> A: 2 External message
+A -> B: 1 Internal message
+A -> B: 2 Internal message
+@enduml

@@ -1,0 +1,20 @@
+@startwbs
+skinparam shadowing false
+scale 300 width
+
+*:**Root**
+> 2 left;
+
+**:**Leaf**
+value for 3;
+
+**:**Branch**
+> 1 left;
+
+***:**Leaf**
+value for 2;
+
+***:**Leaf**
+value for 1;
+
+@endwbs

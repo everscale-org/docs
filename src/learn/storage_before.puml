@@ -1,0 +1,15 @@
+@startwbs
+skinparam shadowing false
+scale 600 width
+
+* **Cell** root
+**:**Cell**
+lasHashes;
+**:uint32 version
+address root;
+**:**Cell**
+balances;
+**:**Cell**
+proxyCode;
+
+@endwbs

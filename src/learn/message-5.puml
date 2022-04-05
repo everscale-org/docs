@@ -1,0 +1,23 @@
+@startuml
+skinparam shadowing false
+scale 900 width
+
+actor Alice
+
+"Contrat A" as [A]
+"Contrat B" as [B]
+"Contrat C" as [C]
+"Contrat D" as [D]
+"Contrat E" as [E]
+"Contrat G" as [G]
+"Contrat F" as [F]
+
+Alice -> A: External message
+A --> F: 1 Internal message
+A --> B: 2 Internal message
+B --> C
+C --> D
+D --> E
+E --> G
+F --> G
+@enduml
