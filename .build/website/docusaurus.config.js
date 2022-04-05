@@ -35,7 +35,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/everscale-org/docs/tree/main/',
+          editUrl: 'https://github.com/everscale-org/docs/edit/main/.build/website',
           remarkPlugins: [math],
           rehypePlugins: [katex],
           showLastUpdateAuthor: false,
