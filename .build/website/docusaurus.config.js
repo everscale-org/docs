@@ -148,7 +148,7 @@ const config = {
             items: [
               {
                 label: 'Grants',
-                href: 'https://l1.tonalliance.org/',
+                href: 'https://everscale.network/developers/grants',
               },
               {
                 label: 'Bounties',
