@@ -80,15 +80,20 @@ const config = {
           },
           {
             label: 'Validate',
-            to: '/Validate/'
+            to: '#'
           },
           {
             label: 'Integrate',
-            to: '/Integrate/'
+            to: '#'
           },
           {
+<<<<<<< HEAD
             label: 'Contribute',
             to: '/Contribute/'
+=======
+            label: 'Learn',
+            to: '#'
+>>>>>>> parent of 8b8824d (Update docusaurus.config.js)
           },
           {
             label: 'Blog',
