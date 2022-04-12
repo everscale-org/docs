@@ -65,12 +65,6 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {
             label: 'Learn',
             to: '/Learn/'
           },
