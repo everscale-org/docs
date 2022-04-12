@@ -65,30 +65,28 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {
-            label: 'Standards',
-            to: '/Standard/'
-          },
-          {
-            label: 'Decentralization',
-            to: '/Decentralization/'
+            label: 'Develop',
+            to: '/Develop/'
           },
           {
             label: 'Validate',
-            to: '#'
+            to: '/Validate/'
           },
           {
             label: 'Integrate',
-            to: '#'
+            to: '/Integrate/'
+          },
+          {
+            label: 'Contribute',
+            to: '/Contribute/'
           },
           {
             label: 'Learn',
-            to: '#'
+            to: '/Learn/'
+          },
+          {
+            label: 'Develop',
+            to: '/Develop/'
           },
           {
             label: 'Blog',
