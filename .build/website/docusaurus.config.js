@@ -71,12 +71,12 @@ const config = {
             label: 'Tutorial',
           },
           {
-            label: 'Standards',
-            to: '/Standard/'
+            label: 'Learn',
+            to: '/Learn/'
           },
           {
-            label: 'Decentralization',
-            to: '/Decentralization/'
+            label: 'Develop',
+            to: '/Develop/'
           },
           {
             label: 'Validate',
@@ -85,10 +85,6 @@ const config = {
           {
             label: 'Integrate',
             to: '/Integrate/'
-          },
-          {
-            label: 'Learn',
-            to: '/Learn/'
           },
           {
             label: 'Contribute',
