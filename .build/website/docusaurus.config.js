@@ -80,15 +80,19 @@ const config = {
           },
           {
             label: 'Validate',
-            to: '#'
+            to: '/Validate/'
           },
           {
             label: 'Integrate',
-            to: '#'
+            to: '/Integrate/'
           },
           {
             label: 'Learn',
-            to: '#'
+            to: '/Learn/'
+          },
+          {
+            label: 'Contribute',
+            to: '/Contribute/'
           },
           {
             label: 'Blog',
