@@ -65,28 +65,28 @@ const config = {
         },
         items: [
           {
-            label: 'Learn',
-            to: '/Learn/'
-          },
-          {
             label: 'Develop',
             to: '/Develop/'
           },
           {
             label: 'Validate',
-            to: '#'
+            to: '/Validate/'
           },
           {
             label: 'Integrate',
-            to: '#'
+            to: '/Integrate/'
+          },
+          {
+            label: 'Contribute',
+            to: '/Contribute/'
           },
           {
 <<<<<<< HEAD
-            label: 'Contribute',
-            to: '/Contribute/'
-=======
             label: 'Learn',
-            to: '#'
+            to: '/Learn/'
+=======
+            label: 'Develop',
+            to: '/Develop/'
 >>>>>>> parent of 8b8824d (Update docusaurus.config.js)
           },
           {
