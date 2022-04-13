@@ -20,6 +20,7 @@ jobs:
         cd .build/website
         yarn install
         yarn build
+        yarn cname
         yarn gh-pages --dist build --user "github-actions-bot <support+actions@github.com>"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
