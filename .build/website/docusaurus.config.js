@@ -65,28 +65,28 @@ const config = {
         },
         items: [
           {
+            label: 'Standards',
+            to: 'standard'
+          },
+          {
             label: 'Develop',
-            to: '/Develop/'
+            to: 'develop'
           },
           {
             label: 'Validate',
-            to: '/Validate/'
+            to: 'validate'
           },
           {
             label: 'Integrate',
-            to: '/Integrate/'
+            to: 'integrate'
           },
           {
             label: 'Contribute',
-            to: '/Contribute/'
+            to: 'contribute'
           },
           {
             label: 'Learn',
-            to: '/Learn/'
-          },
-          {
-            label: 'Develop',
-            to: '/Develop/'
+            to: 'learn'
           },
           {
             label: 'Blog',
@@ -179,7 +179,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/intro',
+                to: 'develop/smart-contract/getting-started/',
               },
               {
                 label: 'Smart contract-architecture',

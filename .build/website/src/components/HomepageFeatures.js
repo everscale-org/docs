@@ -7,32 +7,32 @@ const FeatureList = [
   {
     title: '🧰 Start Building',
     description: 'Get started building scalable and decentralized App',
-    link: '#',
+    link: 'develop/architecture',
   },
   {
     title: '🗳️ Run a Validator Node',
     description: 'Validate transactions, secure the network, and earn rewards',
-    link: '#',
+    link: 'validate',
   },
   {
     title: 'Create a Token 🪙 TIP-3 or 🎨 TIP-4',
     description: 'Launch your own Fungible and Non-Fungible Token Everscale equivalent of ERC-20/ERC-721',
-    link: '#',
+    link: 'develop/smart-digital-assets',
   },
   {
     title: '🏧 Integrate an Exchange',
     description: 'Follow our extensive integration guide to ensure a seamless user experience',
-    link: '#',
+    link: 'integrate',
   },
   {
     title: '🔑 Manage a Wallet',
     description: 'Create a wallet, check your balance, and learn about wallet options',
-    link: '#',
+    link: 'learn/everscale-overview/wallet',
   },
   {
     title: '🎓 Learn How Everscale Works',
     description: 'Get a high-level understanding of Everscale architecture',
-    link: '#',
+    link: 'learn',
   },
 ];
 
