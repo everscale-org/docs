@@ -1,9 +1,9 @@
 ---
-title: TIP-0 Workflow
+title: What is TIP
 sidebar_position: 0
 ---
 
-# Workflow (TIP-0)
+# What is TIP (TIP-0)
 
 TIP — Trustless Improvement Proposal (TIPs) describe standards for the Everscale blockchain. They may include anything that the community considers in need of improvement or standardization. That can be specifications for core protocol, description of interfaces, smart contract standards and so on.
 
