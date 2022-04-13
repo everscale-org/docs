@@ -1,3 +1,0 @@
----
-title: Everscale Wallet Guide
----
