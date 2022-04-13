@@ -15,7 +15,7 @@ const FeatureList = [
     link: '#',
   },
   {
-    title: 'Create an Token 🪙 TIP-3 or 🎨 TIP-4',
+    title: 'Create a Token 🪙 TIP-3 or 🎨 TIP-4',
     description: 'Launch your own Fungible and Non-Fungible Token Everscale equivalent of ERC-20/ERC-721',
     link: '#',
   },
