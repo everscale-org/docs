@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting started
 
 Let's discover **Everscale in less than 5 minutes**.
 Get started by **creating a new DApp**.
