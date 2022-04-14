@@ -1,6 +1,7 @@
 ---
 title: Core description
 sidebar_position: 0
+slug: /standard/TIP-2
 ---
 
 # DeCert — Decentralized Certificates
@@ -93,4 +94,4 @@ The Certificate is issued by Root for ownership of an item. Let’s call it cert
 ## Reference
 
 - [Contest Proposal: Decentralized Name Service (DeNS)](https://forum.freeton.org/t/contest-proposal-decentralized-name-service-dens/7807)
-- [ReDeNS — Reverse DeCert (TIP-2.1)](/Standard/TIP-2/1)
+- [ReDeNS — Reverse DeCert (TIP-2.1)](1.md)
