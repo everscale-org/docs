@@ -47,6 +47,15 @@ Using the Storage contract, you can store NFT-related bytes in blockchain. [TIP-
 | [Oleg Varnov](https://t.me/id_xz)               | [numiz.org](https://numiz.org/)          |
 | Slava Semenchuk                                 | [scalepunks.com](https://scalepunks.com) |
 
+
+## Implementation
+
+[itgold](https://github.com/itgoldio/everscale-tip) implementation
+
+- MIT licensed.
+- A library of modular, reusable  smart contracts.
+- Samples and tests [here](https://github.com/itgoldio/everscale-tip-samples)
+
 ## References
 
 - [Ethereum EIP-721](https://eips.ethereum.org/EIPS/eip-721)
