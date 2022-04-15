@@ -27,7 +27,7 @@ const FeatureList = [
   {
     title: '🔑 Manage a Wallet',
     description: 'Create a wallet, check your balance, and learn about wallet options',
-    link: 'learn/everscale-overview/wallet',
+    link: 'learn/everscale-overview/exchangewallets',
   },
   {
     title: '🎓 Learn How Everscale Works',
