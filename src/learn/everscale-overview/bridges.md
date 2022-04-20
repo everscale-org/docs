@@ -11,3 +11,12 @@ In simple terms - Let's say you want to move tokens from chain A to chain B. Wha
 The concept of interchain communication and token transfer is done using a two-way binding system; where the value of a token in either blockchain is the same, as it remains tied to the value of the initial ones.
 
 ## Everscale Bridges
+
+### [Octus Bridge](https://octusbridge.io/) 
+
+Octus Bridge is a platform built by the Broxus team that enables cross-chain asset transfers between Everscale and other networks such as Ethereum, BNB Chain, Fantom and Polygon.  
+The platform also implements the Governance interface or DAO, which provides a level of decentralization unprecedented for bridges due to the ability to make decisions directly by network participants, as well as a staking interface.
+
+### [Adaever](https://adaever.io/)
+
+Cross-chain bridge between Cardano and Everscale built by the Broxus team.
