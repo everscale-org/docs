@@ -206,4 +206,4 @@ Get financial and technical support to develop your own projects in the Everscal
 ## [Ecosystem](everscale-overview/ecosystem.md)
 
 The Everscale ecosystem is made up of blockchain-based projects. These are primarily decentralized finance DeFi, GameFi, NFT, dApps. Anyone can develop their own project and become part of the Everscale ecosystem.
-In the meantime, let's take a look at the most popular projects!
+
