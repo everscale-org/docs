@@ -49,13 +49,13 @@ With advanced end-to-end encryption, Everscale offers multiple layers of securit
 
 Everscale introduces some new and unique features such as dynamic multithreading, soft majority consensus, and distributed programming.
 
-**Decentralized**
+**[Decentralized](decentralization)**
 
 Everscale is run by a decentralized community based on meritocratic principles through a soft majority protocol.
 
 ### Features
 
-**Smart contracts**
+**[Smart contracts](../develop/smart-contract/)**
 
 A smart contract is a program that is stored and executed on a blockchain. The results of smart contracts are verified and confirmed by many network nodes, which ensures end-to-end decentralization, as well as resistance of calculations to errors and malicious attacks.
 
@@ -63,7 +63,7 @@ On the Everscale network, the implementation of smart contracts is conceived to 
 
 An important property of the Everscale network is that any network action to process a smart contract burns a small amount of tokens, which protects against abuse and DDoS attacks. It quickly becomes very expensive and unprofitable to create a sufficiently high load for DDoS attack.
 
-**Staking**
+**[Staking](../validate/staking.md)**
 
 We can understand staking as receiving passive income through storing cryptocoins. This process uses the Proof of Stake (PoS) algorithm – proof of share of ownership. PoS is one of the methods to protect the blockchain from interference and inaccuracy of the data placed. Staking is kind of an alternative to traditional mining.
 
@@ -75,25 +75,25 @@ The wallet-to-wallet transaction fee is currently around 0.012 EVER.
 
 Farming is the process of earning tokens as a reward for providing liquidity to a project by placing a specific pair of tokens in a pool.
 
-**Grants**
+**[Grants](../develop/hackathons-grants.md)**
 
 Everscale Grants is a campaign designed to attract promising IT projects that can contribute to the development of the Everscale ecosystem.
 
-**Validators**
+**[Validators](../validate/)**
 
 Validators are the nodes in the blockchain system that have the task of keeping the network running. A validator is a set of software. A person or team simply runs, configures, and controls it.
 
-**TIP-3 Tokens**
+**[TIP-3 Tokens](../standard/TIP-3/1.md)**
 
 TIP-3 Token is an Everscale token standard that describes the basic principles for building token smart contracts. The current version is TIP-3.1
 
-**DePools**
+**[DePools](decentralization/depool-specifications.md)**
 
 A DePool (depool) is a smart contract that allows users to combine deposits of different network users to form blocks by validators.
 
 A DePool is required if a node that wants to become a validator does not have enough of its own funds for a stake. With this smart contract, users transfer (invest) their stakes into a common pool, for which they receive a reward depending on the amount deposited after each validation cycle.
 
-**Bridge**
+**[Bridge](everscale-overview/bridges.md)**
 
 A blockchain bridge is a link that provides communication and interaction between two blockchains. Thanks to such bridges, any data, information, and tokens can be transferred between two blockchain platforms.
 
@@ -106,7 +106,7 @@ A token swap is a process in which one cryptocurrency is exchanged for another a
 NFTs are a "hot" trend in the cryptocurrency world.
 Issuing NFTs through Everscale is beneficial not only because the network has very fast and cheap transactions. The process of issuing and exchanging NFTs has become even easier with the release of True NFT technology, which has made it possible to place all NFT data (including content) in the blockchain, look up records of collections and tokens, and actually transfer tokens from one address to another like ordinary coins.
 
-### Decentralization
+### [Decentralization](decentralization)
 
 Special attention should be paid to decentralization in Everscale’s management
 
@@ -124,7 +124,7 @@ Community members can express their will and opinion on significant network even
 
 **[Subgovernances](https://gov.everkit.org/en/subgovs)**
 
-Subgovernances are groups of people, each of which is responsible for a certain type of activity. Members of subgovernances receive coins for Everscale’s development (for example, by organizing contests).
+Subgovernances are groups of people, each of which is responsible for a certain type of activity. Members of subgovernances receive coins for Everscale’s development (for example, by organizing contests)
 
 **[DeFi Alliance](https://everalliance.org/)**
 
@@ -132,7 +132,8 @@ This is an association of companies that creates the necessary infrastructure to
 
 ## Tokens
 
-**EVER**    
+**EVER** 
+
 Everscale currency ticker.  
 A short name that is used in wallets, exchanges, etc.
 
