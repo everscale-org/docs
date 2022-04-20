@@ -12,6 +12,26 @@ Check out more projects on the ecosystem pages:
 
 Go to the [Wallets section](exchangewallets.md) to get acquainted with the Everscale network's wallets.
 
+## Exchanges 
+
+### [Gate.io (EVER/USDT)](https://gate.io/trade/EVER_USDT?ref=3018394)
+
+### [MEXC (EVER/USDT)](https://www.mexc.com/exchange/EVER_USDT?inviteCode=1498J)
+
+### [Bitrue (EVER/USDT)](https://www.coingecko.com/en/exchanges/bitrue)
+
+### [Digifinex (EVER/USDT)](https://www.digifinex.com/en-ww/trade/USDT/EVER)
+
+### [HitBTC (EVER/USDT, EVER/BTC)](https://hitbtc.com/TON-to-USDT)
+
+### [KUNA (EVER/USDT)](https://kuna.io/markets/everusdt?r=kunaid-nf8ybk4ilv65)
+
+### [Changelly PRO (EVER/BTC)](https://pro.changelly.com/)
+
+### [CEX.io (EVER/USDT, EVER/USD)](https://cex.io/)
+
+### [FMFW.io (EVER/BTC)](https://fmfw.io/EVER-to-BTC)
+
 ## GameFi
 
 ### [Pokerton](https://pokerton.io/)
