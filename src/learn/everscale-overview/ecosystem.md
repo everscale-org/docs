@@ -14,7 +14,7 @@ Go to the [Wallets section](exchangewallets.md) to get acquainted with the Evers
 
 ## GameFi
 
-### [Pokerton]((https://pokerton.io/))
+### [Pokerton](https://pokerton.io/)
 
 Telegram Poker – Win EVER by participating in free daily tournaments.
 
