@@ -23,7 +23,7 @@ Custodial wallets are similar to bank instruments. The user does not have full c
 
 [EVER Wallet (IOS, Android, Web)](https://l1.broxus.com/everscale/wallet)
 
-[Ever Surf (IOS, Android, Web)](https://ever.surf/)
+[Ever Surf (IOS, Android, Wundows, MacOS)](https://ever.surf/)
 
 [Everspace (IOS, Android, Telegram)](https://everspace.app/)
 
