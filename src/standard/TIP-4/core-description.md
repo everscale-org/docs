@@ -24,16 +24,16 @@ General information about NFT collection is stored in the NFT collection contrac
 - Gas fee management practicals. 
 - Use [TIP-6.1](./../TIP-6/1.md)
 
-## [Non-Fungible Token (TIP-4.1)](./../TIP-4/1.md)
+## (Status:Review) [Non-Fungible Token (TIP-4.1)](./../TIP-4/1.md)
 General information about NFT collection and NFT tokens. All NFT must implement [TIP-4.1](./../TIP-4/1.md)
 
-## [Non-Fungible Token JSON Metadata (TIP-4.2)](./../TIP-4/2.md)
+##  (Status:Review) [Non-Fungible Token JSON Metadata (TIP-4.2)](./../TIP-4/2.md)
 General information about NFT metadata. [TIP-4.2](./../TIP-4/2.md) is optional, but can be used for displaying NFT on marketplaces, wallets and web.
 
-## [On-chain indexes (TIP-4.3)](./../TIP-4/3.md)
+##  (Status:Review) [On-chain indexes (TIP-4.3)](./../TIP-4/3.md)
 On-chain Indexes solves easy and fast searching any data in blockchain. [TIP-4.3](./../TIP-4/3.md) is optional, but can be use for find all your NFT with one [dApp](https://main.ton.dev/graphql) query.
 
-## [On-chain storage (TIP-4.4)](./../TIP-4/4.md)
+##  (Status:Draft) [On-chain storage (TIP-4.4)](./../TIP-4/4.md)
 Using the Storage contract, you can store NFT-related bytes in blockchain. [TIP-4.4](./../TIP-4/4.md) is optional, but can be used for fault tolerance. If off-chain services are unavailable, the user will view NFT-related bytes, because it is stored on-chain.
 
 
