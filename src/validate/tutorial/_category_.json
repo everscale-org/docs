@@ -1,0 +1,9 @@
+{
+  "position": 0,
+  "label": "Tutorials",
+  "link": {
+    "title": "Tutorials",
+    "slug": "validate/tutorial",
+    "type": "generated-index"
+  }
+}
