@@ -26,4 +26,4 @@ On May 12, 2020, Pavel Durov [announced](https://t.me/durov/116) in his Telegram
 
 On Thursday, May 7th, the [Free TON Community](https://freeton.org) (consisting of developers and potential TON users) launched the Free TON blockchain platform. Instead of Gram participants will get tokens called TON Crystal. To become a community member you need to sign Free TON Declaration of Decentralization.
 
-Source: Everscale Wiki
+Source: [Everscale Wiki](https://en.wiki.everscale.network/Everscale_Wiki)
