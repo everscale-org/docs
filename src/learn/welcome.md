@@ -3,6 +3,7 @@
 Welcome to Everscale!
 
 On this page you will find a brief overview of Everscale - the fastest and scalable network.
+Also you will find for you the best way of interaction with Everscale! 
 
 ## About Everscale
 
@@ -34,7 +35,7 @@ In this documentation we have created sections and tutorials for each type of us
 
 **Intergators** ([Tutorial](../integrate/tutorial/), [Section](../integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
 
-## Key projects
+## Key organizations
 
 Many organizations have formed around Everscale to grow the network: recruiting new teams, DAOs, grants, etc.
 
@@ -45,3 +46,6 @@ Let's take a look at some of them:
 [Everscale Grants](https://everscale.network/developers/grants) - Everscale Grants is a campaign that aims to attract promising IT projects that can contribute to the Everscale ecosystem's growth. 
 
 [EVER DAO](https://everdao.net/governance) - EVER DAO is a platform where EVER token holders can make on-chain governance decisions for the whole Everscale Network.
+
+Ever Foundation (the website is under construction) - The Ever Foundation shall become the primary entry point for all kinds of projects that want to develop and create their products and businesses on top of the Everscale.   
+The Foundation provides grant support to projects that bring the greatest benefit to the network, and is also actively promoting them.
