@@ -16,8 +16,8 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/develop/smart-contract/getting-started/">
-            🪤 Everscale Tutorial - 5min ⏱️
+            to="/learn/welcome/">
+            Welcome!
           </Link>
         </div>
       </div>
