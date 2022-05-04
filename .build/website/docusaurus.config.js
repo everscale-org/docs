@@ -243,7 +243,7 @@ const config = {
         ],
         copyright: `Copyright © 2020—${new Date().getFullYear()}
  <a href="https://everscale.network/">Everscale</a> All rights reserved
-  <a href="https://t.me/EVERSCALE_comm">Touch</a>
+  <a href="https://t.me/everscale">Touch</a>
  <br/>
  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">
     <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" />
