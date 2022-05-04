@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[2344],{6044:function(e){e.exports=JSON.parse('{"title":"Develop","slug":"develop","permalink":"/develop","navigation":{"previous":{"title":"Staking","permalink":"/validate/staking"},"next":{"title":"Architecture","permalink":"/develop/architecture"}}}')}}]);
