@@ -9,7 +9,7 @@ Non-custodial - the user has full control over the keys and their funds. If the 
 
 [EVER Wallet (IOS, Android, Web)](https://l1.broxus.com/everscale/wallet)
 
-[Ever Surf (IOS, Android, Wundows, MacOS)](https://ever.surf/)
+[Ever Surf (IOS, Android, Windows, Linux, MacOS)](https://ever.surf/)
 
 [Everspace (IOS, Android, Telegram)](https://everspace.app/)
 
