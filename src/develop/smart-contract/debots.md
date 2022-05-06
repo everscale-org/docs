@@ -2,21 +2,9 @@
 
 > EverX DeBots Github repository https://github.com/tonlabs/debots
 
-# Table of Content
-- [Table of Content](#table-of-content)
-- [What is a DeBot?](#what-is-a-debot)
-  - [Basic terms](#basic-terms)
-  - [DeBot interfaces](#debot-interfaces)
-- [Prerequisites](#prerequisites)
-    - [everdev](#everdev)
-    - [Tonos-cli](#tonos-cli)
-- [DeBots](#debots)
-- [How to try DeBot](#how-to-try-debot)
+## What is a DeBot?
 
-# What is a DeBot?
-
-DeBot (Decentralized Bot) is an intuitive, no-prior-knowledge-required interface for smart
-contracts on TON Blockchain.
+DeBot (Decentralized Bot) is an intuitive, no-prior-knowledge-required interface for smart contracts on Everscale Blockchain.
 
 Blockchain technology is complex and can be hard to learn for users without experience in the field or a technical background. With DeBots we aim to simplify the interactions required to achieve a user’s goals on the blockchain, and streamline the development process of blockchain-based services, while maintaining the level of security expected of such products.
 
@@ -24,10 +12,10 @@ At its most basic a DeBot is a secure chat-based interface that allows a user to
 
 ## Basic terms
 
-- **DeBot** - a smart contract facilitating conversation-like flow communication with a target smart contract.
-- **Target smart contract** - a smart contract for which DeBot is created. DeBot is an interface to this smart contract.
-- **DeBot browser** - a program that executes DeBot and parses its answer using DeBot protocol.
-- **DeBot protocol** - a set of rules describing the communication between browser and DeBot: how to call DeBot functions and how to interpret its answers.
+- **DeBot** — a smart contract facilitating conversation-like flow communication with a target smart contract.
+- **Target smart contract** — a smart contract for which DeBot is created. DeBot is an interface to this smart contract.
+- **DeBot browser** — a program that executes DeBot and parses its answer using DeBot protocol.
+- **DeBot protocol** — a set of rules describing the communication between browser and DeBot: how to call DeBot functions and how to interpret its answers.
 
 DeBot is deployed to the blockchain. DeBot browser runs on client. It downloads DeBot code and runs it inside the engine.
 
@@ -43,17 +31,11 @@ To fulfill their functions as a user interface DeBots must be able to facilitate
 
 These needs are covered in various DeBot Interfaces (DInterfaces) which can be used in DeBots and which must be supported in DeBot Browsers.
 
-To use an interface DeBot should import source file with DInterface declaration and call its methods as any other smart contract methods in TON - by sending internal messages to interface address, which is unique and explicitly defined for every interface.
+To use an interface DeBot should import source file with DInterface declaration and call its methods as any other smart contract methods in Everscale — by sending internal messages to interface address, which is unique and explicitly defined for every interface.
 
-Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published in the repo:
+Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published in [DeBot Interface Specifications Consortium](../../learn/decentralization/debot-consortium.md).
 
-[https://github.com/tonlabs/DeBot-IS-consortium](https://github.com/tonlabs/DeBot-IS-consortium)
-
-Also you can check [DeBot-is-consortium Everscale Documentation page](../../learn/decentralization/debot-consortium.md)
-
-# Prerequisites
-
-### everdev
+## Prerequisites
 
 To build DeBots install [`everdev`](https://github.com/tonlabs/everdev):
 
@@ -61,46 +43,78 @@ To build DeBots install [`everdev`](https://github.com/tonlabs/everdev):
 npm install -g everdev
 ```
 
-### Tonos-cli
+To run and debug DeBots install [`tonos-cli`](https://github.com/tonlabs/tonos-cli):
 
-To run and debug debots install [`tonos-cli`](https://github.com/tonlabs/tonos-cli):
-
-Note: minimal required version >= 0.11.4.
+:::note
+For run DeBots **required** `tonos-cli` version >= `0.11.4`.
+:::
 
 Install using `everdev`:
 
 ```bash
-everdev tonos-cli install
+npx everdev tonos-cli install
+```
+
+or
+
+```bash
+npx everdev tonos-cli set --version 0.26.2
 ```
 
 Or download binaries from here:
 
-- `linux` [http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-linux.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-linux.zip)
-- `macos` [http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-darwin.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-darwin.zip)
-- `windows` [http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-win32.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_11_4-win32.zip)
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
+<Tabs>
+  <TabItem value="linux" label="Linux" default>
 
-# DeBots
+[http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-linux.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-linux.zip)
+  </TabItem>
+  <TabItem value="macos" label="MacOS">
 
-- [`helloworld`](https://github.com/tonlabs/debots/tree/main/helloworld) - Hello World DeBot. Can be used as a template for new DeBots.
-- [`multisig`](https://github.com/tonlabs/debots/tree/main/multisig) - DeBot for multisignature wallet. Uses several basic DeBot interfaces: Terminal, AddressInput, AmountInput, ConfirmInput. It supports all functions of the multisig wallet contract, such as submitting and confirming transactions and viewing wallet information.
+[http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-darwin.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-darwin.zip)
+  </TabItem>
+  <TabItem value="windows" label="Windows">
 
-# How to try DeBot
+[http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-win32.zip](http://sdkbinaries.tonlabs.io/tonos-cli-0_26_2-win32.zip)
+  </TabItem>
+</Tabs>
 
-You can start by trying out [`multisig`](https://github.com/tonlabs/debots/tree/main/multisig) DeBot. It's already deployed to [net.ton.dev](http://net.ton.dev) and can be called through any DeBot browser that supports it.
+## DeBots
 
-To try it out in TON Surf, go to https://beta.ton.surf/
+- [`Hello`](https://github.com/tonlabs/debots/tree/main/helloworld) — Hello World DeBot. Can be used as a template for new DeBots.
+- [`Multisig`](https://github.com/tonlabs/debots/tree/main/multisig) — DeBot for multi-signature wallet (multisig). Uses several basic DeBot interfaces: Terminal, AddressInput, AmountInput, ConfirmInput. It supports all functions of the multisig wallet contract, such as submitting and confirming transactions and viewing wallet information.
+- [`DEvergence`](https://github.com/everscale-contest/hackathon2022-tezos-DEvergence) — DeBot for the Ever Surf App which the user employs to connect to a Tezos wallet and transact. DeBots are smart contracts with a chat interface similar to those on Telegram.
 
-To try it out in `tonos-cli` call:
+## How to try DeBot
+
+You can start by trying out [`multisig`](https://github.com/tonlabs/debots/tree/main/multisig) DeBot. It's already deployed to [net.ever.live](https://net.ever.live/) and can be called through any DeBot browser that supports it.
+
+To try it out in Ever Surf, go to https://ever.surf/ or in `tonos-cli` call:
+
+### DeBot `DEvergence`
 
 ```bash
-./tonos-cli --url net.ton.dev debot fetch 0:09403116d2d04f3d86ab2de138b390f6ec1b0bc02363dbf006953946e807051e
+tonos-cli config --url eri01.net.everos.dev
+tonos-cli debot fetch 0:38a53a8bff83c57b6334f369d5ff678bdaa2b8e229d9b5552dfdda2b4d90cf92
 ```
+
+or in Ever Surf [0:38a53a8bff83c57b6334f369d5ff678bdaa2b8e229d9b5552dfdda2b4d90cf92](https://uri.ever.surf/debot/0:38a53a8bff83c57b6334f369d5ff678bdaa2b8e229d9b5552dfdda2b4d90cf92?net=devnet)
+
+### DeBot `Multisig`
+
+```bash
+tonos-cli config --url eri01.net.everos.dev
+tonos-cli debot fetch 0:c69a0ed4a11b467ec1a981f29139dc3ff6af47eeacd2cd93e67a6cfc6f771cfb
+```
+
+or in Ever Surf [0:c69a0ed4a11b467ec1a981f29139dc3ff6af47eeacd2cd93e67a6cfc6f771cfb](https://uri.ever.surf/debot/0:c69a0ed4a11b467ec1a981f29139dc3ff6af47eeacd2cd93e67a6cfc6f771cfb?net=devnet)
 
 If you do not have a multisig wallet to try it out with, you can use the following test wallet address and seed phrase:
 
 ```bash
-address: 0:5d3d540ebeb545be95ad05e22efc0ad3cb2e0172884fba2cedfde445ef16ebf9
+address: 0:66e01d6df5a8d7677d9ab2daf7f258f1e2a7fe73da5320300395f99e01dc3b5f
 seed phrase: final axis aware because grace sort giant defy dragon blouse motor virus
 ```
 

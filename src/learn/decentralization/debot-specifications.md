@@ -308,9 +308,7 @@ Below you can see DeBot start sequence:
 ## DInterface specification
 
 Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used
-in DeBot. All accepted interfaces are published in repo:
-
-https://github.com/tonlabs/DeBot-IS-consortium
+in DeBot. All accepted interfaces are published in [DeBot Interface Specifications Consortium](debot-consortium.md).
 
 Everybody can suggest new DInterface. Go to repo and follow the instructions.
 
@@ -321,7 +319,7 @@ capabilities. For example, console browser cannot support external devices like 
 
 Some interfaces required for basic DeBot operation are built into the DEngine itself (SDK, Hex, JsonDeserialize). They
 are marked as such in their respective readme files in
-the [IS consortium repository](https://github.com/tonlabs/DeBot-IS-consortium).
+the [DeBot Interface Specifications Consortium](debot-consortium.md).
 
 ## DEngine versioning
 
