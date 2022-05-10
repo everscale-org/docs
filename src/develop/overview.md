@@ -39,6 +39,7 @@ We assume that there are several main cases of developers interacting with Evers
   - [Learn the comparison of Ethereum contracts](../develop/from-another-platform/comparison-with-ethereum-contracts.md)
   - [Learn the development tools](../develop/sdk-tools/overview.md)
   - [Learn how to write contracts on Solidity](../develop/smart-contract/developing-with-tvm-solidity.md)
+
 - Integrate Everscale blockchain in your on-chain or off-chain project - you'll find it helpful to explore the [Everscale Overview page](../learn/everscale-overview/) as well as the pages block in [Architecture](../arch/), after which it's a good idea to take a look at [Getting Started](../develop/integrate/tutorial/getting-started.md) in the [Integrate section](../develop/integrate/).
   - [Learn Everscale Overview page](../learn/everscale-overview/)
   - [Learn how to integrate anything with Everscale](../develop/integrate/tutorial/getting-started.md)
