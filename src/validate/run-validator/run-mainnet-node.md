@@ -1,6 +1,6 @@
 # Run Mainnet Node
 
-This HOWTO contains instructions on how to build and configure a RUST validator node in TON blockchain. The instructions and scripts below were verified on Ubuntu 20.04.
+This HOWTO contains instructions on how to build and configure a RUST validator node in Everscale blockchain. The instructions and scripts below were verified on Ubuntu 20.04.
 
 > EverX Mainnet Node repository. https://github.com/tonlabs/main.ton.dev
 
