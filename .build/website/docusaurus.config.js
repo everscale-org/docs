@@ -69,7 +69,7 @@ const config = {
             to: 'standard'
           },
           {
-            label: 'Develop',
+            label: 'Build',
             to: 'develop'
           },
           {
