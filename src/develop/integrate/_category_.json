@@ -1,9 +1,9 @@
 {
-  "position": 4,
+  "position": 3,
   "label": "Integrate",
   "link": {
     "title": "Integrate",
-    "slug": "integrate",
+    "slug": "develop/integrate",
     "type": "generated-index"
   }
 }

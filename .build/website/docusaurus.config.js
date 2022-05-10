@@ -78,7 +78,7 @@ const config = {
           },
           {
             label: 'Integrate',
-            to: 'integrate'
+            to: 'develop/integrate'
           },
           {
             label: 'Contribute',

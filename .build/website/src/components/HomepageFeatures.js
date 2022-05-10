@@ -22,7 +22,7 @@ const FeatureList = [
   {
     title: '🏧 Integrate an Exchange',
     description: 'Follow our extensive integration guide to ensure a seamless user experience',
-    link: 'integrate',
+    link: 'develop/integrate',
   },
   {
     title: '🔑 Manage a Wallet',
