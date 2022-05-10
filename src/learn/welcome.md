@@ -33,7 +33,7 @@ In this documentation we have created sections and tutorials for each type of us
 
 **Contributors** ([Tutorial](tutorial/contributors.md), [Section](../contribute/)) - Earning on partnership and benefiting the network.
 
-**Intergators** ([Tutorial](../integrate/tutorial/), [Section](../integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
+**Intergators** ([Tutorial](../develop/integrate/tutorial/), [Section](../develop/integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
 
 ## Key organizations
 
