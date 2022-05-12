@@ -2,13 +2,12 @@
 
 ## Content Table
 
-- [Create Controller](#create-controller)
-  - [Content Table](#content-table)
-  - [What a controller should and what it shouldn't to do](#what-a-controller-should-and-what-it-shouldnt-to-do)
-  - [How to implement a Controller](#how-to-implement-a-controller)
-  - [Controller API Reference](#controller-api-reference)
+- [Content Table](#content-table)
+- [What a controller should and what it shouldn't to do](#what-a-controller-should-and-what-it-shouldnt-to-do)
+- [How to implement a Controller](#how-to-implement-a-controller)
+- [Controller API Reference](#controller-api-reference)
 
-  Currently all the controllers must be implemented inside of the `everdev` package.
+Currently all the controllers must be implemented inside of the `everdev` package.
 
 To create a new controller:
 
