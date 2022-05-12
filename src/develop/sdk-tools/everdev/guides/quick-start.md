@@ -17,8 +17,6 @@ You will learn how to:
 * Deploy your first contract
 * Run it on-chain
 * Run a getter-function
-* Make a transfer
-* Explore contract data in Explorer and GraphQL playground
 
 ## Table of Contents
 
