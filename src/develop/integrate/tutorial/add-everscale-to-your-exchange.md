@@ -1,1 +1,1 @@
-# Add Everscale to your Exchange
+# Add EVER to your Exchange
