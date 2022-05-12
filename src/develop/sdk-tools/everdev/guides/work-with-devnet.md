@@ -2,7 +2,6 @@
 
 ## Contents
 
-- [Working with DevNet: deploy and start using your own giver in Developer Network](#working-with-devnet-deploy-and-start-using-your-own-giver-in-developer-network)
   - [Contents](#contents)
   - [Deploying your own Giver](#deploying-your-own-giver)
     - [Generate Giver keys](#generate-giver-keys)
