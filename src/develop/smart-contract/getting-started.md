@@ -174,4 +174,4 @@ npx everdev contract run-local --network se App timestamp
 npx everdev contract run --network se --signer coder App touch
 ```
 
-For more details see: [Get started with Development Tools](https://tonlabs.gitbook.io/everdev/guides/quick-start).
+For more details see: [Get started with Development Tools](../../develop/sdk-tools/everdev/guides/quick-start.md).
