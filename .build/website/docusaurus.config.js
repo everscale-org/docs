@@ -6,6 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const math = require('remark-math');
 const katex = require('rehype-katex');
+const simplePlantUML = require("@akebifiky/remark-simple-plantuml");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -36,7 +37,10 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/everscale-org/docs/edit/main/.build/website',
-          remarkPlugins: [math],
+          remarkPlugins: [
+            math,
+            simplePlantUML,
+          ],
           rehypePlugins: [katex],
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
