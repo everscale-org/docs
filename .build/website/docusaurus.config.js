@@ -257,6 +257,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         additionalLanguages: [
+          "rust",
           "solidity"
         ]
       },
