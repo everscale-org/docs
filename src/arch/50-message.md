@@ -1,3 +1,8 @@
+---
+title: Message
+description: Smart-contracts communicate between each other
+---
+
 # Message
 
 In Everscale, smart-contracts communicate between each other and with non-blockchain applications by means of an asynchronous message passing.
@@ -128,7 +133,7 @@ pub enum MsgAddressIntOrNone {
 }
 ```
 
-- Transaction Executor automatically assigns the source address `src` to be equal to the smart-contract address emitting the event.
+- [Transaction Executor](60-executor.md) automatically assigns the source address `src` to be equal to the smart-contract address emitting the event.
 - The destination address `dst` may contain any identifier. It is included for easier integration with off-chain applications, i.e. applications can monitor emitted events based on their destination address, and consume only those events destined to their custom identifier.
 - Fields `created_lt`, `created_at` defines the logical creation time and epoch creation time.
 
