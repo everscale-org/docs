@@ -1,6 +1,6 @@
 # Wallets/Exchanges
 
-The [Welcome section](/learn/welcome.md) provides ways to buy EVER.  
+The [Ecosystem section](../everscale-overview/ecosystem.md) provides ways to buy EVER.  
 In this section, we will introduce you to the most popular EVER wallets.
 
 ## Non-custodial wallets
