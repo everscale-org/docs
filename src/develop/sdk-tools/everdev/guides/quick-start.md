@@ -5,8 +5,8 @@
 This guide will help you get started with such essensial Everscale tools as:
 
 * [Everdev CLI](../../everdev-cli.md)
-* [Solidity Compiler](../../command-line-interface/solidity-compiler.md)
-* [Local Blockchain](../../command-line-interface/evernode-se.md)
+* [Solidity Compiler](../../everdev/command-line-interface/solidity.md)
+* [Local Blockchain](../../everdev/command-line-interface/evernode-platform-startup-edition-se)
 * [Everscale Blockchain Explorer](https://ever.live)
 * [GraphQL API](../../getting-started.md)
 
