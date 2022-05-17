@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[4998],{717:function(e){e.exports=JSON.parse('{"title":"EverDev","slug":"sdk-tools/everdev","permalink":"/sdk-tools/everdev","navigation":{"previous":{"title":"SDK & Tools","permalink":"/develop/sdk-tools"},"next":{"title":"Guides","permalink":"/everdev/guides"}}}')}}]);
