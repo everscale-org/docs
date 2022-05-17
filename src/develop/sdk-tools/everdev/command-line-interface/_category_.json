@@ -1,9 +1,9 @@
 {
-    "position": 0,
+    "position": 1,
     "label": "Command Line Interface",
     "link": {
       "title": "Command Line Interface",
-      "slug": "sdk-tools/command-line-interface",
+      "slug": "everdev/command-line-interface",
       "type": "generated-index"
     }
   }
