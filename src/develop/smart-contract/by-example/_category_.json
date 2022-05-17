@@ -1,0 +1,10 @@
+{
+  "position": 0,
+  "label": "Develop by example",
+  "collapsible": false,
+  "collapsed": false,
+  "link": {
+    "description": "Sample code best teacher",
+    "type": "generated-index"
+  }
+}
