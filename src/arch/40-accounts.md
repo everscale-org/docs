@@ -136,9 +136,9 @@ the _StorageInfo_ structure.
 
 ```rust
 pub struct StorageInfo {
-    used: StorageUsed,
-    last_paid: u32,
-    due_payment: Option<Grams>,
+  used: StorageUsed,
+  last_paid: u32,
+  due_payment: Option<Grams>,
 }
 
 pub struct StorageUsed {
