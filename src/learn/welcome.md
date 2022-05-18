@@ -8,7 +8,7 @@ Also you will find for you the best way of interaction with Everscale!
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
-[Ever OS](../arch/100-ever-os.md) is capable of processing millions of transactions per second, with Turing-complete smart contracts and decentralized user interfaces.  
+[Ever OS](../arch/00-ever-os.md) is capable of processing millions of transactions per second, with Turing-complete smart contracts and decentralized user interfaces.  
 
 Everscale presents some new and unique properties, such as dynamic multithreading, soft majority consensus and distributed programming, which enable it to be scalable, fast and secure at the same time. It is governed by a decentralized community founded upon meritocratic principles via Soft Majority Voting protocol.  
 

@@ -12,7 +12,7 @@ EverDev is a Node.js package with CLI interface that allows to perform the follo
 
 ### Use-cases
 
-* Easily manage all the core [Ever OS Developer Tools](../../../arch/100-ever-os.md)
+* Easily manage all the core [Ever OS Developer Tools](../../../arch/00-ever-os.md)
 * Configure networks (including Local Blockchain, Developer Network, Everscale (main) network): add, configure giver;
 * Manage keys: add, remove
 * Work with Everscale blockchain from CLI

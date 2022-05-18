@@ -10,7 +10,7 @@ Here you will find answers to the most common questions that arise when getting 
 
 ## What is Everscale?
 
-**Everscale** is a peer-to-peer multi-blockchain system. Is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/100-ever-os.md).
+**Everscale** is a peer-to-peer multi-blockchain system. Is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/00-ever-os.md).
 
 ## Why Everscale?
 
@@ -40,7 +40,7 @@ Currently available blockchain explorers for use:
 To understand the basic principles and mechanisms of Everscale, we recommend that you familiarize yourself with the following sections of the documentation:
 
 - [Architecture section](../arch/)
-  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/30-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/100-ever-os.md), etc.)
+  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/30-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
 - [Decentralization section](../learn/decentralization/)
 - [Smart Contracts section](../develop/smart-contract/)
   - ( [Overview](../develop/smart-contract/overview.md), [FAQ](../develop/smart-contract/faq.md), [DeBots](../develop/smart-contract/debots.md), [Examples](../develop/smart-contract/examples.md), etc.)
