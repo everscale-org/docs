@@ -161,6 +161,10 @@ const config = {
                 href: 'https://t.me/EverscaleSmartContracts',
               },
               {
+                label: 'Everscale Validators Channel',
+                href: 'https://t.me/ever_validators',
+              },
+              {
                 label: 'Incubator Chat',
                 href: 'https://t.me/EverscaleIncubator',
               },
