@@ -2,7 +2,7 @@
 description: Blockchain, everything is a contract, types of messages and gas
 ---
 
-# Introduction
+# Overview
 
 Everscale (hereafter ES) was created on the basis of the whitepaper and initial code of the Telegram Open Network (hereafter TON) project from Nikolai Durov. Essentially, the blockchain repeats the behavior described in this [TON Whitepaper](https://ton.org/tblkch.pdf), however, not everything works as is presented in the whitepaper.
 
@@ -147,7 +147,7 @@ A -> B: 2 Internal message
 
 ## Gas usage
 
-We are not going to cover the exact formulas you can find more information in the [Fee calculation](../../../arch/30-fee-calculation.md) section. We will just cover what you need to know and what you are paying for.
+We are not going to cover the exact formulas you can find more information in the [Fee calculation](../../arch/30-fee-calculation.md) section. We will just cover what you need to know and what you are paying for.
 
 Firstly, the gas price is a network parameter, and the price does not change on its own as a reflection of demand at a given moment.
 
@@ -158,6 +158,6 @@ We pay for:
 1. Computing, the same as other blockchains.
 2. Loading memory cells, which is quite different from how things work on Ethereum. We will cover this in detail in the chapters on tvm and boc.
 3. The creation of outgoing messages, and we pay for incoming messages if these are external and we agree to pay for them.
-4. Storage. Every contract pays a rental fee for the storage of its own code and data in the network state. This fee is withdrawn each time a message is sent to you (for all the time that has elapsed since the last transaction). If the balance of your contract falls below 0, calls to the contract will cease to work until you replenish the balance. If the balance falls below -0.1 EVER (for workchain 0, a network parameter, can be changed) the contract will be frozen, with only the hash of data and code remaining while everything else is deleted. The unfreezing process is complicated, you need to replenish your contract and provide its data and code  the moment it is frozen. In theory it is even possible that the hash gets deleted, if the contract is left frozen for a while. So you don’t want to store inessential information on the blockchain, even though writing on the chain is cheap, as we pay for storage on the chain separately. In the chapter called [distributed programming](10-distributed-programming.md) we will look at how we should organize our smart contracts in accordance with the "paid storage" paradigm.
+4. Storage. Every contract pays a rental fee for the storage of its own code and data in the network state. This fee is withdrawn each time a message is sent to you (for all the time that has elapsed since the last transaction). If the balance of your contract falls below 0, calls to the contract will cease to work until you replenish the balance. If the balance falls below -0.1 EVER (for workchain 0, a network parameter, can be changed) the contract will be frozen, with only the hash of data and code remaining while everything else is deleted. The unfreezing process is complicated, you need to replenish your contract and provide its data and code  the moment it is frozen. In theory it is even possible that the hash gets deleted, if the contract is left frozen for a while. So you don’t want to store inessential information on the blockchain, even though writing on the chain is cheap, as we pay for storage on the chain separately. In the chapter called [distributed programming](../../develop/smart-contract/learn/10-distributed-programming.md) we will look at how we should organize our smart contracts in accordance with the "paid storage" paradigm.
 
-The next part of this guide will cover what we need to know about TVM and the format of storing data on the blockchain. 
+As a continuation of this guide, we recommend that you familiarize yourself with [TVM and the data storage format on the blockchain](../../develop/smart-contract/learn/05-data-structures.md).
