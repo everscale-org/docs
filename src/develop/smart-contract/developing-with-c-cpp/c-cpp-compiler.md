@@ -19,7 +19,7 @@ This repository contain
 * [C++ runtime and SDK headers-only library](https://github.com/tonlabs/TON-Compiler/tree/master/llvm/projects/ton-compiler)
 * [C runtime and SDK library](https://github.com/tonlabs/TON-Compiler/tree/master/llvm/projects/ton-compiler)
 
-The following guide is about building the compilers and installing them, to find a user guide and example contracts, please refer to [the samples section](samples/).
+The following guide is about building the compilers and installing them, to find a user guide and example contracts, please refer to [the samples section](samples/c.md).
 
 ## Prerequisites
 To build the toolchain, you need a recent C++ toolchain supporting C++17:
@@ -91,7 +91,7 @@ For more details see [testing.md](https://github.com/tonlabs/TON-Compiler/blob/r
 You can learn more about C++ for TVM and find examples of usage of C++ toolchain [here](https://github.com/tonlabs/samples/tree/master/cpp). C toolchain is mostly for geeks who want to follow TVM assembly closely, but doesn't want to work with stack. C examples might be found [here](https://github.com/tonlabs/samples/tree/master/c).
 
 ## Getting support
-C and C++ for TVM, being similar to conventional C and C++, has their own extensions and limitations, so if you are getting started with programming for TVM, we recommend to first refer to [the examples section](samples/).
+C and C++ for TVM, being similar to conventional C and C++, has their own extensions and limitations, so if you are getting started with programming for TVM, we recommend to first refer to [the examples section](samples/c.md).
 Texts, videos and samples illustrating how to use the compiler will soon appear at https://ton.dev/ and https://www.youtube.com/channel/UC9kJ6DKaxSxk6T3lEGdq-Gg. Stay tuned.
 You can also get support in [EVERX Telegram channel](https://t.me/Tonlabs).
 In case you found a bug, raise an issue in the repository. Please attach the source file, the command to reproduce the failure and your machine description.
