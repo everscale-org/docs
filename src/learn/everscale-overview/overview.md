@@ -22,7 +22,7 @@ On ES shards are dynamically added as the load increases and then merged back. T
 
 The ES blockchain was not built to allow just anyone to become a validator. Validation is a critical process, requires professional equipment and access to an appropriate server. The total number of validators will at most be in the thousands, not in the tens of thousands. And validator machines have high server and channel requirements (the current requirements are 48 CPUs, 128 RAM and 1TB SSD) and a 1GB channel (the network is used extensively). This allows for the blockchain to support a very quick block release speed and often rotate validators in the shards.
 
-### 4. Paid storage 
+### 3. Paid storage 
 
 This is a completely brilliant and daring decision that no other blockchain has implemented.
 

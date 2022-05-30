@@ -6,7 +6,7 @@ Welcome to the most exciting and innovative platform to build your blockchain ap
 
 This page will tell you how to best choose the development approaches and tools for yourself.
 
-> **Attention!** Before you read this article, we recommend that you study the Everscale Overview section(../../learn/everscale-overview/) and the block of pages in the [Architecture section](../../arch/) if you want to develop complex products on the Everscale blockchain.
+> **Attention!** Before you read this article, we recommend that you study the [Everscale Overview section](../../learn/everscale-overview/) and the block of pages in the [Architecture section](../../arch/) if you want to develop complex products on the Everscale blockchain.
 
 ## Let's start 
 
