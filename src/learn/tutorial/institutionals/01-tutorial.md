@@ -38,12 +38,9 @@ DAO is a tool for those who care about the network itself (or a specific Dapp) a
 The following projects currently have the DAO mechanism: 
 
 - [**EVER DAO**](https://everdao.net/) - this is the primary decision-making tool relating directly to the Everscale network. 
-
 - [**Octus Bridge DAO**](https://app.octusbridge.io/governance) is a decision-making tool within the main Everscale network [multichain solution](https://octusbridge.io). 
-
 - [**EverStart**](#launchpad)
-
-[**EverLend**](https://everlend.app/) - a DeFi platform and an Everlend-powered money market protocol that focuses on the creation of fund pools whose interest rates are based on a supply and demand algorithm of Everlend assets.
+- [**EverLend**](https://everlend.app/) - a DeFi platform and an Everlend-powered money market protocol that focuses on the creation of fund pools whose interest rates are based on a supply and demand algorithm of Everlend assets.
 
 ### Launchpad 
 
