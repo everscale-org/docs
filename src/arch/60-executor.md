@@ -1,6 +1,7 @@
 ---
 title: Executor
 description: Transaction executor functional specification
+sidebar_position: 6
 ---
 
 # Transaction executor

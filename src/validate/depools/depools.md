@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # DePools
 
 This document contains instructions on how to deploy and configure a DePool smart contract, and run a validator node through it.

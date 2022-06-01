@@ -1,6 +1,7 @@
 ---
 title: Transaction execution
 description: Phases of transaction execution
+sidebar_position: 5
 ---
 
 # Phases of transaction execution

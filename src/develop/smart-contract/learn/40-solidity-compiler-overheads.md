@@ -1,6 +1,7 @@
 ---
 title: Magic and overheads
 description: Magic and overheads of Solidity compilers
+sidebar_position: 4
 ---
 
 # Magic and overheads of Solidity compilers

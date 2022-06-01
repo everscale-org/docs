@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Run Mainnet Node
 
 This HOWTO contains instructions on how to build and configure a RUST validator node in Everscale blockchain. The instructions and scripts below were verified on Ubuntu 20.04.

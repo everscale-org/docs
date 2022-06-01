@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Testnet EverX Node Troubleshooting 
 
 Here are some solutions to frequently encountered problems.

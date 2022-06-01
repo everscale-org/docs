@@ -1,1 +1,0 @@
-# Eversclae Inpage Provider

@@ -1,6 +1,7 @@
 ---
 title: Carefully value
 description: Carefully working with value when creating messages
+sidebar_position: 6
 ---
 
 # Carefully working with `value` when creating messages

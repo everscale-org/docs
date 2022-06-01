@@ -1,6 +1,7 @@
 ---
 title: Blockchain
 description: How the blockchain works
+sidebar_position: 2
 ---
 
 # How the blockchain works on the block and queue level
