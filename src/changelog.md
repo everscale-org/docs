@@ -1,3 +1,7 @@
+---
+title: Network Changelog
+---
+
 # Everscale Network Changelog
 
 ## block version 24 and before
