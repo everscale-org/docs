@@ -1,6 +1,7 @@
 ---
 title: Replay attacks
 description: Protection against replay attacks
+sidebar_position: 8
 ---
 
 # Protection against replay attacks for external messages

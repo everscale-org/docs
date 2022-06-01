@@ -1,4 +1,8 @@
-# Mint a Non-Fungible Token
+---
+sidebar_position: 1
+---
+
+# Issue a Non-Fungible Token
 
 ## Reference
 

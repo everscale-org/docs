@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Mainnet EverX Node Troubleshooting 
 
 Here are some solutions to frequently encountered problems.

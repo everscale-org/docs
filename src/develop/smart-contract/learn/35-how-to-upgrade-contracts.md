@@ -1,6 +1,7 @@
 ---
 title: Upgrade contracts
 description: How to upgrade contracts
+sidebar_position: 9
 ---
 
 # How to upgrade contracts

@@ -1,6 +1,7 @@
 ---
 title: Fee calculation
 description: Explanation of the formulas for fee calculation
+sidebar_position: 5
 ---
 
 # Fee calculation

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 description: Get started by creating a new DApp
 ---
 
@@ -19,7 +19,7 @@ Before proceeding with the launch of your Dapp, let us first go through an overv
 
 Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Learn section](../../learn/) where all necessary technical information is provided in a comprehensive way. 
 
-For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](debots.md).  
+For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](debots/getting-started.md).  
 DeBots, in essence, is an intuitive, no prior knowledge required interface for smart contracts on the Everscale blockchain.
 
 Having studied the information provided above, now, let's start our DApp launch.
@@ -190,4 +190,4 @@ npx everdev contract run-local --network se App timestamp
 npx everdev contract run --network se --signer coder App touch
 ```
 
-For more details see: [Get started with Development Tools](../../develop/sdk-tools/everdev/guides/quick-start.md).
+For more details see: [Get started with Development Tools](../../develop/api-tools/everdev/guides/quick-start.md).

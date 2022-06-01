@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Run testnet node
 
 > EverX Testnet node repository https://github.com/tonlabs/net.ton.dev

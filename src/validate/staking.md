@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Staking
 
 ## Glossary
@@ -17,7 +21,7 @@
 ## Prerequisites
 
 - Synced validator node with initialized wallet - all responsible persons have completed all steps up to and including step 4.4 of [Run Validator page](../validate/run-validator/run-mainnet-node.md).
-- [TONOS-CLI](../develop/sdk-tools/tonos-cli.md) installed and configured with the correct network for all  wallet custodians, including the Deployer - refer to [Multisignature Wallet page](../develop/smart-contract/multisignature-wallet.md).
+- [TONOS-CLI](../develop/api-tools/everdev/tonos-cli.md) installed and configured with the correct network for all  wallet custodians, including the Deployer - refer to [Multisignature Wallet page](../develop/smart-contract/multisignature-wallet.md).
 - Elections have started - `election_id` parameter of the elector contract != 0
 - `~/ton-keys/msig.keys.json` - file with validator custodian keypair.
 - `~/ton-keys/$(hostname -s).addr` - file wallet address.

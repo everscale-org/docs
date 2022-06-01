@@ -1,5 +1,6 @@
 ---
 title: Everscale FAQ
+sidebar_position: 8
 ---
 
 # FAQ
@@ -24,7 +25,7 @@ Consider its main advantages:
 - [Smart contracts](../develop/smart-contract/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
 - Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, Rust, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
 
-It is also a promising and decentralized [ecosystem](../learn/everscale-overview/ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
+It is also a promising and decentralized [ecosystem](../learn/everscale-overview/02-ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
 
 ## Everscale blockchain explorer
 
@@ -43,7 +44,9 @@ To understand the basic principles and mechanisms of Everscale, we recommend tha
   - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/30-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
 - [Decentralization section](../learn/decentralization/)
 - [Smart Contracts section](../develop/smart-contract/)
-  - ( [Overview](../develop/smart-contract/overview.md), [FAQ](../develop/smart-contract/faq.md), [DeBots](../develop/smart-contract/debots.md), [Examples](../develop/smart-contract/examples.md), etc.)
+  - [Introduction](../develop/smart-contract/learn/introduction.md)
+  - [FAQ](../develop/smart-contract/faq.md)
+  - [DeBots](../develop/smart-contract/debots/getting-started.md)
 - [Standards section](../standard/)
 
 ## What is EVER?
@@ -80,9 +83,9 @@ Many apps and bots use EVER, for example, you can pay Combot subscription, play 
 
 ## How can i store and trade EVER?
 
-For storing your TIP-3 tokens you need to use appropriate wallets - check out the [wallets section](everscale-overview/exchangewallets.md). 
+For storing your TIP-3 tokens you need to use appropriate wallets - check out the [wallets section](everscale-overview/03-exchangewallets.md). 
 
-To buy EVER you can use [exchange wallets](everscale-overview/exchangewallets.md), [CEX](everscale-overview/ecosystem.md/#exchanges) (centralize exchanges) or [DEX](everscale-overview/ecosystem.md/#defi) (decentralize exchanges).
+To buy EVER you can use [exchange wallets](everscale-overview/03-exchangewallets.md), [CEX](everscale-overview/02-ecosystem.md/#exchanges) (centralize exchanges) or [DEX](everscale-overview/02-ecosystem.md/#defi) (decentralize exchanges).
 
 ## What are the Everscale earning opportunities?
 
@@ -131,5 +134,5 @@ For a detailed introduction to integration options and their implementation, see
 
 ## What about Everscale ecosystem?
 
-Check out the [Ecosystem section](../learn/everscale-overview/ecosystem.md).
+Check out the [Ecosystem section](../learn/everscale-overview/02-ecosystem.md).
 

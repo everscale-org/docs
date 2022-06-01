@@ -1,6 +1,7 @@
 ---
 title: LT Guarantees
 description: How the blockchain works
+sidebar_position: 11
 ---
 
 # LT Guarantees

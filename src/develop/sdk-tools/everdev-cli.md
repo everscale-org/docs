@@ -1,1 +1,0 @@
-# Everdev CLI
