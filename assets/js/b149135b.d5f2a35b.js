@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[3483],{9881:function(e){e.exports=JSON.parse('{"title":"Validate","slug":"validate","permalink":"/validate","navigation":{"previous":{"title":"Hackathons & Grants","permalink":"/develop/hackathons-grants"},"next":{"title":"Tutorials","permalink":"/validate/tutorial"}}}')}}]);
