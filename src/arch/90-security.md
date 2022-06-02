@@ -1,7 +1,6 @@
 ---
 title: Security
 description: External messages pose threats
-sidebar_position: 9
 ---
 
 # Smart Contract Security

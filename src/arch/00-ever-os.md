@@ -1,7 +1,6 @@
 ---
 title: Ever OS
 description: An operating system (OS) is system software that manages computer hardware...
-sidebar_position: 2
 ---
 
 # What is Ever OS
