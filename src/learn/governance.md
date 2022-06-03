@@ -21,4 +21,6 @@ Using EverDAO is simple, however, there are some prerequisites for participation
 - To vote on already created proposals you’ll need to stake any amount of wEVER tokens.
 - Individual voting power depends on the amount of staked wEVER tokens you own.
 
-There are also DAOs, with their own management mechanisms, for the following services built on the Everscale blockchain: [Octus Bridge](https://octusbridge.io), [EverStart](https://everstart.io), [EverLend](https://everlend.app). 
+At the moment, the main multi-chain Everscale Dapp, [Octus Bridge](https://octusbridge.io), has its own DAO control mechanism.
+
+Other network projects are also planning to launch their own DAO, namely: [EverStart](https://everstart.io), [EverLend](https://everlend.app) and [FlatQube](https://flatqube.io)
