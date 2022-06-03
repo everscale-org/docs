@@ -4,14 +4,6 @@ sidebar_position: 1
 
 # FAQ
 
-# Table of contents
-
-- [General](#general)
-- [Stake and rounds](#stake-and-rounds)
-- [Ensuring Regular Operations](#ensuring-regular-operations)
-- [Rewards Distribution](#rewards-distribution)
-- [Troubleshooting](#troubleshooting)
-
 ## General
 
 ### What is DePool?
@@ -20,7 +12,7 @@ DePool is a smart contract that allows other smart contracts to invest stakes in
 
 ### Are there multiple versions of DePools? 
 
-Currently only one version of the DePool is used: the current [master](depools.md) version.
+Currently only one version of the DePool is used: the current [master](getting-started.md) version.
 
 ### Are there multiple types of nodes?
 
@@ -34,7 +26,7 @@ There are however some risks involved: if DePool's validator node wins elections
 
 For this reason, the DePool owner is obliged to invest a certain amount of tokens each validation round, all or some of which they stand to lose, and will be the first among the participants to lose, should their node perform poorly or misbehave in any way. This way participants can be sure, that the person upon whose actions their funds and rewards depend is highly motivated to perform their duties properly and ensure everyone receives their rewards.
 
-The contract code in open sourced and formally verified. See [specifications](../../learn/decentralization/depool-specifications.md) and contract [code](depools.md) for details.
+The contract code in open sourced and formally verified. See [specifications](../../learn/decentralization/depool-specifications.md) and contract [code](getting-started.md) for details.
 
 ### What is validator assurance?
 
@@ -85,7 +77,7 @@ Proxy contract code is also provided to the DePool at deploy, but has no bearing
 
 ### How do I choose DePool deploy configuration?
 
-The [DePool configuration](depools.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
+The [DePool configuration](getting-started.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
 
 - `minStake` – minimum stake that DePool accepts from participants. If set to high, some small token holders won’t be able to invest, whereas a very low minimal stake will permit participants to make small pointless stakes, where DePool fees will eat up a significant part of their reward and/or investment. 10 tokens is the recommended minimum for this parameter.
 - `validatorAssurance` determines how much you take it upon yourself to invest in the DePool every election and lose in case of any validator node malfunction or misbehavior. If set too small, potential participants might decide you aren't risking enough and avoid your DePool in favor of others. Should be chosen depending on the current competition in the network.
@@ -101,7 +93,7 @@ There are also some operational risks associated with the DePool specifically. I
 
 ### How do I set up a validator node with a DePool?
 
-You have to follow this [procedure](depools.md) exactly. To briefly sum up, you have to do the following:
+You have to follow this [procedure](getting-started.md) exactly. To briefly sum up, you have to do the following:
 
 1. Set up a node;
 2. Set up a validator wallet. For security, we advise to have not less than three custodians in this wallet;
@@ -111,7 +103,7 @@ You have to follow this [procedure](depools.md) exactly. To briefly sum up, you 
 6. Set up validator script;
 7. If required, confirm any transactions that the validator script or the state update method you set up generates.
 
-If all is set up correctly, DePool should participate in the next validator elections. If it doesn’t, [here](depools.md/#troubleshooting) is some troubleshooting advice.
+If all is set up correctly, DePool should participate in the next validator elections. If it doesn’t, [here](getting-started.md/#troubleshooting) is some troubleshooting advice.
 
 ### What do the validator contest winners need to do differently?
 
@@ -128,8 +120,8 @@ Another important detail is the `validatorAssurance` parameter at DePool deploym
 
 Currently there are two:
 
-1. Using a [multisig contract](depools.md/#state-update-through-multisig-contract) to call the DePool ticktock function directly. This requires monitoring and regular replenishing of the multisig contract balance and can be automated with any task scheduler. Note, that if the multisig contract requires multiple signatures to execute transactions (for example, if it’s a contest winner’s wallet with three custodians), every such transaction has to be confirmed by the required number of custodians.
-2. Setting up a [DePool helper](depools.md/#state-update-through-depool-helper-contract-temporarily-unavailable) contract and calling it with external messages. This also requires monitoring and regular replenishing of the helper contract balance and can also be automated with any task scheduler.
+1. Using a [multisig contract](getting-started.md/#state-update-through-multisig-contract) to call the DePool ticktock function directly. This requires monitoring and regular replenishing of the multisig contract balance and can be automated with any task scheduler. Note, that if the multisig contract requires multiple signatures to execute transactions (for example, if it’s a contest winner’s wallet with three custodians), every such transaction has to be confirmed by the required number of custodians.
+2. Setting up a [DePool helper](getting-started.md/#state-update-through-depool-helper-contract-temporarily-unavailable) contract and calling it with external messages. This also requires monitoring and regular replenishing of the helper contract balance and can also be automated with any task scheduler.
 
 ### Why are two proxies necessary?
 
@@ -209,7 +201,7 @@ Yes, if the validator wallet is the beneficiary of a lock and/or vesting stake, 
 
 Currently, this can be done through [TONOS-CLI](../../develop/api-tools/everdev/tonos-cli.md). It should be configured to be used with DePool. A participant needs to know the DePool address and have a suitable contract holding the funds they want to invest (e.g. a multisig wallet).
 
-[Ordinary](depools.md/#1-ordinary-stake), [vesting](depools.md/#2-vesting-stake) and [lock](depools.md/#3-lock-stake) stakes all have their own commands, that should be used to make a stake in the DePool, as they all have different sets of parameters, that need to be specified, when the stake is sent to the DePool.
+[Ordinary](getting-started.md/#1-ordinary-stake), [vesting](getting-started.md/#2-vesting-stake) and [lock](getting-started.md/#3-lock-stake) stakes all have their own commands, that should be used to make a stake in the DePool, as they all have different sets of parameters, that need to be specified, when the stake is sent to the DePool.
 
 All participants' stakes have to exceed the minimum stake set for the DePool (`minStake` DePool parameter). Validator's stake in every round has to additionally exceed `validatorAssurance`.
 
@@ -218,7 +210,7 @@ All participants' stakes have to exceed the minimum stake set for the DePool (`m
 There can be several reasons this happened:
 
 - The stake was too small. Check DePool Info to find out the minimum stake for this DePool.
-- DePool is closed. Check [DePool events](depools.md/#using-depool-events) to find out if it is.
+- DePool is closed. Check [DePool events](getting-started.md/#using-depool-events) to find out if it is.
 - You are trying to make a lock or vesting stake on behalf of a wallet that did not set a donor for lock or vesting. Check Participant Info for the beneficiary.
 - You are trying to make a lock or vesting stake on behalf of a wallet that already has this type of stake. Check Participant Info for the beneficiary.
 - There are errors in lock or vesting period settings (`withdrawalPeriod` > `totalPeriod`, `totalPeriod` > 18 years or totalPeriod <=0 seconds, or `totalPeriod` is not exactly divisible by `withdrawalPeriod`).
@@ -230,23 +222,23 @@ Starting with version 3 of the DePool, yes.
 
 ### How are stakes reinvested and withdrawn?
 
-Whenever an ordinary stake is made, it is set to be continuously reinvested. The participant who made the stake may [disable reinvestment](depools.md/#reinvest-stakes) at any time, and the entirety of their ordinary stake will be withdrawn to their wallet as soon as the funds are unlocked from the rounds they are invested in.
+Whenever an ordinary stake is made, it is set to be continuously reinvested. The participant who made the stake may [disable reinvestment](getting-started.md/#reinvest-stakes) at any time, and the entirety of their ordinary stake will be withdrawn to their wallet as soon as the funds are unlocked from the rounds they are invested in.
 
-A [part of the ordinary stake](depools.md/#1-ordinary-stake) can also be withdrawn. The remainder of the stake will keep being reinvested in this case.
+A [part of the ordinary stake](getting-started.md/#1-ordinary-stake) can also be withdrawn. The remainder of the stake will keep being reinvested in this case.
 
-[Lock](depools.md/#3-lock-stake) and [vesting](depools.md/#2-vesting-stake) stakes are reinvested for the full duration of their existence, which is set during their investment.
+[Lock](getting-started.md/#3-lock-stake) and [vesting](getting-started.md/#2-vesting-stake) stakes are reinvested for the full duration of their existence, which is set during their investment.
 
 ### What are the DePool fees for staking operations?
 
 The sender of any stake management transaction (including withdrawal and transfer) is required to cover DePool fees for this operation. These fees are normally under 0.5 tokens, so by default this value is additionally attached to any transaction to the DePool, and the change is returned to the sender.
 
-If for any reason a value of 0.5 tokens proves to be insufficient (and DePool starts running out of gas trying to execute a transaction), it can be [increased in TONOS-CLI config](depools.md/#7-configure-depool-state-update-method).
+If for any reason a value of 0.5 tokens proves to be insufficient (and DePool starts running out of gas trying to execute a transaction), it can be [increased in TONOS-CLI config](getting-started.md/#7-configure-depool-state-update-method).
 
 Additionally, when DePool receives the stake and rewards back from elector and processes the funds of participants, 0.05 evers are deducted from every participant's share of the pool, to cover the costs of executing this action.
 
 ### How do I view my stakes in the DePool?
 
-It can be done with the `getParticipantInfo` get-method. [Here's how.](depools.md/#using-get-methods)
+It can be done with the `getParticipantInfo` get-method. [Here's how.](getting-started.md/#using-get-methods)
 
 ## Ensuring Regular Operations
 
@@ -259,7 +251,7 @@ Make sure that:
 3. you have sufficient funds on the balances of all contracts (DePool, validator wallet, proxies, helper, if you use it, multisig, that updates the DePool state, if you use it)
 4. your validator script generates the election request correctly.
 
-You can find some troubleshooting advice [here](depools.md/#troubleshooting).
+You can find some troubleshooting advice [here](getting-started.md/#troubleshooting).
 
 ### How do I make sure my DePool wins elections?
 
@@ -269,7 +261,7 @@ No guarantees here, just as with any elections. Configure your DePool to be comp
 
 The period for state updates should be chosen based on the duration of the validation cycle on the blockchain. At the very minimum DePool's state update function should be called three times during the validation cycle:
 
-1. Once after the elections begin, so DePool gets ready to receive and forward validator's [election request](depools.md/#3-validator-script-and-election-request-issues).
+1. Once after the elections begin, so DePool gets ready to receive and forward validator's [election request](getting-started.md/#3-validator-script-and-election-request-issues).
 2. Once after the validation begins, to find out if it won elections or not.
 3. Once after unfreeze, to process stakes and rewards and rotate the rounds.
 
@@ -281,7 +273,7 @@ Each of the contracts involved has its own balance from which funds are spent on
 
 For **DePool** this is automated. Whenever DePool receives validation rewards, it tops up its balance depending on number of participants. If it fails to do so, and the balance dips below 10 tokens, it emits an event notifying of the problem.
 
-**Proxy contracts** also receive the necessary funds automatically, but if for any reason their balance becomes to low to perform the necessary operations, the DePool will also [emit an event](depools.md/#2-depool-isnt-emitting-events) notifying about it. You can replenish their balance, then [call the DePool’s state update function](depools.md/#7-configure-depool-state-update-method) by any available means, and resume normal operations.
+**Proxy contracts** also receive the necessary funds automatically, but if for any reason their balance becomes to low to perform the necessary operations, the DePool will also [emit an event](getting-started.md/#2-depool-isnt-emitting-events) notifying about it. You can replenish their balance, then [call the DePool’s state update function](getting-started.md/#7-configure-depool-state-update-method) by any available means, and resume normal operations.
 
 **Helper contract**, if you use it, doesn’t have built-in balance replenishing mechanisms. It has to be monitored and replenished separately. Same goes for the multisig contract you use for DePool state update, unless it’s your validator wallet.
 
@@ -305,4 +297,4 @@ Every time DePool receives rewards for validation, DePool replenishes it's pure 
 
 ## Troubleshooting
 
-You can find some troubleshooting advice [here](depools.md/#troubleshooting).
+You can find some troubleshooting advice [here](getting-started.md/#troubleshooting).
