@@ -3,7 +3,7 @@ sidebar_position: 0
 description: Get started by creating a new DApp
 ---
 
-# Getting started with smart contracts development.
+# Getting started with smart contracts development
   
 This guide is designed for developers interested in smart-contracts programming, irrespective of their prior experience in blockchain development.  
 Thanks to our well structured step by step guidance, developers will gradually learn all the information needed to start deploying and interacting with smart-contracts. 

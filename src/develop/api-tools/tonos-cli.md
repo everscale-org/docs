@@ -1375,7 +1375,7 @@ tonos-cli runx getParameters
 
 # 5. DeBot commands
 
-TONOS-CLI has a built-in [DeBot](../../smart-contract/debots/getting-started.md) browser, which is regularly updated with the most recent versions of DEngine.
+TONOS-CLI has a built-in [DeBot](../smart-contract/debots/getting-started.md) browser, which is regularly updated with the most recent versions of DEngine.
 
 To call a DeBot, use the following command:
 
@@ -1411,7 +1411,7 @@ Further input depends on the DeBot, which usually explains any actions it offers
 
 # 6. Multisig commands
 
-Multisig commands allow you to work with any existing [Multisig wallets](../../smart-contract/multisignature-wallet.md) in a more convenient way and with no need of ABI files.
+Multisig commands allow you to work with any existing [Multisig wallets](../smart-contract/multisignature-wallet.md) in a more convenient way and with no need of ABI files.
 
 ## 6.1. Send tokens
 
@@ -2435,7 +2435,7 @@ in format of account BOC or pure StateInit TVC. If contract is passed via TVC fi
 with `--address <tvc_address>` option. Also, execution timestamp can be specified with option `--now <timestamp>`.
 
 ```bash
-$ tonos-cli debug call --abi ../samples/1_Accumulator.abi.jso
+$ tonos-cli debug call --abi samples/1_Accumulator.abi.jso
 n --sign keys/key0 0:e5b3856d4d6b45f33ea625b9c4d949c601b8b6fb60fe6b968c5c0e5000a6aa78 add2 '{"value":1}'
 Config: /home/user/TONLabs/sol2tvm/scripts/tonos-cli.conf.json
 Input arguments:
@@ -2443,7 +2443,7 @@ Input arguments:
   method: add2
   params: {"value":1}
     sign: keys/key0
-     abi: ../samples/1_Accumulator.abi.json
+     abi: samples/1_Accumulator.abi.json
   output: ./trace.log
 Execution finished.
 Log saved to ./trace.log
@@ -2490,14 +2490,14 @@ ARGUMENTS:
   This command is similar to `tonos-cli debug call` but allows user to debug get methods.
 
 ```bash
-$ tonos-cli debug run --abi ../sol2tvm/samples/1_Accumulator.abi.json 0:04a12b2e001a4144b70ddb244838f8627f8d11cade399dc0892aded7b82d6d68 sum '{}'
+$ tonos-cli debug run --abi sol2tvm/samples/1_Accumulator.abi.json 0:04a12b2e001a4144b70ddb244838f8627f8d11cade399dc0892aded7b82d6d68 sum '{}'
 Config: /home/user/TONLabs/tonos-cli/tonos-cli.conf.json
 Input arguments:
    input: 0:04a12b2e001a4144b70ddb244838f8627f8d11cade399dc0892aded7b82d6d68
   method: sum
   params: {}
     sign: None
- opt_abi: ../sol2tvm/samples/1_Accumulator.abi.json
+ opt_abi: sol2tvm/samples/1_Accumulator.abi.json
   output: ./trace.log
 debug_info: None
 Execution finished.

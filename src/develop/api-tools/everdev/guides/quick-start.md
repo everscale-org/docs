@@ -55,7 +55,7 @@ npx everdev se start
 
 ## Configure default network
 
-Set Local Blockchain [SE (Simple Emulator)](../../everdev/evernode-se.md) as the default network:
+Set Local Blockchain [SE (Simple Emulator)](../../evernode-se.md) as the default network:
 
 ```shell
 npx everdev network default se

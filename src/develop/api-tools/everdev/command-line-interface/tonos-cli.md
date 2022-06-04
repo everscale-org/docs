@@ -11,7 +11,7 @@ EverDev installs tonos-cli globally, so after the installation is complete, you 
 ```shell
 tonos-cli <command> <args>
 ```
-[See the tonos-cli usage documentation](../../everdev/tonos-cli.md) or [repository](https://github.com/tonlabs/tonos-cli#how-to-use). 
+[See the tonos-cli usage documentation](../../tonos-cli.md) or [repository](https://github.com/tonlabs/tonos-cli#how-to-use). 
 
 ## Install
 

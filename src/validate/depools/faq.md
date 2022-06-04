@@ -199,7 +199,7 @@ Yes, if the validator wallet is the beneficiary of a lock and/or vesting stake, 
 
 ### How do I make stakes?
 
-Currently, this can be done through [TONOS-CLI](../../develop/api-tools/everdev/tonos-cli.md). It should be configured to be used with DePool. A participant needs to know the DePool address and have a suitable contract holding the funds they want to invest (e.g. a multisig wallet).
+Currently, this can be done through [TONOS-CLI](../../develop/api-tools/tonos-cli.md). It should be configured to be used with DePool. A participant needs to know the DePool address and have a suitable contract holding the funds they want to invest (e.g. a multisig wallet).
 
 [Ordinary](getting-started.md/#1-ordinary-stake), [vesting](getting-started.md/#2-vesting-stake) and [lock](getting-started.md/#3-lock-stake) stakes all have their own commands, that should be used to make a stake in the DePool, as they all have different sets of parameters, that need to be specified, when the stake is sent to the DePool.
 

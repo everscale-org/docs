@@ -2,7 +2,7 @@
 dicsription: Tutorial page for Institutional Investors. 
 ---
 
-# Tutorial
+# Getting started
 
 Welcome to the tutorial page for Institutional Investors. 
 
@@ -39,8 +39,8 @@ The following projects currently have the DAO mechanism:
 
 - [**EVER DAO**](https://everdao.net/) - this is the primary decision-making tool relating directly to the Everscale network. 
 - [**Octus Bridge DAO**](https://app.octusbridge.io/governance) is a decision-making tool within the main Everscale network [multichain solution](https://octusbridge.io). 
-- [**EverStart**](#launchpad)
-- [**EverLend**](https://everlend.app/) - a DeFi platform and an Everlend-powered money market protocol that focuses on the creation of fund pools whose interest rates are based on a supply and demand algorithm of Everlend assets.
+- [**EverStart**](#launchpad) (DAO mechanism not launched yet).
+- [**EverLend**](https://everlend.app/) - a DeFi platform and an Everlend-powered money market protocol that focuses on the creation of fund pools whose interest rates are based on a supply and demand algorithm of Everlend assets (DAO mechanism not launched yet).
 
 ### Launchpad 
 
@@ -51,7 +51,7 @@ At the moment, Everscale's only launchpad is [Everstart](https://everstart.io/).
 [**Everstart**](https://everstart.io/) is a DAO-managed multi-chain launchpad powered entirely by smart contracts.
 Go to the website of the site and hurry up to get acquainted with upcoming projects.
 
-### Classic Investments 
+### Smart Investments in Everscale
 
 If you're interested in classic investments and hedge funds, Warp Capital is your choice. 
 

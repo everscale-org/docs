@@ -14,4 +14,4 @@ Evernode DS provides a set of services serving EVER SDK endpoint: scalable multi
 
 [This repository](https://github.com/tonlabs/evernode-ds#what-is-evernode-dapp-server) contains instructions on how to build and configure your own free instance of Evernode Platform to connect your application to Everscale. 
 
-> **You can try to [run a core network node](../../../validate/run-validator/run-mainnet-node.md) yourself [using the Evernode DS solution.](https://github.com/tonlabs/evernode-ds#what-is-evernode-dapp-server)**
+> **You can try to [run a core network node](../../validate/run-validator/run-mainnet-node.md) yourself [using the Evernode DS solution.](https://github.com/tonlabs/evernode-ds#what-is-evernode-dapp-server)**
