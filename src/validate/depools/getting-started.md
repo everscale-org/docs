@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# DePools
+# Getting started
 
 This document contains instructions on how to deploy and configure a DePool smart contract, and run a validator node through it.
 
@@ -17,68 +17,8 @@ Answers to frequently asked questions can be found [here](faq.md).
 
 > **Note**: One node can be assigned to only one DePool contract.
 > **Note**: Validator contest winners are strongly recommended not to deploy DePool to the main net without previously testing their setup out on the devnet for a few days. Test tokens for staking on the devnet can be requested from community admins.
-# Table of Contents
 
-- [Prerequisites](#prerequisites)
-- [Procedure](#procedure)
-  - [1. Set Up Node and Deploy Validator Wallet](#1-set-up-node-and-deploy-validator-wallet)
-  - [2. Prepare DePool and Supporting Smart Contracts](#2-prepare-depool-and-supporting-smart-contracts)
-  - [3. Generate Deployment Keys](#3-generate-deployment-keys)
-  - [4. Calculate Contract Addresses](#4-calculate-contract-addresses)
-    - [4.1. Calculate DePool address](#41-calculate-depool-address)
-    - [4.2. (Optional) Calculate DePool Helper address](#42-optional-calculate-depool-helper-address)
-  - [5. Send Coins to the Calculated Addresses](#5-send-coins-to-the-calculated-addresses)
-  - [6. Deploy Contracts](#6-deploy-contracts)
-    - [6.1. Deploy DePool contract to the basechain](#61-deploy-depool-contract-to-the-basechain)
-    - [6.2. (Optional) Deploy DePool Helper contract to the basechain](#62-optional-deploy-depool-helper-contract-to-the-basechain)
-  - [7. Configure DePool State Update method](#7-configure-depool-state-update-method)
-    - [State update through Multisig Contract](#state-update-through-multisig-contract)
-    - [State update through DePool Helper contract (temporarily unavailable)](#state-update-through-depool-helper-contract-temporarily-unavailable)
-    - [State update through external call of the DePool Helper Contract](#state-update-through-external-call-of-the-depool-helper-contract)
-  - [8. Make Stakes](#8-make-stakes)
-      - [DePool fees](#depool-fees)
-    - [Configure TONOS-CLI for DePool operations](#configure-tonos-cli-for-depool-operations)
-    - [Deposit stakes](#deposit-stakes)
-      - [1) Ordinary stake](#1-ordinary-stake)
-      - [2) Vesting stake](#2-vesting-stake)
-      - [3) Lock stake](#3-lock-stake)
-    - [Remove stakes](#remove-stakes)
-    - [Transfer stakes](#transfer-stakes)
-    - [Withdraw Stakes](#withdraw-stakes)
-      - [1) Withdraw entire stake](#1-withdraw-entire-stake)
-      - [2) Withdraw part of the stake](#2-withdraw-part-of-the-stake)
-    - [Reinvest Stakes](#reinvest-stakes)
-  - [9. Check  Donors and Stakes in the DePool](#9-check--donors-and-stakes-in-the-depool)
-  - [10. Set Up Validator Script](#10-set-up-validator-script)
-    - [For C++ node](#for-c-node)
-    - [For Rust Node](#for-rust-node)
-  - [11. Maintain Positive Balance on DePool and Supplementary Contracts](#11-maintain-positive-balance-on-depool-and-supplementary-contracts)
-    - [DePool Balance](#depool-balance)
-    - [Proxy Balance](#proxy-balance)
-      - [Withdrawing excess funds](#withdrawing-excess-funds)
-    - [DePool Helper Balance](#depool-helper-balance)
-    - [Validator Wallet Balance](#validator-wallet-balance)
-  - [12. Check DePool Status in the Elections](#12-check-depool-status-in-the-elections)
-    - [On ever.live](#on-everlive)
-    - [Using DePool Events](#using-depool-events)
-    - [Using get-methods](#using-get-methods)
-      - [`getParticipantInfo(address addr)`](#getparticipantinfoaddress-addr)
-      - [`getDePoolInfo()`](#getdepoolinfo)
-      - [`getRounds()`](#getrounds)
-    - [`getParticipants()`](#getparticipants)
-    - [`getDePoolBalance()`](#getdepoolbalance)
-  - [13. (Optional) Adjust validator and participant reward fraction](#13-optional-adjust-validator-and-participant-reward-fraction)
-  - [14. (Optional) Close DePool](#14-optional-close-depool)
-- [Rewards Distribution](#rewards-distribution)
-- [Troubleshooting](#troubleshooting)
-  - [1. Wrong contract version](#1-wrong-contract-version)
-  - [2. DePool isn't emitting events](#2-depool-isnt-emitting-events)
-  - [3. Validator script and election request issues](#3-validator-script-and-election-request-issues)
-    - [For C++ Node](#for-c-node-1)
-    - [For Rust Node](#for-rust-node-1)
-  - [4. DePool function terminates with error in TONOS-CLI](#4-depool-function-terminates-with-error-in-tonos-cli)
-
-# Prerequisites
+## Prerequisites
 
 [TONOS-CLI](https://github.com/tonlabs/tonos-cli) of the latest version (0.3.0 or later) installed and configured.
 
@@ -89,7 +29,7 @@ Resources required to run a node available:
 - [For C++ node](https://docs.ton.dev/86757ecb2/v/0/p/708260-run-validator/t/2177a7)
 - [For Rust node](https://github.com/tonlabs/rustnet.ton.dev#1-system-requirements)
 
-# Procedure
+## Procedure
 
 To function correctly, the DePool contract requires an active validator node and a set of supporting smart contracts, that have to be deployed and configured alongside it:
 
@@ -102,7 +42,7 @@ Once all of these contracts are deployed and configured, the DePool is ready to 
 
 Follow the steps described below to complete this procedure.
 
-## 1. Set Up Node and Deploy Validator Wallet
+### 1. Set Up Node and Deploy Validator Wallet
 
 When using DePool you may set up the validator wallet **on the basechain**, as the DePool itself operates on the basechain and will pass your stakes to the masterchain Elector contract through its proxy contracts.
 
@@ -131,7 +71,7 @@ The wallet address will also be needed on the following steps.
 As always, also make sure to securely backup all of your seed phrases and/or wallet keys, generated during wallet and node setup. If you lose them, you will not be able to recover access to your funds.
 
 > Note:  The validator wallet should have a small sum of tokens available at all times to reliably send election requests to DePool. Each election request costs ~ 1 Ton.
-## 2. Prepare DePool and Supporting Smart Contracts
+### 2. Prepare DePool and Supporting Smart Contracts
 
 Obtain contract code from the [repository](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool).
 
@@ -144,7 +84,7 @@ The files required for DePool deployment are comprised of three pairs of compile
 
 `DePoolHelper.tvc` and `DePoolHelper.abi.json`
 
-## 3. Generate Deployment Keys
+### 3. Generate Deployment Keys
 
 Use TONOS-CLI to generate seed phrases for the contracts you will be deploying:
 
@@ -163,11 +103,11 @@ tonos-cli getkeypair depool.json "seed_phrase_for_depool"
 tonos-cli getkeypair helper.json "seed_phrase_for_helper"
 ```
 
-## 4. Calculate Contract Addresses
+### 4. Calculate Contract Addresses
 
 The smart contracts you will be deploying need to be configured to know the addresses of each other. Thus, first you have to calculate and save the addresses of every contract to be deployed.
 
-### 4.1. Calculate DePool address
+#### 4.1. Calculate DePool address
 
 ```bash
 tonos-cli genaddr DePool.tvc DePool.abi.json --setkey depool.json --wc 0
@@ -182,7 +122,7 @@ Put it into the following files in in your validator node setup:
 
 It will be required for the [validator script](#10-set-up-validator-script).
 
-### 4.2. (Optional) Calculate DePool Helper address
+#### 4.2. (Optional) Calculate DePool Helper address
 
 ```bash
 tonos-cli genaddr DePoolHelper.tvc DePoolHelper.abi.json --setkey helper.json --wc 0
@@ -190,7 +130,7 @@ tonos-cli genaddr DePoolHelper.tvc DePoolHelper.abi.json --setkey helper.json --
 
 Save the DePool Helper address.
 
-## 5. Send Coins to the Calculated Addresses
+### 5. Send Coins to the Calculated Addresses
 
 Send some coins to all addresses calculated on step 4 to initialize them with the following command:
 
@@ -235,9 +175,9 @@ For the duration of the DePool existence, balance on all DePool-related contract
 > [Proxies](#proxy-balance) receive fees for their services automatically, but if they run out of funds for any reason, DePool might miss elections.
 > [Helper](#depool-helper-balance), on the other hand, should be topped up regularly, depending on the set timer period. Without funds on the Helper contract, DePool will not be able to function regularly.
 > The [DePool](#depool-balance) itself receives funds for its operations from validation rewards, but may also, if it stops receiving these rewards, run out of funds.
-## 6. Deploy Contracts
+### 6. Deploy Contracts
 
-### 6.1. Deploy DePool contract to the basechain
+#### 6.1. Deploy DePool contract to the basechain
 
 ```bash
 tonos-cli deploy DePool.tvc '{"minStake":*number*,"validatorAssurance":*number*,"proxyCode":"<ProxyContractCodeInBase64>","validatorWallet":"<validatorWalletAddress>","participantRewardFraction":*number*}' --abi DePool.abi.json --sign depool.json --wc 0
@@ -270,7 +210,7 @@ tonos-cli deploy DePool.tvc '{"minStake":10000000000,"validatorAssurance":100000
 > **Note**: For RustCup, make sure to get the proxy code from the contract file in the `RUSTCUP_DEPOOL_--_DO_NOT_DEPLOY_ON_MAINNET` branch. **Do not use it on any other network**.
 At the time of deployment, the variable `m_balanceThreshold` is set as current DePool account balance - 5 tokens. DePool will replenish its balance from validation rewards to this value every round it receives rewards.
 
-### 6.2. (Optional) Deploy DePool Helper contract to the basechain
+#### 6.2. (Optional) Deploy DePool Helper contract to the basechain
 
 ```bash
 tonos-cli deploy DePoolHelper.tvc '{"pool":"DePoolAddress"}' --abi DePoolHelper.abi.json --sign helper.json --wc 0
@@ -286,7 +226,7 @@ Example:
 tonos-cli deploy DePoolHelper.tvc '{"pool":"0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace"}' --abi DePoolHelper.abi.json --sign helper.json --wc 0
 ```
 
-## 7. Configure DePool State Update method
+### 7. Configure DePool State Update method
 
 There are three different methods of setting up regular state updates of the DePool contract available. You have to set up one of them to run regularly. The period for state updates should be chosen based on the duration of the validation cycle on the blockchain. At the very minimum DePool's state update function should be called four times during the validation cycle:
 
@@ -300,7 +240,7 @@ For Rust node you can use the [provided](
 https://github.com/tonlabs/rustnet.ton.dev/blob/main/docker-compose/ton-node/scripts/send_depool_tick_tock.sh) ticktock script, which sends 5 ticktocks after the elections open.
 
 
-### State update through Multisig Contract
+#### State update through Multisig Contract
 
 A Multisig wallet can be used instead of Helper to call DePool's ticktock function directly.
 
@@ -330,7 +270,7 @@ Example:
 tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace ticktock -w 0:1b91c010f35b1f5b42a05ad98eb2df80c302c37df69651e1f5ac9c69b7e90d4e -s "dizzy modify exotic daring gloom rival pipe disagree again film neck fuel"
 ```
 
-### State update through DePool Helper contract (temporarily unavailable)
+#### State update through DePool Helper contract (temporarily unavailable)
 
 If you have previously deployed DePool helper, you can set it up to regularly call the DePool state update ticktock function. To do it, DePool Helper contract needs to be connected to the global Timer contract. Use the following command:
 
@@ -376,7 +316,7 @@ Thus, the longer the period set in the DePool Helper contract is, the higher a s
 
 To pay these fees reliably, sufficient positive balance (~100 Evers if the period is set to 1 hour) has to be maintained on the Helper. Without funds on the Helper contract, DePool will not be able to function regularly.
 
-### State update through external call of the DePool Helper Contract
+#### State update through external call of the DePool Helper Contract
 
 DePool Helper can be called to send the ticktock message manually at any time with the following command:
 
@@ -402,7 +342,7 @@ Where
 
 `<HelperAddress>` – address of the Helper contract from step 4.2.
 
-## 8. Make Stakes
+### 8. Make Stakes
 
 DePool collects stakes from various participants to be pooled together and forwarded as one stake to the Elector on behalf of its validator node.
 
@@ -413,7 +353,7 @@ To participate in elections, DePool has to accumulate, through stakes belonging 
 
 TONOS-CLI allows to manage several types of [stakes](#deposit-stakes).
 
-#### DePool fees
+##### DePool fees
 
 All staking commands are subject to an additional fee (by default 0.5 evers), that is partially spent to pay for DePool executing the command. The change is then returned to the sender. This value can be adjusted in TONOS-CLI [config](#configure-tonos-cli-for-depool-operations).
 
@@ -424,7 +364,7 @@ Additionally, when DePool receives the stake and rewards back from elector and p
 
 These two fees cover DePool's operational expenses and are deducted only from validation rewards. If DePool doesn't receive rewards in a round, it will not be able to top up its balance.
 
-### Configure TONOS-CLI for DePool operations
+#### Configure TONOS-CLI for DePool operations
 
 For all commands listed below, the DePool address, the wallet making the stake, the amount of fee to pay for DePool's services and the path to the keyfile/seed phrase may be specified in the TONOS-CLI config file in advance:
 
@@ -450,9 +390,9 @@ tonos-cli config --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 
 In this case all commands allow to omit `--addr`, `--wallet` and `--sign` options.
 
-### Deposit stakes
+#### Deposit stakes
 
-#### 1) Ordinary stake
+##### 1) Ordinary stake
 
 Ordinary stake is the most basic type of stake. It and the rewards from it belong to the wallet that made it.
 
@@ -482,7 +422,7 @@ Example:
 tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace stake ordinary --wallet 0:1b91c010f35b1f5b42a05ad98eb2df80c302c37df69651e1f5ac9c69b7e90d4e --value 100.5 --sign "dizzy modify exotic daring gloom rival pipe disagree again film neck fuel"
 ```
 
-#### 2) Vesting stake
+##### 2) Vesting stake
 
 A wallet can make a vesting stake and define a target participant address (beneficiary) who will own this stake, provided the beneficiary has previously indicated the donor as its vesting donor address. This condition prevents unauthorized vestings from blocking the beneficiary from receiving an expected vesting stake from a known address.
 
@@ -548,7 +488,7 @@ tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 ```
 
 > **Note**: Each participant can be the beneficiary of only one vesting stake. Once the current vesting stake expires, another can be made for the participant.
-#### 3) Lock stake
+##### 3) Lock stake
 
 A wallet can make a lock stake, in which it locks its funds in DePool for a defined period, but rewards from this stake will be payed to another target participant (beneficiary). As with vesting, the beneficiary has to indicate the donor as its lock donor address before receiving a lock stake. This condition prevents unauthorized lock stakes from blocking the beneficiary from receiving an expected lock stake from a known address.
 
@@ -611,7 +551,7 @@ tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 ```
 
 > **Note**: Each participant can be the beneficiary of only one lock stake. Once the current lock stake expires, another can be made for the participant.
-### Remove stakes
+#### Remove stakes
 
 This command removes an ordinary stake from a pooling round (while it has not been staked in the Elector yet):
 
@@ -635,7 +575,7 @@ Example:
 tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace stake remove --wallet 0:1b91c010f35b1f5b42a05ad98eb2df80c302c37df69651e1f5ac9c69b7e90d4e --value 100 --sign "dizzy modify exotic daring gloom rival pipe disagree again film neck fuel"
 ```
 
-### Transfer stakes
+#### Transfer stakes
 
 The following command assigns an existing [ordinary stake](#1-ordinary-stake) or its part to another participant wallet. If the entirety of the stake is transferred, the transferring wallet is removed from the list of participants in the DePool. If the receiving wallet isn't listed among the participants, it will become a participant as the result of the command.
 
@@ -663,9 +603,9 @@ tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 
 > **Note**: Stakes cannot be transferred from or to DePool's validator wallet, and between any wallets during round completion step (RoundStep = Completing = 8).
 
-### Withdraw Stakes
+#### Withdraw Stakes
 
-#### 1) Withdraw entire stake
+##### 1) Withdraw entire stake
 
 The following command allows to withdraw an [ordinary stake](#1-ordinary-stake) to the wallet that owns it, as soon as the stake becomes available. Use `withdraw on` to receive the stake, once it's unlocked. If you then make another stake, and want to keep reinvesting it every round, run the command with `withdraw off`.
 
@@ -687,7 +627,7 @@ Example:
 tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace withdraw on --wallet 0:1b91c010f35b1f5b42a05ad98eb2df80c302c37df69651e1f5ac9c69b7e90d4e --sign "dizzy modify exotic daring gloom rival pipe disagree again film neck fuel"
 ```
 
-#### 2) Withdraw part of the stake
+##### 2) Withdraw part of the stake
 
 The following command allows to withdraw part of an [ordinary stake](#1-ordinary-stake) to the wallet that owns it, as soon as the stake becomes available. If, as result of this withdrawal, participant's ordinary stake becomes less than `minStake`, then participant's whole stake is sent to participant.
 
@@ -711,7 +651,7 @@ Example:
 tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ace stake withdrawPart --wallet 0:1b91c010f35b1f5b42a05ad98eb2df80c302c37df69651e1f5ac9c69b7e90d4e --value 1000 --sign "dizzy modify exotic daring gloom rival pipe disagree again film neck fuel"
 ```
 
-### Reinvest Stakes
+#### Reinvest Stakes
 
 [Ordinary](#1-ordinary-stake) stake reinvestment is controlled by the DePool [reinvest flag](https://docs.ton.dev/86757ecb2/p/45d6eb-depool-specifications/t/82306f). By default this flag is set to `yes`, and the the participant's available ordinary stake will be reinvested every round, no additional action required.
 It gets set to `no` when [withdrawing the entire stake](#1-withdraw-entire-stake). After stake withdrawal it remains set to `no`.
@@ -738,7 +678,8 @@ tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 > **Note:**
 > [Withdrawing a part of the stake](#2-withdraw-part-of-the-stake) does not affect the reinvest flag.
 > [Lock](#3-lock-stake) and [vesting](#2-vesting-stake) stakes are reinvested according to their initial settings for the full duration of the staking period. There is no way to change these settings once lock and vesting stakes are made.
-## 9. Check  Donors and Stakes in the DePool
+
+### 9. Check  Donors and Stakes in the DePool
 
 After the stake is made, you can check its status in the DePool with the `getParticipantInfo` get-method:
 
@@ -753,7 +694,8 @@ Where
 `<msig_address>` - address of the wallet that made the stake.
 
 > **Note**: if you are expecting a lock or vesting stake, make sure the donor address is specified in your `lockDonor` or `vestingDonor` parameters.
-## 10. Set Up Validator Script
+
+### 10. Set Up Validator Script
 
 Once the the validator has accumulated a stake sufficient to participate in elections, (at least `validatorAssurance`), this stake needs to be signed by the node. This should be done through a validator script.
 
@@ -763,7 +705,7 @@ The main function that the validator script should regularly perform is to send 
 >  **Note**, that the validator wallet should have a small sum of tokens (~20 Evers) available at all times to reliably send election requests to DePool. Each election request costs ~ 1 Ton.
 > **Note**: Do not forget to [confirm](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#47-create-transaction-confirmation-online) the election request transactions sent out by the script with the necessary amount of validator wallet custodians.
 
-### For C++ node
+#### For C++ node
 
 Working examples of such a script can be found here: for the [main FreeTON](https://github.com/tonlabs/main.ton.dev/blob/master/scripts/validator_depool.sh) network, and for the [devnet](https://github.com/tonlabs/net.ton.dev/blob/master/scripts/validator_depool.sh).
 
@@ -776,14 +718,15 @@ It is recommended to run the script periodically, for example with `cron` utilit
 
 It is possible to configure the script to monitor the DePool status through the available get-methods, such as `getParticipantInfo`, `getRounds`, `getDePoolInfo`, `getParticipants` (see [get-methods section](#using-get-methods) for details) and through [view DePool events command](#using-depool-events).
 
-### For Rust Node
+#### For Rust Node
 
 For rustnet, the script is set up automatically during node deployment.
 
 > **Important**: If you are switching a **rust validator node** from direct staking to DePool, make sure to delete the current node build, set the DePool validator variable and rebuild it from scratch.
-## 11. Maintain Positive Balance on DePool and Supplementary Contracts
 
-### DePool Balance
+### 11. Maintain Positive Balance on DePool and Supplementary Contracts
+
+#### DePool Balance
 
 Normally the DePool receives sufficient funds for its operations [from validation rewards](#depool-fees). They go to DePool's own balance, which is completely separate from the staking pool and the funds on it are never staked.
 
@@ -820,7 +763,8 @@ tonos-cli depool --addr 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2
 ```
 
 > Note: These funds do not go towards any stake. They are transferred to the DePool contract itself and are spent on its operational expenses.
-### Proxy Balance
+
+#### Proxy Balance
 
 The balance of ~ 2 Evers on the proxies should be maintained for the full duration of DePool existence.
 
@@ -858,7 +802,8 @@ Where
 `<wallet_seed_or_keyfile>` - either the seed phrase in double quotes, or the path to the keyfile for the wallet, from which you are making the transaction
 
 > **Note**: If the proxy balance dips too low to operate and it fails to deliver messages between DePool and elector, DePool will emit one of the following [events](#using-depool-events): `ProxyHasRejectedTheStake` (if proxy cannot pass the stake on to elector) or `ProxyHasRejectedRecoverRequest` (if proxy cannot retrieve stake from elector). To reestablish operations you need to top up the proxy balance, and then call the DePool `ticktock` function by [any available means](#7-configure-depool-state-update-method). These measures should be taken as soon as possible, however, as DePool risks missing elections if it cannot communicate with elector on time.
-#### Withdrawing excess funds
+
+##### Withdrawing excess funds
 
 If proxy accumulates excess funds over time, they can be withdrawn using a transaction from the validator wallet with a specific payload:
 
@@ -886,8 +831,7 @@ Example:
 tonos-cli call 0:303c1aa8110dc5c543687c6bba699add7a7faf2ed55737f494f78d1c51c6b8d4 submitTransaction '{"dest":"-1:d16999c37c82523d1931011471967ae9e06ee53c1cafcacc8f6d3bee34f15044","value": 500000000,"bounce": true,"allBalance": false, "payload": "te6ccgEBAQEABgAACFBK1Rc="}' --abi SafeMultisigWallet.abi.json --sign "kick jewel fiber because cushion brush elegant fox bus surround pigeon divide"
 ```
 
-
-### DePool Helper Balance
+#### DePool Helper Balance
 
 The balance of ~ 100 Evers on the helper contract should be maintained for the full duration of DePool existence.
 
@@ -917,17 +861,17 @@ Where
 
 `<wallet_seed_or_keyfile>` - either the seed phrase in double quotes, or the path to the keyfile for the wallet, from which you are making the transaction.
 
-### Validator Wallet Balance
+#### Validator Wallet Balance
 
 Validator wallet will receive a fraction of any DePool round rewards directly, so with a successful DePool setup, it should receive regular income.
 
 In general, the validator wallet should have a small sum of tokens (~20 Evers) available at all times to reliably send election requests to DePool. Each election request costs ~ 1 Ton.
 
-## 12. Check DePool Status in the Elections
+### 12. Check DePool Status in the Elections
 
 Once everything has been configured properly, [stakes made](#8-make-stakes), and election request sent by the [validator script](#10-set-up-validator-script), you can monitor the operation of the DePool and its validator node through various channels.
 
-### On ever.live
+#### On ever.live
 
 Nodes currently participating in an open election are displayed on [ever.live](https://ever.live/validators?section=all) in the **Next** validators section until election end.
 
@@ -937,7 +881,7 @@ When the new validator set becomes active, it is moved to the **Current** sectio
 
 To find the pages of your validator and DePool, you can search for the validator wallet or for the DePool address on [ever.live](https://ever.live/). All validator-related pages are linked to each other.
 
-### Using DePool Events
+#### Using DePool Events
 
 TONOS-CLI supports DePool event monitoring.
 
@@ -999,11 +943,11 @@ RoundCompleted 1611665471 (2021-01-26 12:51:11.000)
 {"round":{"id":"159","supposedElectedAt":"1611664334","unfreeze":"0","stakeHeldFor":"900","vsetHashInElectionPhase":"0xc09caf4efff6cabff6185754d2150bc11d94098f97ea146a617e9d0d90cecc76","step":"8","completionReason":"3","stake":"2525331200749","recoveredStake":"0","unused":"0","isValidatorStakeCompleted":false,"rewards":"0","participantQty":"1","validatorStake":"2525331200749","validatorRemainingStake":"0","handledStakesAndRewards":"0"}}
 ```
 
-### Using get-methods
+#### Using get-methods
 
 DePool contract supports a number of get-methods, which can be used to monitor its status and the status of participants and stakes in the pool.
 
-#### `getParticipantInfo(address addr)`
+##### `getParticipantInfo(address addr)`
 
 Returns information about a specific participant in all investment rounds.
 
@@ -1063,7 +1007,9 @@ The parameters of the lock and vesting stakes are:
 - `withdrawalPeriod`: the period in seconds, after which the next part of the stake gets unlocked. 
 - `withdrawalValue`: the value that is unlocked every withdrawal period (in nanoevers).
 `lockDonor` and `vestingDonor` are the addresses set by the participant to be their [lock](#3-lock-stake) and [vesting](#2-vesting-stake) donors, respectively.
-#### `getDePoolInfo()`
+
+##### `getDePoolInfo()`
+
 Returns DePool configuration parameters and constants (supplementary contract addresses, minimal stake settings and fees for various actions).
 ```bash
 tonos-cli run <depool_address> getDePoolInfo {} --abi DePool.abi.json
@@ -1102,7 +1048,8 @@ The round parameters displayed by the get-method are the following:
 `proxyFee`: the fee that proxies take for any messages passed through them (in nanoevers). 
   
   
-#### `getRounds()`
+##### `getRounds()`
+
 Returns information about all rounds (step, total stake, stakeholder count, round id).
 ```bash
 tonos-cli run <depool_address> getRounds {} --abi DePool.abi.json
@@ -1223,7 +1170,9 @@ Result: {
 `validatorStake`: this value equals the final validator stake in the current round. It is set at the and of the Pooling step.
 `validatorRemainingStake`: this value is used if validator got punished by elector for poor node performance and part of the DePool stake is lost. Then this value equals the remaining validator stake, if any (in nanoevers).
 `handledStakesAndRewards`: the total quantity of stakes and rewards that were processed by the DePool during Completing step (in nanoevers).
-### `getParticipants()`
+
+#### `getParticipants()`
+
 Returns list of all participants.
 ```bash
 tonos-cli run <depool_address> getParticipants {} --abi DePool.abi.json
@@ -1240,14 +1189,17 @@ Result: {
   ]
 }
 ```
-### `getDePoolBalance()`
+
+#### `getDePoolBalance()`
+
 Returns DePool's own [balance](#depool-balance) in nanotokens (without stakes).
 ```bash
 tonos-cli run <depool_address> getDePoolBalance {} --abi DePool.abi.json
 ```
 Where
 `<depool_address>` - address of the DePool contract.
-## 13. (Optional) Adjust validator and participant reward fraction
+
+### 13. (Optional) Adjust validator and participant reward fraction
 If you want to make your DePool more attractive to potential participants, you may increase the fraction of the total reward they receive.
 DePool [deployment keys](#61-deploy-depool-contract-to-the-basechain) are required for this action. Use the following command:
 ```bash
@@ -1262,7 +1214,8 @@ Example:
 tonos-cli call 0:53acdc8033cc0794125038a810d4b64e24e72add52ee866b82ade42d12cd9f02 setValidatorRewardFraction '{"fraction":29}' --abi DePool.abi.json --sign depool.keys.json
 ```
 Current validator reward fraction value can be viewed with the `getDePoolInfo` [get-method](#getdepoolinfo).
-## 14. (Optional) Close DePool
+
+### 14. (Optional) Close DePool
 The deployer of the DePool can close the DePool at any time. DePool [deployment keys](#61-deploy-depool-contract-to-the-basechain) are required for this action:
 ```bash
 tonos-cli call <depool_address> terminator {} --abi DePool.abi.json --sign <depool_keyfile_or_seed_phrase>
@@ -1276,12 +1229,12 @@ tonos-cli call 0:37fbcb6e3279cbf5f783d61c213ed20fee16e0b1b94a48372d20a2596b700ac
 ```
 When a DePool is closed, all the stakes invested in it are returned to their owners, as soon as they become available. `dePoolClosed` event is emitted. The closed DePool cannot be reactivated again.
 To return all stakes currently locked in rounds to their owners, make sure DePool's [state update function](#7-configure-depool-state-update-method) is called once the current and the next validation cycles complete.
-# Rewards Distribution
+## Rewards Distribution
 Every time DePool receives rewards for validation, DePool replenishes it's own balance and  the rest is distributed according to the following rules:
 1) `validatorRewardFraction`% of the reward, regardless of the validator’s share in the pool, goes directly to the validator wallet. This is the reward for maintaining the node and is intended to be used on operational expenses.
 2) `participantRewardFraction`% of the reward is distributed among all participants (including the validator) proportionally to their share of the staking pool. By default these rewards are added to the ordinary stakes of all participants and reinvested with it. To withdraw this stake or any part of it to the participant wallet, use one of the withdrawal functions.
-# Troubleshooting
-## 1. Wrong contract version
+## Troubleshooting
+### 1. Wrong contract version
 **Issue**: Wrong/outdated version of any contracts involved in DePool operations may cause various issues and hard-to-diagnose behavior.
 To check contract versions, search for the addresses of DePool, DePool Helper and both proxies on [ever.live](http://ever.live) and review **Code hash** (may be hidden under **More details**). Click on the value to copy it to clipboard.
 It should match the following values:
@@ -1306,7 +1259,9 @@ If DePool or proxies have wrong Code hash, all contracts have to be redeployed, 
 > `cef9fe9fed144e25e24aa671da1118244dfb2d1e316e9961522cd9b015bbba59` for DePool
 >
 > `b633f0b5bc420abd8cb74b03eb0960df2a91c6c123d5cb18ed7283bb26e491bd` for proxy
-## 2. DePool isn't emitting events
+
+### 2. DePool isn't emitting events
+
 **Issue**: DePool seems to be set up correctly, but is not emitting expected [events](#using-depool-events), for example `stakeSigningRequested`.
 This can be caused by issues with the state update method. 
 **Possible solutions:**
@@ -1341,13 +1296,15 @@ This can be caused by issues with the state update method.
     `-s <path_to_keys_or_seed_phrase>` - either the keyfile for the wallet making the stake, or the seed phrase in quotes
     All these options can be skipped, if they were previously specified in the TONOS-CLI configuration file.
     1 token is always attached to this call, change is returned to sender.
-## 3. Validator script and election request issues
+
+### 3. Validator script and election request issues
+
 **Issue**: DePool isn't receiving election request from validator script and/or isn't passing it on to the Elector.
 This can be caused by DePool setup errors, low balance on some of the contracts involved, or issues with the script or node setup.
 **Possible solutions and diagnostic methods**:
 1.  If the DePool fails to accumulate a suitable stake, or malfunctions in any other manner, the election request will not pass through to the Elector. Always make sure that the full DePool setup procedure described in this document is completed, and that DePool contract itself operates correctly, i.e. enters waiting request step and emits `stakeSigningRequested` [event](#using-depool-events), when encountering problems with election participation.
 2. Check balance of all contracts and top up if any of them have run out of funds (see [section 11](#11-maintain-positive-balance-on-depool-and-supplementary-contracts) for details).
-### For C++ Node
+#### For C++ Node
 1. Check that the DePool address is specified in the in the `~/ton-keys/depool.addr` file in your validator node files and matches your current DePool address.
 2. Check that the validator wallet address is specified in the `~/ton-keys/$(hostname -s).addr` file according to the [node setup procedure](https://docs.ton.dev/86757ecb2/p/708260-run-validator/t/906cb8).
 3. Check that the validator wallet keys are saved to the `~/ton-keys/msig.keys.json` file according to the [node setup procedure](https://docs.ton.dev/86757ecb2/p/708260-run-validator/t/05caf5).
@@ -1361,13 +1318,14 @@ This can be caused by DePool setup errors, low balance on some of the contracts 
     ```bash
     bash -x ./validator_depool.sh
     ```
-### For Rust Node
+#### For Rust Node
 1. Check that the DePool address is specified in the in the `/ton-node/configs/depool.addr` file in your validator node files and matches your current DePool address.
 2. Check that the validator wallet address is specified in the `/ton-node/configs/${VALIDATOR_NAME}.addr` file
 3. Check that the validator wallet keys are saved to the `/ton-node/configs/keys/msig.keys.json` file
 4. Refer to [this document](https://github.com/tonlabs/rustnet.ton.dev#troubleshooting) for Rust node troubleshooting.
     
-## 4. DePool function terminates with error in TONOS-CLI
+### 4. DePool function terminates with error in TONOS-CLI
+
 In TONOS-CLI output it looks like this:
 ```bash
 message: Contract execution was terminated with error
