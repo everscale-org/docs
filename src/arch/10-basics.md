@@ -1,6 +1,7 @@
 ---
 title: Basics
 description: Introduction to understand the basic terminology and concepts
+sidebar_position: 0
 ---
 
 # Basics of Everscale Blockchain

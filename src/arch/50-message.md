@@ -1,6 +1,7 @@
 ---
 title: Message
 description: Smart-contracts communicate between each other
+sidebar_position: 8
 ---
 
 # Message

@@ -1,12 +1,8 @@
+---
+sidebar_position: 1
+---
+
 # TVM
-
-# Table of contents
-
-- [Table of contents](#table-of-contents)
-- [About TVM](#about-tvm)
-- [Peculiarities of TVM](#peculiarities-of-tvm)
-- [TVM Cells](#tvm-cells)
-- [Additionally](#additionally)
 
 ## About TVM
 
