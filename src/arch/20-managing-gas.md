@@ -1,6 +1,7 @@
 ---
 title: Managing gas
 description: Managing gas... TBD
+sidebar_position: 4
 ---
 
 # Managing gas

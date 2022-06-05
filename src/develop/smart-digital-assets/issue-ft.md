@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Issue a Fungible Token
 
 ## Reference

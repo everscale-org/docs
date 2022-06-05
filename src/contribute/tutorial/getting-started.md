@@ -40,6 +40,8 @@ To participate in voting, you must have a certain stake EVER, which will be equi
 
 This is the first Everscale blockchain launchpad, thanks to which the community has the opportunity not only to decide which project is worthy of being in the network ecosystem, but also to benefit from its further development through vesting.
 
+(DAO mechanism not launched yet).
+
 ### Octus Bridge DAO
 
 [Octus Bridge](https://octusbridge.io/bridge) is a cross-chain solution that allows you to move liquidity between Everscale and many other chains.

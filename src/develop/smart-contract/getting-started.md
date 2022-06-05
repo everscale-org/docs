@@ -1,12 +1,28 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 description: Get started by creating a new DApp
 ---
 
-# Getting started
+# Getting started with smart contracts development
+  
+This guide is designed for developers interested in smart-contracts programming, irrespective of their prior experience in blockchain development.  
+Thanks to our well structured step by step guidance, developers will gradually learn all the information needed to start deploying and interacting with smart-contracts. 
 
-Let's discover **Everscale in less than 5 minutes**.
-Get started by **creating a new DApp**.
+In the interest of developers, Everscale network puts at their disposal smart-contracts programming using developer-friendly languages: **Solidity** and **C++**.
+
+It should be noted that for developers experienced with Python or other languages such as C, C++, JavaScript, and C#, starting programming smart-contracts will be of maximum ease due to syntax similarity.  
+Familiarity with the mentioned programming languages will help developers make sense of differences in smart-contract languages.
+
+Before proceeding with the launch of your Dapp, let us first go through an overview explaining what technical information needed for up-to-date smart-contracts programming we prepared for our developers.
+
+## What you can learn.
+
+Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Learn section](../../learn/) where all necessary technical information is provided in a comprehensive way. 
+
+For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](debots/getting-started.md).  
+DeBots, in essence, is an intuitive, no prior knowledge required interface for smart contracts on the Everscale blockchain.
+
+Having studied the information provided above, now, let's start our DApp launch.
 
 ## Prerequisite
 
@@ -174,4 +190,4 @@ npx everdev contract run-local --network se App timestamp
 npx everdev contract run --network se --signer coder App touch
 ```
 
-For more details see: [Get started with Development Tools](../../develop/sdk-tools/everdev/guides/quick-start.md).
+For more details see: [Get started with Development Tools](../../develop/api-tools/everdev/guides/quick-start.md).

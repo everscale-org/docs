@@ -69,6 +69,10 @@ const config = {
         },
         items: [
           {
+            label: 'Architecture',
+            to: 'arch'
+          },
+          {
             label: 'Standards',
             to: 'standard'
           },
@@ -85,12 +89,12 @@ const config = {
             to: 'develop/integrate'
           },
           {
-            label: 'Contribute',
-            to: 'contribute'
-          },
-          {
             label: 'Learn',
             to: 'learn'
+          },
+          {
+            label: 'Changelog',
+            to: 'changelog'
           },
           {
             label: 'Blog',

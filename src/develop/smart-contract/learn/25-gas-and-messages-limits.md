@@ -1,6 +1,7 @@
 ---
 title: Gas limits
 description: Gas limits and external message size
+sidebar_position: 7
 ---
 
 # Gas limits and external message size

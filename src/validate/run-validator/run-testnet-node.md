@@ -1,40 +1,21 @@
-# Run testnet node
+---
+sidebar_position: 1
+---
+
+# Run Testnet Node
 
 > EverX Testnet node repository https://github.com/tonlabs/net.ton.dev
 
 This HOWTO contains instructions on how to build and configure a RUST validator node in TON blockchain. The instructions and scripts below were verified on Ubuntu 20.04.
 
-# Table of Contents
-- [Getting Started](#getting-started)
-  - [1. System Requirements](system-requirements.md/#everx-testnet-node)
-  - [2. Prerequisites](#2-prerequisites)
-    - [2.1 Set the Environment](#21-set-the-environment)
-    - [2.2 Install Dependencies](#22-install-dependencies)
-  - [3. Deploy RUST Validator Node](#3-deploy-rust-validator-node)
-  - [4. Check Node synchronization](#4-check-node-synchronization)
-  - [5. Configure validator multisignature wallet](#5-configure-validator-multisignature-wallet)
-  - [6. Configure DePool](#6-configure-depool)
-  - [7. Upgrade RUST Validator Node](#7-upgrade-rust-validator-node)
-- [Stopping, restarting the RUST Node](#stopping-restarting-the-rust-node)
-- [Logging](#logging)
-  - [During deployment](#during-deployment)
-  - [During operation](#during-operation)
-- [Migrating from C++ node](#migrating-from-c-node)
-- [Troubleshooting](#troubleshooting)
-  - [1. Couldn’t connect to Docker daemon at http+docker://localhost](#1-couldnt-connect-to-docker-daemon-at-httpdockerlocalhost)
-  - [2. thread 'main' panicked error when checking node synchronization](#2-thread-main-panicked-error-when-checking-node-synchronization)
-  - [3. Error executing command when checking node synchronization](#3-error-executing-command-when-checking-node-synchronization)
-  - [4. Cannot stop/restart/remove node container](#4-cannot-stoprestartremove-node-container)
-  - [5. DePool state not updating](#5-depool-state-not-updating)
-
-# Getting Started
+## Getting Started
 
 SSD/NVMe disks are obligatory.
 
-## [1. System Requirements](system-requirements.md/#everx-testnet-node)
+#### [1. System Requirements](system-requirements.md/##everx-testnet-node)
 
-## 2. Prerequisites
-### 2.1 Set the Environment
+#### 2. Prerequisites
+###### 2.1 Set the Environment
 Adjust (if needed) `net.ton.dev/scripts/env.sh`:
 
 Set `export DEPOOL_ENABLE=yes` in `env.sh` for a depool validator (an elector request is sent to a depool from a validator multisignature wallet).
@@ -45,7 +26,7 @@ Set `export DEPOOL_ENABLE=no` in `env.sh` for a direct staking validator (an ele
     . ./env.sh 
     
 > Note: Make sure to run the script as `. ./env.sh`, not `./env.sh`
-### 2.2 Install Dependencies
+###### 2.2 Install Dependencies
 `install_deps.sh` script supports Ubuntu OS only.
 
     ./install_deps.sh 
@@ -55,7 +36,7 @@ Install and configure Docker according to the [official documentation](https://d
 
     sudo usermod -a -G docker $USER
 
-## 3. Deploy RUST Validator Node
+#### 3. Deploy RUST Validator Node
 Do this step when the network is launched.
 Deploy the node:
 
@@ -65,7 +46,7 @@ Deploy the node:
   
 Wait until the node is synced. Depending on network throughput this step may take significant time (up to several hours).
 
-## 4. Check Node synchronization
+#### 4. Check Node synchronization
 
 Use the following command to check if the node is synced:
 
@@ -104,7 +85,7 @@ If the `timediff` parameter is less than 10 seconds, synchronization with master
 
 **Note**: The sync process may not start for up to one hour after node deployment, during which this command may result in error messages. If errors persist for more than an hour after deployment, review deployment log for errors and check the network status.
 
-## 5. Configure validator multisignature wallet
+#### 5. Configure validator multisignature wallet
 
 There is a small difference between direct staking and DePool validators on this step:
 
@@ -113,16 +94,16 @@ There is a small difference between direct staking and DePool validators on this
 
 You can use [TONOS-CLI](https://github.com/tonlabs/tonos-cli) for this purpose. It should be [configured](https://github.com/tonlabs/tonos-cli) to connect to the net.ton.dev network.
 
-Refer to [this document](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#3-create-wallet) for the detailed wallet creation procedure, or follow the links in the short guide below:
+Refer to [this document](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##3-create-wallet) for the detailed wallet creation procedure, or follow the links in the short guide below:
 
-1. All wallet custodians should [create seed phrases and public keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#31-create-seed-phrases-and-public-keys-for-all-custodians) for themselves. At least three custodians are recommended for validator wallet, one of which will be used by the validator node. All seed phrases should be kept secret by their owners and securely backed up.
+1. All wallet custodians should [create seed phrases and public keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##31-create-seed-phrases-and-public-keys-for-all-custodians) for themselves. At least three custodians are recommended for validator wallet, one of which will be used by the validator node. All seed phrases should be kept secret by their owners and securely backed up.
 2. The wallet deployer (who may or may not be one of the custodians) should gather the **public** keys from all custodians.
-3. The wallet deployer should obtain [SafeMultisig contract code](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#22-download-contract-files) from the repository.
-4. The wallet deployer should [generate deployment keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#32-generate-deployment-key-pair-file).
-5. The wallet deployer should [generate validator wallet](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#33-generate-wallet-address) address: **in -1 chain for direct staking validator or in 0 chain for a DePool validator**.
-6. Any user should [send at least 1 token](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#34-send-tokens-to-the-new-address-from-another-wallet) to the generated wallet address to create it in the blockchain.
-7. The wallet deployer should [deploy the wallet](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#35-deploy-wallet-set-custodians) contact to the blockchain and set all gathered public keys as its custodians. At this step the number of custodian signatures required to make transactions from the wallet is also set (>=2 recommended for validator wallets). Deploy to  -1 chain for direct staking validator or to 0 chain for a DePool validator.
-7. In case of direct staking, the funds for staking should be [transferred](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#46-create-transaction-online) to the newly created validator wallet.
+3. The wallet deployer should obtain [SafeMultisig contract code](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##22-download-contract-files) from the repository.
+4. The wallet deployer should [generate deployment keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##32-generate-deployment-key-pair-file).
+5. The wallet deployer should [generate validator wallet](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##33-generate-wallet-address) address: **in -1 chain for direct staking validator or in 0 chain for a DePool validator**.
+6. Any user should [send at least 1 token](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##34-send-tokens-to-the-new-address-from-another-wallet) to the generated wallet address to create it in the blockchain.
+7. The wallet deployer should [deploy the wallet](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##35-deploy-wallet-set-custodians) contact to the blockchain and set all gathered public keys as its custodians. At this step the number of custodian signatures required to make transactions from the wallet is also set (>=2 recommended for validator wallets). Deploy to  -1 chain for direct staking validator or to 0 chain for a DePool validator.
+7. In case of direct staking, the funds for staking should be [transferred](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##46-create-transaction-online) to the newly created validator wallet.
 
 Once the wallet is deployed, place 2 files on the validator node:
 
@@ -131,26 +112,26 @@ Once the wallet is deployed, place 2 files on the validator node:
 
 The node will use the wallet address and the keys provided to it to generate election requests each validation cycle.
 
-> **Note**: If the validator wallet requires more than 1 custodian signature to make transactions, make sure each transaction sent by the validator node is [confirmed](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig#47-create-transaction-confirmation-online) by the required amount of custodians.
+> **Note**: If the validator wallet requires more than 1 custodian signature to make transactions, make sure each transaction sent by the validator node is [confirmed](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig##47-create-transaction-confirmation-online) by the required amount of custodians.
     
-## 6. Configure DePool
+#### 6. Configure DePool
 
 For a DePool validator it is necessary to deploy a [DePool](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool) contract to workchain `0`.
 
 You can use [TONOS-CLI](https://github.com/tonlabs/tonos-cli) for this purpose. It should be [configured](https://github.com/tonlabs/tonos-cli) to connect to the net.ton.dev network.
 
-Refer to [this document](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#depool) for the detailed DePool creation procedure, or follow the links in the short guide below:
+Refer to [this document](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##depool) for the detailed DePool creation procedure, or follow the links in the short guide below:
 
-1. [Obtain contract code](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#2-prepare-depool-and-supporting-smart-contracts) from the repository.
-2. Generate [deployment keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#3-generate-deployment-keys).
-3. Calculate [contract addresses](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#4-calculate-contract-addresses).
-4. [Send tokens](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#5-send-coins-to-the-calculated-addresses) to the calculated addresses.
-5. [Deploy contracts](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#6-deploy-contracts). Make sure to specify your validator wallet in the DePool contract at this step.
-6. Configure DePool [state update method](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#7-configure-depool-state-update-method).
+1. [Obtain contract code](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##2-prepare-depool-and-supporting-smart-contracts) from the repository.
+2. Generate [deployment keys](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##3-generate-deployment-keys).
+3. Calculate [contract addresses](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##4-calculate-contract-addresses).
+4. [Send tokens](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##5-send-coins-to-the-calculated-addresses) to the calculated addresses.
+5. [Deploy contracts](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##6-deploy-contracts). Make sure to specify your validator wallet in the DePool contract at this step.
+6. Configure DePool [state update method](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##7-configure-depool-state-update-method).
 
-Once DePool is successfully deployed and configured to be regularly called to update its state, you can [make stakes](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#8-make-stakes) in it. Note that validator stakes must always exceed [validator assurance](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#61-deploy-depool-contract-to-the-basechain), otherwise DePool will not participate in elections.
+Once DePool is successfully deployed and configured to be regularly called to update its state, you can [make stakes](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##8-make-stakes) in it. Note that validator stakes must always exceed [validator assurance](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##61-deploy-depool-contract-to-the-basechain), otherwise DePool will not participate in elections.
 
-Also note, that DePool and supporting contracts balance should be [monitored and kept positive at all times](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#11-maintain-positive-balance-on-depool-and-supplementary-contracts).
+Also note, that DePool and supporting contracts balance should be [monitored and kept positive at all times](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##11-maintain-positive-balance-on-depool-and-supplementary-contracts).
 
 Once the validator wallet and the DePool are deployed, place 3 files on the validator node:
 
@@ -161,7 +142,7 @@ Once the validator wallet and the DePool are deployed, place 3 files on the vali
 
 The script generating validator election requests (directly through multisig wallet, or through DePool, depending on the setting selected on step 2.1) will run regularly, once the necessary addresses and keys are provided.
 
-## 7. Upgrade RUST Validator Node
+#### 7. Upgrade RUST Validator Node
 **Note**: You may need to renew your copy of net.ton.dev scripts but do not remove any working files from the previous deployment (for example, configs folder).
 
 Adjust (specify new commit ID) `net.ton.dev/scripts/env.sh`:
@@ -184,7 +165,7 @@ Wait until the node is synced.
 
 
 
-# Stopping, restarting the RUST Node
+## Stopping, restarting the RUST Node
 
 > **Note**: call docker-compose commands from the `net.ton.dev/docker-compose/ton-node`  folder.
 To stop the node use the following command:
@@ -196,8 +177,8 @@ To restart a stopped node use the following command:
     docker-compose restart
 
 
-# Logging
-## During deployment
+## Logging
+#### During deployment
 
 It is highly recommended to record the full log during node deployment:
 
@@ -205,7 +186,7 @@ It is highly recommended to record the full log during node deployment:
 
 The log is saved to the `net.ton.dev/scripts/` folder next to the deployment script and can be useful for troubleshooting.
 
-## During operation
+#### During operation
 
 When operational, the node keeps a number of logs in the `net.ton.dev/docker-compose/ton-node/logs` folder.
 
@@ -254,14 +235,14 @@ root:
   appenders:
     - rolling_logfile
 loggers:
-  # node messages
+  ## node messages
   ton_node:
     level: trace
   boot:
     level: trace
   sync:
     level: trace
-  # adnl messages
+  ## adnl messages
   adnl:
     level: info
   overlay:
@@ -270,13 +251,13 @@ loggers:
     level: info
   dht:
     level: info
-  # block messages
+  ## block messages
   ton_block:
     level: debug
-  # block messages
+  ## block messages
   executor:
     level: debug
-  # tvm messages
+  ## tvm messages
   tvm:
     level: info
   librdkafka:
@@ -319,13 +300,13 @@ The currently configured targets are the following:
 
 `validator_session`: mid level consensus protocol messages
 
-# Migrating from C++ node
+## Migrating from C++ node
 
 To migrate your validator from legacy C++ node to Rust node, complete the following steps:
 
-1. Set up a new host for the Rust node, according to steps [1](#1-system-requirements)-[3](#3-deploy-rust-validator-node) of this document.
-2. Wait for node to sync. Check sync according to step [4](#4-check-node-synchronization) of this document.
-3. Stop the C++ node sending election requests (by default - disable [scheduling of the validator script](https://github.com/tonlabs/net.ton.dev#32-run-validator-script)). **Do not shut down the C++ validator itself**, let it finish the current round.
+1. Set up a new host for the Rust node, according to steps [1](##1-system-requirements)-[3](##3-deploy-rust-validator-node) of this document.
+2. Wait for node to sync. Check sync according to step [4](##4-check-node-synchronization) of this document.
+3. Stop the C++ node sending election requests (by default - disable [scheduling of the validator script](https://github.com/tonlabs/net.ton.dev##32-run-validator-script)). **Do not shut down the C++ validator itself**, let it finish the current round.
 4. Configure validator wallet and corresponding keys, optionally - DePool (copy them from C++ node files to Rust Node files). By default:
     1. Copy validator wallet address from `~/ton-keys/$(hostname -s).addr` file on the C++ node to `/ton-node/configs/${VALIDATOR_NAME}.addr` on the Rust Node.
     2. Copy validator wallet keys from `/ton-keys/msig.keys.json` on the C++ node to `/ton-node/configs/keys/msig.keys.json` on the Rust Node.
@@ -335,11 +316,11 @@ To migrate your validator from legacy C++ node to Rust node, complete the follow
 6. Check `logs/validator.log` on the Rust node, and make sure the first election request was successfully sent. There should be no errors in the log.
 7. **Only once the validator set changes**, the C++ node is no longer a validator and the Rust node starts validating (`validation_stats` and `collation_stats` in the console output should not be empty), shut down the C++ node.
 
-# Troubleshooting
+## Troubleshooting
 
 Here are some solutions to frequently encountered problems.
 
-## 1. Couldn’t connect to Docker daemon at http+docker://localhost
+#### 1. Couldn’t connect to Docker daemon at http+docker://localhost
 
 This error occurs in two cases. Either the docker daemon isn't running, or current user doesn't have rights to access docker.
 
@@ -350,30 +331,30 @@ You can fix the rights issue either by running relevant commands as the superuse
 Make sure to restart the system or log out and back in, for the new group settings to take effect.
 
 
-## 2. thread 'main' panicked error when checking node synchronization
+#### 2. thread 'main' panicked error when checking node synchronization
 
-The following error may occur for a short time immediately after node deployment when attempting to [check synchronization](#4-check-node-synchronization):
+The following error may occur for a short time immediately after node deployment when attempting to [check synchronization](##4-check-node-synchronization):
 
     thread 'main' panicked at 'Can't create client: Os { code: 111, kind: ConnectionRefused, message: "Connection refused" }', bin/console.rs:454:59
 
-Currently this is expected behavior, unless it persists **for more than a few minutes**. If it does persist, check network status at https://net.ton.live/, and, if the network is up and running, review [deployment logs](#during-deployment) for errors.
+Currently this is expected behavior, unless it persists **for more than a few minutes**. If it does persist, check network status at https://net.ton.live/, and, if the network is up and running, review [deployment logs](##during-deployment) for errors.
 
 
-## 3. Error executing command when checking node synchronization
+#### 3. Error executing command when checking node synchronization
 
-The following error may occur for up to an hour after node deployment when attempting to [check synchronization](#4-check-node-synchronization):
+The following error may occur for up to an hour after node deployment when attempting to [check synchronization](##4-check-node-synchronization):
 
     Error executing command: Error receiving answer: early eof bin/console.rs:296
 
-Currently this is expected behavior, unless it persists **for more than one hour**. If it does persist, check network status at https://net.ton.live/, and, if the network is up and running, review [deployment logs](#during-deployment) for errors.
+Currently this is expected behavior, unless it persists **for more than one hour**. If it does persist, check network status at https://net.ton.live/, and, if the network is up and running, review [deployment logs](##during-deployment) for errors.
 
 
-## 4. Cannot stop/restart/remove node container
+#### 4. Cannot stop/restart/remove node container
 
 Make sure you are running all docker-compose commands from the `net.ton.dev/docker-compose/ton-node` folder.
 
 
-## 5. DePool state not updating
+#### 5. DePool state not updating
 
-It's recommended to send at least two [ticktocks](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool#7-configure-depool-state-update-method) while the elections are open.
+It's recommended to send at least two [ticktocks](https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/depool##7-configure-depool-state-update-method) while the elections are open.
 For rust node you can use the [provided](https://github.com/tonlabs/net.ton.dev/blob/master/docker-compose/ton-node/scripts/send_depool_tick_tock.sh) ticktock script, which sends 5 ticktocks after the elections open.

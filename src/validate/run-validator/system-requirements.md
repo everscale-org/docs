@@ -1,4 +1,8 @@
-# System requirements
+---
+sidebar_position: 4
+---
+
+# System Requirements
 
 ## EverX Testnet Node
 

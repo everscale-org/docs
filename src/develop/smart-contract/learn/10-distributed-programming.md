@@ -1,5 +1,6 @@
 ---
 description: Write distributed systems of smart contracts
+sidebar_position: 10
 ---
 
 # Distributed programming
