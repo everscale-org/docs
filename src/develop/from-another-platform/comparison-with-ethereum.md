@@ -113,16 +113,15 @@ The mechanism describing how this works in detail is quite difficult and can be 
 
 ## References
 
-1. [vitalik.ca/general/2022/03/29/road.html(The de-complexification of sharding)](vitalik.ca/general/2022/03/29/road.html)
+1. [vitalik.ca/general/2022/03/29/road.html(The de-complexification of sharding)](https://vitalik.ca/general/2022/03/29/road.html)
 2. [https://mitja.gitbook.io/papers/v/everscale-white-paper/readme/chapter-two-ever-kernel-ek/smft-soft-majority-fault-tolerance-consensus](https://mitja.gitbook.io/papers/v/everscale-white-paper/readme/chapter-two-ever-kernel-ek/smft-soft-majority-fault-tolerance-consensus
 )
 3. [https://www.youtube.com/watch?v=b1m_PTVxD-s&t=2975s 
 ](https://www.youtube.com/watch?v=b1m_PTVxD-s&t=2975s 
 )
 4. [https://vitalik.ca/general/2021/05/23/scaling.html , "History retrievability"](https://vitalik.ca/general/2021/05/23/scaling.html)
-5. [https://vitalik.ca/general/2022/03/29/road.html](https://vitalik.ca/general/2022/03/29/road.html 
+5. [https://vitalik.ca/general/2022/03/29/road.html](https://vitalik.ca/general/2022/03/29/road.html)
 )
 6. [https://mnill.github.io/everscale-for-solidity-dev/distributed_programming](https://mnill.github.io/everscale-for-solidity-dev/distributed_programming)
 7. [https://aerial-ulna-579.notion.site/7a01d6c8ba644701834b105af87d3863](https://aerial-ulna-579.notion.site/7a01d6c8ba644701834b105af87d3863)
-
 
