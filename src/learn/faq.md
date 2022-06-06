@@ -11,7 +11,7 @@ Here you will find answers to the most common questions that arise when getting 
 
 ## What is Everscale?
 
-**Everscale** is a peer-to-peer multi-blockchain system. Is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/00-ever-os.md).
+**Everscale** is a peer-to-peer multi-blockchain system. It is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/00-ever-os.md).
 
 ## Why Everscale?
 
@@ -23,13 +23,13 @@ Consider its main advantages:
 
 - Record speed, reliability, and thoughtful [architecture](../arch/).
 - [Smart contracts](../develop/smart-contract/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
-- Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, Rust, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
+- Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
 
 It is also a promising and decentralized [ecosystem](../learn/everscale-overview/02-ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
 
 ## Everscale blockchain explorer
 
-> **Blockchain explorer** is a tool that allows you to track and view blocks, messages, transactions and other information contained in network.
+> **Blockchain explorer** is a tool that allows you to track and view blocks, messages, transactions and other information contained in the network.
 
 Currently available blockchain explorers for use:
 
@@ -51,11 +51,11 @@ To understand the basic principles and mechanisms of Everscale, we recommend tha
 
 ## What is EVER?
 
-**EVER** - is the native coin of Everscale blockchain, unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system. EVER is token that captures value of all community sponsored projects, therefore optimized for a value capturing, it also used for network usage fee payments. It has a max supply of ~2 billion EVER coins. 
+**EVER** - is the native coin of Everscale blockchain, unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system. EVER is the token that captures the value of all community sponsored projects, therefore optimized for a value capturing, it also used for network usage fee payments. It has a max supply of ~2 billion EVER coins. 
 
 ### **Wrapped EVER** 
 
-EVER is cryptocurrency that run on blockchain, but different blockchains have different functions, features, and protocols. Because of this difference, EVER is not able to interact with other blockchains. While this increases the security of a blockchain-based digital asset, it creates immense difficulties for the development of an interoperable exchange or system of cryptocurrencies where the data of one crypto gets transferred into another crypto. However, for decentralized finance to exist, the exchange of information from one to another cryptocurrency is crucial. This is where Wrapped EVER comes in. In simple words, WEVER represents a cryptocurrency based on a separate blockchain and is worth the same, but can be used on non-native blockchains and later, redeemed for the original cryptocurrency. Putting it in reference, Wrapped EVER (wEVER) is a digital token that has the same value as one EVER but is based on TIP-3 standard, which makes it usable on the Decentralised Finance ecosystem. WEVER also available on ETH and BNB (BSC) networks, which makes it usable on the Decentralized Finance ecosystem.
+EVER is a cryptocurrency that runs on blockchain, but different blockchains have different functions, features, and protocols. Because of this difference, EVER is not able to interact with other blockchains. While this increases the security of a blockchain-based digital asset, it creates immense difficulties for the development of an interoperable exchange or system of cryptocurrencies where the data of one crypto gets transferred into another crypto. However, for decentralized finance to exist, the exchange of information from one to another cryptocurrency is crucial. This is where Wrapped EVER comes in. In simple words, WEVER represents a cryptocurrency based on a separate blockchain and is worth the same, but can be used on non-native blockchains and later, redeemed for the original cryptocurrency. Putting it in reference, Wrapped EVER (wEVER) is a digital token that has the same value as one EVER but is based on TIP-3 standard, which makes it usable on the Decentralised Finance ecosystem. WEVER is also available on ETH and BNB (BSC) networks, which makes it usable on the Decentralized Finance ecosystem.
 
 Contracts of EVER (Wrapped EVER):
 
