@@ -2,11 +2,11 @@
 sidebar_position: 0
 ---
 
-> Referenced repository: [https://docs.ton.dev/86757ecb2/p/828241-c-tutorial](https://docs.ton.dev/86757ecb2/p/828241-c-tutorial)
-
 # Getting started 
 
-## **You will need:**
+> Referenced repository: [https://docs.ton.dev/86757ecb2/p/828241-c-tutorial](https://docs.ton.dev/86757ecb2/p/828241-c-tutorial)
+
+## You will need:
 
 - A PC or laptop with a basic set of developer tools
 - (Recommended: Ubuntu 18.04) Linux

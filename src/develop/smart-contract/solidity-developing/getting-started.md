@@ -2,9 +2,9 @@
 sidebar_position: 0
 ---
 
-> Referenced repository: [https://docs.ton.dev/86757ecb2/p/950f8a-write-smart-contract-in-solidity](https://docs.ton.dev/86757ecb2/p/950f8a-write-smart-contract-in-solidity)
-
 # Getting started
+
+> Referenced repository: [https://docs.ton.dev/86757ecb2/p/950f8a-write-smart-contract-in-solidity](https://docs.ton.dev/86757ecb2/p/950f8a-write-smart-contract-in-solidity)
 
 ## You will need:
 
