@@ -18,7 +18,7 @@ Let's deploy the contract to TON Labs development blockchain atnet.ton.dev.
 
 Address of your contract in the blockchain is located after Raw address:
 
-IMPORTANT: Save this value - you will need it to deploy your contract and to work with it. We will refer to it as "<YourAddress>" below. Seed phrase is also printed to stdout. Key pair will be generated and saved to the file Wallet.keys.json.
+IMPORTANT: Save this value - you will need it to deploy your contract and to work with it. We will refer to it as "YourAddress" below. Seed phrase is also printed to stdout. Key pair will be generated and saved to the file Wallet.keys.json.
 
 Note that you will need to send some coins to the address before the actual deployment. TON deploy is fee-based, so your new contract will be charged for this.
 

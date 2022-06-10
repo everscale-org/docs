@@ -14,4 +14,4 @@ Assemble and link with a standard library into TVM bytecode:
 
     <PATH_TO>/tvm_linker compile Wallet.code --lib <path-to>/TON-Solidity-Compiler/lib/stdlib_sol.tvm
 
-Binary code of your contract is recorded into <WalletAddress>.tvc file, where <WalletAddress> is a temporary address of the contract. 
+Binary code of your contract is recorded into WalletAddress.tvc file, where WalletAddress is a temporary address of the contract. 
