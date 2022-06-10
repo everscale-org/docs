@@ -8,13 +8,13 @@ Let's deploy the contract to TON Labs development blockchain atnet.ton.dev.
 
 1) Make sure tonos-cli is in $PATH:
 
-export PATH=$PATH:<PATH_TO>/tonos-cli
+        export PATH=$PATH:<PATH_TO>/tonos-cli
 
-tonos-cli config --url net.ton.dev
+        tonos-cli config --url net.ton.dev
 
 2) Generate address, keys and seed phrase for your contract:
 
-tonos-cli genaddr <WalletAddress>.tvc Wallet.abi.json --genkey Wallet.keys.json
+        tonos-cli genaddr <WalletAddress>.tvc Wallet.abi.json --genkey Wallet.keys.json
 
 Address of your contract in the blockchain is located after Raw address:
 
@@ -30,11 +30,11 @@ Note that you will need to send some coins to the address before the actual depl
 
 4) Check the state of the pre-deployed contract. It should be Uninit:
 
-tonos-cli account <YourAddress>
+        tonos-cli account <YourAddress>
 
 5) Deploy your contract to the selected network (TON Labs devnet in the example) with the following command:
 
-tonos-cli deploy --abi Wallet.abi.json --sign Wallet.keys.json <contract>.tvc {<constructor_arguments>}
+        tonos-cli deploy --abi Wallet.abi.json --sign Wallet.keys.json <contract>.tvc {<constructor_arguments>}
 
 If either of --abi or --sign options is omitted in parameters, it must be specified in the config file. See below.
 
@@ -42,4 +42,4 @@ If either of --abi or --sign options is omitted in parameters, it must be specif
 
 7) Call the function of your contract:
 
-tonos-cli call '<YourAddress>' sendTransaction '{"dest":"DestAddress", "value":1000000000, "bounce":true}' --abi Wallet.abi.json --sign Wallet.keys.json
+        tonos-cli call '<YourAddress>' sendTransaction '{"dest":"DestAddress", "value":1000000000, "bounce":true}' --abi Wallet.abi.json --sign Wallet.keys.json
