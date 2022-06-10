@@ -10,24 +10,24 @@ Our library is fully-annotated with .d.ts files so we recommend to write your ap
 
 Let's start with a clean npm project.
 
-mkdir hello
-cd hello
-npm init -y
+    mkdir hello
+    cd hello
+    npm init -y
 
 Now lets install core package and bridge package for Node.js
 
-npm i --save @eversdk/core
-npm i --save @eversdk/lib-node
+    npm i --save @eversdk/core
+    npm i --save @eversdk/lib-node
 
 If you want to use high-level AppKit package then install this package as well:
 
-npm i --save @eversdk/appkit
+    npm i --save @eversdk/appkit
 
 You must initialize the library before the first use. The best place to do it is an initialization code of your application.
 You need to attach the chosen binary module to the TonClient class. Create index.js file and add this code:
 
-const {TonClient} = require("@eversdk/core");
-const {libNode} = require("@eversdk/lib-node");
+    const {TonClient} = require("@eversdk/core");
+    const {libNode} = require("@eversdk/lib-node");
 
 // Application initialization
 TonClient.useBinaryLibrary(libNode)
@@ -41,27 +41,27 @@ Our library is fully-annotated with .d.ts files so we recommend to write your ap
 
 Let's start with a clean project.
 
-mkdir hello
-cd hello
-npm init -y
+    mkdir hello
+    cd hello
+    npm init -y
 
 Installation
 
 Now lets install core package and bridge package for Web
 
-npm i --save @eversdk/core
-npm i --save @eversdk/lib-web
+    npm i --save @eversdk/core
+    npm i --save @eversdk/lib-web
 
 Important! Each time you run npm install the new version of the eversdk.wasm and index.js is downloaded. So you have to always update the eversdk.wasm inside your web package before publishing (starting local web server, creating web bundle etc.). If you use Webpack the best way is to use CopyPlugin.
 If you want to use high-level AppKit package then install this package as well:
 
-npm i --save @eversdk/appkit
+    npm i --save @eversdk/appkit
 
 You must initialize the library before the first use. The best place to do it is in initialization code of your application.
 You need to attach the chosen binary module to the TonClient class:
 
-import { TonClient } from '@eversdk/core';
-import { libWeb } from '@eversdk/lib-web';
+    import { TonClient } from '@eversdk/core';
+    import { libWeb } from '@eversdk/lib-web';
 
 TonClient.useBinaryLibrary(libWeb);
 
@@ -73,15 +73,15 @@ Make sure you completed the previous step and installed SDK properly.
 TONClient is the main class of Ever SDK Library. To start using library one needs to create and setup a TONClient instance.
 The simplest initialization code can look like this: we just specify the Developer Network endpoints, other parameters are used by default. See the defaults below.
 
-const client = new TonClient({
-network: { 
-    endpoints: [
-        'https://eri01.net.everos.dev',
-        'https://rbx01.net.everos.dev',
-        'https://gra01.net.everos.dev'
-] 
-    } 
-});
+    const client = new TonClient({
+        network: { 
+            endpoints: [
+                'https://eri01.net.everos.dev',
+                'https://rbx01.net.everos.dev',
+                'https://gra01.net.everos.dev'
+            ] 
+        } 
+    });
 
 If you are working with local blockchain Evernode SE, specify http://localhost in the endpoints.
 Check the full list of supported network endpoints.
@@ -92,27 +92,27 @@ Configure Client
 
 SDK provides a list of configuration parameters that can influence the behavior of the client. Use them when you create TONClient for more specific setup.
 
-export type TONConfigData = {
-network?: { 
-    endpoints?: string[],
-    server_address?: string, // deprecated, use endpoints
-    network_retries_count?: number, // default = 5
-    message_retries_count?: number, // default = 5
-    message_processing_timeout?: number, // default = 40000 ms
-    wait_for_timeout?: number, // default = 40000 ms
-    out_of_sync_threshold?: number, // default = 15000 ms
-    reconnect_timeout?: number, // default = 12000 ms
-      access_key?: string
+    export type TONConfigData = {
+    network?: { 
+        endpoints?: string[],
+        server_address?: string, // deprecated, use endpoints
+        network_retries_count?: number, // default = 5
+        message_retries_count?: number, // default = 5
+        message_processing_timeout?: number, // default = 40000 ms
+        wait_for_timeout?: number, // default = 40000 ms
+        out_of_sync_threshold?: number, // default = 15000 ms
+        reconnect_timeout?: number, // default = 12000 ms
+        access_key?: string
     },
-crypto?:{
-    mnemonic_dictionary?: number, // default = 1
-    mnemonic_word_count?: number, // default = 12
-    hdkey_derivation_path?: string // default = "m/44'/396'/0'/0/0"
+    crypto?:{
+        mnemonic_dictionary?: number, // default = 1
+        mnemonic_word_count?: number, // default = 12
+        hdkey_derivation_path?: string // default = "m/44'/396'/0'/0/0"
     },
-abi?:{
-    workchain?: number, // default = 0
-    message_expiration_timeout?: number, // default = 40000 ms
-    message_expiration_timeout_grow_factor?: number // default = 1.5
+    abi?:{
+        workchain?: number, // default = 0
+        message_expiration_timeout?: number, // default = 40000 ms
+        message_expiration_timeout_grow_factor?: number // default = 1.5
     }
 
 }
