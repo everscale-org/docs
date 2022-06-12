@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Installation
 
-Node.js
+###Node.js
 
 Our library is fully-annotated with .d.ts files so we recommend to write your applications in Typescript.
 
@@ -35,7 +35,7 @@ TonClient.useBinaryLibrary(libNode)
 That's it! Now you are ready to create and configure TONClient object!
 
 
-Web
+###Web
 
 Our library is fully-annotated with .d.ts files so we recommend to write your applications in Typescript.
 
@@ -45,14 +45,14 @@ Let's start with a clean project.
     cd hello
     npm init -y
 
-Installation
+**Installation**
 
 Now lets install core package and bridge package for Web
 
     npm i --save @eversdk/core
     npm i --save @eversdk/lib-web
 
-Important! Each time you run npm install the new version of the eversdk.wasm and index.js is downloaded. So you have to always update the eversdk.wasm inside your web package before publishing (starting local web server, creating web bundle etc.). If you use Webpack the best way is to use CopyPlugin.
+**Important!** Each time you run npm install the new version of the eversdk.wasm and index.js is downloaded. So you have to always update the eversdk.wasm inside your web package before publishing (starting local web server, creating web bundle etc.). If you use Webpack the best way is to use CopyPlugin.
 If you want to use high-level AppKit package then install this package as well:
 
     npm i --save @eversdk/appkit
@@ -66,7 +66,7 @@ You need to attach the chosen binary module to the TonClient class:
 TonClient.useBinaryLibrary(libWeb);
 
 
-Create TONClient
+###Create TONClient
 
 Make sure you completed the previous step and installed SDK properly.
 
@@ -88,7 +88,7 @@ Check the full list of supported network endpoints.
 You can find reference guide to TonClient here: Ever-SDK API Documentation.
 
 
-Configure Client
+###Configure Client
 
 SDK provides a list of configuration parameters that can influence the behavior of the client. Use them when you create TONClient for more specific setup.
 
@@ -118,75 +118,76 @@ SDK provides a list of configuration parameters that can influence the behavior 
 }
 
 
-Network Config
+###Network Config
 
-endpoints
+**endpoints**
 
-List of DApp Server addresses. Any correct URL format can be specified, including IP addresses. This parameter is prevailing over server_address.
+List of DApp Server addresses. Any correct URL format can be specified, including IP addresses. **This parameter is prevailing over server_address.**
+
 For instance, for https://rbx01.net.everos.dev/graphql GraphQL endpoint the server address will be https://rbx01.net.everos.dev. For Evernode SE the endpoint the server address will be http://localhost.
 At the start SDK sends requests to all the specified endpoints and chooses the one whose answer returns first. Later, if the application loses connection, SDK will try to switch to another endpoint from the list. If no endpoint is working there will be an error.
 
-server_address
+**server_address**
 
-This field is deprecated, but left for backward-compatibility. DApp Server public address.
+**This field is deprecated, but left for backward-compatibility.** DApp Server public address.
 
-network_retries_count
+**network_retries_count**
 
 The number of automatic network retries that SDK performs in case of connection problems. The default value is 5.
 
-message_retries_count
+**message_retries_count**
 
 The number of process_message retries that SDK performs in case of Message Expired (507) error - but only for those messages, local emulation of which was successful or failed with replay protection error. The default value is 5.
 Read more about reliable message delivery and pragma expire here.
 
-message_processing_timeout
+**message_processing_timeout**
 
 Timeout that is used to process message delivery for contracts, the ABI of which does not include expire header. If the message is not delivered within the specified timeout, the appropriate error occurs.
 
-wait_for_timeout
+**wait_for_timeout**
 
 Maximum timeout that is used for query response. The default value is 40 sec.
 
-out_of_sync_threshold
+**out_of_sync_threshold**
 
 Maximum time difference between server and client.
 If client's device time is out of sync and difference is more than the threshold, an error will occur. Also an error will occur if the specified threshold is more than message_processing_timeout/2.
 The default value is 15 sec.
 
-reconnect_timeout
+**reconnect_timeout**
 
 Timeout between reconnect attempts.
 
-access_key
+**access_key**
 
 Access key to GraphQL API. At the moment is not used in production.
 
 
-Crypto Config
+###Crypto Config
 
-mnemonic_dictionary
+**mnemonic_dictionary**
 
 Mnemonic dictionary that will be used by default in crypto functions. If not specified, 1 dictionary will be used.
 
-mnemonic_word_count
+**mnemonic_word_count**
 
 Mnemonic word count that will be used by default in crypto functions. If not specified the default value will be 12.
 
-hdkey_derivation_path
+**hdkey_derivation_path**
 
 Derivation path that will be used by default in crypto functions. If not specified m/44'/396'/0'/0/0 will be used.
 
 
-ABI Config
+###ABI Config
 
-workchain
+**workchain**
 
 Workchain id that is used by default in DeploySet.
 
-message_expiration_timeout
+**message_expiration_timeout**
 
 Message lifetime for contracts, the ABI of which includes expire header. The default value is 40 sec.
 
-message_expiration_timeout_grow_factor
+**message_expiration_timeout_grow_factor**
 
 Factor that increases the expiration timeout for each retry. The default value is 1.5.

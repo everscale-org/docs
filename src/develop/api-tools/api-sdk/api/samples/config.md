@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Network Config
 
-Get blockchain config
+###Get blockchain config
 
 Attention! This query is available only in Public API now, but soon will be supported in Evernode-DS. Use this temporary solution to get network config in Evernode-DS.
 
@@ -54,7 +54,7 @@ Result:
 Implement Pagination  the same way as described above:)
 
 
-(Old) Get blockchain config via blocks collection
+###(Old) Get blockchain config via blocks collection
 
 Will be deprecated soon
 

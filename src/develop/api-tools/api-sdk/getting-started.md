@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Getting started
 
-Getting started with API/SDK
+###Getting started with API/SDK
 
 This page serves as an Everscale API and SDK starting point. It offers guidance on all necessary information, instructions and instruments needed to prooceed with launching your own DApp. 
 
