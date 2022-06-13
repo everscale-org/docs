@@ -18,7 +18,7 @@ Community task example №2: "[Community Task] Update Getting started page in Ev
 
 5. All issues that are assigned to the documentation development team are accumulated and reviewed at the end of each working week;
 
-6. When you complete the issue on your own it is necessary to make a pull request indicating as reviewers [@ArtemFMX](https://t.me/ArtemFMX), [@Babowski](https://t.me/Babowski) and @maximgree. Also, in the comments section of the pull request it is needed to indicate the link of the issue;
+6. When you complete the issue on your own it is necessary to make a pull request indicating as reviewers [@ArtemFMX](https://t.me/ArtemFMX), [@Babowski](https://t.me/Babowski) and [@maximgree](https://t.me/maximgree). Also, in the comments section of the pull request it is needed to indicate the link of the issue;
 
 In case you do not want to use GitHub and make corrections on your own, it is necessary to fill in the following Google form:
 
