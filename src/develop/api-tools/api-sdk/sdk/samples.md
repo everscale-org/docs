@@ -13,3 +13,7 @@ For those interested in getting a deeper understanding, please see our SDK guide
 For SDK guides as well as for the installation guide, full documentation, and the source code, please consult [**this page**](https://github.com/tonlabs/sdk-samples). 
 
 Also, please be informed that due to the rapid advancement of new technologies and instruments, we are constantly working to update the repository with samples so as to keep pace with new SDK features.
+
+> The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development. Please be informed that our documentation can be edited via GitHub. It can be found [**here**](https://docs.everscale.network/). 
+Please make sure to consult our rules and rewards policy via [**this link**](https://docs.everscale.network/contribute/hot-streams/documentations).  
+Also, for any questions that may arise, you can text via this [**Telegram chat**](https://t.me/+C2IpQXWZtCwxYzEy).

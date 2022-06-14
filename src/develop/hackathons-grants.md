@@ -15,3 +15,7 @@ Developers who are looking to obtain funding for their ideas have the Everscale 
 The sum available for funding the best projects and ideas is decided and allocated after analysing the utility of each individual case. Grant payments are allocated in EVER. The decision is taken in accordance with the complexity of technical requirements, specifics and mechanics of a proposal, and, most importantly, the expected value of the project for Everscale network. 
 
 In order to benefit from the Everscale Grants campaign, please apply via the [following page](https://everscale.network/developers/grants).
+
+> The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development. Please be informed that our documentation can be edited via GitHub. It can be found [**here**](https://docs.everscale.network/). 
+Please make sure to consult our rules and rewards policy via [**this link**](https://docs.everscale.network/contribute/hot-streams/documentations).  
+Also, for any questions that may arise, you can text via this [**Telegram chat**](https://t.me/+C2IpQXWZtCwxYzEy).
