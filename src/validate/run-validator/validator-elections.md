@@ -28,4 +28,4 @@ The electoral smart contract operates according to the following rules:
 
 4. As soon as the total stake calculated according to the above mentioned procedure stops growing, that is, the maximum amount of stakes is found, then this stake is considered to have passed the elections - then, all past elections, and validators will begin to validate for the next election period, and the trimmed parts of the stakes (if any) are immediately returned to wallets from which they were sent.
 
-Please follow this page in order to find out how a Validator is Updated - https://docs.everscale.network/validate/run-validator/update-validator
+Please follow [**this page**](https://docs.everscale.network/validate/run-validator/update-validator) in order to find out how a Validator is Updated.
