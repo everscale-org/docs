@@ -125,3 +125,6 @@ The mechanism describing how this works in detail is quite difficult and can be 
 6. [https://mnill.github.io/everscale-for-solidity-dev/distributed_programming](https://mnill.github.io/everscale-for-solidity-dev/distributed_programming)
 7. [https://aerial-ulna-579.notion.site/7a01d6c8ba644701834b105af87d3863](https://aerial-ulna-579.notion.site/7a01d6c8ba644701834b105af87d3863)
 
+> The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development. Please be informed that our documentation can be edited via GitHub. It can be found [**here**](https://docs.everscale.network/). 
+Please make sure to consult our rules and rewards policy via [**this link**](https://docs.everscale.network/contribute/hot-streams/documentations).  
+Also, for any questions that may arise, you can text via this [**Telegram chat**](https://t.me/+C2IpQXWZtCwxYzEy).
