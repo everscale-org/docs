@@ -23,6 +23,7 @@ All of the API call methods below are divided into 2 sections: [FlatQube Dex Ind
   - [**Transactions API**](https://docs.flatqube.io/integrate/open-api/flatqube-farming-indexer/transactions-api) - used to get transactions data.
   - [**Graphics API**](https://docs.flatqube.io/integrate/open-api/flatqube-farming-indexer/graphics-api) - used to get graphs data, such as TVL, APR and other.
 
-> The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development. Please be informed that our documentation can be edited via GitHub. It can be found [**here**](https://docs.everscale.network/). 
-Please make sure to consult our rules and rewards policy via [**this link**](https://docs.everscale.network/contribute/hot-streams/documentations).  
-Also, for any questions that may arise, you can text via this [**Telegram chat**](https://t.me/+C2IpQXWZtCwxYzEy).
+>  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
+Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
+  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
+  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!
