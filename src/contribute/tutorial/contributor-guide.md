@@ -149,20 +149,21 @@ Any local changes you make will be displayed here. You don't need to restart the
 
 #### Saving changes
 
-After making the changes to a local copy of your Branch, you need to upload the respective changes to GitHub.
-
+After making the changes to a local copy of your Branch, you need to upload the respective changes to GitHub.  
 To do this, open GitHub Desktop and select the files you want to commit to GitHub.
 
 Commits show the history of your repository. They include a lot of metadata in addition to the content, such as author, timestamp, etc.
 
-Choose a name for this Commit and click Commit to commit name.
+1. Choose a name for this Commit and click ***Commit to*** `commit name`.
+2. To publish a Commit, click ***Push Origin***.
 
-To publish a Commit, click on the corresponding button at the top of the screen.
+![](img/save-changes.png)
 
 ### Create a Pool Request
 
 After you have published all the Commits in our repository, you can create a Pool Request.
 
-Navigate to the appropriate section in your repository and select Create Pool Request.
+1. Navigate to the appropriate section in your repository and select Create Pool Request.
+2. If you wish, you can create a Draft Pool Request and complete it later.
 
-If you wish, you can create a Draft Pool Request and complete it later.
+![](img/open-request.png)
