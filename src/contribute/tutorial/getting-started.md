@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Getting started
 
 Since Everscale was created on the principles of decentralization, the management and development of the network is completely decentralized thanks to its community.
