@@ -102,40 +102,46 @@ Then click ***Clone***.
 
 After that, go to the Branch section and create a new one by entering its name and pressing Enter.
 
-![](img/create-branch.png)
+Since we created the Branch locally, you can upload the Branch to GitHub directly if you wish, by clicking Publish Branch at the top of the screen.
+
+
+![](img/create-branch-1.png)
+![](img/create-branch-2.png)
 
 Now you can contribute to a local copy of the repository.
 
 We recommend creating a new Branch for every update you want to make to the documentation, as any Pull Request will contain the changes we made to that specific Branch.  
 Thus, each Pull Request will have its own copy of the repository behind it.
 
-Since we created the Branch locally, you can upload the Branch to GitHub directly if you wish, by clicking Publish Branch at the top of the screen.
-
-Don't make changes directly to the main Branch of your repository!
-You can update your Fork with everscale/docs by clicking Fetch Upstream.
-Don't forget to do this before creating a new Branch.
+<u>Don't make changes directly to the <b>main Branch</b> of your repository!  
+You can update your Fork with everscale/docs by clicking <b><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork">Fetch Upstream</a></b>.
+Don't forget to do this before creating a new Branch.</u>
 
 #### Conducting tests
 
-When creating a pull request, GitHub will automatically run a series of checks from the Actions tab. These checks allow you to detect build errors, broken links, and so on. Without successfully passing all these tests, you will not be able to upload your changes to the documentation.
+When creating a pull request, GitHub will automatically run a series of checks from the Actions tab. These checks allow you to detect build errors, broken links, and so on.  
+Without successfully passing all these tests, you will not be able to upload your changes to the documentation.
 
 You have the ability to run all tests locally without having to create a Pull Request, which can save you a lot of time and effort.
 
-Select your repository from GitHub Desktop and right click on it. Then select Open in Explorer.
+1. Select your repository from GitHub Desktop and right click on it. Then select *Open in Explorer*.
+2. Go to the *.build* folder, right click on the *Website* folder and select *GitBash here*. This is the easiest way to open a folder in GitBash.
+3. In the window that opens, write `$ yarn`
+4. Once the process is complete, type `$ yarn build`, in order to start the testing process.
 
-Go to the `.build` folder, right click on the `Website` folder and select `GitBash here`. This is the easiest way to open a folder in GitBash.
+![](img/successful-test.png)
 
-Once the process is complete, type `$ yarn build`, in order to start the testing process.
-
-After the testing is done, you will see either a series of errors and their description, or a notification about a successful build.
-
+After the testing is done, you will see either a series of errors and their description, or a notification about a successful build.  
 With the second option, you can safely upload changes to GitHub and, if you wish, create a Pull request.
 
 Always check your repository for errors before making a Commit!
 
 #### Start local build
 
-Once the process is complete, type `$ yarn start` to begin the process of building a local copy of the site.
+1. Select your repository from GitHub Desktop and right click on it. Then select *Open in Explorer*.
+2. Go to the *.build* folder, right click on the *Website* folder and select *GitBash here*. This is the easiest way to open a folder in GitBash.
+3. In the window that opens, write `$ yarn`
+4. Once the process is complete, type `$ yarn start` to begin the process of building a local copy of the site.
 
 This will open a local copy of the site at [http://localhost:3000/](http://localhost:3000/) in your default browser.
 
