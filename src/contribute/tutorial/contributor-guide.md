@@ -168,7 +168,7 @@ After you have published all the Commits in our repository, you can create a Poo
 
 ![](img/create-request.png)
 
-When you create a "regular" request for a vote, ***reviewers*** are selected that take into account the changes you make.
+After you create a "regular" request for a vote, ***reviewers*** are selected that take into account the changes you make.
 
 Reviewers may accept your changes in case they don't find any errors. However, if they have comments, then you will need to make the appropriate changes, and then re-request the approval by clicking on the appropriate button.
 
