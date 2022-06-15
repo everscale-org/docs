@@ -166,4 +166,10 @@ After you have published all the Commits in our repository, you can create a Poo
 1. Navigate to the appropriate section in your repository and select Create Pool Request.
 2. If you wish, you can create a Draft Pool Request and complete it later.
 
-![](img/open-request.png)
+![](img/create-request.png)
+
+When you create a "regular" request for a vote, ***reviewers*** are selected that take into account the changes you make.
+
+Reviewers may accept your changes in case they don't find any errors. However, if they have comments, then you will need to make the appropriate changes, and then re-request the approval by clicking on the appropriate button.
+
+You need to get confirmation from **at least one reviewer** so that changes can be deployed.
