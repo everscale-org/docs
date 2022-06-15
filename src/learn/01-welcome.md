@@ -2,13 +2,6 @@
 sidebar_position: 0
 ---
 
-# Welcome
-
-Welcome to Everscale!
-
-On this page you will find a brief overview of Everscale - the fastest and scalable network.
-Also you will find for you the best way of interaction with Everscale! 
-
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
