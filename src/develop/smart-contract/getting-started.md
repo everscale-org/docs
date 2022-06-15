@@ -81,7 +81,7 @@ npx everdev signer list
 npx everdev sol create App
 ```
 
-You are got `App.sol`:
+You got `App.sol`:
 
 ```solidity
 pragma ton-solidity >= 0.35.0;
