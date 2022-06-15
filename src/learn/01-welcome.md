@@ -2,13 +2,6 @@
 sidebar_position: 0
 ---
 
-# Welcome
-
-Welcome to Everscale!
-
-Everscale is a decentralized technology that paves the way to digital assets, offers fintech solutions for cheap and rapid payments, and provides a long list of leading decentralized applications.
-On this page, you will find a brief overview of Everscale as well as the best way of interacting with it.
-
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
