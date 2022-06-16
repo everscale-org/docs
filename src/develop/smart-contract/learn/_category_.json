@@ -2,7 +2,7 @@
   "position": 0,
   "label": "Learn",
   "link": {
-    "description": "This guide is intended for experienced developers it is recommended that they have a good grasp of both how the Solidity programming language and the Ethereum blockchain work.",
+    "description": "This guide is intended for experienced developers. It is recommended that they have a good grasp of both how the Solidity programming language and the Ethereum blockchain work.",
     "slug": "develop/smart-contract/learn",
     "title": "Learn",
     "type": "generated-index"
