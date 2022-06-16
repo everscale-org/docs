@@ -6,17 +6,17 @@ sidebar_position: 0
 
 Welcome to Everscale!
 
-On this page you will find a brief overview of Everscale - the fastest and scalable network.
-Also you will find for you the best way of interaction with Everscale! 
+Everscale is a decentralized technology that paves the way to digital assets, offers fintech solutions for cheap and rapid payments, and provides a long list of leading decentralized applications.
+On this page, you will find a brief overview of Everscale as well as the best way of interacting with it.
 
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
 [Ever OS](../arch/00-ever-os.md) is capable of processing millions of transactions per second, with Turing-complete smart contracts and decentralized user interfaces.  
 
-Everscale presents some new and unique properties, such as dynamic multithreading, soft majority consensus and distributed programming, which enable it to be scalable, fast and secure at the same time. It is governed by a decentralized community founded upon meritocratic principles via Soft Majority Voting protocol.  
+Everscale presents some new and unique properties, such as dynamic multithreading, soft majority consensus and distributed programming, which enable it to be scalable, fast and secure at the same time. It is governed by a decentralized community founded upon meritocratic principles via Soft Majority Voting protocol.
 
-Everscale has powerful developer tools, such as compilers for Solidity and C++, API, SDK that includes client libraries for 13 programming languages and all popular platforms, local node for DApp testing, CLI tools and a range of decentralized browsers and wallets empowering many applications in DeFi, NFT, tokenization and governance domains.
+Everscale has powerful developer tools, such as compilers for Solidity and C++, API, an SDK that includes client libraries for 13 programming languages and all popular platforms, local node for DApp testing, CLI tools and a range of decentralized browsers and wallets empowering many applications in DeFi, NFT, tokenization and governance domains.
 
 If you would like to learn more about Everscale, please visit the [Everscale Overview page](everscale-overview).
 
@@ -25,34 +25,34 @@ If you would like to learn more about Everscale, please visit the [Everscale Ove
 
 ## Everscale for you
 
-Everscale is able to interest several types of users with their own interests by providing them with different features.
-
-In this documentation we have created sections and tutorials for each type of user, so you can find key information for getting to know and immerse yourself in any part of Everscale:
+Thanks to its well developed network, Everscale is able to interest several types of  participants by providing them with multiple branches of activity.
 
 **Users** ([Tutorial](tutorial/01-users.md)) - Everscale as an opportunity for storage and earnings (DeFi, NFT, etc.).
 
-**Developers** ([Tutorial](../develop/tutorial/), [Section](../develop/)) - Development on Everscale and technical details.
+**Developers** ([Tutorial](../develop/tutorial/), [Section](../develop/)) - Development of decentralised applications on Everscale.
 
 **Validators** ([Tutorial](../validate/tutorial/), [Section](../validate/)) - Validating and staking. 
 
-**Contributors** ([Tutorial](../contribute/tutorial/), [Section](../contribute/)) - Earning on partnership and benefiting the network.
+**Contributors** ([Tutorial](../contribute/tutorial/), [Section](../contribute/)) - Earn with partnerships that benefit the network..
 
 **Intergators** ([Tutorial](../develop/integrate/tutorial/), [Section](../develop/integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
 
+Below, we provide tutorials as well as links to the sections of documentation designed to accommodate each particular participant in accordance with what interests you most on the Everscale network. 
+
 ## Key organizations
 
-Many organizations have formed around Everscale to grow the network: recruiting new teams, DAOs, grants, etc.
+There are many companies that were formed around Everscale that boosted the growth of the network.
 
 Let's take a look at some of them:
 
-[Everscale DeFi Alliance](https://everalliance.org/) - Everscale DeFi Alliance creates the necessary infrastructure to attract and maintain strong teams and projects, attract liquidity from another projects to Everscale and establish a partnerships with major companies with large amounts of liquidity and/or a large number of transactions.
+[Everscale DeFi Alliance](https://everalliance.org/) - Everscale DeFi Alliance creates the necessary infrastructure to interest and maintain strong teams and projects, attract liquidity from other projects to Everscale and establish partnerships with major companies with large amounts of liquidity and/or a large number of transactions.
 
-[Everscale Grants](https://everscale.network/developers/grants) - Everscale Grants is a campaign that aims to attract promising IT projects that can contribute to the Everscale ecosystem's growth. 
+[Everscale Grants](https://everscale.network/developers/grants) - is a campaign that aims to attract promising IT projects that can contribute to the Everscale ecosystem's growth.
 
-[EVER DAO](https://everdao.net/governance) - EVER DAO is a platform where EVER token holders can make on-chain governance decisions for the whole Everscale Network.
+[EVER DAO](https://everdao.net/governance) - is a platform where EVER token holders can make on-chain governance decisions for the whole Everscale Network.
 
-Ever Foundation (the website is under construction) - The Ever Foundation shall become the primary entry point for all kinds of projects that want to develop and create their products and businesses on top of the Everscale.   
-The Foundation provides grant support to projects that bring the greatest benefit to the network, and is also actively promoting them.
+Ever Foundation (the website is under construction).  
+It will become the primary entry point for all kinds of projects that want to develop and create their products and businesses on top of the Everscale. The Foundation provides grant support to projects that bring the greatest benefit to the network, and actively promotes them.
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
 Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
