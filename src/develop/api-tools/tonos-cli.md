@@ -2026,7 +2026,7 @@ Result: {
 
 # 8. Proposal commands
 
-The following commands are used when voting for various FreeTON proposals at [https://gov.freeton.org/](https://gov.freeton.org/)
+The following commands are used when voting for various [Everscale proposals](https://gov.freeton.org/)
 
 ## 8.1. Create proposal and cast the first vote
 

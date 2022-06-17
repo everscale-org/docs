@@ -31,5 +31,5 @@ Each token holder has its own instance of token wallet contract. Transfer happen
 ## References
 
 - [EIP-20: Token Standard](https://eips.ethereum.org/EIPS/eip-20)
-- [Forum FreeTON - TIP3](https://forum.freeton.org/t/tip-3-distributed-token-or-ton-cash/64)
+- [Everscale Forum - TIP3](https://forum.freeton.org/t/tip-3-distributed-token-or-ton-cash/64)
 - [Reference implementation by Broxus](https://github.com/broxus/ton-eth-bridge-token-contracts)

@@ -707,7 +707,7 @@ The main function that the validator script should regularly perform is to send 
 
 #### For C++ node
 
-Working examples of such a script can be found here: for the [main FreeTON](https://github.com/tonlabs/main.ton.dev/blob/master/scripts/validator_depool.sh) network, and for the [devnet](https://github.com/tonlabs/net.ton.dev/blob/master/scripts/validator_depool.sh).
+Working examples of such a script can be found here: for the [main Everscale](https://github.com/tonlabs/main.ton.dev/blob/master/scripts/validator_depool.sh) network, and for the [devnet](https://github.com/tonlabs/net.ton.dev/blob/master/scripts/validator_depool.sh).
 
 > **Important**: If you are setting up DePool validator script on top of a **C++ node**, that was previously functioning under a regular validator script, you should first disable the regular script (validator_msig.sh) and only set up the DePool validator script (validator_depool.sh) for the next elections. Two validator scripts should never run at the same time, as this creates unpredictable behavior.
 It is recommended to run the script periodically, for example with `cron` utility. Example:

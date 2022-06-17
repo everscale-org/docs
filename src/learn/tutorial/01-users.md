@@ -35,7 +35,7 @@ In the [Ecosystem section](../everscale-overview/02-ecosystem.md), you can get a
 
 ## Community
 
-Everscale can be proud of its community - a community of friendly newbies and experienced users: network members help each other and discuss various aspects of the network in chats and on the Everscale [forum](https://forum.freeton.org/).
+Everscale can be proud of its community - a community of friendly newbies and experienced users: network members help each other and discuss various aspects of the network in chats and on the Everscale [forum](https://forum.everscale.network/).
 
 Go to the main Everscale chats and groups to see the strength of our unity:
 
