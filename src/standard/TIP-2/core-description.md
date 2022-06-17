@@ -8,7 +8,7 @@ slug: /standard/TIP-2
 
 ## Abstract
 
-There is a clear need for unified decentralized and distributed certificate system in Free TON. As described in more details below, such system would be used in providing many services which requires a certified provable key-value store. For example a Decentralized Name Service (DeNS), a Prove of Ownership / Prove of Purchase certificate and many others.
+There is a clear need for unified decentralized and distributed certificate system in Everscale. As described in more details below, such system would be used in providing many services which requires a certified provable key-value store. For example a Decentralized Name Service (DeNS), a Prove of Ownership / Prove of Purchase certificate and many others.
 
 Current solutions (for example a TON DNS, proposed [here](https://ton.org/DNS-HOWTO.txt)) are either a large smart contracts which maintains a full list of records, or a tree-like solutions which shards the list based on some parameters. Neither of these solutions are satisfactory due to a lack of scalability, high costs of maintenance, long search time, single point of failure and so on.
 
@@ -77,7 +77,7 @@ GetResolve
 ChangeAddress
 ChangeOwnership
 
-## Free TON Name Identity Certificate convention
+## Everscale Name Identity Certificate convention
 
 Format: any alfa-numeric string except for a dot (.) and slash (/) which are prohibited.
 

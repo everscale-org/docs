@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # GitHub contribution tutorial
 
-## Welcome to Everscale GitHub tutorial.
+## Welcome to Everscale GitHub tutorial
 
 By accessing it, we suppose that you are already familiar with how GitHub works.
 

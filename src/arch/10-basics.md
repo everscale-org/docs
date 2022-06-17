@@ -65,7 +65,7 @@ Account can change its shard depending on the load of the network. So before cal
 
 ## Message
 
-All interactions in Free TON are performed via messages.
+All interactions in Everscale are performed via messages.
 
 External inbound messages help deploy and call contracts from outside.
 
@@ -87,7 +87,7 @@ For example, simple value transfer consists of 2 transactions — Sender's trans
 
 ## BOC (Bag of cells)
 
-Is a universal format for data packaging in Free TON. Every object — account, transaction, message, block are stored in blockchain database as bocs. By the way, boc of the block includes bocs of all messages and transactions that were executed in this block inside of it.
+Is a universal format for data packaging in Everscale. Every object — account, transaction, message, block are stored in blockchain database as bocs. By the way, boc of the block includes bocs of all messages and transactions that were executed in this block inside of it.
 
 ## TVM
 

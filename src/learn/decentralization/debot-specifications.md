@@ -178,7 +178,7 @@ abstract contract Debot {
     /// @return publisher String with info about who has deployed debot to blokchain, e.g. "TON Labs".
     /// @return caption (10-20 ch.) String with short description, e.g. "Work with Smthg".
     /// @return author String with name of author of DeBot, e.g. "Ivan Ivanov".
-    /// @return support Free TON address of author for questions and donations.
+    /// @return support Everscale address of author for questions and donations.
     /// @return hello String with first messsage with DeBot description.
     /// @return language (ISO-639) String with debot interface language, e.g. "en".
     /// @return dabi String with debot ABI.

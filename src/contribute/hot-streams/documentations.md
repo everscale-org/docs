@@ -24,7 +24,7 @@ In case you do not want to use GitHub and make corrections on your own, it is ne
 
 In the form, please indicate your nickname, email address and the wallet address where you want your rewards to be deposited to. Also, please indicate the section and page which you want to correct with all necessary comments or provide the page that you want to add.
 
-It is worth mentioning that in case you want to write an article from scratch, then it will be necessary to figure out how GitHub works and how to commit there. For these, please follow this link in order to get familiar with detailed instructions. (Ссылка)
+It is worth mentioning that in case you want to write an article from scratch, then it will be necessary to figure out how GitHub works and how to commit there. For these, please follow this link in order to get familiar with [detailed instructions](../tutorial/contributor-guide.md).
 
 Remuneration
 

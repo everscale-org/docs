@@ -34,7 +34,7 @@ On March 25, Telegram challenged the U.S. court ban on transferring Gram tokens 
 On May 12, 2020, Pavel Durov [announced](https://t.me/durov/116) in his Telegram channel that he has closed the TON blockchain project. According to Pavel Durov, Telegram's participation in TON development is over. He urged users not to trust money or data to projects that use the name of the messenger or platform. No one from the company team participates in any of these projects, Durov said. He added that networks that use TON's developments may appear, but Telegram has nothing to do with them and is unlikely to ever support them.  
 TON Labs participates in the community launch of the Free TON blockchain as the core developer
 
-On Thursday, May 7th, the [Free TON Community](https://freeton.org) (consisting of developers and potential TON users) launched the Free TON blockchain platform. Instead of Gram participants will get tokens called TON Crystal. To become a community member you need to sign Free TON Declaration of Decentralization.
+On Thursday, May 7th, the Free TON Community (consisting of developers and potential TON users) launched the Free TON blockchain platform. Instead of Gram participants will get tokens called TON Crystal. To become a community member you need to sign Free TON Declaration of Decentralization.
 
 On August 2021 Everscale achieves world record high throughput.
 

@@ -190,7 +190,7 @@ Some of the frequently used networks:
 
 `https://net.ton.dev` - developer sandbox for testing.
 
-`https://main.ton.dev` - main Free TON network.
+`https://main.ton.dev` - main Everscale network.
 
 `https://rustnet.ton.dev` - test network running on Rust nodes.
 
@@ -538,7 +538,7 @@ Some of the frequently used networks:
 
 `https://net.ton.dev` - developer sandbox for testing.
 
-`https://main.ton.dev` - main Free TON network.
+`https://main.ton.dev` - main Everscale network.
 
 `https://rustnet.ton.dev` - test network running on Rust nodes.
 
