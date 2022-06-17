@@ -8,36 +8,36 @@ sidebar_position: 0
 
 ## What is a DeBot?
 
-DeBot (Decentralized Bot) is an intuitive, no-prior-knowledge-required interface for smart contracts on Everscale Blockchain.
+DeBot (Decentralized Bot) is an intuitive, no-prior-knowledge-required interface for interacting with smart contracts on Everscale Blockchain.
 
-Blockchain technology is complex and can be hard to learn for users without experience in the field or a technical background. With DeBots we aim to simplify the interactions required to achieve a user’s goals on the blockchain, and streamline the development process of blockchain-based services, while maintaining the level of security expected of such products.
+Blockchain technology is complex and can be hard to learn for users without prior experience with it. With DeBots, our goal is twofold: simplify user's experience with the  blockchain, and streamline the development process of blockchain-based services. It should be noted that this is achieved by maintaining the highest level of security. 
 
-At its most basic a DeBot is a secure chat-based interface that allows a user to interact with a smart contract on the blockchain and access its various functions in the form of a dialogue.
+At its most basic, a DeBot is a secure chat-based interface that allows a user to interact with a smart contract on the blockchain and access its various functions in the form of a dialogue.
 
 ## Basic terms
 
-- **DeBot** — a smart contract facilitating conversation-like flow communication with a target smart contract.
-- **Target smart contract** — a smart contract for which DeBot is created. DeBot is an interface to this smart contract.
-- **DeBot browser** — a program that executes DeBot and parses its answer using DeBot protocol.
-- **DeBot protocol** — a set of rules describing the communication between browser and DeBot: how to call DeBot functions and how to interpret its answers.
+- **DeBot** — a smart contract facilitating conversation-like communication flow with a target smart contract.
+- **Target smart contract** — the smart contract for which a DeBot is created. The DeBot is an interface to this smart contract.
+- **DeBot browser** — a program that executes the DeBot and parses its answer using DeBot protocol.
+- **DeBot protocol** — a set of rules describing the communication between a browser and the DeBot. Namely, it describes how to call DeBot functions and interpret its answers.
 
-DeBot is deployed to the blockchain. DeBot browser runs on client. It downloads DeBot code and runs it inside the engine.
+Debots are deployed on the Everscale blockchain and the browser is being managed by the user. The code is simply downloaded and runs inside the engine.
 
 ## DeBot interfaces
 
-To fulfill their functions as a user interface DeBots must be able to facilitate a number of interactions between the user, the user's device and the target smart contract on the blockchain:
+To fulfill their functions as a user's interface, DeBots must be able to facilitate a number of interactions between the user, the user's device and the target smart contract on the blockchain:
 
 - receive input from users;
 - query info about other smart contracts;
 - query transactions and messages;
-- receive data from external subsystems (like file system) and external devices (like NFC, camera and so on);
-- call external function libraries that allow to do operations that are not supported by VM. For example, work with json, convert numbers to string and vice versa, encrypt/decrypt/sign data.
+- receive data from external subsystems (like file systems) and external devices (like NFC, camera and so on);
+- call external function libraries that allow you to do operations that are not supported by VM. For example, work with json, convert numbers to string and vice versa, encrypt/decrypt/sign data.
 
 These needs are covered in various DeBot Interfaces (DInterfaces) which can be used in DeBots and which must be supported in DeBot Browsers.
 
-To use an interface DeBot should import source file with DInterface declaration and call its methods as any other smart contract methods in Everscale — by sending internal messages to interface address, which is unique and explicitly defined for every interface.
+To use an interface, the DeBot should import a source file with the DInterface declaration and call its methods like any other smart contract methods in Everscale — by sending internal messages to an interface address, which is unique and explicitly defined for every interface.
 
-Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published in [DeBot Interface Specifications Consortium](../../../learn/decentralization/debot-consortium.md).
+Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published by [DeBot Interface Specifications Consortium](../../../learn/decentralization/debot-consortium.md).
 
 ## Prerequisites
 
