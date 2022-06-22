@@ -5,7 +5,7 @@ title: How to create controller
 
 # How to create controller
 
-Currently all the controllers must be implemented inside of the `everdev` package.
+Currently, all the controllers must be implemented inside of the `everdev` package.
 
 To create a new controller:
 
@@ -16,22 +16,22 @@ To create a new controller:
 - Include the new controller in file `src/controllers/index.js`.
 - Create pull request.
 
-## What a controller should and what it shouldn't to do
+## What a controller should and what it shouldn't do
 
-Controller should:
+**Controller should:**
 
 - Expose functionality to the user as a list of commands.
 - Install the required tool components on demand (on first usage).
-- Start and stop the tool components that acts like a demons.
+- Start and stop the tool components that act like demons.
 - Define three commands to control the tool version:
   - `version` to show the currently installed tool version;
   - `update` to update the tool to the latest available version;
   - `use` to select the specified tool version as the current version.
 
-Controller shouldn't:
+**Controller shouldn't:**
 
-- Implement tool functionality itself. Controller is a connector between the user and the existing development tool.
-- Implement user interaction itself. All user interaction must be implemented exactly in the terms of everdev extensibility.
+- Implement tool functionality itself. The controller is a connector between the user and the existing development tool.
+- Implement user interaction itself. All user interaction must be implemented exactly in terms of Everdev extensibility.
 
 ## How to implement a Controller
 

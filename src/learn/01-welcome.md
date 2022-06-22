@@ -2,6 +2,8 @@
 sidebar_position: 0
 ---
 
+# Welcome
+
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
