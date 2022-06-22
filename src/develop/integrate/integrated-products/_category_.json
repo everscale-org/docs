@@ -1,9 +1,9 @@
 {
-  "position": 2,
+  "position": 3,
   "label": "Integrated products",
   "link": {
     "title": "Integrated products",
-    "slug": "develop/integrated-products",
+    "slug": "integrate/integrated-products",
     "type": "generated-index"
   }
 }
