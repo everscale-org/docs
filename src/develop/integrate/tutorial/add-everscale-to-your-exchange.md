@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Add EVER to your Exchange
 
-###Introduction
+### Introduction
 
 This document describes the various ways to accomplish the most important tasks of running a crypto exchange that supports EVER. 
 
@@ -15,15 +15,13 @@ There are a few different ways to accomplish the necessary tasks:
 - **Deposit account management** can be accomplished either through the TONOS-CLI command line tool or integrated into your backend with TON SDK. Both of these approaches are compatible with either of the blockchain access setups.
 
 
-###Setting up Blockchain Access
+### Setting up Blockchain Access
 
 There are two ways you can set up access to the Everscale blockchain: you may use EVER OS Cloud, or set up your own DApp server.
 
-####Using EVER OS Cloud
+#### Using EVER OS Cloud
 
 EVER OS Cloud allows you to work with Everscale blockchain and the Development Network without having to run your own node. TONOS-CLI and SDK can connect to it, as if it were a regular node. It has the same API as a node, and provides all capabilities required for running an exchange.
-
-
 
 This page lists the endpoints for both clouds.
 
@@ -31,7 +29,7 @@ Whenever you have to specify a network in the examples given below, you may use 
 
 **Note:** We highly recommend testing out the full setup on the developer network first.
 
-####Using DApp Server
+#### Using DApp Server
 
 If you prefer to run your own node, rather than using EVER OS Cloud, you may set up your own DApp server. It is a full node, that may be set up on your own servers and provide full access to either Everscale or the Developer network. To connect to to it with TONOS-CLI or SDK, it needs to have a domain name and a DNS record. You can specify its URL whenever you have to set the network in the examples given below.
 
@@ -85,7 +83,7 @@ Currently we can recommend the formally verified SafeMultisig contract for use i
 
 If this functionality is required, you can develop a contract with the needed capabilities or get one developed by someone in the Everscale community.
 
-####Using command line tool
+#### Using command line tool
 
 TONOS-CLI, the command line tool for the Everscale blockchain, allows to deploy any smart contracts to the blockchain, call all contract methods, sign transactions, and generally manage an account.
 
@@ -248,7 +246,7 @@ Example:
     Transaction succeeded.
     Contract deployed at address: 0:703546ac78f2b9d58f1072d131ff9fc23f29aeddcc85fd30bcba64f475b306a2
     
-####Using SDK
+#### Using SDK
 
 You may integrate above described process of deposit account deployment into your exchange backend. The functionality is supported in SDK. 
 
@@ -368,7 +366,7 @@ Prerequisites: latest Node.js
 
 The specific function that is used to send the funds to the user depends on the contract chosen for the deposit account. Below are provided the examples for the SafeMultisig contract.
 
-####Using command line tool
+#### Using command line tool
 
 TONOS-CLI tool may be used to implement withdrawals from deposit account.
 
@@ -425,7 +423,7 @@ Example:
     
 Note, that if your deposit account has multiple custodians, the transaction has to be confirmed by the required number of signatures to be executed. In this case transaction ID will be displayed as transaction result, when creating it. This transaction ID should be communicated to other custodians, who should use it to confirm the transaction.
 
-####(Optional) Confirm transaction
+#### (Optional) Confirm transaction
 
 To confirm a transaction, use the following command:
 
@@ -445,7 +443,7 @@ or
 
 Basic checks of the address format will be performed by the TONOS-CLI utility automatically, only addresses of a valid Everscale format will be accepted.
 
-####Mitigating risks of token loss due to user error**
+#### Mitigating risks of token loss due to user error**
 
 The are two main cases regarding transfers to user accounts: a user may already have an active account to which they want to withdraw funds, or they may want to withdraw funds to a completely new account, that doesn't exist at the time withdraw is requested.
 
@@ -492,7 +490,7 @@ In the first to cases, the exchange might first transfer a small portion of the 
 
 If the account is already active, a small portion of the requested amount may be transferred to the user, and the user may be asked what amount they received (note: a small amount of the transfer, usually less than 0.05 EVER, will be spent on fees, so it's best to ask for the whole number of tokens transferred). If the amounts match, the rest of the requested funds may be transferred as well.
 
-####PIN code verification
+#### PIN code verification
 
 Additionally, for users that use the Surf app to store their tokens, PIN code verification is possible.
 
@@ -525,7 +523,7 @@ Example:
       "transId": "0"
     }.
     
-####Using SDK
+#### Using SDK
 
 You may integrate withdrawals from deposit account into your backend using SDK as well. A sample is available in this repository and an overview of the relevant part is given below.
 
@@ -587,7 +585,7 @@ In this example tokens are withdrawn from the deposit account to the giver, that
       return transactions;
     }
     
-####User account verification with SDK
+#### User account verification with SDK
 
 Same as described above, users of the Surf app can be offered additional verification with a PIN code.
 
