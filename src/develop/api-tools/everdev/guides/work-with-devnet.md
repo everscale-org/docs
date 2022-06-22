@@ -4,19 +4,9 @@ sidebar_position: 2
 
 # How to work with Devnet
 
-## Contents
-
-  - [Contents](#contents)
-  - [Deploying your own Giver](#deploying-your-own-giver)
-    - [Generate Giver keys](#generate-giver-keys)
-    - [Compile Giver code](#compile-giver-code)
-    - [Calculate Giver address](#calculate-giver-address)
-    - [Sponsor Giver with public faucet](#sponsor-giver-with-public-faucet)
-    - [Deploy Giver contract](#deploy-giver-contract)
-  - [Configure everdev to use your Giver](#configure-everdev-to-use-your-giver)
-  - [Testing your new Giver](#testing-your-new-giver)
-
-Working with DevNet is similar to working with SE except you usually don't have any predeployed giver in DevNet. So you need to fund your contracts manually or deploy your own giver, which you will be able to use the same way as in SE. Deploying your own giver can be useful, if you need to deploy many contracts or need to frequently redeploy and test contract after subsequent midification.
+Working with DevNet is similar to working with SE except you usually don't have any predeployed giver in DevNet.  
+So you need to fund your contracts manually or deploy your own giver, which you will be able to use the same way as in SE.  
+Deploying your own giver can be useful, if you need to deploy many contracts or need to frequently redeploy and test contracts after subsequent modification.
 
 ## Deploying your own Giver
 
@@ -62,7 +52,8 @@ Account:   Doesn't exist
 
 ### Sponsor Giver with public faucet
 
-On the next step, you need to sponsor your Giver's address, which you have obtained on the previous step, with funds in order to be able to deploy contract. The easiest way to do it in DevNet is to use [EverGiver[DevNet] Telegram bot](https://t.me/everdev_giver_bot). It can give you 111 rubies maximum per address. If you need more, or in a case of different test network, you can contact an owner of particular network (for DevNet it is EverX).
+In the next step, you need to sponsor your Giver's address, which you have obtained in the previous 
+step, with funds in order to be able to deploy a contract. The easiest way to do it on DevNet is to use  [EverGiver[DevNet] Telegram bot](https://t.me/everdev_giver_bot). It can give you 111 rubies maximum per address. If you need more, or in the case of a different test network, you can contact the owner of a particular network (for DevNet it is EverX).
 
 In EverGiver Telegram bot type (change Giver's address to the address obtained at previous step):
 
@@ -90,7 +81,7 @@ Done, now you have your own Giver, deployed to the DevNet! Let's configure `ever
 
 ## Configure everdev to use your Giver
 
-For convenience, you might need to configure `everdev` in order to use your Giver as default. To do it, execute the next command (change address to your Giver's address, obtained on previous steps):
+For convenience, you might need to configure `everdev` in order to use your Giver as default. To do it, execute the next command (change address to your Giver's address, obtained in previous steps):
 
 ```
 $ everdev network giver dev 0:93139197f2f58d674bee4ee71a42d8f1e7b6a3c3e041ded7a54d330bcc44f3b3 --signer devnet_giver_keys
@@ -113,7 +104,7 @@ If Giver is set, you will see you Giver's address and keypair name for the `dev`
 
 ## Testing your new Giver
 
-For testing your new Giver, try to topup any address, for example, one of the contract's address, which you need to deploy:
+For testing your new Giver, try to top up any address, for example, one of the contract's addresses, which you need to deploy:
 
 ```
 $ everdev contract topup --network dev --address <address> --value 10000

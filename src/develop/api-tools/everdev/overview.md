@@ -12,16 +12,16 @@ sidebar_position: 0
 
 ## What is EverDev?
 
-EverDev is a Node.js package with CLI interface that allows to perform the following use-cases from the single interface for Developer:
+EverDev is a Node.js package with a CLI interface that allows developers to perform from one interface the following use cases: 
 
 ### Use-cases
 
-* Easily manage all the core [Ever OS Developer Tools](../../../arch/00-ever-os.md)
+* Easily manage all core [Ever OS Developer Tools](../../../arch/00-ever-os.md)
 * Configure networks (including Local Blockchain, Developer Network, Everscale (main) network): add, configure giver;
 * Manage keys: add, remove
 * Work with Everscale blockchain from CLI
 
-Also, this project serves as a backend for [EverDev VS Code extension](https://github.com/tonlabs/everdev-vscode).
+Also, this project serves as a backend for the [EverDev VS Code extension](https://github.com/tonlabs/everdev-vscode).
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
 Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  

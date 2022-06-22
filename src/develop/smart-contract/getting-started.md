@@ -15,7 +15,7 @@ Familiarity with the mentioned programming languages will help developers make s
 
 Before proceeding with the launch of your Dapp, let us first go through an overview explaining what technical information needed for up-to-date smart-contracts programming we prepared for our developers.
 
-## What you can learn.
+## What you can learn
 
 Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Learn section](../../learn/) where all necessary technical information is provided in a comprehensive way. 
 

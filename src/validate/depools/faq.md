@@ -8,52 +8,52 @@ sidebar_position: 1
 
 ### What is DePool?
 
-DePool is a smart contract that allows other smart contracts to invest stakes into a common pool, which it then uses in validator elections on behalf of the validator owning the DePool, and upon successful validation pays rewards to all participants proportionally to their contribution.
+DePool is a smart contract that allows other smart contracts to invest stakes in a common pool, which it then uses in validator elections on behalf of the validator owning the DePool, and upon successful validation pays rewards to all participants proportionally to their contribution. 
 
 ### Are there multiple versions of DePools? 
 
-Currently only one version of the DePool is used: the current [master](getting-started.md) version.
+Currently, only one version of the DePool is used: the current [master](getting-started.md) version.
 
 ### Are there multiple types of nodes?
 
-At this time available node types include the original C++ EVER node and the EverX Rust node (currently being tested on rustnet). DePool works with both versions.
+At this time, available node types include the original C++ EVER node and the EverX Rust node (currently being tested on rustnet). DePool works with both versions.
 
 ### Is DePool some special kind of wallet? How can I be sure no one’s going to misuse my funds?
 
 DePool is not a wallet with a single balance. It remembers which wallets invested which stakes. A stake cannot be withdrawn from DePool to any wallet that isn’t the owner of the stake. The DePool owner has no access to any stakes other than their own. All the owner can do is close the DePool, in which case all stakes and rewards are returned to their owners.
 
-There are however some risks involved: if DePool's validator node wins elections, but doesn't function correctly, it may be punished by the elector, and part or all of its stake may be lost.
+There are, however, some risks involved: if DePool's validator node wins elections, but doesn't function correctly, it may be punished by the elector, and part or all of its stake may be lost.
 
-For this reason, the DePool owner is obliged to invest a certain amount of tokens each validation round, all or some of which they stand to lose, and will be the first among the participants to lose, should their node perform poorly or misbehave in any way. This way participants can be sure, that the person upon whose actions their funds and rewards depend is highly motivated to perform their duties properly and ensure everyone receives their rewards.
+For this reason, the DePool owner is obliged to invest a certain amount of tokens in each validation round, all or some of which they stand to lose, and will be the first among the participants to lose, should their node perform poorly or misbehave in any way. This way, participants can be sure that the person upon whose actions their funds and rewards depend is highly motivated to perform their duties properly and ensure everyone receives their rewards.
 
 The contract code in open sourced and formally verified. See [specifications](../../learn/decentralization/depool-specifications.md) and contract [code](getting-started.md) for details.
 
 ### What is validator assurance?
 
-It is the minimum amount of tokens the DePool owner is obliged to invest each validation round. Without it, DePool will not participate in elections. DePool owner's funds will be the first lost, in case of any validator node malfunction or misbehavior. Only if they are not enough to cover the losses of the total stake, will the funds of other pool participants be affected.
+It is the minimum amount of tokens the DePool owner is obliged to invest in each validation round. Without it, DePool would not participate in elections. DePool owner's funds will be the first lost, in case of any validator node malfunction or misbehavior. Only if they are not enough to cover the losses of the total stake, will the funds of other pool participants be affected.
 
-So the higher the validator assurance, the more the validator owner is motivated to ensure proper operation of their node and the safer the stakes of all other participants are.
+So, the higher the validator assurance, the more the validator owner is motivated to ensure proper operation of their node and the safer the stakes of all other participants are.
 
 This parameter of the DePool cannot be changed after the DePool is deployed, not even by its owner.
 
 ### What is DePool fee?
 
-It is the fraction of the total DePool reward, that goes directly to the validator's wallet each time rewards are received. Validator needs it to cover current operational expenses of the node and the DePool.
+It is the fraction of the total DePool reward that goes directly to the validator's wallet each time rewards are received. The validator needs it to cover current operational expenses of the node and the DePool.
 
 The rest of the rewards are distributed among all DePool participants, proportionally to their stakes.
 
-So the lower the DePool fee, the more profitable the DePool is for participants.
+So, the lower the DePool fee, the more profitable the DePool is for participants.
 
 ### Why even use DePool? What are the advantages?
 
-Becoming a validator requires a substantial cryptocurrency deposit. The required amount might far exceed an individual validator budget. On the other hand, blockchain users with no validating system might be interested in investing in validation duty. This is where the DePool contract comes in.
+Becoming a validator requires a substantial cryptocurrency deposit. The required amount might far exceed an individual validator's budget. On the other hand, blockchain users with no validating system might be interested in investing in validation duty. This is where the DePool contract comes in.
 
-There are two main use cases of DePool:
+There are two main cases of using DePool:
 
-- User has no Validator capabilities but some free funds. User can support a third-party Validator and receive rewards.
-- User has Validator capabilities and but doesn't have necessary amount of funds to participate in validator elections and subsequent rewards.
+- The user has no Validator capabilities but some free funds. User can support a third-party Validator and receive rewards.
+- The user has Validator capabilities and but doesn't have necessary amount of funds to participate in validator elections and subsequent rewards.
 
-Thus the usage of DePool allows to greatly expand the number of individuals involved in validation process and decentralize the network to a much higher degree.
+Thus, the usage of DePool allows us to greatly expand the number of individuals involved in the validation process and decentralize the network to a much higher degree.
 
 ### How does DePool work?
 
