@@ -6,7 +6,7 @@ sidebar_position: 0
 
 The rapid advancement of blockchain technology and subsequent development of different blockchain networks has led to a heightened demand for cross-chain solutions. 
 
-Everscale puts at the user's disposal Octus Bridge, which facilitates cross - chain transactions in any direction within a single interface. Currently, Octus Bridge offers cross-chain transactions between Everscale, Ethereum, Polygon, Fantom, BNB chain and the number of networks is constantly increasing.
+Everscale puts at the user's disposal Octus Bridge, which facilitates cross - chain transactions in any direction within a single interface. Currently, Octus Bridge offers cross-chain transactions between Everscale, Ethereum, Polygon, Fantom, BNB chain, Avalanche, Milkomeda and the number of networks is constantly increasing.
 
 
 ## What are bridges?

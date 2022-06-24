@@ -7,7 +7,7 @@ sidebar_position: 1
 In brief, bridges are designed to allow blockchain networks to exchange data and move assets between them, thus unlocking numerous new use cases for blockchain users. 
 
 For developers, [Octus Bridge](https://octusbridge.io) enables the following:
-- to transfer assets and information across different chains (Everscale, Ethereum, BNB chain, Fanton, Polygon).
+- to transfer assets and information across different chains (Everscale, Ethereum, BNB chain, Fantom, Polygon, Avalanche and Milkomeda).
 - collaboration among developers from Everscale and other blockchain ecosystems to build new applications.
 - unlocking new features and use cases for protocols as bridges expand the design space for what protocols can offer. 
 - the opportunity to leverage the strengths of different blockchains. 
