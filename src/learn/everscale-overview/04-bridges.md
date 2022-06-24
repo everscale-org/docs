@@ -14,7 +14,7 @@ The concept of interchain communication and token transfer is done using a two-w
 
 ### [Octus Bridge](https://octusbridge.io/) 
 
-Octus Bridge is a platform built by the Broxus team that enables cross-chain asset transfers between Everscale and other networks such as Ethereum, BNB Chain, Fantom and Polygon.  
+Octus Bridge is a platform built by the Broxus team that enables cross-chain asset transfers between Everscale and other networks such as Ethereum, BNB Chain, Fantom, Polygon, Avalanche and Milkomeda.  
 The platform also implements the Governance interface or DAO, which provides a level of decentralization unprecedented for bridges due to the ability to make decisions directly by network participants, as well as a staking interface.
 
 ### [Adaever](https://adaever.io/)
