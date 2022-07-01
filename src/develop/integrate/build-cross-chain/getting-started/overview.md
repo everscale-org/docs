@@ -32,5 +32,3 @@ The income from these protocols is the income of the [Octus Bridge](https://octu
 ## Vault/Multi-vault
 
 [Octus Bridge](https://octusbridge.io) is one of the most secure cross-chain services due to Vaulting, and more so, Multi Vaulting, which is a storage solution that provides an additional layer of security to digital wallets.
-
-Please follow [**this page**](integration-flow.md) in order to start interacting with the [Octus Bridge](https://octusbridge.io).
