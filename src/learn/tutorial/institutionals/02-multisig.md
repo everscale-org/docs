@@ -40,6 +40,14 @@ A board of directors might use a multisig wallet to control access to a companyâ
 
 Let's move on to choosing a multi-signature wallet.
 
+### EVERSPACE
+
+Native wallet for iOS and Android from ByteHub and ITGold teams. 
+
+Very good design. Fast and responsive interface. Support for most types of multisig wallets. The ability to receive notifications of transactions for signature. Convenient transaction subscription mechanism.
+
+[Download link](https://everspace.app/deeplink)
+
 ### EVER Wallet
 
 Everscale native wallet created by the Broxus team.  
