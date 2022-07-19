@@ -1,10 +1,10 @@
 ---
-title: Managing gas
+title: Gas calculation
 description: Managing gas... TBD
-sidebar_position: 4
+sidebar_position: 5
 ---
 
-# Managing gas
+# Gas calculation
 
 ## Gas calculation basics
 

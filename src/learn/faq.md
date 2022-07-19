@@ -41,7 +41,7 @@ Currently available blockchain explorers for use:
 To understand the basic principles and mechanisms of Everscale, we recommend that you familiarize yourself with the following sections of the documentation:
 
 - [Architecture section](../arch/)
-  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/30-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
+  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/20-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
 - [Decentralization section](../learn/decentralization/)
 - [Smart Contracts section](../develop/smart-contract/)
   - [Introduction](../develop/smart-contract/learn/01-introduction.md)
