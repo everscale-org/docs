@@ -51,7 +51,7 @@ There are several types of fees for operations with contracts.
 
 For example, commission for storage, execution, and message delivery.
 
-Please follow [this page](30-fee-calculation.md) for Fee calculation details. 
+Please follow [this page](20-fee-calculation.md) for Fee calculation details. 
 
 ### About get methods
 
