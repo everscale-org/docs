@@ -6,7 +6,7 @@ description: Blockchain, everything is a contract, types of messages and gas
 
 Everscale is one of the most advanced blockchain networks that lets users transfer digital assets to anyone for a small fee. It also powers numerous leading applications that everyone can take advantage of. 
 
-The blockchain was created on the basis of the initial code of the Telegram Open Network (TON) blockchain designed by Nikolai Durov. Fundamentally, Everscale blockchain is constructed in accordance with this TON Whitepaper.
+The blockchain was created on the basis of the initial code of the Telegram Open Network (TON) blockchain designed by Nikolai Durov. Fundamentally, Everscale blockchain is constructed in accordance with this [TON Whitepaper](https://ton.org/whitepaper.pdf).
 
 Despite the fact that Everscale builds on TON's innovation, there are, however, some big advancements deployed by network developers in order to address the fundamental issues faced by most blockchains, Everscale constantly works on implementing the most secure solutions to achieve maximum scalability. 
 
