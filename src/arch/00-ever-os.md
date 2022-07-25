@@ -31,7 +31,7 @@ That is how GNU defines operating system:
 
 It is quite obvious why computers need an operating system. Before operating systems existed, interaction with computers looked something like this:
 
-![](https://zeroheight-user-uploads.s3-eu-west-1.amazonaws.com/images/nDfRMdLKjDCljSuXmMBsNA.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJXTVUC4XZENV3LPQ%2F20220503%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20220503T212805Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=90fdb12a9a08d62bf6c19f56004d38f5b5f59f38317375839a7a66818abf547e)
+![what concepts were used before operating systems](what_concepts_were_used_before_operating_systems.jpg)
 
 > I still think the "world computer" is a good analogy. The idea that you have a shared computing environment that anybody can build and run stuff on is still a totally legitimate and valuable thing to emphasize.
 >
