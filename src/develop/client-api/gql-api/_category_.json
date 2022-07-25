@@ -1,0 +1,9 @@
+{
+    "position": 1,
+    "label": "GraphQL API",
+    "link": {
+      "title": "GraphQL API",
+      "slug": "client-api/gql-api",
+      "type": "generated-index"
+    }
+  }
