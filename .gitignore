@@ -3,7 +3,7 @@
 
 # Production
 /build
-static/img/favicon*
+favicon*
 
 # Generated files
 .docusaurus
