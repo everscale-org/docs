@@ -190,7 +190,7 @@ npx everdev contract run-local --network se App timestamp
 npx everdev contract run --network se --signer coder App touch
 ```
 
-For more details see: [Get started with Development Tools](../../develop/api-tools/everdev/guides/quick-start.md).
+For more details see: [Get started with Development Tools](../tools/overview.md).
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
 Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  

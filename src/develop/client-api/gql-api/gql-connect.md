@@ -24,7 +24,7 @@ https://docs.everos.dev/evernode-platform/products/simple-emulator-se
 
 **Get quick help in our telegram channel:**
 
-[![Channel on Telegram](https://img.shields.io/badge/chat-on%20telegram-9cf.svg)](https://t.me/ever\_sdk)
+[![Channel on Telegram](https://img.shields.io/badge/chat-on%20telegram-9cf.svg)](https://t.me/ever_sdk)
 
 
 

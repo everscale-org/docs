@@ -249,7 +249,7 @@ Again, now you can find this transaction in Explorer or GraphQL API.
 
 1. If you want to migrate to Dev Network, read [Working with DevNet guide](work-with-devnet.md).
 2. Also take a look at our [blockchain basics page](../../../../arch/10-basics.md) that will help you understand the core concepts of Everscale:)
-3. If you want to integrate your application with Everscale - dive into our [SDK Quick Start](../../api-sdk/sdk/installation.md)!
+3. If you want to integrate your application with Everscale - dive into our [SDK Quick Start](https://github.com/tonlabs/ever-sdk/blob/master/docs/quick_start.md)!
 4. If you are an exchange - check out our [exchange guide](../../../../develop/integrate/tutorial/add-everscale-to-your-exchange.md)!
 
 If you have any difficulties/questions/suggestions/etc please write to [telegram channel @everdev](https://t.me/everdev).

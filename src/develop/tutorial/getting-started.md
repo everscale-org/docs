@@ -19,7 +19,7 @@ At the moment, there are two active technological providers:
 
 It is their solutions and tools that you will use when developing, while you will have every opportunity to write your own solutions as well, if necessary or desired.  
 
-You can learn more in the [Development tools section](../api-tools/overview.md).
+You can learn more in the [Development tools section](../tools/overview.md).
 
 ## Ways to dive into development on Everscale for any case you need
 
@@ -28,7 +28,7 @@ We assume that there are several main cases of developers interacting with Evers
 - Build your dApp - knowledge of network architecture, understanding of smart contracts, standards and node devices will be useful to you.  
   - Learn the [network architecture](../../arch/)
   - Learn the [standards](../../standard/)
-  - Learn the [development tools](../api-tools/overview.md)
+  - Learn the [development tools](../tools/overview.md)
   - Learn the specifics of writing [smart contracts](../smart-contract/learn/)
 
 - Learn how to [issue tokens](../smart-digital-assets/issue-ft.md)
@@ -37,20 +37,20 @@ We assume that there are several main cases of developers interacting with Evers
 - Migrate your dApp from another network
   - Learn the [network architecture](../../arch/)
   - Learn the [comparison with Ethereum](../from-another-platform/comparison-with-ethereum.md)
-  - Learn the [development tools](../api-tools/overview.md)
+  - Learn the [development tools](../tools/overview.md)
   - Learn how to [write contracts on Solidity](../smart-contract/solidity-developing/getting-started.md)
 
 - Integrate Everscale blockchain in your on-chain or off-chain project - you will find it helpful to explore the Everscale Overview page as well as the Architecture page. Afterwards, please follow the Getting Started page in the Integrate section.  
   - Learn [Everscale Overview section](../../learn/everscale-overview/)
   - Learn [how to integrate](../integrate/tutorial/getting-started.md) anyting with Everscale.
-  - Learn the [development tools](../api-tools/overview.md)
+  - Learn the [development tools](../tools/overview.md)
   - Learn popular integration cases [(exchange integration)](../integrate/tutorial/add-everscale-to-your-exchange.md)
 
 ## Other useful links
 
 - Join onboarding [chat for developers](https://t.me/everdev)
 - Explore helpful development articles
-- Learn [developer tools](../api-tools/overview.md)
+- Learn [developer tools](../tools/overview.md)
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
 Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  

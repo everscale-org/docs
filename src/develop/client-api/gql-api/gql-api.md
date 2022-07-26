@@ -14,7 +14,7 @@ Due to the GraphQL ability to stitch its schemas, GraphQL API is in fact a set o
 
 **Get quick help in our telegram channel:**
 
-[![Channel on Telegram](https://img.shields.io/badge/chat-on%20telegram-9cf.svg)](https://t.me/ever\_sdk)
+[![Channel on Telegram](https://img.shields.io/badge/chat-on%20telegram-9cf.svg)](https://t.me/ever_sdk)
 
 
 

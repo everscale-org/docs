@@ -32,7 +32,7 @@ Yes, the validator requires a public IP, otherwise other nodes will not be able 
 ### What ports are needed for a node to work?
 
 - The UDP port set [here](https://github.com/tonlabs/main.ton.dev/blob/6e4c842aceb2c52229730cab0fd394a4ae944e84/scripts/env.sh#L38) (`ADNL_PORT` parameter) for the node itself.
-- HTTPS port 443 for the [TONOS-CLI](../develop/api-tools/tonos-cli.md) utility.
+- HTTPS port 443 for the [TONOS-CLI](../develop/tools/everdev/command-line-interface/tonos-cli.md) utility.
 
 ### What volumes of outgoing traffic do you need for the validator at the moment? How about in the future?
 

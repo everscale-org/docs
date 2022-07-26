@@ -24,7 +24,7 @@ And it is their solutions and tools that you will use when developing, while you
 - [Evernode DS](evernode-ds.md)(by EverX) - Client Node with GraphQL API that allows you to collect a large amount of data about the network.
 *Suitable for integration by exchanges and other platforms.
 
-- [Ever Cloud](ever-cloud.md) (by EverX) - provides Everscale developers with services on top of scalable blockchain infrastructure, so that developers can focus on business logic instead of infrastructure maintenance.
+- [Ever Cloud](evercloud.md) (by EverX) - provides Everscale developers with services on top of scalable blockchain infrastructure, so that developers can focus on business logic instead of infrastructure maintenance.
 
 - [TON Wallet API](ton-wallet-api.md)(by Broxus) - a non-validating node with a built-in wallet for convenient integration with exchanges and other projects.
 
