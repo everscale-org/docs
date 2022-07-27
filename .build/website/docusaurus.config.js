@@ -20,7 +20,20 @@ const config = {
   projectName: 'docs',
   scripts: [
   ],
-  plugins: [require.resolve('docusaurus-lunr-search')],
+  plugins: [
+    require.resolve('docusaurus-lunr-search'),
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            to: '/develop/tools/everdev/guides/quick-start',
+            from: '/develop/api-tools/everdev/guides/quick-start',
+          },
+        ],
+      },
+    ],
+  ],
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
