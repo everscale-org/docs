@@ -21,7 +21,7 @@ const plugins = [
 
 if (process.env.APP_GA_MEASUREMENT_ID) {
   plugins.push([
-    '@docusaurus/plugin-google-analytics',
+    '@docusaurus/plugin-google-gtag',
     {
       trackingID: process.env.APP_GA_MEASUREMENT_ID,
       anonymizeIP: true,
