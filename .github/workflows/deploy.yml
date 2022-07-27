@@ -24,3 +24,4 @@ jobs:
         yarn gh-pages --dist build --user "github-actions-bot <support+actions@github.com>"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APP_GA_MEASUREMENT_ID: ${{ secrets.APP_GA_MEASUREMENT_ID }}

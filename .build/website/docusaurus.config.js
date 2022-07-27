@@ -7,6 +7,27 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const math = require('remark-math');
 const katex = require('rehype-katex');
 const simplePlantUML = require("@akebifiky/remark-simple-plantuml");
+const redirects = require('./redirects');
+
+const plugins = [
+  require.resolve('docusaurus-lunr-search'),
+  [
+    '@docusaurus/plugin-client-redirects',
+    {
+      redirects,
+    },
+  ],
+];
+
+if (process.env.APP_GA_MEASUREMENT_ID) {
+  plugins.push([
+    '@docusaurus/plugin-google-analytics',
+    {
+      trackingID: process.env.APP_GA_MEASUREMENT_ID,
+      anonymizeIP: true,
+    },
+  ])
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,20 +41,7 @@ const config = {
   projectName: 'docs',
   scripts: [
   ],
-  plugins: [
-    require.resolve('docusaurus-lunr-search'),
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [
-          {
-            to: '/develop/tools/everdev/guides/quick-start',
-            from: '/develop/api-tools/everdev/guides/quick-start',
-          },
-        ],
-      },
-    ],
-  ],
+  plugins,
   stylesheets: [
     {
       href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
