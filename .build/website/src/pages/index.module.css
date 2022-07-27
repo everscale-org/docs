@@ -10,8 +10,9 @@
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: top right;
-  background-image: -webkit-image-set(url(https://everscale.network/images/Backgrounds/Main/main-hero.png) 1x, url(https://everscale.network/images/Backgrounds/Main/main-hero@2x.png) 2x);
-  background-image: image-set(url(https://everscale.network/images/Backgrounds/Main/main-hero.png) 1x, url(https://everscale.network/images/Backgrounds/Main/main-hero@2x.png) 2x);
+  /*sample for image*/
+  /*background-image: -webkit-image-set(url(https://everscale.network/images/Backgrounds/Main/main-hero.png) 1x, url(https://everscale.network/images/Backgrounds/Main/main-hero@2x.png) 2x);*/
+  /*background-image: image-set(url(https://everscale.network/images/Backgrounds/Main/main-hero.png) 1x, url(https://everscale.network/images/Backgrounds/Main/main-hero@2x.png) 2x);*/
 }
 
 @media (max-width: 768px) {
