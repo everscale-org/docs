@@ -24,7 +24,7 @@ General information about NFT collection is stored in the NFT collection contrac
 - Gas fee management practicals. 
 - Use [TIP-6.1](./../TIP-6/1.md)
 
-## (Status:Review) [Non-Fungible Token (TIP-4.1)](./../TIP-4/1.md)
+## (Status:Final) [Non-Fungible Token (TIP-4.1)](./../TIP-4/1.md)
 General information about NFT collection and NFT tokens. All NFT must implement [TIP-4.1](./../TIP-4/1.md)
 
 ##  (Status:Review) [Non-Fungible Token JSON Metadata (TIP-4.2)](./../TIP-4/2.md)
