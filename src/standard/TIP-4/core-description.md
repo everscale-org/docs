@@ -30,7 +30,7 @@ General information about NFT collection and NFT tokens. All NFT must implement 
 ##  (Status:Review) [Non-Fungible Token JSON Metadata (TIP-4.2)](./../TIP-4/2.md)
 General information about NFT metadata. [TIP-4.2](./../TIP-4/2.md) is optional, but can be used for displaying NFT on marketplaces, wallets and web.
 
-##  (Status:Review) [On-chain indexes (TIP-4.3)](./../TIP-4/3.md)
+##  (Status:Final) [On-chain indexes (TIP-4.3)](./../TIP-4/3.md)
 On-chain Indexes solves easy and fast searching any data in blockchain. [TIP-4.3](./../TIP-4/3.md) is optional, but can be use for find all your NFT with one [dApp](https://main.ton.dev/graphql) query.
 
 ##  (Status:Draft) [On-chain storage (TIP-4.4)](./../TIP-4/4.md)
