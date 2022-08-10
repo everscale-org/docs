@@ -5,6 +5,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '../components/HomepageFeatures';
+import { main } from '../../link';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -13,20 +14,15 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/learn/welcome">
-            Welcome to Everscale!️
-          </Link>
-        </div>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/develop/smart-contract/getting-started/">
-            🪤 Everscale Tutorial - 5min ⏱️
-          </Link>
-        </div>
+        {main.first.map((prop, idx) => (
+          <div className={styles.buttons}>
+            <Link
+              className="button button--secondary button--lg"
+              to={prop.link}>
+              {prop.title}
+            </Link>
+          </div>
+        ))}
       </div>
     </header>
   );
