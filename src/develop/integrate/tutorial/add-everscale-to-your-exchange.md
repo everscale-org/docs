@@ -534,56 +534,57 @@ You may choose from which account (sender or recipient), the forward fees will b
 
 In this example tokens are withdrawn from the deposit account to the giver, that initially sponsored it. In a proper implementation, the account given by user should be used instead.
 
-    ...
-    console.log(`Withdrawing 2 tokens from ${wallet.walletAddress} to ${giverAddress}...`);
-    await walletWithdraw(wallet, giverAddress, 1000000000);
-    ...
+```javascript
+// ...
+console.log(`Withdrawing 2 tokens from ${wallet.walletAddress} to ${giverAddress}...`);
+await walletWithdraw(wallet, giverAddress, 1000000000);
+// ...
+async function walletWithdraw(wallet, address, amount) {
+  const transactions = await runAndWaitForRecipientTransactions(wallet, "submitTransaction", {
+    dest: address,
+    value: amount,
+    bounce: false,
+    allBalance: false,
+    payload: "",
+  });
+  if (transactions.length > 0) {
+    console.log(`Recipient received transfer. The recipient's transaction is: ${transactions[0].id}`);
+  }
+}
 
-    async function walletWithdraw(wallet, address, amount) {
-	    const transactions = await runAndWaitForRecipientTransactions(wallet, "submitTransaction", {
-	        dest: address,
-	        value: amount,
-	        bounce: false,
-	        allBalance: false,
-	        payload: "",
-	    });
-	    if (transactions.length > 0) {
-	        console.log(`Recipient received transfer. The recipient's transaction is: ${transactions[0].id}`);
-	    }
-	}
+async function runAndWaitForRecipientTransactions(account, functionName, input) {
+const runResult = await account.client.processing.process_message({
+  message_encode_params: {
+    address: account.address,
+    abi: account.abi,
+    signer: account.signer,
+    call_set: {
+      function_name: functionName,
+      input,
+    },
+  },
+  send_events: false,
+});
 
-    async function runAndWaitForRecipientTransactions(account, functionName, input) {
-            const runResult = await account.client.processing.process_message({
-                message_encode_params: {
-                    address: account.address,
-                    abi: account.abi,
-                    signer: account.signer,
-                    call_set: {
-                        function_name: functionName,
-                        input,
-                    },
-                },
-                send_events: false,
-            });
-        
+
+const transactions = [];
     
-            const transactions = [];
-        
-    
-    // This step is only required if you want to know when the recipient actually receives their tokens.
-    // In Everscale blockchain, transfer consists of 2 transactions (because the blockchain is asynchronous):
-    //  1. Sender sends tokens - this transaction is returned by `Run` method
-    //  2. Recipient receives tokens - this transaction can be caught with `query_transaction_tree method`
-    // Read more about transactions and messages here
-    // https://ton.dev/faq/blockchain-basic
-      for (const messageId of runResult.transaction.out_msgs) {
-           const tree = await account.client.net.query_transaction_tree({
-                            in_msg: messageId,
-                        });
-           transactions.push(...tree.transactions);
-      }
-      return transactions;
-    }
+
+// This step is only required if you want to know when the recipient actually receives their tokens.
+// In Everscale blockchain, transfer consists of 2 transactions (because the blockchain is asynchronous):
+//  1. Sender sends tokens - this transaction is returned by `Run` method
+//  2. Recipient receives tokens - this transaction can be caught with `query_transaction_tree method`
+// Read more about transactions and messages here
+// https://ton.dev/faq/blockchain-basic
+for (const messageId of runResult.transaction.out_msgs) {
+  const tree = await account.client.net.query_transaction_tree({
+    in_msg: messageId,
+  });
+  transactions.push(...tree.transactions);
+}
+return transactions;
+}
+```
     
 #### User account verification with SDK
 
@@ -591,64 +592,60 @@ Same as described above, users of the Surf app can be offered additional verific
 
 Below is a snippet of the SDK sample demonstrating how to generate a transaction with an encrypted comment. A PIN code can be transmitted to the user in this comment attached to a small amount of tokens, and only after the user provides the PIN code, thus proving they have access to their account, may the rest of the withdrawal amount be transferred.
 
-    // Prepare body with comment
-            // For that we need to prepare internal message with transferAbi and then extract body from it
-            const body = (await client.abi.encode_message_body({
-                abi: abiContract(transferAbi),
-                call_set: {
-                    function_name: "transfer",
-                    input: {
-                        comment: Buffer.from("My comment").toString("hex"),
-                    },
-                },
-                is_internal: true,
-                signer: signerNone(),
-            })).body;
+```javascript
+// Prepare body with comment
+// For that we need to prepare internal message with transferAbi and then extract body from it
+const body = (await client.abi.encode_message_body({
+  abi: abiContract(transferAbi),
+  call_set: {
+      function_name: "transfer",
+      input: {
+          comment: Buffer.from("My comment").toString("hex"),
+      },
+  },
+  is_internal: true,
+  signer: signerNone(),
+})).body;
 
-        const multisig = new Account(MultisigContract, {
-            signer: signerKeys(keyPair),
-            client,
-        });
+const multisig = new Account(MultisigContract, {
+  signer: signerKeys(keyPair),
+  client,
+});
 
-        // Run 'submitTransaction' method of multisig wallet
-        // Create run message
+// Run 'submitTransaction' method of multisig wallet
+// Create run message
 
-        console.log("Call `submitTransaction` function");
-        const transactionInfo = (await multisig.run("submitTransaction", {
-            dest: recipient,
-            value: 100_000_000,
-            bounce: false,
-            allBalance: false,
-            payload: body,
-        }));
-        console.log(transactionInfo);
-        console.log("Transaction info:");
+console.log("Call `submitTransaction` function");
+const transactionInfo = (await multisig.run("submitTransaction", {
+dest: recipient,
+value: 100_000_000,
+bounce: false,
+allBalance: false,
+payload: body,
+}));
+console.log(transactionInfo);
+console.log("Transaction info:");
 
-        console.log("Id:");
-        console.log(transactionInfo.transaction.id);
-        console.log("messages:");
-        console.log(transactionInfo.out_messages);
-        const messages = transactionInfo.out_messages;
+console.log("Id:");
+console.log(transactionInfo.transaction.id);
+console.log("messages:");
+console.log(transactionInfo.out_messages);
+const messages = transactionInfo.out_messages;
 
-        const decodedMessage1 = (await tonClient.abi.decode_message({
-            abi: abiContract(transferAbi),
-            message: messages[0],
-        }));
+const decodedMessage1 = (await tonClient.abi.decode_message({
+  abi: abiContract(transferAbi),
+  message: messages[0],
+}));
 
-        // Decode comment from hex to string
-        decodedMessage1.value.comment = Buffer.from(decodedMessage1.value.comment, "hex").toString("utf8");
+// Decode comment from hex to string
+decodedMessage1.value.comment = Buffer.from(decodedMessage1.value.comment, "hex").toString("utf8");
 
-        console.log("Decoded message 1:", decodedMessage1.value);
+console.log("Decoded message 1:", decodedMessage1.value);
 
-        const decodedMessage2 = (await tonClient.abi.decode_message({
-            abi: abiContract(multisigContractPackage.abi),
-            message: messages[1],
-        }));
+const decodedMessage2 = (await tonClient.abi.decode_message({
+  abi: abiContract(multisigContractPackage.abi),
+  message: messages[1],
+}));
 
-        console.log("Decoded message 2:", decodedMessage2);
-
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!
+console.log("Decoded message 2:", decodedMessage2);
+```

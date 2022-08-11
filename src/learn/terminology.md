@@ -1,6 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
+
 # Terminology
 
 Please see below the definitions of the most used terms on the Everscale network. 

@@ -40,8 +40,3 @@ And it is their solutions and tools that you will use when developing, while you
 - [TestSuite4](everdev/command-line-interface/testsuite4.md)(by EverX) - a framework designed to simplify development and testing of Everscale Contracts. It contains a lightweight blockchain emulator making it easy to develop contracts in a TDD-friendly style.
 
 - [Ever.bytie.moe](ever-bytie.md)(by Broxus) - smart contracts interaction playground.
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

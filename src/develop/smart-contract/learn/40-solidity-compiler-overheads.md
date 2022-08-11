@@ -54,8 +54,3 @@ proxyCode;
 ```
 
 Storage for contracts in TVM is register `c4`, this is a `BoC`. There is a service register for temporary data `c7` - but this is a tuple and it is always cleared at the end of a transaction. So, every time a transaction begins processing, Solidity unpacks variables from `c4` to `c7`, so that it is easier to work with them in the code by register indexes, and at the end of the work it repacks them back to `c4`. You can draw your own conclusions, but it is undeniable that the more variables you have, the greater the overhead for unpacking/packing.
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

@@ -1,10 +1,13 @@
 module.exports = {
   redirects: [
-    // Sample
-    // {
-    //   to: '/develop/tools/everdev/guides/quick-start',
-    //   from: '/develop/api-tools/everdev/guides/quick-start',
-    // },
+    {
+      to: '/learn/everscale-overview/wallets',
+      from: '/learn/everscale-overview/exchangewallets',
+    },
+    {
+      to: '/develop/tools/everdev/command-line-interface/cpp',
+      from: '/develop/tools/everdev/command-line-interface/c',
+    },
   ],
   createRedirects(existingPath) {
     if (existingPath.includes('/develop/tools')) {

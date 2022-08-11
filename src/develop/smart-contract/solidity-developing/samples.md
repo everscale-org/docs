@@ -43,9 +43,3 @@ If either of --abi or --sign options is omitted in parameters, it must be specif
 7) Call the function of your contract:
 
         tonos-cli call '<YourAddress>' sendTransaction '{"dest":"DestAddress", "value":1000000000, "bounce":true}' --abi Wallet.abi.json --sign Wallet.keys.json
-
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

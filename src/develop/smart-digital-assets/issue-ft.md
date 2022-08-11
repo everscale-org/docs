@@ -1,5 +1,6 @@
 ---
 sidebar_position: 0
+[//]: # (draft: true)
 ---
 
 # Issue a Fungible Token

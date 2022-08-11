@@ -1,3 +1,7 @@
+---
+[//]: # (draft: true)
+---
+
 # Itez
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.

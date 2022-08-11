@@ -523,8 +523,3 @@ If you’ve been able to piece everything together in your head, you are likely 
 1.  There is no single big map where all balances are stored. Validators can load contracts from disks as quickly as possible.
 2.  Every user deploys their own wallet and pays for the storage of their data on the blockchain.
 3.  By transferring money directly between wallets, the load is distributed as evenly as possible throughout the blockchain. Each wallet ends up in a random shard, depending on the address of the wallet. So, if there is a sharp increase in the number of transfers, we do not have to rely on the performance of a particular shard, since we do not have a central smart contract through which all transfers must pass and which would cause a bottleneck. 
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

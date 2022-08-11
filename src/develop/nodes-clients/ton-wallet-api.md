@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+[//]: # (draft: true)
 ---
 
 # TON Wallet API
