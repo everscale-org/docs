@@ -1,3 +1,8 @@
+---
+description: The Everscale ecosystem is made up of blockchain-based projects
+sidebar_position: 2
+---
+
 # Ecosystem
 
 The Everscale ecosystem is made up of blockchain-based projects. These are primarily decentralized finance DeFi, GameFi, NFT, dApps. Anyone can develop their own project and become part of the Everscale ecosystem.
@@ -10,7 +15,7 @@ Check out more projects on the ecosystem pages:
 
 ## Wallets
 
-Go to the [Wallets section](03-exchangewallets.md) to get acquainted with the Everscale network's wallets.
+Go to the [Wallets section](wallets.md) to get acquainted with the Everscale network's wallets.
 
 ## Exchanges 
 
@@ -56,7 +61,7 @@ A great MMO with playable blockchain-based races.
 
 ## Bridges
 
-Go to the [Bridges](04-bridges.md) to get acquainted with the Everscale network's bridges.
+Go to the [Bridges](bridges.md) to get acquainted with the Everscale network's bridges.
 
 ## NFT
 
@@ -133,8 +138,3 @@ Everscale Blockchain Explorer by Broxus.
 ### [Wrapped EVER](https://wrappedever.io/)
 
 WEVER is Wrapped EVER. Similar to Wrapped Ether but for Everscale.
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

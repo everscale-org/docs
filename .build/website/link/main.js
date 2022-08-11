@@ -33,7 +33,7 @@ module.exports = {
     {
       title: '🔑 Manage a Wallet',
       description: 'Create a wallet, check your balance, and learn about wallet options',
-      link: '/learn/everscale-overview/exchangewallets/',
+      link: '/learn/everscale-overview/wallets/',
     },
     {
       title: '🎓 Learn How Everscale Works',

@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Multisig
 
 ## What is multisignature wallet?
@@ -55,7 +59,7 @@ Access on IOS, Android and as a Google Chrome browser extension.
 
 It has several types of multisignature wallets, including those with the ability to add new custodians.
 
-A distinctive feature of the wallet is the ability to connect it with Everscale's most popular [DeFi products](../../everscale-overview/02-ecosystem.md): FlatQube (DEX), Octus Bridge, Everstart (launchpad), etc.
+A distinctive feature of the wallet is the ability to connect it with Everscale's most popular [DeFi products](../../everscale-overview/ecosystem.md): FlatQube (DEX), Octus Bridge, Everstart (launchpad), etc.
 
 [Download link](https://l1.broxus.com)
 

@@ -1,5 +1,6 @@
 ---
 dicsription: Tutorial page for Institutional Investors. 
+sidebar_position: 1
 ---
 
 # Getting started
@@ -21,7 +22,7 @@ Let's move on to the cases:
 
 **Multisignature wallet** is a very useful tool for any investor. It allows you not only to conveniently manage your corporate account, but also greatly increases the safety of your funds. 
 
-Go to [Multisignature Wallet page](02-multisig.md) to learn more about this tool and its implementation options in Everscale.
+Go to [Multisignature Wallet page](multisig.md) to learn more about this tool and its implementation options in Everscale.
 
 ### Everscale DeFi Alliance
 

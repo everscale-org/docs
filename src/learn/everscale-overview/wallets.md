@@ -1,6 +1,11 @@
-# Hodl & Trade
+---
+description: In this section, we will introduce you to the most popular wallets
+sidebar_position: 3
+---
 
-The [Ecosystem section](../everscale-overview/02-ecosystem.md) provides ways to buy EVER.  
+# Manage a Wallet
+
+The [Ecosystem section](../everscale-overview/ecosystem.md) provides ways to buy EVER.  
 In this section, we will introduce you to the most popular EVER wallets.
 
 ## Non-custodial wallets
@@ -36,9 +41,3 @@ Custodial wallets are similar to bank instruments. The user does not have full c
 [Crypterium (IOS, Android)](https://crypterium.com/wallet)
 
 [Koshelek (Android, IOS)](https://koshelek.ru/)
-
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

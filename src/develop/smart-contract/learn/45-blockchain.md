@@ -49,8 +49,3 @@ Message delivery guarantees also work in this way. When you create a message, it
 In fact, sharding in this blockchain is the sharding of computational resources. And the data is the same for everyone, with the expectation that all validators have gigabit channels, and we rest only on computation.
 
 If some processing thread is heavily loaded with the last N blocks, then it will split into two, and new processing threads can also split in turn. Then when the load drops, they all merge.
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!

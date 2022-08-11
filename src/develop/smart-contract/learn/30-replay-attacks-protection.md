@@ -40,8 +40,3 @@ contract any {
 ```
 
 As you can understand, this default check is very simple but will not work well if you want to send a bunch of parallel external messages to a contract. So you can always come up with a more comprehensive checking mechanism, for example something like [this](https://github.com/tonlabs/tonos-se/blob/9466178c356180577c0408882d32e1f3c1c34be7/contracts/giver_v2/GiverV2.sol#L51).
-
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!
