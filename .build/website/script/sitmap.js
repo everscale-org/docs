@@ -23,4 +23,13 @@ const root = path.dirname(path.dirname(__filename))
 const sitemapPath = path.join(root, 'build', 'sitemap.xml')
 
 parseSitmap(sitemapPath, [
+  (sitemap) => {
+    sitemap.urlset.url = sitemap.urlset.url.map(it => {
+      if (it.loc[it.loc.length - 1] != '/') {
+        it.loc += '/'
+      }
+      return it
+    })
+    return sitemap
+  }
 ])
