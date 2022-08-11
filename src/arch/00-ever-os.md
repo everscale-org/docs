@@ -9,7 +9,7 @@ sidebar_position: 2
 > An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs.
 > — from Wikipedia
 
-TON Operating System is an intermediary between a user and a blockchain — a distributed verifiable computing platform.
+Ever Operating System is an intermediary between a user and a blockchain — a distributed verifiable computing platform.
 
 ## Why we call it Ever OS?
 

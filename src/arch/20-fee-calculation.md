@@ -42,7 +42,7 @@ Below we examine these types of fees in detail.
 
 ## Storage fees
 
-Every transaction in TON has a storage phase that implies a certain storage fee charged on an account balance. This fee is charged for the period between transactions and is calculated according to the following formula:
+Every transaction in Everscale has a storage phase that implies a certain storage fee charged on an account balance. This fee is charged for the period between transactions and is calculated according to the following formula:
 ```text
 storage_fees = CEIL(
     (

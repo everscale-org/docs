@@ -1,10 +1,10 @@
 ---
-title: Gas calculation
-description: Managing gas... TBD
+title: Managing gas
+description: The entire state of TVM consists of the five components
 sidebar_position: 5
 ---
 
-# Gas calculation
+# Managing gas
 
 ## Gas calculation basics
 

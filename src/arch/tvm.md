@@ -1,12 +1,13 @@
 ---
 sidebar_position: 1
+description: The TVM, is the virtual machine used to execute smart-contract
 ---
 
 # TVM
 
 ## About TVM
 
-The TVM , is the virtual machine used to execute smart-contract code in the masterchain and in the basic workchain. Other workchains may use other virtual machines alongside or instead of the TVM. Here we list some of its features. 
+The TVM, is the virtual machine used to execute smart-contract code in the masterchain and in the basic workchain. Other workchains may use other virtual machines alongside or instead of the TVM. Here we list some of its features. 
 
 - TVM represents all data as a collection of (TVM) cells. Each cell contains up to 128 data bytes and up to 4 references to other cells. As a consequence of the “everything is a bag of cells” philosophy, this enables TVM to work with all data related to the Everscale Blockchain, including blocks and blockchain global state if necessary. 
 - TVM can work with values of arbitrary algebraic data types, represented as trees or directed acyclic graphs of TVM cells. However, it is agnostic towards the existence of algebraic data types; it just works with cells. 
