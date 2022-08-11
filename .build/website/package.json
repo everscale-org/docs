@@ -10,7 +10,8 @@
     "start": "docusaurus start",
     "build-favicons": "node favicons",
     "cname": "echo docs.everscale.network > build/CNAME",
-    "build": "yarn build-favicons && docusaurus build",
+    "build-after": "node script/sitmap",
+    "build": "yarn build-favicons && docusaurus build && yarn build-after",
     "reliase-ipfs": "yarn build && ipfs-deploy build",
     "reliase": "yarn build && yarn cname && yarn deploy",
     "swizzle": "docusaurus swizzle",
@@ -52,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "fast-xml-parser": "^4.0.9"
   }
 }
