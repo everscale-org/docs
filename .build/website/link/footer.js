@@ -119,7 +119,7 @@ module.exports = [
       },
       {
         label: 'ABI Specification',
-        href: '/arch/abi',
+        href: '/arch/abi/',
       },
       {
         label: 'NFT',

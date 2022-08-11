@@ -1,31 +1,31 @@
 module.exports = [
   {
     label: 'Architecture',
-    to: 'arch'
+    to: '/arch/'
   },
   {
     label: 'Standards',
-    to: 'standard'
+    to: '/standard/'
   },
   {
     label: 'Build',
-    to: 'develop'
+    to: '/develop/'
   },
   {
     label: 'Validate',
-    to: 'validate'
+    to: '/validate/'
   },
   {
     label: 'Integrate',
-    to: 'develop/integrate'
+    to: '/develop/integrate/'
   },
   {
     label: 'Learn',
-    to: 'learn'
+    to: '/learn/'
   },
   {
     label: 'Changelog',
-    to: 'changelog'
+    to: '/changelog/'
   },
   {
     label: 'Blog',

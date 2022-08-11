@@ -71,9 +71,12 @@ function CanonicalUrlHeaders({permalink}: {permalink?: string}) {
   } = useDocusaurusContext();
   const defaultCanonicalUrl = useDefaultCanonicalUrl();
 
-  const canonicalUrl = permalink
+  let canonicalUrl = permalink
     ? `${siteUrl}${permalink}`
     : defaultCanonicalUrl;
+  if (canonicalUrl[canonicalUrl.length - 1] != '/') {
+      canonicalUrl += '/'
+  }
   return (
     <Head>
       <meta property="og:url" content={canonicalUrl} />
