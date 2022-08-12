@@ -5,6 +5,8 @@ description: The TVM, is the virtual machine used to execute smart-contract
 
 # TVM
 
+[Everscale Virtual Machine description](https://docs.everscale.network/tvm.pdf)
+
 ## About TVM
 
 The TVM, is the virtual machine used to execute smart-contract code in the masterchain and in the basic workchain. Other workchains may use other virtual machines alongside or instead of the TVM. Here we list some of its features. 
