@@ -3,6 +3,9 @@
 
 # Production
 /build
+*.pdf
+.bin
+*.tex
 
 # Generated files
 .docusaurus
