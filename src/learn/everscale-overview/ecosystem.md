@@ -138,3 +138,7 @@ Everscale Blockchain Explorer by Broxus.
 ### [Wrapped EVER](https://wrappedever.io/)
 
 WEVER is Wrapped EVER. Similar to Wrapped Ether but for Everscale.
+
+### [Ientix.Space](https://identix.space/)
+
+Learn-2-earn quests platform for onboarding into #web3. Several Everscale quests with $EVER rewards.
