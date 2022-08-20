@@ -19,9 +19,9 @@ Go to the [Wallets section](wallets.md) to get acquainted with the Everscale net
 
 ## Exchanges 
 
-### [Gate.io (EVER/USDT)](https://gate.io/trade/EVER_USDT?ref=3018394)
+### [Gate.io (EVER/USDT)](https://gate.io/trade/EVER_USDT)
 
-### [MEXC (EVER/USDT)](https://www.mexc.com/exchange/EVER_USDT?inviteCode=1498J)
+### [MEXC (EVER/USDT)](https://www.mexc.com/exchange/EVER_USDT)
 
 ### [Bitrue (EVER/USDT)](https://www.coingecko.com/en/exchanges/bitrue)
 
@@ -29,7 +29,7 @@ Go to the [Wallets section](wallets.md) to get acquainted with the Everscale net
 
 ### [HitBTC (EVER/USDT, EVER/BTC)](https://hitbtc.com/TON-to-USDT)
 
-### [KUNA (EVER/USDT)](https://kuna.io/markets/everusdt?r=kunaid-nf8ybk4ilv65)
+### [KUNA (EVER/USDT)](https://kuna.io/markets/everusdt)
 
 ### [Changelly PRO (EVER/BTC)](https://pro.changelly.com/)
 
