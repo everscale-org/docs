@@ -333,9 +333,9 @@ fn execute_with_libs_and_params(
 | Field        | Description                                              |
 |--------------|----------------------------------------------------------|
 | self         | Reference to the object calling the function             |
-| in_msg       | Incoming message [messages](#todo-fix-url)                            |
-| account_root | Account record serialized in a form of Cells [account](#todo-fix-url) |
-| params       | Transaction Executor parameters [parameters](#todo-fix-url)           |
+| in_msg       | Incoming message [messages](50-message.md)                            |
+| account_root | Account record serialized in a form of Cells [account](40-accounts.md) |
+| params       | Transaction Executor parameters [parameters](#parameters)           |
 
 As a result, the function  returns either `Ok(Transaction)` object or `Err` value.  Please  note that  besides returning  the Transaction, there is a side-effect of  mutating the `account_root` object. This justifies  our  generalization that  it  returns  two objects:  the transaction and the updated account record.
 
@@ -453,7 +453,7 @@ $$fee = (cells * prices.cell\_price + bits * prices.bit\_price) * \Delta$$
 $\Delta$ —  the time interval  between now and the  latest payment
 moment, measured in  seconds. Here, we assume  that storage prices
 stay constant  during the $\Delta$ interval. The storage fee gets
-charged on each message processing [storage_phase](#todo-fix-url).
+charged on each message processing [storage_phase](#storage-phase).
 
 For  greater  flexibility,  the  storage  prices  may  be  changed
 depending on  the current supply/demand  situation. It is  done by
@@ -521,14 +521,14 @@ the pseudo-code for  the algorithm `calc_storage_fee`, implemented
 in imperative fashion.
 
 **_Input:_**
-- `config` — current blockchain configuration, has type [BlockchainConfig](#todo-fix-url)
-- `storage_info` — the account storage info struct, has type [StorageInfo](#todo-fix-url).
+- `config` — current blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
+- `storage_info` — the account storage info struct, has type [StorageInfo](40-accounts.md#account-storage).
 - `is_masterchain` — is the account inhabits Masterchain or not, has type Bool
 - `now` — current time, measured in Unix Epoch, has type UInt
 
 **_Output_**:
 - fee — the fee amount to be deducted from the account balance, has type UInt
-- storage_info — updated account storage info, has type [StorageInfo](#todo-fix-url)
+- storage_info — updated account storage info, has type [StorageInfo](40-accounts.md#account-storage)
 
 ```python
 def calc_storage_fee(config, storage_info, is_masterchain, now):
@@ -671,16 +671,16 @@ pub struct TransactionDescrOrdinary {
 
 This description object may be used for fast checkups on the main system invariants, critical for its safety, during runtime.
 
-| Field         | Description                                    |
-|---------------|------------------------------------------------|
-| storage_ph    | [Storage phase descriptor](#todo-fix-url)      |
-| credit_ph     | [Credit phase descriptor](#todo-fix-url)       |
-| compute_ph    | [Compute phase descriptor](#todo-fix-url)      |
-| action        | [Action phase descriptor](#todo-fix-url)       |
-| bounce        | [Bounce phase descriptor](#todo-fix-url)       |
-| credit_first  | Credit phase was executed before Storage phase |
-| aborted       | Is Action phase failed                         |
-| destroyed     | Is account `deleted`  after message execution  |
+| Field         | Description                                                           |
+|---------------|-----------------------------------------------------------------------|
+| storage_ph    | [Storage phase descriptor](#storage-phase-descriptor)                 |
+| credit_ph     | [Credit phase descriptor](#credit-phase-descriptor)                   |
+| compute_ph    | [Compute phase descriptor](#compute-phase-descriptor)                 |
+| action        | [Action phase descriptor](#action-phase-descriptor)                   |
+| bounce        | [Bounce phase descriptor](#bounce-phase-transaction-descriptor)       |
+| credit_first  | Credit phase was executed before Storage phase                        |
+| aborted       | Is Action phase failed                                                |
+| destroyed     | Is account `deleted`  after message execution                         |
 
 We now describe each descriptor separately.
 
@@ -761,7 +761,7 @@ pub enum ComputeSkipReason {
 | NoState         | Caused by the following conditions: 1) The account did not exist by the time of message arrival, and the incoming message did not contain the `StateInit` part; 2) The account was not initialized and the incoming message did not contain the `StateInit`  part.                                                                                                                                                                                                   |
 | NoState         | Caused by the following conditions: 1) The account did not exist by the time of message arrival, and the incoming message did not contain the `StateInit` part; 2) The account was not initialized and the incoming message did not contain the `StateInit`  part.                                                                                                                                                                                                   |
 | BadState        | Caused by the following conditions: 1) The account was in `AccStateUninit` state, the message did contain the `StateInit` part, but an attempt to initialize the account with the given `StateInit` failed due to being inconsistent with the account; 2) The account was in `AccStateFrozen` state, the message contained the `StateInit` part, but an attempt to unfreeze the account with the given state init failed due to being inconsistent with the account. |
-| NoGas           | Caused by the following conditions: 1) After Credit and Storage phases, the account balance had no coins: its balance equals zero; 2) Values `gas_limit` and `gas_credit`, calculated with the [init_gas](#todo-fix-url) algorithm, both equals 0.                                                                                                                                                                                                                        |
+| NoGas           | Caused by the following conditions: 1) After Credit and Storage phases, the account balance had no coins: its balance equals zero; 2) Values `gas_limit` and `gas_credit`, calculated with the [init_gas](#initial-gas-algorithm) algorithm, both equals 0.                                                                                                                                                                                                                        |
 
 ##### Choice 2. Successful computation
 
@@ -787,14 +787,14 @@ pub struct TrComputePhaseVm {
 
 | Field               | Description                                                                                   |
 |---------------------|-----------------------------------------------------------------------------------------------|
-| success             | Compute phase completion status. See [compute_phase_success](#todo-fix-url)                                |
-| gas_fees            | Fees for the gas used by a smart-contract execution, [see here](#todo-fix-url)                 |
+| success             | Compute phase completion status. See [compute_phase_success](#compute-phase-success-conditions)                                |
+| gas_fees            | Fees for the gas used by a smart-contract execution, [see here](#calculate-gas-fee-algorithm)                 |
 | gas_used            | An exact amount of gas used by the VM during the execution                                    |
-| gas_limit           | A strict upper bound on the amount of gas allowed for this account [init_gas](#todo-fix-url)               |
-| gas_credit          | An amount of gas credited to be used for external messages before being accepted [init_gas](#todo-fix-url) |
+| gas_limit           | A strict upper bound on the amount of gas allowed for this account [init_gas](#initial-gas-algorithm)               |
+| gas_credit          | An amount of gas credited to be used for external messages before being accepted [init_gas](#initial-gas-algorithm) |
 | vm_steps            | Number of steps performed by the VM                                                           |
-| exit_code           | Computation exit code, see [compute_phase_exitcode](#todo-fix-url)                                         |
-| exit_arg            | Computation exit argument, see [compute_phase_exitcode](#todo-fix-url)                                     |
+| exit_code           | Computation exit code, see [compute_phase_exitcode](#compute-phase-exit-code)                                         |
+| exit_arg            | Computation exit argument, see [compute_phase_exitcode](#compute-phase-exit-code)                                     |
 | mode                | Always equals 0                                                                               |
 | vm_init_state_hash  | Not used                                                                                      |
 | vm_final_state_hash | Not used                                                                                      |
@@ -826,9 +826,9 @@ pub struct TrActionPhase {
 
 | Field             | Description                                                                                                      |
 |-------------------|------------------------------------------------------------------------------------------------------------------|
-| success           | Action phase completed successfully. The success condition is described [here](#todo-fix-url).            |
-| valid             | Action phase is valid. The validity condition is described [here](#todo-fix-url).                           |
-| result_code       | Action phase failed with the result code, see [action_result_codes](#todo-fix-url). In case of success, the value equals to 0 |
+| success           | Action phase completed successfully. The success condition is described [here](#action-phase-success-condition).            |
+| valid             | Action phase is valid. The validity condition is described [here](#action-phase-validity-condition).                           |
+| result_code       | Action phase failed with the result code, see [action_result_codes](#action-result-codes). In case of success, the value equals to 0 |
 | result_arg        | In case of an error, the item number of an action in the action list that caused the error                       |
 | no_funds          | True if the error was caused by a balance insufficiency                                                          |
 | status_change     | Equals AccStatusChange::Deleted in case of the account being deleted after processing actions                    |
@@ -847,12 +847,12 @@ pub struct TrActionPhase {
 |---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | RESULT_CODE_ACTIONLIST_INVALID        | Message serialization error                                                                                                         |
 | RESULT_CODE_TOO_MANY_ACTIONS          | Contract generated more actions than allowed. Maximum actions count is 255                                                          |
-| RESULT_CODE_UNKNOWN_OR_INVALID_ACTION | Binary serialization error, or invalid flags. See [remarks](#todo-fix-url).                                                            |
-| RESULT_CODE_INCORRECT_SRC_ADDRESS     | Wide source address [address](#todo-fix-url), or the source address does not equal to the account address                                        |
+| RESULT_CODE_UNKNOWN_OR_INVALID_ACTION | Binary serialization error, or invalid flags. See [remarks](#remarks).                                                            |
+| RESULT_CODE_INCORRECT_SRC_ADDRESS     | Wide source address [address](40-accounts.md#account-address), or the source address does not equal to the account address                                        |
 | RESULT_CODE_INCORRECT_DST_ADDRESS     | Incorrect destination address, or destination workchain is not allowed to receive messages, or destination workchain does not exist |
 | RESULT_CODE_ANYCAST                   | Destination address of type Anycast. It is no longer supported and considered an error.                                             |
-| RESULT_CODE_NOT_ENOUGH_GRAMS          | Insufficient balance. See [remarks](#todo-fix-url).                                                                                    |
-| RESULT_CODE_NOT_ENOUGH_EXTRA          | [Extra-tokens](#todo-fix-url) balance is insufficient to execute to action                                                          |
+| RESULT_CODE_NOT_ENOUGH_GRAMS          | Insufficient balance. See [remarks](#remarks).                                                                                    |
+| RESULT_CODE_NOT_ENOUGH_EXTRA          | [Extra-tokens](#multicurrency-payments) balance is insufficient to execute to action                                                          |
 | RESULT_CODE_INVALID_BALANCE           | Reserve action lead to an error, or outgoing message is too big to process                                                          |
 | RESULT_CODE_BAD_ACCOUNT_STATE         | Actions SetCode or ChangeLib lead to an error                                                                                       |
 | RESULT_CODE_UNSUPPORTED               | SendMsg action has incorrect flags set                                                                                              |
@@ -863,7 +863,7 @@ pub struct TrActionPhase {
   - Actions serialization error
   - SendMsg action has invalid flags, that is:
     - The mutually exclusive flags are set: `SENDMSG_REMAINING_MSG_BALANCE` and `SENDMSG_ALL_BALANCE`
-    - Message was sent with an unknown flag [sendmsg_flags](#todo-fix-url);
+    - Message was sent with an unknown flag [sendmsg_flags](#action-sendmsg);
     - The flag `SENDMSG_DELETE_IF_EMPTY` is set, but the flag `SENDMSG_ALL_BALANCE`  isn't;
   - Reserve action has invalid flags
     - Unknown flag is set
@@ -966,7 +966,7 @@ $SendMsg(mode,out_msg)$ action sends a message to an account. The message $out\_
 the destination address as well as the payload to be delivered.
 
 This action has a lot of  modes that can be combined using logical
-`OR`  operator. Some mode combinations are prohibited. See [rc_remarks](#todo-fix-url).
+`OR`  operator. Some mode combinations are prohibited. See [rc_remarks](#remarks).
 
 | Mode                            | Value | Description                                                                                                              |
 |---------------------------------|-------|--------------------------------------------------------------------------------------------------------------------------|
@@ -1000,30 +1000,30 @@ In this section, we present a pseudo-code for incoming message processing algori
 
 The algorithm is divided in two mutually exclusive parts:
 
-- `ExecuteInternalMessage` — internal message execution [internal_message_processing](#todo-fix-url)
-- `ExecuteExternalMessage` — external message execution [external_message_processing](#todo-fix-url)
+- `ExecuteInternalMessage` — internal message execution [internal_message_processing](#internal-message-processing-algorithm)
+- `ExecuteExternalMessage` — external message execution [external_message_processing](#external-message-processing-algorithm)
 
 Both algorithms rely on executing some or all of the phases:
 
-- Credit phase [credit_phase](#todo-fix-url)
-- Storage phase [storage_phase](#todo-fix-url)
-- Compute phase [compute_phase](#todo-fix-url)
-- Action phase [action_phase](#todo-fix-url)
-- Bounce phase [bounce_phase](#todo-fix-url)
+- Credit phase [credit_phase](#credit-phase)
+- Storage phase [storage_phase](#storage-phase)
+- Compute phase [compute_phase](#compute-phase)
+- Action phase [action_phase](#action-phase)
+- Bounce phase [bounce_phase](#bounce-phase)
 
 Please  note that  we consider  only `ordinary`   accounts here. The algorithm  for  executing  messages   on  special  accounts  is  not considered.
 
 **_Input:_**
-- `in_msg` — incoming message, has type [Message](#todo-fix-url)
-- `account` — account, has type [Account](#todo-fix-url)
-- `params` — executor parameters, has type [Parameters](#todo-fix-url)
-- `config` — blockchain configuration, has type [BlockchainConfig](#todo-fix-url)
+- `in_msg` — incoming message, has type [Message](50-message.md)
+- `account` — account, has type [Account](40-accounts.md)
+- `params` — executor parameters, has type [Parameters](#parameters)
+- `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
 
 **_Output:_**
 
 On success, returns _Ok(acc1, trans)_, such that:
-- `acc1` — updated account, has type [Account](#todo-fix-url)
-- `trans` — transaction, has type [Transaction](#todo-fix-url)
+- `acc1` — updated account, has type [Account](40-accounts.md)
+- `trans` — transaction, has type [Transaction](#transaction)
 
 On error, returns error of the type `ExecutorError`
 
@@ -1054,17 +1054,17 @@ At this point, the message is known to be internal. Execute it with the given ac
 
 **_Input:_**
 
-- `in_msg` — incoming message, has type  [Message](#todo-fix-url)
-- `account` — account, has type [Account](#todo-fix-url)
-- `params` — executor parameters, has type [Parameters](#todo-fix-url)
-- `config` — blockchain configuration, has type [BlockchainConfig](#todo-fix-url)
+- `in_msg` — incoming message, has type  [Message](50-message.md)
+- `account` — account, has type [Account](40-accounts.md)
+- `params` — executor parameters, has type [Parameters](#parameters)
+- `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
 
 **_Output:_**
 
 On success, returns _Ok(acc1, trans)_, such that:
 
-- `acc1` — updated account, has type [Account](#todo-fix-url)
-- `trans` — transaction, has type [Transaction](#todo-fix-url) On error, returns error of the type _TransactionExecutor.TrExecutorError_
+- `acc1` — updated account, has type [Account](40-accounts.md)
+- `trans` — transaction, has type [Transaction](#transaction) On error, returns error of the type _TransactionExecutor.TrExecutorError_
 
 *_Modifies_:*
 
@@ -1232,17 +1232,17 @@ The execution of external message on the given account.
 
 **_Input:_**
 
-- `in_msg` — incoming message, has type [Message](#todo-fix-url)
-- `account` — account, has type [Account](#todo-fix-url)
-- `params` — executor parameters, has type [Parameters](#todo-fix-url)
-- `config` — blockchain configuration, has type [BlockchainConfig](#todo-fix-url)
+- `in_msg` — incoming message, has type [Message](50-message.md)
+- `account` — account, has type [Account](40-accounts.md)
+- `params` — executor parameters, has type [Parameters](#parameters)
+- `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
 
 **_Output:_**
 
 On success, returns _Ok(acc1, trans)_, such that:
 
-- `acc1` — updated account, has type [Account](#todo-fix-url)
-- `trans` — transaction, has type [Transaction](#todo-fix-url) On error, returns error of the type _TransactionExecutor.TrExecutorError_
+- `acc1` — updated account, has type [Account](40-accounts.md)
+- `trans` — transaction, has type [Transaction](#transaction) On error, returns error of the type _TransactionExecutor.TrExecutorError_
 
 *Modifies:*
 - `account`
@@ -1359,8 +1359,8 @@ This phase is executed only for internal messages. External messages have
 no coins attached.
 
 **_Input:_**
-- `account` — account that the message is executed on, [Account](#todo-fix-url)
-- `tr` — forming transaction, has type [Transaction](#todo-fix-url)
+- `account` — account that the message is executed on, [Account](40-accounts.md#account-structure-definition)
+- `tr` — forming transaction, has type [Transaction](#transaction)
 - `msg_balance` — message balance, has type `Grams`
 - `acc_balance` — current balance of the account, has type `Grams`
 
@@ -1396,14 +1396,14 @@ collected = min(due_payment, msg_balance)
 ## Storage Phase
 
 This phase withholds the storage fee from the account balance. The fee amount
-is calculated using the algorithm `calc_storage_fee`  [calc_storage_fee](#todo-fix-url)
+is calculated using the algorithm `calc_storage_fee`  [calc_storage_fee](#data-storage-fee-calculation-algorithm)
 
 **_Input:_**
-- `account` — account that the message is executed on, has type [Account](#todo-fix-url)
-- `tr` — forming transaction, has type [Transaction](#todo-fix-url)
+- `account` — account that the message is executed on, has type [Account](40-accounts.md)
+- `tr` — forming transaction, has type [Transaction](#transaction)
 - `msg_balance` — message balance, has type `Grams`
 - `acc_balance` — current balance of the account, has type `Grams`
-- `config` — main blockchain parameters, has type [BlockchainConfig](#todo-fix-url)
+- `config` — main blockchain parameters, has type [BlockchainConfig](#blockchainconfig-parameters)
 
 **_Output:_**
 
@@ -1477,8 +1477,8 @@ Execute the account smart-contract, update the state, gather generated actions t
 the next phase.
 
 **_Input:_**
-- `msg` — message, has type [Message](#todo-fix-url)
-- `account` — account, has type [Account](#todo-fix-url)
+- `msg` — message, has type [Message](50-message.md)
+- `account` — account, has type [Account](40-accounts.md)
 - `acc_balance` — current account balance, has type `Grams`
 - `msg_balance` — message balance,has type `Grams`
 - `state_libs` — code libraries, has type `Blob`  (not relevant; omitted)
@@ -1651,7 +1651,7 @@ The algorithm to calculate the amount of coins to be paid for the consumed gas.
 
 **_Input:_**
 
-- `gas_prices` — a structure with actual gas prices, has type  [GasLimitsPrice](#todo-fix-url)
+- `gas_prices` — a structure with actual gas prices, has type  [GasLimitsPrice](#calculate-gas-fee-algorithm)
 - `gas_used` — amount of gas units consumed by the computation, has type Uint
 
 **_Output:_** The amount of coins to be paid for the gas.
@@ -1678,9 +1678,9 @@ code and data borrowed from an external message with non-empty
 
 *_Input_:*
 
-- `account` — account structure, has type [Account](#todo-fix-url)
+- `account` — account structure, has type [Account](40-accounts.md)
 - `acc_balace` — current account balance, has type Uint
-- `in_msg` — message being executed, has type [Message](#todo-fix-url)
+- `in_msg` — message being executed, has type [Message](50-message.md)
 
 *_Output_:*
 
@@ -1805,16 +1805,16 @@ def init_gas(acc_balance, msg_balance, is_external, gas_info):
 The algorithm creates new account  by using data from the internal
 message. External messages are rejected. Creation of a new account
 based  on   an  external   message  is  located   elsewhere.   See
-[compute_new_state](#todo-fix-url) algorithm.
+[compute_new_state](#compute-new-state-algorithm) algorithm.
 
 **_Input_**
 
-- msg: incoming message being processed, has type [Message](#todo-fix-url)
+- msg: incoming message being processed, has type [Message](50-message.md)
 - msg_remaining_balance: the current amount of coins left on the message balance, has type `Uint`
 
 **_Output_**
 
-- Either returns a new [Account](#todo-fix-url) object, or None. Both results are considered successful.
+- Either returns a new [Account](40-accounts.md) object, or None. Both results are considered successful.
 
 **_Modifies_**: None
 
@@ -1843,23 +1843,23 @@ By given ordered action list, the Action phase executes each action item in  the
 
 *_Input_:*
 
-- `tr` — transaction being constructed, has type [Transaction](#todo-fix-url)
-- `account` — account executing the message, has type [Account](#todo-fix-url)
+- `tr` — transaction being constructed, has type [Transaction](#transaction)
+- `account` — account executing the message, has type [Account](40-accounts.md)
 - `original_acc_balance` — account balance after storage and credit phase, has type `Uint`
 - `acc_balance` — the mutable copy of the original_acc_balance, has type `Uint`
 - `msg_remaining_balance` — message balance without debt value if any, has type `Uint`
 - `compute_phase_fees` — gas fees from the compute phase, has type `Uint`
-- `actions` — list of actions generated on the Compute Phase, has type list([OutAction](#todo-fix-url))
+- `actions` — list of actions generated on the Compute Phase, has type list([OutAction](#type-of-actions))
 - `new_data` — the smart-contract data after the Compute Phase, some binary blob.
 
 *_Output_:*
 
 On success, returns `Ok(phase, messages)` such that:
-- `phase` denotes the [Action Phase Descriptor](#todo-fix-url)
-- `messages` denotes a list of messages to be sent, has type list([Message](#todo-fix-url))
+- `phase` denotes the [Action Phase Descriptor](#action-phase-descriptor)
+- `messages` denotes a list of messages to be sent, has type list([Message](50-message.md))
 
 On error, returns _Err(result_code)_, such that:
-- `result_code` describes a type of an error, see [here](#todo-fix-url).
+- `result_code` describes a type of an error, see [here](#action-result-codes).
 
 *_Modifies_:*
 
@@ -1995,14 +1995,14 @@ set.
 
 *_Input_:*
 
-- `phase` — actual [Action Phase Descriptor](#todo-fix-url)
+- `phase` — actual [Action Phase Descriptor](#action-phase-descriptor)
 - `mode` — flags for sending the message
-- `msg` — message being sent, has type [Message](#todo-fix-url)
+- `msg` — message being sent, has type [Message](50-message.md)
 - `acc_balance` — actual account balance, has type UInt
 - `msg_balance` — the message balance after debt being deducted, has type Uint
 - `compute_phase_fees` — gas fees from Compute Phase
-- `config` — blockchain configuration, has type [BlockchainConfig](#todo-fix-url)
-- `my_addr` — account [address](#todo-fix-url)
+- `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
+- `my_addr` — account [address](40-accounts.md#account-address)
 - `reserved_value` — the value of coins reserved by the ReserveCoins actions
 - `account_deleted` — the output value, set to True if account needs to be deleted
 
@@ -2014,7 +2014,7 @@ On success, returns Ok(value), such that:
 
 On failure, returns Err(result_code), such that:
 
-- `result_code` — describes the error, see [here](#todo-fix-url)
+- `result_code` — describes the error, see [here](#action-result-codes)
 
 
 *_Modifies_:*
@@ -2134,7 +2134,7 @@ ReserveCurrency action handler is responsible for managing the reserve coins.
 
 **_Input:_**
 
-- `mode` — [Reserve flags](#todo-fix-url) for the reserve action, has type `Uint`
+- `mode` — [Reserve flags](#action-reservecurrency) for the reserve action, has type `Uint`
 - `val` — amount of coins to be reserved, has type `Uint`
 - `orig_acc_balance` — account balance after the deduction of the storage fee and the debt, if any, has type `Uint`
 - `acc_remaining_balance` — amount of coins left on the balance after the reserve, has type `Uint`
@@ -2198,8 +2198,8 @@ If error happens on the previous phases, the bounce phase takes place.
 - `remaining_msg_balance` — message balance after all previous phases executed, has type `Uint`
 - `acc_balance` — remaining account balance after all previous phases executed, has type `Uint`
 - `compute_phase_fees` — the fees of the compute phase, has type `Uint`
-- `msg` — message being processed, has type [Message](#todo-fix-url)
-- `tr` — transaction object, has type [Transaction](#todo-fix-url)
+- `msg` — message being processed, has type [Message](50-message.md)
+- `tr` — transaction object, has type [Transaction](#transaction)
 
 *_Output_:*
 
@@ -2216,7 +2216,7 @@ On error, returns /ExecutorError.TrExecutorError/
 
 *_NOTE_:*
 
-- Function `get_fwd_prices()`  was defined [here](#todo-link).
+- Function `get_fwd_prices()`  was defined [here](#sendmsg-action-handler).
 
 ```python
 def bounce_phase(remaining_msg_balance, acc_balance,
@@ -2316,10 +2316,10 @@ mitigating the main risks, identified in the previous section.
 #### Fees
 
 - **FEE1** — Gas fees for the computation equal the amount calculated using
-  the algorithm [calc_gas_fee](#todo-fix-url).
+  the algorithm [calc_gas_fee](#calculate-gas-fee-algorithm).
 - **FEE2** — Storage fees for an account equal the amount calculated using
-  the algorithm [calc_storage_fee](#todo-fix-url).
-- **FEE3** — Forwarding fees are calculated according to the algorithm [message_passing_fees](#todo-fix-url) .
+  the algorithm [calc_storage_fee](#data-storage-fee-calculation-algorithm).
+- **FEE3** — Forwarding fees are calculated according to the algorithm [message_passing_fees](#message-passing-fee) .
 - **FEE4** — During the message execution process, all type of fees get deducted
   only once for an account.
 
