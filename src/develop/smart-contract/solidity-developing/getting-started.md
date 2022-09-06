@@ -115,7 +115,7 @@ Assemble and link with a standard library into TVM bytecode:
 
 Binary code of your contract is recorded into`<WalletAddress>.tvc`file, where`<WalletAddress>`is a temporary address of the contract.
 
-**Deploy**
+## Deploy
 
 Let's deploy the contract to TON Labs development blockchain at`net.ton.dev`.
 
