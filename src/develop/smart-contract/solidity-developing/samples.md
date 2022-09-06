@@ -145,7 +145,7 @@ demonstrates how you can handle such bounced message.
 
 ### 18. [Interfaces](https://github.com/tonlabs/samples/blob/master/solidity/18_Interfaces.sol), [OrderClient](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderClient.sol), [OrderDatabase](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderDatabase.sol): Order Book
 
-[**Interface.sol**]((https://github.com/tonlabs/samples/blob/master/solidity/18_Interfaces.sol)) - interface of [DataBase](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderDatabase.sol) and [Client](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderClient.sol) Contract.
+[**Interface.sol**](https://github.com/tonlabs/samples/blob/master/solidity/18_Interfaces.sol) - interface of [DataBase](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderDatabase.sol) and [Client](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderClient.sol) Contract.
 
 [**OrderClient.sol**](https://github.com/tonlabs/samples/blob/master/solidity/18_OrderClient.sol) - contract that can create new orders in OrderDatabase contract.
 
