@@ -1,17 +1,16 @@
 ---
 sidebar_position: 3
-[//]: # (draft: true)
 ---
 
-# TON Wallet API
+# Everscale Wallet API
 
-Via following [this link](https://github.com/broxus/ton-wallet-api) you can find all necessary information concerning the interaction with and configuration of Ton wallet API. 
+Via following [this link](https://github.com/broxus/ever-wallet-api) you can find all necessary information concerning the interaction with and configuration of Everscale wallet API. 
 
 In order to understand how to send transactions and track their statuses please see the guide below.
 
-## Using the TON Wallet API
+## Using the Everscale Wallet API
 
-### 1. Brief description of Ton-Wallet-API. 
+### 1. Brief description
 
 This API guide is intended to explain how to send and track transactions with the help of Ever Wallet.    
 The wallet tracks addresses from the database and indexes all transactions, storing the information about them in the postgres DB.    
@@ -29,7 +28,7 @@ RAM: 8 GB
 Storage: 200 GB fast SSD    
 Network: 100 MBit/s   
 
-1. Follow the instructions from the Readme https://github.com/broxus/ton-wallet-api
+1. Follow the instructions from the Readme https://github.com/broxus/ever-wallet-api
 2. Create yourself a "system address" by calling `/address/create` with empty parameters. The response will return an EVER address. It is necessary to send EVERs to it, which will be consumed as gas for further work.
 3. In the table `api_service_callback` we enter the address of our backend, which will deal with transaction processing.
 4. Configure token whitelist:   
@@ -37,13 +36,12 @@ You can see the Root-Contract addresses at https://raw.githubusercontent.com/bro
 By default, the whitelist already includes all the tokens in this list.
 To add more tokens to the whitelist use the script below:
 
-#### Add root token to whitelist 
-
 ```bash
-DATABASE_URL=${DATABASE_URL} RUSTFLAGS='-C target-cpu=native' cargo run \
-  --release -- root_token \
-  --name USDT --address 0:751b6e22687891bdc1706c8d91bf77281237f7453d27dc3106c640ec165a2abf
+  ./scripts/root_token.sh -t native --database-url ${DATABASE_URL} --name ${TOKEN_NAME} --address ${TOKEN_ADDRESS}
 ```
+- DATABASE_URL - Postgres connection url (example: postgresql://postgres:postgres@127.0.0.1/ton_wallet_api)
+- TOKEN_NAME - Token name (example: WEVER)
+- TOKEN_ADDRESS - Token address (example: 0:0ee39330eddb680ce731cd6a443c71d9069db06d149a9bec9569d1eb8d04eb37)
 
 ### 3. Transfer EVER
 
@@ -70,18 +68,31 @@ DATABASE_URL=${DATABASE_URL} RUSTFLAGS='-C target-cpu=native' cargo run \
  ]
 }
 ```
+
+Or use the script:
+
+```bash
+# Create transaction
+API_KEY=${API_KEY} SECRET=${API_SECRET} HOST=${HOST} \
+./scripts/wallet.sh -m create_transaction \
+--src-addr {sender} --dst-addr {recipient} --amount {amount}
+```
+
 You can track the status of a transaction via the following two ways:
 
 1. The recommended way is via callback `AccountTransactionEvent`, which has `transactionStatus` field:    
 `Expired` - end state for failed transactions,  
 `Done` - final state for successful transactions. 
+
+If your backend was disabled during the callback or responded with an `error`, the event will have an Error state. In this case you should query all events `/events` in `Error` state at backend startup, process them and give each event a `Done` state by calling `/events/mark`. 
+
 2. The second way is by polling the GET method `/transactions/id/<uuid>`
 
 ### 4. How to process a transaction from a user on the backend
 
 We generate a deposit address for the user by calling  `/address/create` with empty parameters.
 
-After receiving the transaction, the backend receives a callback of the form `AccountTransactionEvent` (see swagger).   
+After receiving the transaction, the backend receives a callback of the form `AccountTransactionEvent` (see [swagger](https://tonapi.broxus.com/swagger.yaml)).   
 You can also get such events in a list, using the `/events` method.
 
 1. To merge tokens to the system address, you can use the `/tokens/transactions/create` method in such a callback (see ["5. Token Transfer."](#5-token-transfer))
@@ -121,7 +132,23 @@ To transfer tokens, use the method `/tokens/transactions/create`
 }
 ```
 
->  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
-Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
-  Also please make sure to consult our rules and rewards policy via [this link](https://docs.everscale.network/contribute/hot-streams/documentations).  
-  Feel free to join [Everscale Documentation Development Telegram chat](https://t.me/+C2IpQXWZtCwxYzEy) and [Everscale Developers Onboarding Telegram chat](https://t.me/+Vca1Gs6uPzIyNWVi)!
+Or use the script:
+
+```bash
+ # Create token transaction
+API_KEY=${API_KEY} SECRET=${API_SECRET} HOST=${HOST} \
+./scripts/wallet.sh -m create_token_transaction \
+--src-addr {sender} --dst-addr {recipient} \
+--root-addr {root_token_address} --amount {amount}
+```
+You can track the status of a transaction with: 
+1) (Recommended way) via callback `AccountTransactionEvent`, which has transactionStatus field:
+- `expired` - end state for failed transactions,
+- `done` - final state for successful transactions. 
+
+
+If your backend was disabled during the callback or responded with an error, the event will have an `Error` state.    
+In this case you should query all events `/events` in `Error` state at backend startup, process them and give each event a `Done` state by calling `/events/mark`.  
+ 
+2) by polling the GET method `/transactions/id/<uuid>`
+
