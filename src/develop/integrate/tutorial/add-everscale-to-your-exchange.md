@@ -10,50 +10,44 @@ This document describes the various ways to accomplish the most important tasks 
 
 There are a few different ways to accomplish the necessary tasks:
 
-- **Blockchain access** may be set up either through the  EVER OS cloud or through your own node - the DApp server.
+- **Blockchain access** may be set up either through the [Evercloud](https://docs.everos.dev/evernode-platform/products/evercloud/get-started) or through your own node - the [DApp server](https://docs.everos.dev/evernode-platform/products/dapp-server-ds).
 
-- **Deposit account management** can be accomplished either through the TONOS-CLI command line tool or integrated into your backend with TON SDK. Both of these approaches are compatible with either of the blockchain access setups.
+- **Deposit account management** can be accomplished either through the [TONOS-CLI](https://github.com/tonlabs/tonos-cli) command line tool or integrated into your backend with TON SDK. Both of these approaches are compatible with either of the blockchain access setups.
 
 
 ## Setting up Blockchain Access
 
-There are two ways you can set up access to the Everscale blockchain: you may use EVER OS Cloud, or set up your own DApp server.
+There are two ways you can set up access to the Everscale blockchain: you may use [Evercloud](https://docs.everos.dev/evernode-platform/products/evercloud/get-started), or set up your own [DApp server](https://docs.everos.dev/evernode-platform/products/dapp-server-ds).
 
-### Using EVER OS Cloud
+### Using Evercloud
 
-EVER OS Cloud allows you to work with Everscale blockchain and the Development Network without having to run your own node. TONOS-CLI and SDK can connect to it, as if it were a regular node. It has the same API as a node, and provides all capabilities required for running an exchange.
+Evercloud allows you to work with Everscale blockchain and the Development Network without having to run your own node. TONOS-CLI and SDK can connect to it, as if it were a regular node. It has the same API as a node, and provides all capabilities required for running an exchange.
 
-This page lists the endpoints for both clouds.
+This page lists the [cloud endpoints](https://docs.everos.dev/ever-sdk/reference/ever-os-api/networks). To get access credentials go through [this guide](https://docs.everos.dev/evernode-platform/products/evercloud/get-started).
 
-Whenever you have to specify a network in the examples given below, you may use them.
+Whenever you have to specify a network endpoint in the examples given below, use the endpoints you receive in the [Evercloud dashboard](https://dashboard.evercloud.dev/projects).
 
 **Note:** We highly recommend testing out the full setup on the developer network first.
 
 ### Using DApp Server
 
-If you prefer to run your own node, rather than using EVER OS Cloud, you may set up your own DApp server. It is a full node, that may be set up on your own servers and provide full access to either Everscale or the Developer network. To connect to to it with TONOS-CLI or SDK, it needs to have a domain name and a DNS record. You can specify its URL whenever you have to set the network in the examples given below.
+If you prefer to run your own node, you may set up your own [DApp server](https://docs.everos.dev/evernode-platform/products/dapp-server-ds). It is a client node, that may be set up on your own servers and provide full access to either Everscale or the Developer network. To connect to it with TONOS-CLI or SDK, it needs to have a domain name and a DNS record. You can specify its URL whenever you have to set the network in the examples given below.
 
-Get the setup scripts in this repository: https://github.com/tonlabs/TON-OS-DApp-Server
+Get the setup scripts in this repository: https://github.com/tonlabs/evernode-ds
 
 **1. System Requirements**
 
-CPU (cores) - 24
-
-RAM (GiB) - 192
-
-Storage (GiB) - 2000
-
-Network (Gbit/s) - 1
-
-SSD disks are recommended for storage.
+| Configuration | CPU (cores) | RAM (GiB) | Storage (GiB) | Network (Gbit/s) |
+|---------------|-------------|-----------|---------------|------------------|
+| Recommended   | 24          | 128       | 2000          | 1                |
 
 **2. Prerequisites**
 
 **2.1 Set the Environment**
 
-Set the network in /scripts/env.sh: use main.ton.dev for the main network and net.ton.dev for the developer network.
+Set the network in `/scripts/env.sh`: `use main.ton.dev` for the main network and `net.ton.dev` for the developer network.
 
-**Note:** We highly recommend testing out the full setup on the developer network first.
+> **Note:** We highly recommend testing out the full setup on the developer network first.
 
     $ cd TON-OS-DApp-Server/scripts/
     $ . ./env.sh
@@ -64,7 +58,7 @@ Ubuntu 20.04:
 
     $ ./install_deps.sh
 
-**Note:** Make sure to add your user to the docker group, or run deploy command as superuser:
+> **Note:** Make sure to add your user to the docker group, or run deploy command as superuser:
 
     sudo usermod -a -G docker $USER
 
@@ -74,26 +68,26 @@ Deploy node:
 
     $ ./deploy.sh 2>&1 | tee ./deploy.log
     
-**Note:** the log generated by this command will be located in the TON-OS-DApp-Server/scripts/ folder and can be useful for troubleshooting.
+**Note:** the log generated by this command will be located in the `TON-OS-DApp-Server/scripts/` folder and can be useful for troubleshooting.
 
 
 ## Setting up Deposit Account
 
-Currently we can recommend the formally verified SafeMultisig contract for use in deposit accounts. It is well tested and secure, supports multiple custodians, and can be set up to require several independent signatures for any transfers. However it has certain limitations, that may prove problematic for exchanges: it is not possible to send tokens transfers in batches to multiple addresses.
+Currently we can recommend the formally verified [SafeMultisig](../../smart-contract/multisignature-wallet.md) contract for use in deposit accounts. It is well tested and secure, supports multiple custodians, and can be set up to require several independent signatures for any transfers. However it has certain limitations, that may prove problematic for exchanges: it is not possible to send tokens transfers in batches to multiple addresses.
 
 If this functionality is required, you can develop a contract with the needed capabilities or get one developed by someone in the Everscale community.
 
 ### Using command line tool
 
-TONOS-CLI, the command line tool for the Everscale blockchain, allows to deploy any smart contracts to the blockchain, call all contract methods, sign transactions, and generally manage an account.
+[TONOS-CLI](https://github.com/tonlabs/tonos-cli), the command line tool for the Everscale blockchain, allows to deploy any smart contracts to the blockchain, call all contract methods, sign transactions, and generally manage an account.
 
 TONOS-CLI has versions for Linux, Windows and Mac.
 
-It supports the EVER OS cloud and DApp server-based approaches both.
+It supports the Evercloud and DApp server-based approaches both.
 
 **1. Install TONOS-CLI**
 
-You can use EVERDEV to install the latest version of TONOS-CLI:
+You can use [EVERDEV](../../tools/everdev/overview.md) to install the latest version of TONOS-CLI:
 
     everdev tonos-cli install
 
@@ -112,11 +106,9 @@ You may specify either your DApp Server URL, or one of the cloud endpoints:
 - developer network for testing with test tokens. By default, TONOS-CLI connects to the developer network. We highly recommend testing out the full setup on this network first.
 - main Everscale network. Switch to it for working with EVERS.
 
-Refer to this list for network URLs.
-
 You need to set the network only once before you start using the utility.
 
-**Note:** You should run the TONOS-CLI utility only from the folder where the tonos-cli.conf.json file is located.
+> **Note:** You should run the TONOS-CLI utility only from the folder where the tonos-cli.conf.json file is located.
 
 **3. Get contract files**
 
@@ -211,7 +203,7 @@ The utility displays the new deposit account address (Raw address).
     
 **8. Send tokens to the new address from another account**
 
-Before deployment, an account needs to be sponsored with a small amount of tokens. You may use any convenient method to send tokens to the calculated address. For example, sending tokens from multisig wallets through TONOS-CLI is described here. Note, that if the wallet has multiple custodians, the transaction may require confirmation from the other custodians.
+Before deployment, an account needs to be sponsored with a small amount of tokens. You may use any convenient method to send tokens to the calculated address. For example, sending tokens from multisig wallets through TONOS-CLI is described [here](../../smart-contract/multisignature-wallet.md#46-create-transaction-online). Note, that if the wallet has multiple custodians, the transaction may require [confirmation](../../smart-contract/multisignature-wallet.md#47-create-transaction-confirmation-online) from the other custodians.
 
 **9. Deploy the contract to blockchain**
 
@@ -221,15 +213,15 @@ Use the following command:
 
 Configuration parameters:
 
-owners - array of custodian public keys generated by all account custodians at step 5 as uint256 numbers. Make sure all public keys are enclosed in quotes and start with 0x....
+`owners` - array of custodian public keys generated by all account custodians at step 5 as uint256 numbers. Make sure all public keys are enclosed in quotes and start with 0x....
 
 Example of how to specify custodian keys: 
 
     "owners":["0x8868adbf012ebc349ced852fdcf5b9d55d1873a68250fae1be609286ddb962582","0xa0e16ccff0c7bf4f29422b33ec1c9187200e9bd949bb2dd4c7841f5009d50778a"]
     
-reqConfirms - number of signatures needed to confirm a transaction ( 0 < N ≤ custodian count). For accounts with a single custodian set reqConfirms:1
+`reqConfirms` - number of signatures needed to confirm a transaction ( 0 < `N` ≤ custodian count). For accounts with a single custodian set reqConfirms:1
 
-deploy_seed_or_keyfile - can either be the seed phrase used in step 6 to generate the deployment key pair file or the deploy.keys.json file itself. If seed phrase is used, enclose it in double quotes.
+`deploy_seed_or_keyfile` - can either be the seed phrase used in step 6 to generate the deployment key pair file or the `deploy.keys.json` file itself. If seed phrase is used, enclose it in double quotes.
 
 Example:
 
@@ -250,12 +242,13 @@ Example:
 
 You may integrate above described process of deposit account deployment into your exchange backend. The functionality is supported in SDK. 
 
-A sample is available in this repository and an overview is given below.
+A sample is available in [this repository](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) and an overview is given below.
 
-Bindings for a large number of languages have been developed for SDK.
+> [Bindings](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) for a large number of languages have been developed for SDK.
+
 Note, that similar to the TONOS-CLI approach described above, you have to sponsor a deposit account before deploying contract code. The sample requires you to input the data for a preexisting multisig account on the developer network to server as a giver. 
 
-The recommended SafeMultisig contract is used.
+The recommended [SafeMultisig](../../smart-contract/multisignature-wallet.md) contract is used.
 
     async function main(client) {
     
@@ -330,9 +323,9 @@ The recommended SafeMultisig contract is used.
       
 ## Monitoring Deposit Account
 
-An exchange needs to reliably know when customers deposit funds into its exchange accounts. This functionality has been integrated into SDK. A sample is available in this repository and an overview of the relevant part is given below.
+An exchange needs to reliably know when customers deposit funds into its exchange accounts. This functionality has been integrated into SDK. A sample is available in [this repository](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) and an overview of the relevant part is given below.
 
-In this sample  JS SDK is used. Bindings for a large number of languages have been developed for SDK. 
+In this sample  JS SDK is used. [Bindings](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) for a large number of languages have been developed for SDK. 
 The script iterates over all blocks since the specified time and looks for transfers according to the set up filters. Transfers may be filtered by one or all accounts. 
 
     ...    
@@ -355,20 +348,20 @@ The script iterates over all blocks since the specified time and looks for trans
     
     ...
 
-You may test out the demo application running this process on the developer network by cloning the sdk-samples repository, and running the following commands in the /demo/exchange folder:
+You may test out the demo application running this process on the developer network by cloning the [sdk-samples](https://github.com/tonlabs/sdk-samples) repository, and running the following commands in the /demo/exchange folder:
 
     npm i
     node index
     
-Prerequisites: latest Node.js
+Prerequisites: latest [Node.js](https://nodejs.org/)
 
 ## Withdrawing from deposit accounts
 
-The specific function that is used to send the funds to the user depends on the contract chosen for the deposit account. Below are provided the examples for the SafeMultisig contract.
+The specific function that is used to send the funds to the user depends on the contract chosen for the deposit account. Below are provided the examples for the [SafeMultisig](https://github.com/vtchemodanov/tondev/blob/patch-2/docs/deploy_mulisig_tondev.md) contract.
 
 ### Using command line tool
 
-TONOS-CLI tool may be used to implement withdrawals from deposit account.
+[TONOS-CLI](#using-command-line-tool) tool may be used to implement withdrawals from deposit account.
 
 The simplest way that bypasses any verification and places all risks entirely on the user is to send the full requested amount with a single transfer to the specified address. If the user made a mistake in the address, and has no control over it, these funds will be lost. If the account does not exist, and the user makes mistakes deploying it after the funds are transferred, they may end up being lost as well.
 
@@ -386,7 +379,7 @@ To perform a simple transfer to any account, whether it already exists or not, u
 
 `"allBalance"` - used to transfer all funds in the wallet. Use false for a simple transfer.
 
-Note: Due to a bug setting allBalance to true currently causes errors. Single-custodian multisig wallets may use sendTransaction method with flag 130 and value 0 instead:
+> **Note**: Due to a bug setting allBalance to true currently causes errors. Single-custodian multisig wallets may use sendTransaction method with flag 130 and value 0 instead:
 
 ```    
 tonos-cli call <multisig_address> sendTransaction '{"dest":"raw_address","value":0,"bounce":true,"flags":130,"payload":""}' --abi <MultisigWallet.abi.json> --sign <seed_or_keyfile>
@@ -500,7 +493,7 @@ If the account is already active, a small portion of the requested amount may be
 
 ### PIN code verification
 
-Additionally, for users that use the Surf app to store their tokens, PIN code verification is possible.
+Additionally, for users that use the [Surf](https://ever.surf/) app to store their tokens, PIN code verification is possible.
 
 The following TONOS-CLI command may be used to send a transaction with an encrypted PIN code, which the user will be able to see in Surf:
 
@@ -533,9 +526,9 @@ Example:
     
 ### Using SDK
 
-You may integrate withdrawals from deposit account into your backend using SDK as well. A sample is available in this repository and an overview of the relevant part is given below.
+You may integrate withdrawals from deposit account into your backend using SDK as well. A sample is available in [this repository](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) and an overview of the relevant part is given below.
 
-In this sample JS SDK is used. Bindings for a large number of languages have been developed for SDK.
+In this sample JS SDK is used. [Bindings](https://github.com/tonlabs/sdk-samples/tree/master/demo/exchange) for a large number of languages have been developed for SDK.
 This example shows how to generate a withdrawal transaction from a Multisig wallet, using its sendTransaction method. Note, that if Multisig has multiple custodians, the transaction will have to be confirmed with the confirmTransaction method.
 
 You may choose from which account (sender or recipient), the forward fees will be charged.
@@ -596,9 +589,9 @@ return transactions;
     
 ### User account verification with SDK
 
-Same as described above, users of the Surf app can be offered additional verification with a PIN code.
+Same as described above, users of the [Surf](https://ever.surf/) app can be offered additional verification with a PIN code.
 
-Below is a snippet of the SDK sample demonstrating how to generate a transaction with an encrypted comment. A PIN code can be transmitted to the user in this comment attached to a small amount of tokens, and only after the user provides the PIN code, thus proving they have access to their account, may the rest of the withdrawal amount be transferred.
+Below is a snippet of the [SDK sample](https://github.com/tonlabs/sdk-samples/tree/master/core-examples/node-js/transfer-with-comment) demonstrating how to generate a transaction with an encrypted comment. A PIN code can be transmitted to the user in this comment attached to a small amount of tokens, and only after the user provides the PIN code, thus proving they have access to their account, may the rest of the withdrawal amount be transferred.
 
 ```javascript
 // Prepare body with comment
