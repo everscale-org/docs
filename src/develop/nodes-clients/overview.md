@@ -12,22 +12,21 @@ First of all, it is worth noting that Everscale is really a decentralized blockc
 
 At the moment, there are two active companies of technical contributors in Everscale network:
 
-[EverX](https://everx.dev/about)
-
-[Broxus](https://broxus.com/)
+- [EverX](https://everx.dev/about)
+- [Broxus](https://broxus.com/)
 
 
 And it is their solutions and tools that you will use when developing, while you will have every opportunity to write your own solutions as well, if necessary or desired.
 
 ## Solutions for configuring and running nodes
 
-- [Evernode DS](evernode-ds.md)(by EverX) - Client Node with GraphQL API that allows you to collect a large amount of data about the network.
+- [Evernode DS](evernode-ds.md) (by EverX) - Client Node with GraphQL API that allows you to collect a large amount of data about the network.
 *Suitable for integration by exchanges and other platforms.
 
 - [Ever Cloud](evercloud.md) (by EverX) - provides Everscale developers with services on top of scalable blockchain infrastructure, so that developers can focus on business logic instead of infrastructure maintenance.
 
-- [TON Wallet API](ton-wallet-api.md)(by Broxus) - a non-validating node with a built-in wallet for convenient integration with exchanges and other projects.
+- [Everscale Wallet API](ton-wallet-api.md) (by Broxus) - a non-validating node with a built-in wallet for convenient integration with exchanges and other projects.
 
-- [TON Kafka Producer](ton-kafka.md)(by Broxus) - a non-validating node that writes blockchain data to Kafka. It can be used for further work with data in the required format and location. This node is lighter than Evernote DS.
+- [TON Kafka Producer](ton-kafka.md) (by Broxus) - a non-validating node that writes blockchain data to Kafka. It can be used for further work with data in the required format and location. This node is lighter than Evernote DS.
 
-- [TON Indexer](ton-inderxer.md)(by Broxus) - the solution is in the form of RUST libraries for building your own variation of the Everscale node. For example, with the help of this solution, nodes TON Wallet API, TON Kafka Producer and a number of other nodes are made.
+- [TON Indexer](ton-inderxer.md) (by Broxus) - the solution is in the form of RUST libraries for building your own variation of the Everscale node. For example, with the help of this solution, nodes TON Wallet API, TON Kafka Producer and a number of other nodes are made.

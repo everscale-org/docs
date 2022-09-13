@@ -12,49 +12,7 @@ You can use the [TONOS-CLI](https://github.com/tonlabs/tonos-cli) utility to dep
 
 > EverX Multisignature Wallet repository https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity/safemultisig
 
-# Table of Contents
-- [1. Introduction](#1-introduction)
-  - [Glossary](#glossary)
-- [2. Install TONOS-CLI](#2-install-tonos-cli)
-  - [2.1. Install TONOS-CLI utility](#21-install-tonos-cli-utility)
-    - [Install compiled executable](#install-compiled-executable)
-    - [Install through TONDEV](#install-through-tondev)
-    - [Build from source](#build-from-source)
-    - [Tails OS secure environment](#tails-os-secure-environment)
-    - [A note on Windows syntax](#a-note-on-windows-syntax)
-  - [2.2. Download contract files](#22-download-contract-files)
-  - [2.3. Configure TONOS-CLI environment](#23-configure-tonos-cli-environment)
-- [3. Create Wallet](#3-create-wallet)
-  - [3.1. Create seed phrases and public keys for all custodians](#31-create-seed-phrases-and-public-keys-for-all-custodians)
-    - [3.1.1. Create wallet seed phrase](#311-create-wallet-seed-phrase)
-    - [3.1.2. Generate public key](#312-generate-public-key)
-  - [3.2. Generate deployment key pair file](#32-generate-deployment-key-pair-file)
-  - [3.3. Generate wallet address](#33-generate-wallet-address)
-  - [3.4. Send tokens to the new address from another wallet](#34-send-tokens-to-the-new-address-from-another-wallet)
-  - [3.5. Deploy wallet (set custodians)](#35-deploy-wallet-set-custodians)
-    - [3.5.1. Deploy the wallet to blockchain](#351-deploy-the-wallet-to-blockchain)
-    - [3.5.2. Check that the wallet is active](#352-check-that-the-wallet-is-active)
-    - [3.5.3. Request the list of custodian public keys from the blockchain](#353-request-the-list-of-custodian-public-keys-from-the-blockchain)
-- [4. Manage Wallet](#4-manage-wallet)
-  - [4.1. Select blockchain network](#41-select-blockchain-network)
-  - [4.2. Convert tokens to nanotokens](#42-convert-tokens-to-nanotokens)
-  - [4.3. Check wallet balance and status](#43-check-wallet-balance-and-status)
-    - [4.3.1. Check wallet balance and status with TONOS-CLI](#431-check-wallet-balance-and-status-with-tonos-cli)
-    - [4.3.2. Check wallet balance and status in the blockchain explorer](#432-check-wallet-balance-and-status-in-the-blockchain-explorer)
-  - [4.4. List custodian public keys](#44-list-custodian-public-keys)
-  - [4.5. List transactions awaiting confirmation](#45-list-transactions-awaiting-confirmation)
-  - [4.6. Create transaction online](#46-create-transaction-online)
-    - [4.6.1. Alternative command to create transaction online](#461-alternative-command-to-create-transaction-online)
-  - [4.7. Create transaction confirmation online](#47-create-transaction-confirmation-online)
-    - [4.7.1. Alternative command to confirm transaction online](#471-alternative-command-to-confirm-transaction-online)
-  - [4.8. Create new transaction offline](#48-create-new-transaction-offline)
-  - [4.9. Create transaction confirmation offline](#49-create-transaction-confirmation-offline)
-  - [4.10. Generate deploy message offline](#410-generate-deploy-message-offline)
-  - [4.11. Broadcast previously generated message](#411-broadcast-previously-generated-message)
-- [5. Error codes](#5-error-codes)
-
-
-# 1. Introduction
+## 1. Introduction
 
 Multisignature wallets are implemented as decentralized smart contracts. All wallet data is stored on the blockchain. 
 
@@ -66,7 +24,7 @@ Default transaction lifetime is 1 hour.
 
 Minimal amount that can be transferred is 0.001 tokens (1000000 nanotokens).
 
-## Glossary
+### Glossary
 
 `Multisignature wallet` - crypto wallet on the blockchain, which supports multiple owners (custodians), who are authorized to manage the wallet.
 
@@ -82,13 +40,15 @@ Minimal amount that can be transferred is 0.001 tokens (1000000 nanotokens).
 
 `Validator` - the entity performing validation of new blocks on the blockchain through a Proof-of-Stake system. Requires a multisignature wallet for staking.
 
-# 2. Install TONOS-CLI
-## 2.1. Install TONOS-CLI utility
-### Install compiled executable
+## 2. Install TONOS-CLI
+
+### 2.1. Install TONOS-CLI utility
+
+#### Install compiled executable
 
 Create a folder. Download the `.zip` file from the latest release from here: [https://github.com/tonlabs/tonos-cli/releases](https://github.com/tonlabs/tonos-cli/releases) to this folder. Extract it.
 
-### Install through TONDEV
+#### Install through TONDEV
 
 You can use [TONDEV](https://github.com/tonlabs/tondev) to install the latest version of TONOS-CLI.
 
@@ -110,11 +70,11 @@ This command specifies TONOS-CLI version to use and downloads it if needed:
 tondev tonos-cli set --version 0.8.0
 ```
 
-### Build from source
+#### Build from source
 
 Refer to the [TONOS-CLI readme](https://github.com/tonlabs/tonos-cli#build-from-source) for build from source procedure.
 
-### Tails OS secure environment
+#### Tails OS secure environment
 
 For maximum security while working with offline TONOS-CLI features (such as cryptographic commands or encrypted message generation), you can use the [Tails OS](https://tails.boum.org/).
 
@@ -125,7 +85,7 @@ You can perform the following actions entirely offline:
 * Prepare [new transaction](#48-create-new-transaction-offline) offline
 * Prepare [transaction confirmation](#49-create-transaction-confirmation-offline) offline
 
-### A note on Windows syntax
+#### A note on Windows syntax
 
 When using Windows command line, the following syntax should be used for all TONOS-CLI commands:
 
@@ -139,8 +99,7 @@ Example:
 > tonos-cli deploy SafeMultisigWallet.tvc "{\"owners\":[\"0x723b2f0fa217cd10fe21326634e66106678f15d5a584babe4f576dffe9dcbb1b\",\"0x127e3ca223ad429ddaa053a39fecd21131df173bb459a4438592493245b695a3\",\"0xc2dd3682ffa9df97a968bef90b63da90fc92b22163f558b63cb7e52bfcd51bbb\"],\"reqConfirms\":2}" --abi SafeMultisigWallet.abi.json --sign deploy.keys.json
 ```
 
-
-## 2.2. Download contract files 
+### 2.2. Download contract files 
 
 Download compiled `.abi.json` and `.tvc` multisignature contract files from https://github.com/tonlabs/ton-labs-contracts/tree/master/solidity
 
@@ -171,7 +130,7 @@ Place both files into the folder containing the `tonos-cli` executable.
 > **Note**: Make sure you have downloaded the **raw** versions of the files. A common error when downloading from the github project page manually is to save the redirection page instead of the raw file.
 > **Note**: [TON Surf](https://ton.surf/) uses a specialized version of the SetcodeMultisig contract. It will not be possible to manage a standard Setcode wallet in TON Surf.
 
-## 2.3. Configure TONOS-CLI environment
+### 2.3. Configure TONOS-CLI environment
 
 1. (Optional, Linux/Mac OS, if you didn't install through tondev) Put `tonos-cli` into system environment:
 ```
@@ -207,7 +166,7 @@ You need to do it only once before using the utility.
 For additional configuration options, refer to the [TONOS-CLI readme](https://github.com/tonlabs/tonos-cli#2-configuration).
 
 
-# 3. Create Wallet
+## 3. Create Wallet
 
 The following actions should be performed to create a wallet:
 
@@ -219,8 +178,9 @@ The following actions should be performed to create a wallet:
 
 All of these steps are detailed in this section.
 
-## 3.1. Create seed phrases and public keys for all custodians
-### 3.1.1. Create wallet seed phrase
+### 3.1. Create seed phrases and public keys for all custodians
+
+#### 3.1.1. Create wallet seed phrase
 
 To generate your seed phrase enter the following command:
 ```
@@ -239,7 +199,7 @@ Seed phrase: "rule script joy unveil chaos replace fox recipe hedgehog heavy sur
 
 > **Note**: Seed phrases should be created for every custodian of the multisignature wallet.
 > The seed phrase ensures access to the multisignature wallet. If lost, the custodian will no longer be able to manage the wallet. The seed phrase is unique for every custodian and should be kept secret and securely backed up (word order matters).
-### 3.1.2. Generate public key
+#### 3.1.2. Generate public key
 
 To generate your public key enter the following command with your previously generated seed phrase in quotes:
 ```
@@ -258,7 +218,7 @@ Public key: 88c541e9a1c173069c89bcbcc21fa2a073158c1bd21ca56b3eb264bba12d9340
 Copy the generated code from Terminal or scan the QR code containing the code with your phone and send it to whichever custodian is responsible for deploying the multisignature wallet.
 
 > **Note**: The public key should also be generated for every custodian. The public key is not secret and can be freely transmitted to anyone.
-## 3.2. Generate deployment key pair file
+### 3.2. Generate deployment key pair file
 
 Any custodian who has received the public keys of all other custodians can deploy the multisignature wallet to the blockchain.
 
@@ -279,7 +239,7 @@ key_file: key.json
 Succeeded.
 ```
 
-## 3.3. Generate wallet address
+### 3.3. Generate wallet address
 
 Use deployment key pair file to generate your address:
 ```
@@ -320,7 +280,7 @@ Succeeded
 
 > **Note**: The wallet address is required for any interactions with the wallet. It should be shared with all wallet custodians.
 
-## 3.4. Send tokens to the new address from another wallet
+### 3.4. Send tokens to the new address from another wallet
 
 Use the following command to create a new transaction from another existing wallet:
 ```
@@ -416,8 +376,8 @@ tonos-cli account <multisig_address>
 `<multisig_address>` - new wallet address generated at step **3.3**.
 
 
-## 3.5. Deploy wallet (set custodians)
-### 3.5.1. Deploy the wallet to blockchain
+### 3.5. Deploy wallet (set custodians)
+#### 3.5.1. Deploy the wallet to blockchain
 
 Use the following command:
 ```
@@ -468,7 +428,7 @@ Contract deployed at address: -1:0c5d5215317ec8eef1b84c43cbf08523c33f69677365de8
 ```
 
 > **Note**: After a SafeMultisig wallet is deployed, for reasons of security you cannot add or remove custodians from it. If you want to change the custodian list, you have to create a new wallet, transfer all funds there, and set the new list of custodians.
-### 3.5.2. Check that the wallet is active
+#### 3.5.2. Check that the wallet is active
 
 Check the new wallet status again. Now it should be **Active**.
 
@@ -476,7 +436,7 @@ Check the new wallet status again. Now it should be **Active**.
 tonos-cli account <multisig_address>
 ```
 
-### 3.5.3. Request the list of custodian public keys from the blockchain
+#### 3.5.3. Request the list of custodian public keys from the blockchain
 
 Verify that they match the keys you have loaded during deploy.
 ```
@@ -529,8 +489,8 @@ Result: {
 }
 ```
 
-# 4. Manage Wallet
-## 4.1. Select blockchain network
+## 4. Manage Wallet
+### 4.1. Select blockchain network
 
 There are two networks currently available:
 
@@ -552,7 +512,7 @@ You need to do it only once before using the utility.
 
 A `.json` configuration file will be created in the current folder. The URL of the current network will be specified there. All subsequent calls of the utility will use this file to select the network to connect to.
 
-##  4.2. Convert tokens to nanotokens
+###  4.2. Convert tokens to nanotokens
 
 Amounts in  most multisig wallet commands are indicated in nanotokens. To convert tokens to nanotokens use the following command:
 ```
@@ -567,8 +527,8 @@ Config: /home/user/tonos-cli.conf.json
 125800000000
 ```
 
-## 4.3. Check wallet balance and status
-### 4.3.1. Check wallet balance and status with TONOS-CLI
+### 4.3. Check wallet balance and status
+#### 4.3.1. Check wallet balance and status with TONOS-CLI
 
 You may use the following command to check the current status and balance of your wallet:
 ```
@@ -604,7 +564,7 @@ SafeMultisig code hash is `80d6c47c4a25543c9b397b71716f3fae1e2c5d247174c52e2c19b
 
 SetcodeMultisig code hash is `e2b60b6b602c10ced7ea8ede4bdf96342c97570a3798066f3fb50a4b2b27a208`
 
-### 4.3.2. Check wallet balance and status in the blockchain explorer
+#### 4.3.2. Check wallet balance and status in the blockchain explorer
 
 The detailed status of the account can also be viewed in the [ton.live](https://ton.live/main) blockchain explorer.
 
@@ -612,7 +572,7 @@ Select the network the wallet is deployed to and enter the **raw address** of th
 
 Account status, balance, message and transaction history for the account will be displayed.
 
-## 4.4. List custodian public keys
+### 4.4. List custodian public keys
 
 The following command displays the list of public keys, the owners of which have rights to manage the wallet:
 ```
@@ -664,7 +624,7 @@ Result: {
 }
 ```
 
-## 4.5. List transactions awaiting confirmation
+### 4.5. List transactions awaiting confirmation
 
 Use the following command to list the transactions currently awaiting custodian confirmation:
 
@@ -712,7 +672,7 @@ Result: {
 }
 ```
 
-## 4.6. Create transaction online
+### 4.6. Create transaction online
 
 Use the following command to create a new transaction:
 ```
@@ -775,7 +735,7 @@ Result: {
 
 > **Note**: For maximum security you may also create a transaction message on a machine without internet connection in offline mode. See section [4.8](#48-create-new-transaction-offline).
 
-### 4.6.1. Alternative command to create transaction online
+#### 4.6.1. Alternative command to create transaction online
 
 TONOS-CLI supports alterbative syntax for this command, which does not use quotes and brackets to list parameters and may be more convenient:
 
@@ -832,7 +792,7 @@ Result: {
 }
 ```
 
-## 4.7. Create transaction confirmation online
+### 4.7. Create transaction confirmation online
 
 Once one of the custodians creates a new transaction on the blockchain, it has to get the required number of confirmations from other custodians.
 
@@ -878,7 +838,7 @@ Result: {}
 ```
 
 > **Note**: For maximum security you may also create a transaction confirmation message on a machine without internet connection in offline mode. See section [4.9](#49-create-transaction-confirmation-offline)
-### 4.7.1. Alternative command to confirm transaction online
+#### 4.7.1. Alternative command to confirm transaction online
 
 TONOS-CLI supports alterbative syntax for this command, which does not use quotes and brackets to list parameters and may be more convenient:
 
@@ -921,7 +881,7 @@ Result: {}
 ```
 
 
-## 4.8. Create new transaction offline
+### 4.8. Create new transaction offline
 
 An internet connection is not required to create a signed transaction message. Use the following command to do it:
 ```
@@ -979,7 +939,7 @@ Message: 7b226d7367223a7b226d6573736167655f6964223a22363439653336616337643635366
 
 Copy the message text or scan the QR code and [broadcast](#411-broadcast-previously-generated-message) the message online.
 
-## 4.9. Create transaction confirmation offline
+### 4.9. Create transaction confirmation offline
 
 Once one of the custodians creates a new transaction on the blockchain, it has to get the required number of confirmations from other custodians.
 
@@ -1027,7 +987,7 @@ Message: 7b226d7367223a7b226d6573736167655f6964223a22313735316265333036333633383
 
 Copy the message text or scan the QR code and [broadcast](#411-broadcast-previously-generated-message) the message online.
 
-## 4.10. Generate deploy message offline
+### 4.10. Generate deploy message offline
 
 If needed, signed deploy message can be generated without immediately broadcasting it to the blockchain. Generated message can be [broadcasted](#411-broadcast-previously-generated-message) later.
 
@@ -1073,7 +1033,7 @@ Message saved to file deploy.boc
 Contract's address: -1:0c5d5215317ec8eef1b84c43cbf08523c33f69677365de88fe3d96a0b31b59c6
 Succeeded.
 ```
-## 4.11. Broadcast previously generated message
+### 4.11. Broadcast previously generated message
 Use the following command to broadcast any previously generated message (transaction message, confirmation message, deploy message):
 ```
 tonos-cli send --abi <MultisigWallet.abi.json> "message"
@@ -1106,7 +1066,7 @@ Result: {
 }
 ```
 If transaction requires multiple confirmations, the terminal displays the transaction ID, which should be sent to other wallet custodians.
-# 5. Error codes
+## 5. Error codes
 Errors related to the operation of multisig contracts typically are displayed like this:
 ```bash
 {
