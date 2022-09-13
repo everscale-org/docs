@@ -2,26 +2,29 @@
 sidebar_position: 2
 ---
 
-# Samples
+# C++ Contract Samples
 
-Testing in the network is somewhat similar to testing locally, but instead of the linker tonos-cli needs to be used and argument passing is a bit different. The deploying workflow is described in README but we will repeat it once again here. First, we need to recompile the contract since we used for linker tests. Then copy newly generated tvc file (and rename it to HelloWorld.tvc for simplicity) and abi file to
+[A repository with examples of contracts, as well as information on their compilation, deployment, and more](https://github.com/tonlabs/samples/blob/master/cpp/README.md)
 
-        tonos-cli/target/<debug or release>/ 
-        
- After all the preparations, we can execute the following script
+A list of examples of C++ contracts is given below:
 
-    cd tonos-cli/target/<debug or release>/
-    cargo run genaddr HelloWorld.tvc HelloWorld.abi --genkey hw.key
+### 1. [Hello, world!](https://github.com/tonlabs/samples/blob/master/cpp/HelloWorld): Introduces general concepts of the contract development.    
 
-The latter command returns the raw address of the contract. Now you can send (test) coins to it using any method described in README. When contract balance is greater than 0, we can deploy the contract:
 
-    cargo run deploy --abi HelloWorld.abi HelloWorld.tvc '{}' --sign hw.key
+This example is a part of [C++ Tutorial](getting-started.md) which is a step by step guidance on how to create your first contract.
 
-And finally test hello_world method:
+### 2. [Authorization](https://github.com/tonlabs/samples/blob/master/cpp/Authorization): Demonstrate a message signature check.
 
-    cargo run call –abi HelloWorld.abi "<raw address>" hello_world "{}" --sign hw.key
+This example is a part of [C++ Tutorial](getting-started.md). The example extends [Hello, world!](https://github.com/tonlabs/samples/blob/master/cpp/HelloWorld) example by introducing signature cheching to prevent spam attack on a contract and make it run out of money.
 
-The command is supposed to output the message ending with
+### 3. [Giver](https://github.com/tonlabs/samples/blob/master/cpp/Giver):  The contract sends the requested amount of money.
 
-    Succeded.
-    Result = {"output":{"value0":"0x2a"}}
+This example is a part of [C++ Tutorial](getting-started.md). It shows how to call a public method with parameters from another contract.
+
+### 4. [Wallet](https://github.com/tonlabs/samples/blob/master/cpp/Wallet): Simple contract to hold and spend EVER.
+
+### 5. [PiggyBank](https://github.com/tonlabs/samples/blob/master/cpp/Piggybank): Contract for savings.
+
+The example consist of three contracts which exchange messages between each other. It shows simplest form of an internal call of a public method. It also show how a mechanism of internal authorization might work.
+
+### 6. [Kamikaze](https://github.com/tonlabs/samples/blob/master/cpp/Kamikaze): The example shows how a contract could be deleted from the network.
