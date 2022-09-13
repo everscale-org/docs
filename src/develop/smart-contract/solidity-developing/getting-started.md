@@ -115,6 +115,20 @@ Assemble and link with a standard library into TVM bytecode:
 
 Binary code of your contract is recorded into`<WalletAddress>.tvc`file, where`<WalletAddress>`is a temporary address of the contract.
 
+## Compile
+
+Compile the contract code to TVM assembler with the Solidity Compiler.
+
+    <PATH_TO>/TON-Solidity-Compiler/compiler/build/solc/solc Wallet.sol
+
+The compiler produces Wallet.code and Wallet.abi.json to be used in the following steps.
+
+Assemble and link with a standard library into TVM bytecode:
+
+    <PATH_TO>/tvm_linker compile Wallet.code --lib <path-to>/TON-Solidity-Compiler/lib/stdlib_sol.tvm
+
+Binary code of your contract is recorded into `WalletAddress.tvc` file, where `WalletAddress` is a temporary address of the contract. 
+
 ## Deploy
 
 Let's deploy the contract to TON Labs development blockchain at`net.ton.dev`.
@@ -138,7 +152,7 @@ Address of your contract in the blockchain is located after `Raw address:`
 IMPORTANT: Save this value - you will need it to deploy your contract and to work with it. We will refer to it as "`YourAddress`" below. Seed phrase is also printed to stdout. Key pair will be generated and saved to the file Wallet.keys.json.
 
 > Note that you will need to send some coins to the address before the actual deployment. TON deploy is fee-based, so your new contract will be charged for this.
-> 
+
 
 3) Get some [test] coins to your account. Options are:
 
