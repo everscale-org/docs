@@ -36,12 +36,16 @@ On-chain Indexes solves easy and fast searching any data in blockchain. [TIP-4.3
 ##  (Status:Draft) [On-chain storage (TIP-4.4)](./../TIP-4/4.md)
 Using the Storage contract, you can store NFT-related bytes in blockchain. [TIP-4.4](./../TIP-4/4.md) is optional, but can be used for fault tolerance. If off-chain services are unavailable, the user will view NFT-related bytes, because it is stored on-chain.
 
+##  (Status:Draft) [Don't Be Evil NFT licensing (TIP-4.5)](./../TIP-4/5.md)
+The standard adds the support of [Can't Be Evil NFT licenses](https://github.com/a16z/a16z-contracts) [introduced](https://a16zcrypto.com/introducing-nft-licenses/) by [Andreessen.Horowitz](https://a16z.com). [TIP-4.5](./../TIP-4/5.md) is optional, but can be used for clarifying the legal basis of NFT usage by the owner.
+
 
 ## Authors
 | Author                                          | Command                                  |
 |-------------------------------------------------|------------------------------------------|
 | [Aleksand Aleksev](mailto:rualekseev@gmail.com) | [grandbazar.io](https://grandbazar.io)   |
 | Aleksandr Khramtsov                             | [broxus](https://broxus.com/)            |
+| Vladislav Ponomarev                             | [broxus](https://broxus.com/)            |
 | [Andrey Nedobylskiy](https://t.me/nedobylskiy)  | [svoi.dev](https://svoi.dev)             |
 | [Anton Platonov](https://t.me/SuperArmor)       | community member                         |
 | [Nikita](https://t.me/kokkekpek)                | [numiz.org](https://numiz.org/)          |
