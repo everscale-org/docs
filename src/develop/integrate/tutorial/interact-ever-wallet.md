@@ -31,15 +31,14 @@ Afterwards, please follow [**this link**](https://github.com/EverscaleGuild/ever
 
 After having studied the material above, please proceed with the **Ever wallet API, Everscale Inpage Provider, and Everscale standalone client** documentation.
 
-## Everscale wallet API
+## Ever wallet API
 
-Everscale Wallet API facilitates automatic interaction with the Everscale Blockchain and simplifies the management and transaction processes for Everscale assets.   
+Ever Wallet API facilitates automatic interaction with the Everscale Blockchain and simplifies the management and transaction processes for Everscale assets.   
 The API includes a built-in lite EVER node, support for Ever and TIP-3.1 tokens, a variety of different wallet contracts and REST API to make usage as convenient as possible.  
 On the security front, the wallet API also has formidable features, most notably in its support for multi-sig operations.
 
-- [**Everscale Wallet API using guide**](../../nodes-clients/ton-wallet-api.md/)
-- [**Everscale Wallet API GitHub repository**](https://github.com/broxus/ton-wallet-api)
-- [**Swagger**](https://api.flatqube.io/v1/swagger.yaml) 
+- [**Wallet API GitHub repository**](https://github.com/broxus/ton-wallet-api)
+- [**Swagger**](https://tonapi.broxus.com/ton/v3/swagger.yaml) 
 
 
 ## Everscale inpage provider
@@ -58,8 +57,9 @@ Also, please follow [**this link**](https://github.com/EverscaleGuild/everscale-
 ## Everscale standalone client 
 
 It is advisable to be used in conjunction with Everscale Inpage Provider. 
-Used to get data from smart contracts, and subscriptions to state changes.  
-Does not support Send in contracts.       
+
+-Used to get data from smart contracts, and subscriptions to state changes. 
+-Does not support Send in contracts.
 
 - [**Installation guide**](https://github.com/broxus/everscale-standalone-client)
 - [**Standalone client documentation**](https://broxus.github.io/everscale-standalone-client/index.html)

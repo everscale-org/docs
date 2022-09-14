@@ -8,7 +8,7 @@ Since Everscale was created on the principles of decentralization, the managemen
 
 This section provides ways to improve the network by bringing something new to Everscale.
 
-## Everscale Grants
+### Everscale Grants
 
 Everscale Grants is a campaign that aims to attract promising IT projects that can contribute to the Everscale ecosystem's growth.
 
@@ -20,7 +20,7 @@ DeFi Alliance is a business combination that creates the necessary infrastructur
 
 To apply, use the [form](https://everscale.network/developers/grants/application) on the [Everscale Grants page](https://everscale.network/developers/grants) on the [network's website](https://everscale.network/) or Everscale DeFi Alliance[corresponding page](https://everalliance.org/apply-for-grant/) of their [official website](https://everalliance.org/).
 
-## Contests
+### Contests
 
 Contests are a way to develop and support Everscale, as well as a way that the network’s meritocratic coin distribution model is put into practice.
 
@@ -32,13 +32,13 @@ Prizes for first place sometimes reach 500,000 EVER and average between 10,000 a
 
 Check out active and completed contests at [EverKit Governance](https://gov.everkit.org/).
 
-## EVER DAO
+### EVER DAO
 
 [EVER DAO](https://everdao.net) is a decentralized governance platform that allows EVER (wEVER) token holders to vote on proposals relating to the Everscale network. Community members can express their will and opinion on significant network events in a transparent and verifiable way.
 
 To participate in voting, you must have a certain stake EVER, which will be equivalent to the strength of your vote.
 
-## EverStart 
+### EverStart 
 
 [EverStart](https://everstart.io/) - is a DAO-managed multi-chain launcher for connecting to curated projects.
 
@@ -46,7 +46,7 @@ This is the first Everscale blockchain launchpad, thanks to which the community 
 
 (DAO mechanism not launched yet).
 
-## Octus Bridge DAO
+### Octus Bridge DAO
 
 [Octus Bridge](https://octusbridge.io/bridge) is a cross-chain solution that allows you to move liquidity between Everscale and many other chains.
 
