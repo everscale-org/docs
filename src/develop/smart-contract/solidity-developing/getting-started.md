@@ -41,7 +41,7 @@ sidebar_position: 0
 
 ## Install the Compiler
 
-Install TON Labs Solidity Compiler from the open source [repository](https://github.com/tonlabs/TON-Solidity-Compiler).
+Install EverX Solidity Compiler from the open source [repository](https://github.com/tonlabs/TON-Solidity-Compiler).
 
 ```jsx
 git clone git@github.com:tonlabs/TON-Solidity-Compiler.git
@@ -59,7 +59,7 @@ git clone git@github.com:tonlabs/TON-Solidity-Compiler.git
 pragma solidity >= 0.6.0;
 
 /// @title Simple wallet
-/// @author Tonlabs
+/// @author EverX
 contract Wallet {
     // Modifier that allows function to accept external call only if it was signed
     // with contract owner's public key.
@@ -186,8 +186,7 @@ tonos-cli call '<YourAddress>' sendTransaction '{"dest":"DestAddress", "value":1
 
 Now your contract is up and running! You can:
 
-- Check out [Solidity API for TON](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md)
-- Check out more [contract samples](https://github.com/tonlabs/samples/tree/master/solidity)
-- Explore in depth some aspects of smart-contract development for TON
+- Check out [Solidity API for Everscale](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md)
+- Check out more [contract samples](samples.md)
+- Explore in depth some aspects of smart-contract development for Everscale
 - Build CLI utilities from source in [GitHub](https://github.com/tonlabs/tonos-cli) to make sure you have the latest version
-- Check our research papers and [TON docs in readable format](https://docs.ton.dev/86757ecb2/p/07ddda-walk-through-the-catchain)
