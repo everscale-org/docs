@@ -29,12 +29,11 @@ To accomodate participants with stakes lower than those required, as mentioned a
 
 ## Let’s get started
 
-[**Run Validator**](../run-validator/) - here you can find information explaining how to launch a validation node in prod or testnet, as well as learn all additional information regarding this topic.
+- [**Run Validator**](../run-validator/) - here you can find information explaining how to launch a validation node in prod or testnet, as well as learn all additional information regarding this topic.
 
-[**Depools**](../depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Learn section](../../learn/).
+- [**Depools**](../depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Learn section](../../learn/).
 
 ## Help and News
 
-[Everscale validator's Telegram chat](https://t.me/freetonvalidators)
-
-[Everscale validator's Telegram group](https://t.me/ever_validators)
+- [Everscale validator's Telegram chat](https://t.me/freetonvalidators)
+- [Everscale validator's Telegram group](https://t.me/ever_validators)
