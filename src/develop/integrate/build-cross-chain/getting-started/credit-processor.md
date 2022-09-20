@@ -251,4 +251,4 @@ If you want to integrate the bridge into your website, then it is already very d
 When withdrawing tokens from Everscale, the Event contract does not automatically send the change. In order to get the remaining gas, you need to call Close method from the wallet that transferred tokens. Carefully, **DO NOT** call this method in the “`Initializing`” state. Otherwise, the transaction may fail. 
 
 - The contract `EverscaleConfiguration.sol` is not permanent, and can be replaced by another. So check the `endTimestamp` parameter if the bridge is integrated into the frontend, and take the configuration address from Proxy.sol if you transfer from the contract. Also, check that the proxy is not on pause.         
-After going through the technical aspects of transactions please follow [this page](tokenomics.md) to see the pros and cons of the Octus Bridge.
+After going through the technical aspects of transactions please follow [this page](transactions-mechanism.md) to see the pros and cons of the Octus Bridge.
