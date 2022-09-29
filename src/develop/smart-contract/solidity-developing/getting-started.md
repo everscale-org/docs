@@ -21,8 +21,8 @@ sidebar_position: 0
 - Use your own code
 - Take one of the samples from the samples [repository](https://github.com/tonlabs/samples/tree/master/solidity)
 - Utilities to link and deploy contract to the blockchain
-- build from [sources](https://github.com/tonlabs/TVM-linker/tree/master/tvm_linker)
-- download as a [binary](https://github.com/tonlabs/TON-Solidity-Compiler/releases/download/0.25/tools0.25.tar.gz)
+- build from [sources](https://github.com/tonlabs/TVM-linker)
+- download as a [binary](https://github.com/tonlabs/TON-Solidity-Compiler/releases)
 - run in a docker [container](https://hub.docker.com/r/tonlabs/compilers)
 
 ## Recommended setup
