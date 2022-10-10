@@ -77,11 +77,11 @@ module.exports = [
         to: '/develop/tutorial/everdev-sc/',
       },
       {
-        label: 'Smart contract-architecture',
+        label: 'Smart contract architecture',
         href: 'https://youtu.be/XKMnroPWXek',
       },
       {
-        label: 'Smart-contract development',
+        label: 'Smart contract development',
         href: 'https://youtu.be/YBIaFeaksMY',
       },
       {
