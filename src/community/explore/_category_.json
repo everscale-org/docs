@@ -1,0 +1,9 @@
+{
+    "position": 3,
+    "label": "Explore",
+    "link": {
+      "title": "Explore",
+      "slug": "community/explore",
+      "type": "generated-index"
+    }
+  }

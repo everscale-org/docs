@@ -11,7 +11,7 @@ This document contains instructions on how to deploy and configure a DePool smar
 It is intended for the latest version of the DePool contract. For instructions on the archive versions of DePool refer to the relevant [tags](https://github.com/tonlabs/ton-labs-contracts/releases) in the repository. Note that they are intended for reference only and should not be used on the network anymore.
 
 > **Note**: For RustCup use the DePool from `RUSTCUP_DEPOOL_--_DO_NOT_DEPLOY_ON_MAINNET` branch. **Do not use it on any other network**.
-For detailed information on DePool specifications, please refer to the [relevant document](../../learn/decentralization/depool-specifications.md).
+For detailed information on DePool specifications, please refer to the [relevant document](../../concept/everscale-overview/decentralization/depool-specifications.md).
 
 Answers to frequently asked questions can be found [here](faq.md).
 

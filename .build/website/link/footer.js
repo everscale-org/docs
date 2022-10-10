@@ -73,8 +73,8 @@ module.exports = [
     title: 'Workshop',
     items: [
       {
-        label: 'Tutorial',
-        to: 'develop/smart-contract/getting-started/',
+        label: 'EverDev Tutorial',
+        to: '/develop/tutorial/everdev-sc/',
       },
       {
         label: 'Smart contract-architecture',
@@ -119,7 +119,7 @@ module.exports = [
       },
       {
         label: 'ABI Specification',
-        href: '/arch/abi/',
+        href: '/concept/arch/abi/',
       },
       {
         label: 'NFT',
