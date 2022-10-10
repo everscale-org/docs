@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[7037],{1437:function(e){e.exports=JSON.parse('{"title":"Build","slug":"develop","permalink":"/develop","navigation":{"previous":{"title":"LT Guarantees","permalink":"/concept/smart-contracts/lt-guarantees"},"next":{"title":"Tutorials","permalink":"/develop/tutorial"}}}')}}]);
