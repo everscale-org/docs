@@ -31,7 +31,7 @@ if (process.env.APP_GA_MEASUREMENT_ID) {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docs of Everscale',
+  title: 'Explore and implement Everscale technology',
   url: 'https://docs.everscale.network',
   baseUrl: '/',
   onBrokenLinks: 'throw',
