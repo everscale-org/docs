@@ -26,7 +26,7 @@ Thanks to its well developed network, Everscale is able to interest several type
 
 **Developers** ([Tutorial](../develop/tutorial/getting-started.md), [Section](../develop/)) - Development of decentralised applications on Everscale.
 
-**Validators** ([Tutorial](../concept/validation/getting-started.md), [Section](../validate/)) - Validating and staking. 
+**Validators** ([Tutorial](../validate/getting-started.md), [Section](../validate/)) - Validating and staking. 
 
 **Contributors** ([Tutorial](../community/contribute/tutorial/getting-started.md), [Section](../community/contribute/)) - Earn with partnerships that benefit the network..
 

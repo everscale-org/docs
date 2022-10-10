@@ -29,7 +29,7 @@ In order to solve this problem, another truly genius idea was invented, called d
 
 In Everscale, for each entity, balance or even trading pair, its own small smart contract is deployed. The owner of the respective smart contract decides on his own for how long to store the data and pays only for that. 
 
-[**3. Validation**](../../concept/validation/getting-started.md)) 
+[**3. Validation**](../../validate/getting-started.md)) 
 
 The Everscale blockchain was not built to allow just anyone to become a validator. Validation is a critical process, and requires professional equipment and access to an appropriate server. The total number of validators will at most be in the thousands, not in the tens of thousands. And validator machines have high server and channel requirements (the current requirements are 48 CPUs, 128 RAM and 1TB SSD) and a 1GB channel (the network is used extensively). This allows for the blockchain to support a very quick block release speed and often rotate validators in the shards.
 
