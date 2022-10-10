@@ -12,4 +12,4 @@ Credit phase - the account balance is increased from the value sent in the messa
 3. Action phase — in this phase, the outgoing messages are created that were put in a special register in phase 3. And if you do not have enough money to pay for outgoing messages, the transaction will be rolled back and go to phase 5 (if the flag is on). In this situation, you will have the computation - success: true, action - success: false, abort: true. There is also a special flag when creating a message, which says that this message should be ignored if there is not enough money to create it.
 4. Bounce phase — if the bounce: true flag was set for the incoming message, then in this phase a back message is created (if there is enough money left to pay for the message), which will call the onBounce utility function. Any remaining value will be attached to the message.
 
-See more details in [Transaction executor](../arch/60-executor.md#transaction-executor-message-processing-general-scheme)
+See more details in [Transaction executor](../../concept/arch/60-executor.md#transaction-executor-message-processing-general-scheme)

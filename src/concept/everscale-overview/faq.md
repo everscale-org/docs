@@ -22,7 +22,7 @@ Even at the design stage, Everscale took into account the errors and shortcoming
 Consider its main advantages:
 
 - Record speed, reliability, and thoughtful [architecture](../arch/).
-- [Smart contracts](../smart-contracts/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
+- [Smart contracts](../../develop/smart-contracts/01-introduction.md) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
 - Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
 
 It is also a promising and decentralized [ecosystem](../../community/explore/ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
@@ -43,8 +43,8 @@ To understand the basic principles and mechanisms of Everscale, we recommend tha
 - [Architecture section](../arch/)
   - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/20-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
 - [Decentralization section](../../concept/everscale-overview/decentralization/end-to-end-decentralization.md)
-- [Smart Contracts section](../smart-contracts/)
-  - [Introduction](../smart-contracts/01-introduction.md)
+- [Smart Contracts section](../../develop/smart-contracts/01-introduction.md)
+  - [Introduction](../../develop/smart-contracts/01-introduction.md)
   - [FAQ](../../develop/faq.md)
   - [DeBots](../../develop/debots/getting-started.md)
 - [Standards section](../standard/)
@@ -115,7 +115,7 @@ In fact, validators provide the basis for the functioning of a decentralized net
 
 ## What can I do as a developer?
 
-Since Everscale is quite a young network, there are a lot of opportunities for developers here: [hachatons and grants](../../develop/hackathons-grants.md), [Smart Contracts](../smart-contracts/) developing, [DAO](https://everdao.net), etc.
+Since Everscale is quite a young network, there are a lot of opportunities for developers here: [hachatons and grants](../../develop/hackathons-grants.md), [Smart Contracts](../../develop/smart-contracts/01-introduction.md) developing, [DAO](https://everdao.net), etc.
 
 Check out the [developer section](../../develop/) to learn more.
 

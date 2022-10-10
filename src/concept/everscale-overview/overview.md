@@ -21,7 +21,7 @@ However, Everscale went even further than classical sharding. Below we briefly d
 
 On Everscale, shards are dynamically added as the load increases and then merged back. This is possible because all contracts on the chain communicate with each other asynchronously, and therefore, we can split one shard into two shards without any problems occurring (shards are just divided in half according to the ranges of contract addresses).
 
-[**2. Distributed programming**](../../concept/smart-contracts/10-distributed-programming.md)
+[**2. Distributed programming**](../../develop/smart-contracts/10-distributed-programming.md)
 
 There is a reasonable question. Let's consider that we have a contract with a token, for example, USDT. Then, a user with a larger account balance is more motivated to pay for storage, than, respectively, the user with a lesser balance. This way, wouldn't there arise situations when some users will be obliged to pay for storage on behalf of others, so that their contract is not deleted?    
 

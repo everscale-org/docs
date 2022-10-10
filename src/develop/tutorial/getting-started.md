@@ -33,7 +33,7 @@ We assume that there are several main cases of developers interacting with Evers
   - Learn the [network architecture](../../concept/arch/)
   - Learn the [standards](../../concept/standard/)
   - Learn the [development tools](../tools/overview.md)
-  - Learn the specifics of writing [smart contracts](../../concept/smart-contracts/)
+  - Learn the specifics of writing [smart contracts](../../develop/smart-contracts/01-introduction.md)
 
 - Learn how to [issue tokens](../tutorial/smart-digital-assets/issue-ft.md)
 - Explore the development team [incentive programs in Everscale](../hackathons-grants.md)
