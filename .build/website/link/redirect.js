@@ -1,12 +1,24 @@
 module.exports = {
   redirects: [
     {
-      to: '/learn/everscale-overview/wallets',
+      to: '/community/explore/wallets',
       from: '/learn/everscale-overview/exchangewallets',
     },
     {
       to: '/develop/tools/everdev/command-line-interface/cpp',
       from: '/develop/tools/everdev/command-line-interface/c',
+    },
+    {
+      to: '/concept',
+      from: '/learn',
+    },
+    {
+      to: '/concept/arch',
+      from: '/arch',
+    },
+    {
+      to: '/concept/standard',
+      from: '/standard',
     },
   ],
   createRedirects(existingPath) {
