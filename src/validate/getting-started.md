@@ -1,8 +1,12 @@
+---
+sidebar_position: 0
+---
+
 # Getting started
 
 ## Before we start
 
-Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../../learn/everscale-overview/overview.md), in order to get familiar with Everscale blockchain essentials.
+Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../concept/everscale-overview/overview.md), in order to get familiar with Everscale blockchain essentials.
 
 ## Overview
 
@@ -23,15 +27,15 @@ Based on the current network configuration, validator elections take place every
 2. The election is over and the smart contract determines the group of validators for the next phase;
 3. A new group of validators starts working. The stakes of the former group of validators are temporarily frozen.
 
-Check out the [validator elections page](../run-validator/validator-elections.md) to get better understanding the elections mechanism.
+Check out the [validator elections page](run-validator/validator-elections.md) to get better understanding the elections mechanism.
 
 To accomodate participants with stakes lower than those required, as mentioned above, DePool smart contracts are designed. They permit any validator, irrespective of the stake size, to participate in staking and receive their part of the reward. DePool smart contracts guarantee that the validator cannot use the participants' funds in any other way, thereby guaranteeing the security of their funds from the validator's dishonesty. 
 
 ## Let’s get started
 
-- [**Run Validator**](../run-validator/) - here you can find information explaining how to launch a validation node in prod or testnet, as well as learn all additional information regarding this topic.
+- [**Run Validator**](run-validator/) - here you can find information explaining how to launch a validation node in prod or testnet, as well as learn all additional information regarding this topic.
 
-- [**Depools**](../depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Learn section](../../learn/).
+- [**Depools**](depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Concept section](../concept/everscale-overview/decentralization/debot-specifications.md).
 
 ## Help and News
 
