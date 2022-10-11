@@ -1,9 +1,9 @@
 {
-  "position": 4,
+  "position": 2,
   "label": "Decentralization",
   "link": {
     "title": "Decentralization",
-    "slug": "learn/decentralization",
+    "slug": "concept/decentralization",
     "type": "generated-index"
   }
 }
