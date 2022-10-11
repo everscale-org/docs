@@ -8,7 +8,7 @@ description: Working with SMV contracts
 > Referenced repository:  
 > [https://github.com/EverscaleGuild/everscale-contract-library/tree/main/governance/SMV](https://github.com/EverscaleGuild/everscale-contract-library/tree/main/governance/SMV)
 
-> Explore the [**tools section**](../tools/) of the Everscale documentation.  
+> Explore the [**tools section**](tools/) of the Everscale documentation.  
 
 ## 1. Introduction
 
