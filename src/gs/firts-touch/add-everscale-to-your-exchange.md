@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Add EVER to your Exchange
+# Add EVER to your project
 
 ## Introduction
 
@@ -12,7 +12,7 @@ There are a few different ways to accomplish the necessary tasks:
 
 - **Blockchain access** may be set up either through the [Evercloud](https://docs.everos.dev/evernode-platform/products/evercloud/get-started) or through your own node - the [DApp server](https://docs.everos.dev/evernode-platform/products/dapp-server-ds).
 
-- **Deposit account management** can be accomplished either through the [TONOS-CLI](https://github.com/tonlabs/tonos-cli) command line tool or integrated into your backend with TON SDK. Both of these approaches are compatible with either of the blockchain access setups.
+- **Deposit account management** can be accomplished either through the [TONOS-CLI](https://github.com/tonlabs/tonos-cli) command line tool or integrated into your backend with EVER SDK. Both of these approaches are compatible with either of the blockchain access setups.
 
 
 ## Setting up Blockchain Access
@@ -73,7 +73,7 @@ Deploy node:
 
 ## Setting up Deposit Account
 
-Currently we can recommend the formally verified [SafeMultisig](../../smart-contract/multisignature-wallet.md) contract for use in deposit accounts. It is well tested and secure, supports multiple custodians, and can be set up to require several independent signatures for any transfers. However it has certain limitations, that may prove problematic for exchanges: it is not possible to send tokens transfers in batches to multiple addresses.
+Currently we can recommend the formally verified [SafeMultisig](../../develop/multisignature-wallet.md) contract for use in deposit accounts. It is well tested and secure, supports multiple custodians, and can be set up to require several independent signatures for any transfers. However it has certain limitations, that may prove problematic for exchanges: it is not possible to send tokens transfers in batches to multiple addresses.
 
 If this functionality is required, you can develop a contract with the needed capabilities or get one developed by someone in the Everscale community.
 
@@ -87,7 +87,7 @@ It supports the Evercloud and DApp server-based approaches both.
 
 **1. Install TONOS-CLI**
 
-You can use [EVERDEV](../../tools/everdev/overview.md) to install the latest version of TONOS-CLI:
+You can use [EVERDEV](../../develop/tools/everdev/overview.md) to install the latest version of TONOS-CLI:
 
     everdev tonos-cli install
 
@@ -203,7 +203,7 @@ The utility displays the new deposit account address (Raw address).
     
 **8. Send tokens to the new address from another account**
 
-Before deployment, an account needs to be sponsored with a small amount of tokens. You may use any convenient method to send tokens to the calculated address. For example, sending tokens from multisig wallets through TONOS-CLI is described [here](../../smart-contract/multisignature-wallet.md#46-create-transaction-online). Note, that if the wallet has multiple custodians, the transaction may require [confirmation](../../smart-contract/multisignature-wallet.md#47-create-transaction-confirmation-online) from the other custodians.
+Before deployment, an account needs to be sponsored with a small amount of tokens. You may use any convenient method to send tokens to the calculated address. For example, sending tokens from multisig wallets through TONOS-CLI is described [here](../../develop/multisignature-wallet.md#46-create-transaction-online). Note, that if the wallet has multiple custodians, the transaction may require [confirmation](../../develop/multisignature-wallet.md#47-create-transaction-confirmation-online) from the other custodians.
 
 **9. Deploy the contract to blockchain**
 
@@ -248,7 +248,7 @@ A sample is available in [this repository](https://github.com/tonlabs/sdk-sample
 
 Note, that similar to the TONOS-CLI approach described above, you have to sponsor a deposit account before deploying contract code. The sample requires you to input the data for a preexisting multisig account on the developer network to server as a giver. 
 
-The recommended [SafeMultisig](../../smart-contract/multisignature-wallet.md) contract is used.
+The recommended [SafeMultisig](../../develop/multisignature-wallet.md) contract is used.
 
     async function main(client) {
     
