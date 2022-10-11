@@ -25,7 +25,7 @@ And it is their solutions and tools that you will use when developing, while you
 
 - [Ever Cloud](evercloud.md) (by EverX) - provides Everscale developers with services on top of scalable blockchain infrastructure, so that developers can focus on business logic instead of infrastructure maintenance.
 
-- [Everscale Wallet API](ton-wallet-api.md) (by Broxus) - a non-validating node with a built-in wallet for convenient integration with exchanges and other projects.
+- [Everscale Wallet API](../tutorial/ton-wallet-api.md) (by Broxus) - a non-validating node with a built-in wallet for convenient integration with exchanges and other projects.
 
 - [TON Kafka Producer](ton-kafka.md) (by Broxus) - a non-validating node that writes blockchain data to Kafka. It can be used for further work with data in the required format and location. This node is lighter than Evernote DS.
 

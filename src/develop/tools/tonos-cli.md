@@ -1376,7 +1376,7 @@ tonos-cli runx getParameters
 
 # 5. DeBot commands
 
-TONOS-CLI has a built-in [DeBot](../smart-contract/debots/getting-started.md) browser, which is regularly updated with the most recent versions of DEngine.
+TONOS-CLI has a built-in [DeBot](../debots/getting-started.md) browser, which is regularly updated with the most recent versions of DEngine.
 
 To call a DeBot, use the following command:
 
@@ -1412,7 +1412,7 @@ Further input depends on the DeBot, which usually explains any actions it offers
 
 # 6. Multisig commands
 
-Multisig commands allow you to work with any existing [Multisig wallets](../smart-contract/multisignature-wallet.md) in a more convenient way and with no need of ABI files.
+Multisig commands allow you to work with any existing [Multisig wallets](../multisignature-wallet.md) in a more convenient way and with no need of ABI files.
 
 ## 6.1. Send tokens
 

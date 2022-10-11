@@ -26,7 +26,7 @@ And it is their solutions and tools that you will use when developing, while you
 
 ### Interaction with blockchain
 
-- [TONOS CLI](tonos-cli.md)(by EverX) - is a multi-platform command line interface for Ever OS. It allows you to work with keys and seed phrases, deploy contracts, call any of their methods, generate and broadcast messages. It supports specific commands for [DeBot](../smart-contract/debots/getting-started.md), [DePools](../../validate/depools/getting-started.md) and Multisig contracts, as well as a number of supplementary functions.
+- [TONOS CLI](tonos-cli.md)(by EverX) - is a multi-platform command line interface for Ever OS. It allows you to work with keys and seed phrases, deploy contracts, call any of their methods, generate and broadcast messages. It supports specific commands for [DeBot](../debots/getting-started.md), [DePools](../../validate/depools/getting-started.md) and Multisig contracts, as well as a number of supplementary functions.
 
 ### Tools for contract developers:
 

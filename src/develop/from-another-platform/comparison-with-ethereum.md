@@ -109,7 +109,7 @@ In order to solve this problem, another truly genius idea was invented, called d
 
 In Everscale, for each entity, balance or even trading pair, its own small smart contract is deployed. The owner of the respective smart contract decides on his own for how long to store the data and pays only for that. 
 
-The mechanism describing how this works in detail is quite difficult and can be read in the [following article](../smart-contract/learn/10-distributed-programming.md).
+The mechanism describing how this works in detail is quite difficult and can be read in the [following article](../../develop/smart-contracts/10-distributed-programming.md).
 
 ## References
 
