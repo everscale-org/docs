@@ -14,7 +14,7 @@ To that end, on this page, we will briefly review the main cases that may be use
 
 ## Let's begin
 
-First, if you're not familiar with Everscale, we highly recommend that you explore the [**Everscale overview section**](../../../learn/everscale-overview/). 
+First, if you're not familiar with Everscale, we highly recommend that you explore the [**Everscale overview section**](../../../concept/everscale-overview/). 
 
 Let's move on to the cases:
 

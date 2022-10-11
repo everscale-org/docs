@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Users
+# Users Guide
 
-To get started, if you're new to Everscale, we strongly recommend that you check out the **[Welcome section](../welcome.md)**
+To get started, if you're new to Everscale, we strongly recommend that you check out the **[Welcome section](../../gs/welcome.md)**
 
 In this section, you will find all the important information about the key features of the Everscale network as an individual user.
 
@@ -22,11 +22,11 @@ In order to store and manage tokens on the Everscale network, you will need a wa
 
 There are many different ways to buy EVER:
 
-  1. [Exchange wallets](../everscale-overview/wallets.md)
+  1. [Exchange wallets](wallets.md)
   2. [Exchanges](https://www.coingecko.com/en/coins/everscale#markets)
-  3. [DEXS](../everscale-overview/ecosystem.md)
+  3. [DEXS](ecosystem.md)
 
-Check out the [Wallets section](../everscale-overview/wallets.md) for the most popular token storage solutions.
+Check out the [Wallets section](wallets.md) for the most popular token storage solutions.
 
 ## Popular cases of interaction with Everscale
 
@@ -35,7 +35,7 @@ Once you have an Everscale network wallet, you can start interacting with variou
 Everscale provides many earning opportunities for regular users.  
 You can earn on farming, NFT, staking or trading on exchanges and DEX.
 
-In the [Ecosystem section](../everscale-overview/ecosystem.md), you can get acquainted with the most popular representatives of Everscale dapps in various industries: DeFi, NFT, GameFi, etc.
+In the [Ecosystem section](ecosystem.md), you can get acquainted with the most popular representatives of Everscale dapps in various industries: DeFi, NFT, GameFi, etc.
 
 ## Community
 

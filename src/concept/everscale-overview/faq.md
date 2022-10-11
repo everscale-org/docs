@@ -11,7 +11,7 @@ Here you will find answers to the most common questions that arise when getting 
 
 ## What is Everscale?
 
-**Everscale** is a peer-to-peer multi-blockchain system. It is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/00-ever-os.md).
+**Everscale** is a peer-to-peer multi-blockchain system. It is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../../arch/00-ever-os.md).
 
 ## Why Everscale?
 
@@ -21,11 +21,11 @@ Even at the design stage, Everscale took into account the errors and shortcoming
 
 Consider its main advantages:
 
-- Record speed, reliability, and thoughtful [architecture](../arch/).
-- [Smart contracts](../develop/smart-contract/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
+- Record speed, reliability, and thoughtful [architecture](../../arch/).
+- [Smart contracts](../../develop/smart-contracts/01-introduction.md) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
 - Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
 
-It is also a promising and decentralized [ecosystem](../learn/everscale-overview/ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
+It is also a promising and decentralized [ecosystem](../../community/explore/ecosystem.md), each participant of which can offer the community an idea for development, competition, or partnership.
 
 ## Everscale blockchain explorer
 
@@ -40,14 +40,14 @@ Currently available blockchain explorers for use:
 
 To understand the basic principles and mechanisms of Everscale, we recommend that you familiarize yourself with the following sections of the documentation:
 
-- [Architecture section](../arch/)
-  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/20-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
-- [Decentralization section](../learn/decentralization/)
-- [Smart Contracts section](../develop/smart-contract/)
-  - [Introduction](../develop/smart-contract/learn/01-introduction.md)
-  - [FAQ](../develop/smart-contract/faq.md)
-  - [DeBots](../develop/smart-contract/debots/getting-started.md)
-- [Standards section](../standard/)
+- [Architecture section](../../arch/)
+  - ( [Blockchain basics](../../arch/10-basics.md), [fee calculation](../../arch/20-fee-calculation.md), [security](../../arch/90-security.md), [account](../../arch/40-accounts.md), [messages](../../arch/50-message.md), [EVER OS](../../arch/00-ever-os.md), etc.)
+- [Decentralization section](../../concept/everscale-overview/decentralization/end-to-end-decentralization.md)
+- [Smart Contracts section](../../develop/smart-contracts/01-introduction.md)
+  - [Introduction](../../develop/smart-contracts/01-introduction.md)
+  - [FAQ](../../develop/faq.md)
+  - [DeBots](../../develop/debots/getting-started.md)
+- [Standards section](../../standard/)
 
 ## What is EVER?
 
@@ -69,7 +69,7 @@ BNB Smart Chain: [0x0A7e7D210C45c4abBA183C1D0551B53AD1756ecA](https://bscscan.co
 
 Using the cross-chain bridge [Octus Bridge](https://octusbridge.io), it is possible to transfer crypto-assets between Everscale, Ethereum, BNB Chain (Binance Smart Chain), Fantom Opera, Polygon, Avalanche, Milkomeda networks and pay commission in EVER.
 
-- [Validating](../validate/) 
+- [Validating](../../validate/) 
 
 Validators stakes required to maintain the blockchain. To raise a validator node in the Everscale network, a Validator will need to purchase EVERs to provide a stake, as well as acquire a server that will withstand the projected loads due to block validation.
 
@@ -83,15 +83,15 @@ Many apps and bots use EVER, for example, you can pay Combot subscription, play 
 
 ## How can i store and trade EVER?
 
-For storing your TIP-3 tokens you need to use appropriate wallets - check out the [wallets section](everscale-overview/wallets.md). 
+For storing your TIP-3 tokens you need to use appropriate wallets - check out the [wallets section](../../community/explore/wallets.md). 
 
-To buy EVER you can use [exchange wallets](everscale-overview/wallets.md), [CEX](everscale-overview/ecosystem.md/#exchanges) (centralize exchanges) or [DEX](everscale-overview/ecosystem.md/#defi) (decentralize exchanges).
+To buy EVER you can use [exchange wallets](../../community/explore/wallets.md), [CEX](../../community/explore/ecosystem.md#exchanges) (centralize exchanges) or [DEX](../../community/explore/ecosystem.md#defi) (decentralize exchanges).
 
 ## What are the Everscale earning opportunities?
 
 ### Earning EVERs
 
-#### [Staking](../validate/staking.md)
+#### [Staking](../../validate/staking.md)
 
 In Everscale, here is [DePool](https://everpools.io/), which is a specialized smart contract that collects stakes from various participants to be pooled together and forwarded as one stake to the Elector on behalf of a validator node. The validator node owner supports the DePool providing a guaranteed minimal stake, and allowing smaller token holders to participate in and benefit from validation. The owner's benefit, in turn, is the increased stake for their node. Stake collection is continuous. Stakes can be made at any time, and will be distributed to whichever round is currently in the pooling stage. Every time an election begins on the blockchain, the accumulated pool is locked and staked in this election, and the pooling stage of the next round begins.
 
@@ -99,11 +99,11 @@ In Everscale, here is [DePool](https://everpools.io/), which is a specialized sm
 
 Yield-farming is an increasingly popular product in many various DeFi protocols, and Everscale is no different in this respect! Similar to staking, farming income is expressed as a percentage per year, and is added to your tokens as long as they are locked into a farming pool. These farming pool consist of LP tokens (Liquidity provider tokens) which are obtained through providing liquidity to the exchange pools in their respective pairs. Depending on which tokens are paired for farming, the amount of income can vary greatly. Generally speaking, pairs with better known coins and stable tokens offer a lower percentage yield than those pairs with less known tokens. The income indicator for the year is APR and is expressed as a percentage.
 
-#### [Grants](../develop/hackathons-grants.md)
+#### [Grants](../../develop/hackathons-grants.md)
 
 Everscale Grants is a new method of funding teams to develop Everscale blockchain that has come to replace contests. Grants aim to help promising IT startups launch and onramp into the Everscale ecosystem. In a word, the program was successful. Take a look for yourself at the results. A total of 17 projects were interviewed as part of the project. Of those 17, 8 of the best and brightest were selected to be part of the project. As of right now, the elite 8 are going through DD procedures and more technical interviews as partnership terms are being negotiated. You’ll be able to read the full details about each participant once all of the procedures have been completed and partnership terms have been agreed upon. While DeFi is our thing, the projects that are involved with the grants program come from all different sectors and stand to add some diversity to the Everscale ecosystem. In the first round, Everscale had projects from GameFi, the NFT space, DeFi, AML and the crypto news sphere apply. Everscale Grants campaign has grand pool of 15 000 000 EVERs.
 
-#### [Validation](../validate/)
+#### [Validation](../../validate/)
 
 ## What about validation process?
 
@@ -111,28 +111,28 @@ Everscale validator is a network node (server) that participates in the validati
 
 In fact, validators provide the basis for the functioning of a decentralized network. For their work, they receive remuneration consisting of a processing fee (1,7 EVER for a new block in the masterchain, 1 EVER for a new block in the shardchain), as well as from the emission of new tokens distributed to validators. In the current network parameters, the emission is fixed at the level of ~0.5% per year. It is distributed each validation cycle to all validators in proportion to their stakes.
 
-> Check out the [Validation section](../validate/) for more information. 
+> Check out the [Validation section](../../validate/) for more information. 
 
 ## What can I do as a developer?
 
-Since Everscale is quite a young network, there are a lot of opportunities for developers here: [hachatons and grants](../develop/hackathons-grants.md), [Smart Contracts](../develop/smart-contract/) developing, [DAO](https://everdao.net), etc.
+Since Everscale is quite a young network, there are a lot of opportunities for developers here: [hachatons and grants](../../develop/hackathons-grants.md), [Smart Contracts](../../develop/smart-contracts/01-introduction.md) developing, [DAO](https://everdao.net), etc.
 
-Check out the [developer section](../develop/) to learn more.
+Check out the [developer section](../../develop/) to learn more.
 
 ## How to contribute to Everscale?
 
 Since Everscale was created on the principles of decentralization, the management and development of the network is completely decentralized with the help of a community where each participant can contribute, through DAOs, grants, making improvements to the network documentation, etc.
 
-Go to the [Contributing section](../contribute/) and see the main features of Everscale's self-improvement
+Go to the [Contributing section](../../community/contribute/) and see the main features of Everscale's self-improvement
 
 ## How to integrate with Everscale?
 
 Everscale is open to everything new, including integrations with other projects, teams and products.
 You can add EVER to your exchange, integrate your network into Octus Bridge, etc.
 
-For a detailed introduction to integration options and their implementation, see the [Integration section](../develop/integrate/).
+For a detailed introduction to integration options and their implementation, see the [Integration section](../../develop/integrate/).
 
 ## What about Everscale ecosystem?
 
-Check out the [Ecosystem section](../learn/everscale-overview/ecosystem.md).
+Check out the [Ecosystem section](../../community/explore/ecosystem.md).
 
