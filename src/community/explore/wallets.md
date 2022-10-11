@@ -1,11 +1,11 @@
 ---
 description: In this section, we will introduce you to the most popular wallets
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# Manage a Wallet
+# Wallets
 
-The [Ecosystem section](../everscale-overview/ecosystem.md) provides ways to buy EVER.  
+The [Ecosystem section](ecosystem.md) provides ways to buy EVER.  
 In this section, we will introduce you to the most popular EVER wallets.
 
 ## Non-custodial wallets

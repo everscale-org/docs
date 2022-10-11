@@ -21,7 +21,7 @@ However, Everscale went even further than classical sharding. Below we briefly d
 
 On Everscale, shards are dynamically added as the load increases and then merged back. This is possible because all contracts on the chain communicate with each other asynchronously, and therefore, we can split one shard into two shards without any problems occurring (shards are just divided in half according to the ranges of contract addresses).
 
-[**2. Distributed programming**](../../develop/smart-contract/learn/10-distributed-programming.md)
+[**2. Distributed programming**](../../develop/smart-contracts/10-distributed-programming.md)
 
 There is a reasonable question. Let's consider that we have a contract with a token, for example, USDT. Then, a user with a larger account balance is more motivated to pay for storage, than, respectively, the user with a lesser balance. This way, wouldn't there arise situations when some users will be obliged to pay for storage on behalf of others, so that their contract is not deleted?    
 
@@ -29,7 +29,7 @@ In order to solve this problem, another truly genius idea was invented, called d
 
 In Everscale, for each entity, balance or even trading pair, its own small smart contract is deployed. The owner of the respective smart contract decides on his own for how long to store the data and pays only for that. 
 
-[**3. Validation**](../../validate/tutorial/getting-started.md) 
+[**3. Validation**](../../validate/getting-started.md)) 
 
 The Everscale blockchain was not built to allow just anyone to become a validator. Validation is a critical process, and requires professional equipment and access to an appropriate server. The total number of validators will at most be in the thousands, not in the tens of thousands. And validator machines have high server and channel requirements (the current requirements are 48 CPUs, 128 RAM and 1TB SSD) and a 1GB channel (the network is used extensively). This allows for the blockchain to support a very quick block release speed and often rotate validators in the shards.
 

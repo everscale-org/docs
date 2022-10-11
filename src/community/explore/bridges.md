@@ -1,6 +1,6 @@
 ---
 description: Cross-chain bridges were made for transferring assets between chains
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Bridges

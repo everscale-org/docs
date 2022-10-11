@@ -1,6 +1,6 @@
 ---
 description: The Everscale ecosystem is made up of blockchain-based projects
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Ecosystem
