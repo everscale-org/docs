@@ -7,7 +7,7 @@ sidebar_position: 0
 ## About Everscale
 
 Everscale is a unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — **Ever OS**.  
-[Ever OS](../arch/00-ever-os.md) is capable of processing millions of transactions per second, with Turing-complete smart contracts and decentralized user interfaces.  
+[Ever OS](../arch/00-ever-os.md) is capable of processing millions of transactions per second, with Turing-complete smart contracts and decentralized user interfaces.
 
 Everscale presents some new and unique properties, such as dynamic multithreading, soft majority consensus and distributed programming, which enable it to be scalable, fast and secure at the same time. It is governed by a decentralized community founded upon meritocratic principles via Soft Majority Voting protocol.
 
@@ -20,19 +20,19 @@ If you would like to learn more about Everscale, please visit the [Everscale Ove
 
 ## Everscale for you
 
-Thanks to its well developed network, Everscale is able to interest several types of  participants by providing them with multiple branches of activity.
+Thanks to its well developed network, Everscale is able to interest several types of participants by providing them with multiple branches of activity.
 
 **Users** ([Tutorial](tutorial/users.md)) - Everscale as an opportunity for storage and earnings (DeFi, NFT, etc.).
 
-**Developers** ([Tutorial](../develop/tutorial/), [Section](../develop/)) - Development of decentralised applications on Everscale.
+**Developers** ([Tutorial](/develop/tutorial/), [Section](/develop/)) - Development of decentralised applications on Everscale.
 
-**Validators** ([Tutorial](../validate/tutorial/), [Section](../validate/)) - Validating and staking. 
+**Validators** ([Tutorial](/validate/tutorial/), [Section](/validate/)) - Validating and staking.
 
-**Contributors** ([Tutorial](../contribute/tutorial/), [Section](../contribute/)) - Earn with partnerships that benefit the network..
+**Contributors** ([Tutorial](/contribute/tutorial/), [Section](/contribute/)) - Earn with partnerships that benefit the network..
 
-**Intergators** ([Tutorial](../develop/integrate/tutorial/), [Section](../develop/integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
+**Intergators** ([Tutorial](/develop/integrate/tutorial/), [Section](/develop/integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
 
-Below, we provide tutorials as well as links to the sections of documentation designed to accommodate each particular participant in accordance with what interests you most on the Everscale network. 
+Below, we provide tutorials as well as links to the sections of documentation designed to accommodate each particular participant in accordance with what interests you most on the Everscale network.
 
 ## Key organizations
 
