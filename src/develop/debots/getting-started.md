@@ -37,7 +37,7 @@ These needs are covered in various DeBot Interfaces (DInterfaces) which can be u
 
 To use an interface, the DeBot should import a source file with the DInterface declaration and call its methods like any other smart contract methods in Everscale — by sending internal messages to an interface address, which is unique and explicitly defined for every interface.
 
-Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published by [DeBot Interface Specifications Consortium](../../../learn/decentralization/debot-consortium.md).
+Every DInterface must be discussed and accepted by DeBot Interface Specifications (DIS) Consortium before it can be used in DeBots. All accepted interfaces are published by [DeBot Interface Specifications Consortium](../../concept/everscale-overview/decentralization/debot-consortium.md).
 
 ## Prerequisites
 
