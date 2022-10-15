@@ -1,9 +1,9 @@
 {
     "position": 4,
-    "label": "Concept",
+    "label": "Learn",
     "link": {
-      "title": "Concept",
-      "slug": "concept",
+      "title": "Learn",
+      "slug": "learn",
       "type": "generated-index"
     }
 }
