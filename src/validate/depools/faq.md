@@ -26,7 +26,7 @@ There are, however, some risks involved: if DePool's validator node wins electio
 
 For this reason, the DePool owner is obliged to invest a certain amount of tokens in each validation round, all or some of which they stand to lose, and will be the first among the participants to lose, should their node perform poorly or misbehave in any way. This way, participants can be sure that the person upon whose actions their funds and rewards depend is highly motivated to perform their duties properly and ensure everyone receives their rewards.
 
-The contract code in open sourced and formally verified. See [specifications](../../concept/everscale-overview/decentralization/depool-specifications.md) and contract [code](getting-started.md) for details.
+The contract code in open sourced and formally verified. See [specifications](../../learn/everscale-overview/decentralization/depool-specifications.md) and contract [code](getting-started.md) for details.
 
 ### What is validator assurance?
 

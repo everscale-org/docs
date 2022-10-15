@@ -6,7 +6,7 @@ sidebar_position: 0
 
 ## Before we start
 
-Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../concept/everscale-overview/overview.md), in order to get familiar with Everscale blockchain essentials.
+Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../learn/everscale-overview/overview.md), in order to get familiar with Everscale blockchain essentials.
 
 ## Overview
 
@@ -35,7 +35,7 @@ To accomodate participants with stakes lower than those required, as mentioned a
 
 - [**Run Validator**](run-validator/) - here you can find information explaining how to launch a validation node in prod or testnet, as well as learn all additional information regarding this topic.
 
-- [**Depools**](depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Concept section](../concept/everscale-overview/decentralization/debot-specifications.md).
+- [**Depools**](depools/) - in this section you can find information on interaction with DePools. More on this, you can read in the [Learn section](../learn/everscale-overview/decentralization/debot-specifications.md).
 
 ## Help and News
 

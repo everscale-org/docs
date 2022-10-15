@@ -8,7 +8,7 @@ sidebar_position: 0
 
 This page will give you an insight into how to choose development tools and approaches for building decentralised applications with the help of Everscale.
 
-> **Attention!** Before you read this article, we recommend that you study the [Everscale Overview section](../../concept/everscale-overview/overview.md) and the block of pages in the [Architecture section](../../arch/) if you want to develop complex products on the Everscale blockchain.
+> **Attention!** Before you read this article, we recommend that you study the [Everscale Overview section](../../learn/everscale-overview/overview.md) and the block of pages in the [Architecture section](../../arch/) if you want to develop complex products on the Everscale blockchain.
 
 ## Let's start 
 
@@ -45,7 +45,7 @@ We assume that there are several main cases of developers interacting with Evers
   - Learn how to [write contracts on Solidity](../solidity-developing/getting-started.md)
 
 - Integrate Everscale blockchain in your on-chain or off-chain project - you will find it helpful to explore the Everscale Overview page as well as the Architecture page. Afterwards, please follow the Getting Started page in the Integrate section.  
-  - Learn [Everscale Overview section](../../concept/everscale-overview/)
+  - Learn [Everscale Overview section](../../learn/everscale-overview/)
   - Learn [how to integrate](../integrate/tutorial/getting-started.md) anyting with Everscale.
   - Learn the [development tools](../tools/overview.md)
   - Learn popular integration cases [(exchange integration)](../../gs/firts-touch/add-everscale-to-your-exchange.md)

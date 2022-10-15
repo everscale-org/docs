@@ -17,7 +17,7 @@ Before proceeding with the launch of your Dapp, let us first go through an overv
 
 ## What you can learn
 
-Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Concept section](../../concept/) where all necessary technical information is provided in a comprehensive way. 
+Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Learn section](../../learn/) where all necessary technical information is provided in a comprehensive way. 
 
 For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](../../develop/debots/getting-started.md).  
 DeBots, in essence, is an intuitive, no prior knowledge required interface for smart contracts on the Everscale blockchain.

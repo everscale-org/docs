@@ -4,6 +4,10 @@ module.exports = {
       title: 'Welcome to Everscale!',
       link: '/gs/welcome/',
     },
+    {
+      title: '🪤 Everscale Tutorial - 5min ⏱️',
+      link: '/develop/tutorial/everdev-sc/',
+    },
   ],
   feature: [
     {
@@ -34,7 +38,7 @@ module.exports = {
     {
       title: '🎓 Understand Everscale and its use cases',
       description: 'Get familiar with the terminology and core concepts of Everscale',
-      link: '/concept/everscale-overview/',
+      link: '/learn/everscale-overview/',
     },
   ]
 }

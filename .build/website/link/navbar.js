@@ -4,8 +4,8 @@ module.exports = [
     to: '/gs/'
   },
   {
-    label: 'Concept',
-    to: '/concept/'
+    label: 'Learn',
+    to: '/Learn/'
   },
   {
     label: 'Build',
@@ -16,8 +16,8 @@ module.exports = [
     to: '/validate/'
   },
   {
-    label: 'Community',
-    to: '/community/'
+    label: 'Ecosystem',
+    to: '/ecosystem/'
   },
   {
     label: 'Changelog',
