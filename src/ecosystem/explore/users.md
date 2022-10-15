@@ -24,7 +24,7 @@ There are many different ways to buy EVER:
 
   1. [Exchange wallets](wallets.md)
   2. [Exchanges](https://www.coingecko.com/en/coins/everscale#markets)
-  3. [DEXS](ecosystem.md)
+  3. [DEXS](projects.md)
 
 Check out the [Wallets section](wallets.md) for the most popular token storage solutions.
 
@@ -35,7 +35,7 @@ Once you have an Everscale network wallet, you can start interacting with variou
 Everscale provides many earning opportunities for regular users.  
 You can earn on farming, NFT, staking or trading on exchanges and DEX.
 
-In the [Ecosystem section](ecosystem.md), you can get acquainted with the most popular representatives of Everscale dapps in various industries: DeFi, NFT, GameFi, etc.
+In the [Ecosystem section](projects.md), you can get acquainted with the most popular representatives of Everscale dapps in various industries: DeFi, NFT, GameFi, etc.
 
 ## Community
 
