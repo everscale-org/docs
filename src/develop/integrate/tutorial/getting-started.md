@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Getting started
 
-If you are not yet familiar with the Everscale network, we recommend that you read the [Everscale overview section](../../../learn/everscale-overview/overview.md), where you can learn about the main features and benefits of the network.
+If you are not yet familiar with the Everscale network, we recommend that you read the [Everscale overview section](../../../concept/overview.md), where you can learn about the main features and benefits of the network.
 
 ## Tools
 
@@ -17,7 +17,7 @@ Among them, you will find options to connect to the blockchain, create a deposit
 
 [Ever SDK](https://github.com/tonlabs/ever-sdk)
 
-[Wallet API](../../nodes-clients/ton-wallet-api.md) - HTTP Api solution for a wallet running on the Everscale network
+[Wallet API](#todo) - HTTP Api solution for a wallet running on the Everscale network
 
 ## APIs
 

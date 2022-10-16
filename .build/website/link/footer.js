@@ -73,15 +73,15 @@ module.exports = [
     title: 'Workshop',
     items: [
       {
-        label: 'Tutorial',
-        to: 'develop/smart-contract/getting-started/',
+        label: 'Learn',
+        to: '/learn/',
       },
       {
-        label: 'Smart contract-architecture',
+        label: 'Smart contract architecture',
         href: 'https://youtu.be/XKMnroPWXek',
       },
       {
-        label: 'Smart-contract development',
+        label: 'Smart contract development',
         href: 'https://youtu.be/YBIaFeaksMY',
       },
       {

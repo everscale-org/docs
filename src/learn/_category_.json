@@ -1,9 +1,9 @@
 {
-  "position": 0,
-  "label": "Learn",
-  "link": {
-    "title": "Learn",
-    "slug": "learn",
-    "type": "generated-index"
+    "position": 4,
+    "label": "Learn",
+    "link": {
+      "title": "Learn Everscale",
+      "slug": "learn",
+      "type": "generated-index"
+    }
   }
-}

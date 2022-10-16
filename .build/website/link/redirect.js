@@ -1,7 +1,7 @@
 module.exports = {
   redirects: [
     {
-      to: '/learn/everscale-overview/wallets',
+      to: '/community/explore/wallets',
       from: '/learn/everscale-overview/exchangewallets',
     },
     {

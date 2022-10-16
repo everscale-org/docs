@@ -26,7 +26,7 @@ There are, however, some risks involved: if DePool's validator node wins electio
 
 For this reason, the DePool owner is obliged to invest a certain amount of tokens in each validation round, all or some of which they stand to lose, and will be the first among the participants to lose, should their node perform poorly or misbehave in any way. This way, participants can be sure that the person upon whose actions their funds and rewards depend is highly motivated to perform their duties properly and ensure everyone receives their rewards.
 
-The contract code in open sourced and formally verified. See [specifications](../../learn/decentralization/depool-specifications.md) and contract [code](getting-started.md) for details.
+The contract code in open sourced and formally verified. See [specifications](../../concept/depool.md) and contract [code](getting-started.md) for details.
 
 ### What is validator assurance?
 
@@ -77,7 +77,7 @@ Proxy contract code is also provided to the DePool at deploy, but has no bearing
 
 ### How do I choose DePool deploy configuration?
 
-The [DePool configuration](getting-started.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
+The [DePool configuratio n](getting-started.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
 
 - `minStake` – minimum stake that DePool accepts from participants. If set to high, some small token holders won’t be able to invest, whereas a very low minimal stake will permit participants to make small pointless stakes, where DePool fees will eat up a significant part of their reward and/or investment. 10 tokens is the recommended minimum for this parameter.
 - `validatorAssurance` determines how much you take it upon yourself to invest in the DePool every election and lose in case of any validator node malfunction or misbehavior. If set too small, potential participants might decide you aren't risking enough and avoid your DePool in favor of others. Should be chosen depending on the current competition in the network.
@@ -139,7 +139,7 @@ The next round then enters pooling stage, gathering stakes for the next election
 
 In practice this comes down to alternating odd and even rounds. When a round completes its last stage and is removed from the DePool, the round after the next locks its accumulated stake (including any stakes released from the just completed round, that were reinvested) and enters elections.
 
-![](../../learn/img/depool-rounds.png)
+![](../../gs/img/depool-rounds.png)
 
 So to make sure DePool participates in every election, you have to ensure sufficient stakes are invested (and set to be reinvested) in even and odd rounds both.
 

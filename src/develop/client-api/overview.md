@@ -21,13 +21,13 @@ And it is their solutions and tools that you will use when developing, while you
 
 ## APIs and Client Libraries for Everscale Access
 
-- [GraphQL API](./gql-api) (by EverX) - Mainnet validating node with a GraphQL server that allows you to collect a large amount of data about the network.
+- [GraphQL API](../gql-api) (by EverX) - Mainnet validating node with a GraphQL server that allows you to collect a large amount of data about the network.
 *Suitable for integration by exchanges and other platforms.
 
-- [ever-sdk-js](./js-api/ever-sdk-js/) (by EverX) - EverX Web3 Javascript library that works on top of GraphQL API - is a binding over [core Rust ever-sdk library](https://github.com/tonlabs/ever-sdk).
+- [ever-sdk-js](../ever-sdk-js.md) (by EverX) - EverX Web3 Javascript library that works on top of GraphQL API - is a binding over [core Rust ever-sdk library](https://github.com/tonlabs/ever-sdk).
 It allows Everscale developers work with contracts and query data from GraphQL API. 
 
-- [everscale-inpage-provider](./js-api/inpage-provider.md) (by Broxus) - Web 3.0 library for Everscale. Typed wrappers over contracts etc.
+- [everscale-inpage-provider](#todo) (by Broxus) - Web 3.0 library for Everscale. Typed wrappers over contracts etc.
 
 - [Rust Core Library](rust-api.md) (by EverX) - provides Everscale developers with services on top of scalable blockchain infrastructure, so that developers can focus on business logic instead of infrastructure maintenance.
 
