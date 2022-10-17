@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # Getting started
 
-If you are not yet familiar with the Everscale network, we recommend that you read the [Everscale overview section](../../../learn/everscale-overview/overview.md), where you can learn about the main features and benefits of the network.
+If you are not yet familiar with the Everscale network, we recommend that you read the [Everscale overview section](../../../learn/overview.md), where you can learn about the main features and benefits of the network.
 
 ## Tools
 
