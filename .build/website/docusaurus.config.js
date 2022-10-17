@@ -83,9 +83,9 @@ const config = {
   /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Everscale Documentation',
+        title: 'Everscale Docs',
         logo: {
-          alt: 'Everscale Documentation',
+          alt: 'Everscale Docs',
           src: 'img/logo.svg',
         },
         items: link.navbar,
