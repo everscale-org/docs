@@ -1,9 +1,9 @@
 {
-  "position": 1,
+  "position": 0,
   "label": "Tutorials",
   "link": {
     "title": "Tutorials",
-    "slug": "learn/tutorial",
+    "slug": "ecosystem/contribute/tutorial",
     "type": "generated-index"
   }
 }
