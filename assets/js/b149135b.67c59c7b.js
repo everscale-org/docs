@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[3483],{9881:function(e){e.exports=JSON.parse('{"title":"Validate","slug":"validate","permalink":"/validate","navigation":{"previous":{"title":"1. Interface Detection","permalink":"/standard/TIP-6.1"},"next":{"title":"Tutorials","permalink":"/validate/tutorial"}}}')}}]);
