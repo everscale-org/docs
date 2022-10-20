@@ -1,6 +1,6 @@
 ---
 description: Blockchain, everything is a contract, types of messages and gas
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Everscale overview
