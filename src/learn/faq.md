@@ -1,6 +1,6 @@
 ---
 title: Everscale FAQ
-sidebar_position: 8
+sidebar_position: 5
 ---
 
 # FAQ
