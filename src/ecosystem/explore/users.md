@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Users Guide
 
-To get started, if you're new to Everscale, we strongly recommend that you check out the **[Welcome section](../../learn/welcome.md)**
+To get started, if you're new to Everscale, we strongly recommend that you check out the **[Welcome section](../../gs/welcome.md)**
 
 In this section, you will find all the important information about the key features of the Everscale network as an individual user.
 
