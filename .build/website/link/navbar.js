@@ -1,11 +1,11 @@
 module.exports = [
   {
-    label: 'Architecture',
-    to: '/arch/'
+    label: 'Getting Started',
+    to: '/gs/'
   },
   {
-    label: 'Standards',
-    to: '/standard/'
+    label: 'Learn',
+    to: '/learn/'
   },
   {
     label: 'Build',
@@ -14,14 +14,6 @@ module.exports = [
   {
     label: 'Validate',
     to: '/validate/'
-  },
-  {
-    label: 'Integrate',
-    to: '/develop/integrate/'
-  },
-  {
-    label: 'Learn',
-    to: '/learn/'
   },
   {
     label: 'Ecosystem',
