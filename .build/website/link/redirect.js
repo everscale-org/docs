@@ -12,6 +12,10 @@ module.exports = {
       to: '/ecosystem/explore/projects',
       from: '/learn/everscale-overview/ecosystem',
     },
+    {
+      to: '/gs/welcome',
+      from: '/learn/welcome',
+    },
   ],
   createRedirects(existingPath) {
     if (existingPath.includes('/develop/tools')) {
