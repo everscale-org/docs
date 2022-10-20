@@ -24,6 +24,10 @@ module.exports = [
     to: '/learn/'
   },
   {
+    label: 'Ecosystem',
+    to: '/ecosystem/'
+  },
+  {
     label: 'Changelog',
     to: '/changelog/'
   },

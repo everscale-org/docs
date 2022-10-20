@@ -2,7 +2,7 @@
 
 ## Before we start
 
-Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../../learn/everscale-overview/overview.md), in order to get familiar with Everscale blockchain essentials.
+Before proceeding with the material explaining what it means to be a validator of Everscale, firstly consult with [Everscale overview page](../../learn/overview.md), in order to get familiar with Everscale blockchain essentials.
 
 ## Overview
 

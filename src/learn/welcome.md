@@ -13,7 +13,7 @@ Everscale presents some new and unique properties, such as dynamic multithreadin
 
 Everscale has powerful developer tools, such as compilers for Solidity and C++, API, an SDK that includes client libraries for 13 programming languages and all popular platforms, local node for DApp testing, CLI tools and a range of decentralized browsers and wallets empowering many applications in DeFi, NFT, tokenization and governance domains.
 
-If you would like to learn more about Everscale, please visit the [Everscale Overview page](everscale-overview).
+If you would like to learn more about Everscale, please visit the [Everscale Overview page](overview.md).
 
 **Comparison with other networks**
 ![Comparison with other networks](img/comparison.svg)
@@ -22,13 +22,13 @@ If you would like to learn more about Everscale, please visit the [Everscale Ove
 
 Thanks to its well developed network, Everscale is able to interest several types of participants by providing them with multiple branches of activity.
 
-**Users** ([Tutorial](tutorial/users.md)) - Everscale as an opportunity for storage and earnings (DeFi, NFT, etc.).
+**Users** ([Tutorial](../ecosystem/explore/users.md)) - Everscale as an opportunity for storage and earnings (DeFi, NFT, etc.).
 
 **Developers** ([Tutorial](/develop/tutorial/), [Section](/develop/)) - Development of decentralised applications on Everscale.
 
 **Validators** ([Tutorial](/validate/tutorial/), [Section](/validate/)) - Validating and staking.
 
-**Contributors** ([Tutorial](/contribute/tutorial/), [Section](/contribute/)) - Earn with partnerships that benefit the network..
+**Contributors** ([Tutorial](../ecosystem/contribute/tutorial/), [Section](../ecosystem/contribute/)) - Earn with partnerships that benefit the network..
 
 **Intergators** ([Tutorial](/develop/integrate/tutorial/), [Section](/develop/integrate/)) - Integration of Everscale technologies, listing of tokens, etc.
 
