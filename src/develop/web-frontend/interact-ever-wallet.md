@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Interact with Ever wallet
+# How to interact with Ever wallet
 
 ## Introduction
 
@@ -37,7 +37,7 @@ Everscale Wallet API facilitates automatic interaction with the Everscale Blockc
 The API includes a built-in lite EVER node, support for Ever and TIP-3.1 tokens, a variety of different wallet contracts and REST API to make usage as convenient as possible.  
 On the security front, the wallet API also has formidable features, most notably in its support for multi-sig operations.
 
-- [**Everscale Wallet API using guide**](../../nodes-clients/ton-wallet-api.md/)
+- [**Everscale Wallet API using guide**](../tutorial/ton-wallet-api.md)
 - [**Everscale Wallet API GitHub repository**](https://github.com/broxus/ton-wallet-api)
 - [**Swagger**](https://api.flatqube.io/v1/swagger.yaml) 
 
