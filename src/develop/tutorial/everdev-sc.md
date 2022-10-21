@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 description: Get started by creating a new DApp using EverDev
 ---
 
