@@ -24,7 +24,7 @@ After that, we simply send money there, with a bounce flag = false. And the mone
 
 Then we send a special external message to this address with the code and initial data, and we say “Look, here we have the code and initial data, the hash of which gives us this address, initialize it please” and the network initializes the contract.
 
-Now let’s look at a really simplified realization of a [TIP-3](../../../standard/TIP-3) token.
+Now let’s look at a really simplified realization of a [TIP-3](../../standard/TIP-3) token.
 
 Our token consists of 2 contracts:
 
