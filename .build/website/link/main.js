@@ -6,7 +6,7 @@ module.exports = {
     },
     {
       title: '🪤 Everscale Tutorial - 5min ⏱️',
-      link: '/develop/smart-contract/getting-started/',
+      link: '/develop/tutorial/everdev-sc/',
     },
   ],
   feature: [

@@ -52,7 +52,7 @@ Due to sharding, Everscale achieved one of the highest transactions per second r
 
 SMs are a kind of algorithm, or program that runs on Everscale or other blockchains, like Ethereum, which was the first to come up with the idea of smart contracts. They work in accordance to a prescribed set of rules that are programmed by developers. When all conditions prescribed in the contract are met, the contract is executed.
 
-For more information about smart contracts please consult [this page](../develop/smart-contract/getting-started.md)
+For more information about smart contracts please consult [this page](../develop/tutorial/getting-started.md)
 
 ### TVM
 

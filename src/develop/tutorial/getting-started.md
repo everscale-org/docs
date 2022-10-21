@@ -1,3 +1,7 @@
+---
+sidebar_position: 0
+---
+
 # Getting started
 
 ## Overview
@@ -29,22 +33,22 @@ We assume that there are several main cases of developers interacting with Evers
   - Learn the [network architecture](../../arch/)
   - Learn the [standards](../../standard/)
   - Learn the [development tools](../tools/overview.md)
-  - Learn the specifics of writing [smart contracts](../smart-contract/learn/)
+  - Learn the specifics of writing [smart contracts](../../develop/smart-contracts/01-introduction.md)
 
-- Learn how to [issue tokens](../smart-digital-assets/issue-ft.md)
+- Learn how to [issue tokens](../tutorial/smart-digital-assets/issue-ft.md)
 - Explore the development team [incentive programs in Everscale](../hackathons-grants.md)
 
 - Migrate your dApp from another network
   - Learn the [network architecture](../../arch/)
   - Learn the [comparison with Ethereum](../from-another-platform/comparison-with-ethereum.md)
   - Learn the [development tools](../tools/overview.md)
-  - Learn how to [write contracts on Solidity](../smart-contract/solidity-developing/getting-started.md)
+  - Learn how to [write contracts on Solidity](../solidity-developing/getting-started.md)
 
 - Integrate Everscale blockchain in your on-chain or off-chain project - you will find it helpful to explore the Everscale Overview page as well as the Architecture page. Afterwards, please follow the Getting Started page in the Integrate section.  
   - Learn [Everscale Overview page](../../learn/overview.md)
   - Learn [how to integrate](../integrate/tutorial/getting-started.md) anyting with Everscale.
   - Learn the [development tools](../tools/overview.md)
-  - Learn popular integration cases [(exchange integration)](../integrate/tutorial/add-everscale-to-your-exchange.md)
+  - Learn popular integration cases [(exchange integration)](../../gs/firts-touch/add-everscale-to-your-exchange.md)
 
 ## Other useful links
 
