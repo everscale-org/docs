@@ -1,5 +1,6 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
+description: Everscale tool manager and user-friendly CLI interface
 ---
 
 # EverDev
@@ -11,7 +12,7 @@ Everdev is a Node.js package with a CLI interface that allows devs to perform fr
 - Manage keys: add, remove
 - Work with Everscale blockchain from CLI
 
-Please follow [this link](https://www.npmjs.com/package/everdev) to start working with Everdev.
+Please follow [this link](https://docs.everos.dev/everdev/) to start working with Everdev.
 
 This guide will help you figure out how to set up the EverDev environment.
 
