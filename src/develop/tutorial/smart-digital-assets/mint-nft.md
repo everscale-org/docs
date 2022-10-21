@@ -1,13 +1,13 @@
 ---
-sidebar_position: 0
+sidebar_position: 1
 [//]: # (draft: true)
 ---
 
-# Issue a Fungible Token
+# Issue a Non-Fungible Token
 
 ## Reference
 
-- [TIP-3 Core description](../../standard/TIP-3/core-description.md)
+- [TIP-4 Core description](../../../standard/TIP-4/core-description.md)
 
 >  The documentation in Everscale repository is a community effort. Therefore, everyone can contribute with proposals for new topics, suggest new content elements, participate in editing, and provide ideas that will be of great help for network development.
 Please be informed that our documentation can be [edited via GitHub](https://github.com/everscale-org/docs/issues).  
