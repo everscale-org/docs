@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[3594],{8361:function(e){e.exports=JSON.parse('{"title":"Architecture","slug":"arch","permalink":"/arch","navigation":{"previous":{"title":"Hackathons & Grants","permalink":"/develop/hackathons-grants"},"next":{"title":"Basics","permalink":"/arch/basics"}}}')}}]);
