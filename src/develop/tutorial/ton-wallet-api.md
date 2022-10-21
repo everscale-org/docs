@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# Everscale Wallet API
+# Everscale Wallet API guide
 
 Via following [this link](https://github.com/broxus/ever-wallet-api) you can find all necessary information concerning the interaction with and configuration of Everscale wallet API. 
 
