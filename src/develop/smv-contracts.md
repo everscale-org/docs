@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 11
 description: Working with SMV contracts
 ---
 
@@ -8,7 +8,7 @@ description: Working with SMV contracts
 > Referenced repository:  
 > [https://github.com/EverscaleGuild/everscale-contract-library/tree/main/governance/SMV](https://github.com/EverscaleGuild/everscale-contract-library/tree/main/governance/SMV)
 
-> Explore the [**tools section**](../tools/) of the Everscale documentation.  
+> Explore the [**tools section**](tools/) of the Everscale documentation.  
 
 ## 1. Introduction
 
@@ -22,7 +22,7 @@ Available actions in TONOS-CLI include the following:
 * checking contract balance and status
 * running getter contract methods
 * executing contract methods
-* run [debots](https://docs.everscale.network/develop/smart-contract/debots/getting-started/)
+* run [debots](https://docs.everscale.network/develop/debots/getting-started/)
 
 ## 2. [TONOS-CLI](https://docs.everscale.network/develop/api-tools/tonos-cli) Installation
 ### 2.1. Install TONOS-CLI and download contract files

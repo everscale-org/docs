@@ -1,9 +1,9 @@
 {
-    "position": 3,
+    "position": 9,
     "label": "DeBots",
     "link": {
       "title": "DeBots",
-      "slug": "smart-contract/debots",
+      "slug": "develop/debots",
       "type": "generated-index"
     }
   }

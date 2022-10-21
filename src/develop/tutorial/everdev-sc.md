@@ -1,9 +1,9 @@
 ---
-sidebar_position: 0
-description: Get started by creating a new DApp
+sidebar_position: 1
+description: Get started by creating a new DApp using EverDev
 ---
 
-# Getting started with smart contracts development
+# Deploy smart contracts with EverDev
   
 This guide is designed for developers interested in smart-contracts programming, irrespective of their prior experience in blockchain development.  
 Thanks to our well structured step by step guidance, developers will gradually learn all the information needed to start deploying and interacting with smart-contracts. 
@@ -19,7 +19,7 @@ Before proceeding with the launch of your Dapp, let us first go through an overv
 
 Experienced developers with advanced knowledge of Solidity programming language and solid understanding of Ethereum blockchain design, are advised to consult our [Learn section](../../learn/) where all necessary technical information is provided in a comprehensive way. 
 
-For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](debots/getting-started.md).  
+For those with no prior knowledge of smart contracts, as well as for intermediaries and advanced developers who strive to learn new things in the blockchain industry, we recommend you to consult our [DeBots page](../debots/getting-started.md).  
 DeBots, in essence, is an intuitive, no prior knowledge required interface for smart contracts on the Everscale blockchain.
 
 Having studied the information provided above, now, let's start our DApp launch.
