@@ -2,7 +2,7 @@
 sidebar_position: 0
 ---
 
-# Welcome
+# Welcome page
 
 ## About Everscale
 
@@ -26,7 +26,7 @@ Thanks to its well developed network, Everscale is able to interest several type
 
 **Developers** ([Tutorial](../develop/tutorial/getting-started.md), [Section](../develop/)) - Development of decentralised applications on Everscale.
 
-**Validators** ([Tutorial](../validate/tutorial/getting-started.md), [Section](../validate/)) - Validating and staking. 
+**Validators** ([Tutorial](../validate/getting-started.md), [Section](../validate/)) - Validating and staking. 
 
 **Contributors** ([Tutorial](/contribute/tutorial/), [Section](/contribute/)) - Earn with partnerships that benefit the network..
 

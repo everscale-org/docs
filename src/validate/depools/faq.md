@@ -77,7 +77,7 @@ Proxy contract code is also provided to the DePool at deploy, but has no bearing
 
 ### How do I choose DePool deploy configuration?
 
-The [DePool configuration](getting-started.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
+The [DePool configuratio n](getting-started.md) will influence the appeal of your DePool to potential participants and its success in competition to the other DePools out there:
 
 - `minStake` – minimum stake that DePool accepts from participants. If set to high, some small token holders won’t be able to invest, whereas a very low minimal stake will permit participants to make small pointless stakes, where DePool fees will eat up a significant part of their reward and/or investment. 10 tokens is the recommended minimum for this parameter.
 - `validatorAssurance` determines how much you take it upon yourself to invest in the DePool every election and lose in case of any validator node malfunction or misbehavior. If set too small, potential participants might decide you aren't risking enough and avoid your DePool in favor of others. Should be chosen depending on the current competition in the network.
