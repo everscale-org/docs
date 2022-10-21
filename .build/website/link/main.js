@@ -38,7 +38,7 @@ module.exports = {
     {
       title: '🎓 Understand Everscale and its use cases',
       description: 'Get familiar with the terminology and core concepts of Everscale',
-      link: '/learn/everscale-overview/',
+      link: '/learn/overview/',
     },
   ]
 }
