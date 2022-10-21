@@ -23,4 +23,4 @@ As in a paper contract, the conditions that were set in the contract are subject
 
 The basic principle of a smart contract is the complete execution of conditions set in the contract.
 
-In order to start developing your own dApps please consult [**Getting started**](../getting-started.md) page which provides a complete step-by-step guide.
+In order to start developing your own dApps please consult [**Getting started**](../../develop/tutorial/everdev-sc) page which provides a complete step-by-step guide.

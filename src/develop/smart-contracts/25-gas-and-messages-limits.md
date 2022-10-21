@@ -18,6 +18,6 @@ The absolute limit is about a million gas, but this will not tell you anything :
 
 #### More about
 
-- [Managing gas](../../../arch/30-managing-gas.md)
-- [Fee calculation](../../../arch/20-fee-calculation.md)
-- [BlockchainConfig parameters](../../../arch/60-executor.md#blockchainconfig-parameters)
+- [Managing gas](../../arch/30-managing-gas.md)
+- [Fee calculation](../../arch/20-fee-calculation.md)
+- [BlockchainConfig parameters](../../arch/60-executor.md#blockchainconfig-parameters)
