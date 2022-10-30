@@ -38,8 +38,20 @@ mkdir my-project && cd $_
 npm init --force
 npm install --save everdev
 ```
+### Configure Giver
 
-## Setup local environment
+Giver wallet that will sponsor **EVER** for deploy operation.
+
+**Configure shared private key:**
+```shell
+npx everdev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
+```
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="local" label="local" default>
 
 Set Local Blockchain [SE (Startup Edition)](https://github.com/tonlabs/tonos-se) as the default network:
 
@@ -50,30 +62,28 @@ npx everdev se start
 
 A local network explorer is available at [localhost](http://localhost) check it.
 
-**Setting `SE` as default network:** 
+**Setup giver:**
 ```shell
-npx everdev network default se
+address=0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5
+npx everdev network giver se $address --signer giver
 ```
 
-### Configure Giver
+</TabItem>
+<TabItem value="devnet" label="devnet">
 
-Configure Giver wallet that will sponsor **EVER** for deploy operation:
-
+**Setup endpoint:**
 ```shell
-npx everdev signer add giver 172af540e43a524763dd53b26a066d472a97c4de37d5498170564510608250c3
-npx everdev network giver se 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
-npx everdev network giver dev 0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5 --signer giver
+npx everdev network add devnet https://devnet-sandbox.evercloud.dev
 ```
 
-### Generate the key pair for contract ownership
-
-Key pair file — used in contracts with implemented authorization. It is the file containing private and public keys authorized to access the contract. In `--sign` parameter the corresponding seed phrase may be used instead of it.
-
+**Setup giver:**
 ```shell
-npx everdev signer generate coder
-npx everdev signer default coder
-npx everdev signer list 
+address=0:b5e9240fc2d2f1ff8cbb1d1dee7fb7cae155e5f6320e585fcc685698994a19a5
+npx everdev network giver devnet $address --signer giver
 ```
+
+</TabItem>
+</Tabs>
 
 ## Generate a new smart-contract
 
@@ -152,42 +162,92 @@ You are got:
 
 ## Deploy smart-contract
 
-> The `1` **EVER** is `1000000000` **nano EVER**
+### Generate the key pair for deploy contract
 
-**Local network:**
+Key pair file — used calculate address contracts. In `--sign` parameter the corresponding seed phrase may be used instead of it.
+
+```shell
+npx everdev signer generate coder
+npx everdev signer default coder
+```
+
+### Deploy
+
+:::note
+The `1` **EVER** is `1000000000` **nano EVER**
+:::
+
+<Tabs>
+<TabItem value="local" label="local" default>
+
 ```shell
 npx everdev contract deploy --network se --value 1000000000 App
 ```
+</TabItem>
+<TabItem value="devnet" label="devnet">
 
-**Developer network:**
 ```shell
-npx everdev contract deploy --network dev --value 1000000000 App
+npx everdev contract deploy --network devnet --value 1000000000 App
 ```
+</TabItem>
+</Tabs>
 
 ## Address smart-contract
 
 **Address of smart-contract is calculated from `TVC` and signer (`coder`) public:**
+
+<Tabs>
+<TabItem value="local" label="local" default>
+
 ```shell
 npx everdev contract info --network se --signer coder App
 ```
+</TabItem>
+<TabItem value="devnet" label="devnet">
 
-**Getting only address:**
 ```shell
-appAddress=$(npx everdev contract info --network se --signer coder App | grep Address | cut -d ' ' -f 4)
-echo $appAddress
+npx everdev contract info --network devnet --signer coder App
 ```
+</TabItem>
+</Tabs>
 
 ## Interact with smart-contract
 
 **Read:**
+
+<Tabs>
+<TabItem value="local" label="local" default>
+
 ```shell
 npx everdev contract run-local --network se App renderHelloWorld
 npx everdev contract run-local --network se App timestamp
 ```
+</TabItem>
+<TabItem value="devnet" label="devnet">
+
+```shell
+npx everdev contract run-local --network devnet App renderHelloWorld
+npx everdev contract run-local --network devnet App timestamp
+```
+</TabItem>
+</Tabs>
 
 **Write:**
+
+
+<Tabs>
+<TabItem value="local" label="local" default>
+
 ```shell
 npx everdev contract run --network se --signer coder App touch
 ```
+</TabItem>
+<TabItem value="devnet" label="devnet">
+
+```shell
+npx everdev contract run --network devnet --signer coder App touch
+```
+</TabItem>
+</Tabs>
 
 For more details see: [Get started with Development Tools](../tools/overview.md).
