@@ -94,8 +94,8 @@ Let's add a Sandbox script to `package.json`, with which we will launch a local 
 ```
  "scripts": {
     "test": "npx locklift test --network local",
-    "start-sandbox": "docker run -d -e USER_AGREEMENT=yes --rm --name local-node -p80:80 tonlabs/local-node:0.29.1",
-    "stop-sandbox": "docker kill local-node",
+    "start-sandbox": "everdev se start",
+    "stop-sandbox": "everdev se stop",
     "reload-sandbox": "npx stop-sandbox && npx start-sandbox"
   },
 ```
@@ -232,37 +232,38 @@ Deploy the TIP-3 Token Root contract.
 the wallet will be automatically deployed to the owner.
 This is the amount of EVERs that will be sent to the wallet.
 */
-const { contract: tokenRoot } = await locklift.factory.deployContract({
-contract: "TokenRoot",
-publicKey: signer.publicKey,
-initParams: {
-deployer_: new Address(zeroAddress),
-randomNonce_: (Math.random() * 6400) | 0,
-rootOwner_: rootOwner,
-name_: name,
-symbol_: symbol,
-decimals_: decimals,
-walletCode_: TokenWallet.code,
-},
-constructorParams: {
-initialSupplyTo: initialSupplyTo,
-initialSupply: new BigNumber(initialSupply).shiftedBy(decimals).toFixed(),
-deployWalletValue: locklift.utils.toNano(1),
-mintDisabled: disableMint,
-burnByRootDisabled: disableBurnByRoot,
-burnPaused: pauseBurn,
-remainingGasTo: new Address(myAccountAddress),
-},
-value: locklift.utils.toNano(5),
-});
-console.log(`${name}: ${tokenRoot.address}`);
+  const { contract: tokenRoot } = await locklift.factory.deployContract({
+    contract: "TokenRoot",
+    publicKey: signer.publicKey,
+    initParams: {
+      deployer_: new Address(zeroAddress),
+      randomNonce_: (Math.random() * 6400) | 0,
+      rootOwner_: rootOwner,
+      name_: name,
+      symbol_: symbol,
+      decimals_: decimals,
+      walletCode_: TokenWallet.code,
+    },
+    constructorParams: {
+      initialSupplyTo: initialSupplyTo,
+      initialSupply: new BigNumber(initialSupply).shiftedBy(decimals).toFixed(),
+      deployWalletValue: locklift.utils.toNano(1),
+      mintDisabled: disableMint,
+      burnByRootDisabled: disableBurnByRoot,
+      burnPaused: pauseBurn,
+      remainingGasTo: new Address(myAccountAddress),
+    },
+    value: locklift.utils.toNano(5),
+  });
+  console.log(`${name}: ${tokenRoot.address}`);
 }
+
 main()
-.then(() => process.exit(0))
-.catch(e => {
-console.log(e);
-process.exit(1);
-});
+  .then(() => process.exit(0))
+  .catch(e => {
+    console.log(e);
+    process.exit(1);
+  });
 ```
 
 You can then run the script using the following Locklift command:
@@ -351,15 +352,18 @@ main()
   });
 ```
 
-[The TON Soidity Compiler](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md#addresstransfer) allows you to specify different parameters (value,currencies, bounce or flag) of an outgoing internal message sent through an external function call.
+[The TON Soidity Compiler](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md#external-function-calls) allows you to specify different parameters (`value`,`currencies`, `bounce` or `flag`) of an outgoing internal message sent through an external function call.
 
-Note that all external function calls are asynchronous. Thus, a function will be called after the end of the current transaction.
 
-Note that if the value is not set, the default value will be 0.01 EVER, or 10^7 nanoever. This value is exactly 10_000 gas units in the workchain.
+Be informed that all external function calls are asynchronous. Thus, a function will be called after the end of the current transaction.
+
+Note that if the `value` is not set, the default value will be 0.01 EVER, or 10^7 nanoever. This value is exactly 10_000 gas units in the workchain.
 
 If the called function returns some value and is marked as `responsible`, then a callback option must be set. This callback function will be called by another contract.    
-The Remote function will pass its return values as function arguments for the callback function. That's why the types of return values of the called function must be equal to function arguments of the callback function.
-If the function is marked as responsible, then field `answerId` appears in the list of input parameters of the function in *abi.json file. `answerId` is the function id that will be called.
+
+The Remote function will pass its return values as function arguments for the callback function. That's why the types of return values must be equal to function arguments of the callback function.
+
+If the function is marked as `responsible`, then field `answerId` appears in the list of input parameters of the function in `*abi.json` file. `answerId` is the function id that will be called.
 
 Use this command and deploy the token wallet:
 
