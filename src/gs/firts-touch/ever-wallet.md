@@ -218,3 +218,6 @@ The repo with our project can be found via this link:
 
 An example of a working application can be found via this link:
 [https://wallet.applantis.us/dist/](https://wallet.applantis.us/dist/)
+
+Another example of using a wallet from the EverGuild team:
+[https://github.com/EverscaleGuild/everscale-tutor-web](https://github.com/EverscaleGuild/everscale-tutor-web)
