@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[785],{8864:function(e){e.exports=JSON.parse('{"title":"Learn","slug":"learn","permalink":"/learn","navigation":{"previous":{"title":"Ever Wallet Guide","permalink":"/gs/firts-touch/ever-wallet"},"next":{"title":"Everscale overview","permalink":"/learn/overview"}}}')}}]);
