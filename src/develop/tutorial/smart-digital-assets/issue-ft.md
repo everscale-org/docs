@@ -81,7 +81,7 @@ As a result of the initialization, a new Locklift project will be created, fille
 
 Since we will be using a sandbox, it is nedded to remove `graphql` from `LOCAL_NETWORK_ENDPOINT` in `locklift.config.ts` :
 
-```ts
+```typescript
 const LOCAL_NETWORK_ENDPOINT = "<http://localhost/graphql>";
 // to
 const LOCAL_NETWORK_ENDPOINT = "<http://localhost/>;
@@ -109,9 +109,9 @@ To do this, please use the import method directly in Locklift.
 
 Let's add the [TIP-3 repository](https://github.com/broxus/tip3) and Broxus contracts to the `package.json` dependencies:
 
-```ts
+```json
 {
-...
+// ...
 "devDependencies": {
     "@broxus/tip3": "git+https://github.com/broxus/tip3.git",
     "@broxus/contracts": "^1.1.0",
@@ -124,7 +124,7 @@ Let's add the [TIP-3 repository](https://github.com/broxus/tip3) and Broxus cont
 Also, we need to tell Locklift that there are external contracts.
 To do this, add the following lines to `locklift.config.ts/compiler`:
 
-```ts
+```typescript
     externalContracts: {
     "node_modules/@broxus/tip3/build": ["TokenRoot", "TokenWallet"],
  },
@@ -146,7 +146,7 @@ Let's write a simple script that will use Locklift to deploy an Account.
 
 Take [the script](https://github.com/broxus/tip3/blob/master/scripts/00-deploy-account.js) from the [Broxus repository](https://github.com/broxus/tip3) and rewrite it for the typescript and the newer version of Locklift:
 
-```ts
+```typescript
 async function main() {
   const keyNumber = "0";
   const balance = 300;
@@ -207,7 +207,7 @@ Token root contract stores the general information about the token, e.g. name, s
 
 Let's write a script `scripts/01-deploy-token.ts` to deploy Token Root:
 
-```ts
+```typescript
 import { Address } from "locklift/.";
 import { isValidEverAddress, isNumeric, zeroAddress, Migration } from "./utils";
 async function main() {
@@ -287,7 +287,7 @@ Decimals ...
 
 Let's write the script `/scripts/02-deploy-wallet.js` for Token Wallet deployment.
 
-```ts
+```typescript
 import { Address, Contract } from "locklift/.";
 import { AccountAbi } from "../build/factorySource";
 async function main() {
@@ -390,7 +390,7 @@ Transfer tokens using another TokenWallet address. That wallet must be deployed 
 Let's do a token transfer using the previously deployed account.
 To do this, add the following strings to `/scripts/03-transfer-tip3.ts`:
 
-```ts
+```typescript
 import { Address, Contract } from "locklift/.";
 import { AccountAbi } from "../build/factorySource";
 const EMPTY_TVM_CELL = "te6ccgEBAQEAAgAAAA==";
