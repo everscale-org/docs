@@ -45,7 +45,6 @@ To understand the basic principles and mechanisms of Everscale, we recommend tha
 - [Decentralization section](../learn/decentralization/)
 - [Smart Contracts section](../develop/smart-contracts/)
   - [Introduction](../develop/smart-contracts/01-introduction.md)
-  - [FAQ](../develop/faq.md)
   - [DeBots](../develop/debots/getting-started.md)
 - [Standards section](../standard/)
 

@@ -14,7 +14,7 @@ You can use the [TONOS-CLI](https://github.com/tonlabs/tonos-cli) utility to dep
 
 ## 1. Introduction
 
-Multisignature wallets are implemented as decentralized smart contracts. All wallet data is stored on the blockchain. 
+Multisignature wallets are implemented as smart contracts. All wallet data is stored on the blockchain. 
 
 Multisignature wallets can have up to 32 custodians.
 
