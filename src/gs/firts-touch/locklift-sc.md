@@ -53,7 +53,7 @@ found 0 vulnerabilities
 ```
 You can see that your `Sample.sol` smart contract appeared in the `amazing-locklift-project/contracts` directory.
 
-III. Now let's Generate keys using [**tonos-cli**](https://github.com/tonlabs/tonos-cli) (this utility comes with the everdev package) and then replace test keys with yours in line 63 of `locklift.config.ts`.
+III. Now let's Generate keys using [**tonos-cli**](https://github.com/tonlabs/tonos-cli) (this utility comes with the everdev package). In `locklift.config.ts` find key `network` and uncomment `phrase` property depending on you network (in this example use `local` netowrk). Replace the existing phrase with the seed phrase you have generated.
 
 Use the command `tonos-cli genphrase`.
 
