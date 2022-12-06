@@ -18,8 +18,8 @@ First of all, it is worth noting that Everscale is really a decentralized blockc
 
 At the moment, there are two active technological providers:
 
-- [Broxus](https://broxus.com)
 - [EverX](https://everx.dev/)
+- [Broxus](https://broxus.com)
 
 It is their solutions and tools that you will use when developing, while you will have every opportunity to write your own solutions as well, if necessary or desired.  
 

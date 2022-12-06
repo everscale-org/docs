@@ -16,23 +16,23 @@ The list of investors includes quite famous personalities: Roman Arkadievich Abr
 
 TON blockchain platform was launched in autumn 2018. The developers then said that the network is 70% ready and most of the components have already been finalized. The launch of [testnet](https://en.freeton.wiki/Free\_TON\_overview#Free\_TON\_blockchain\_tokens) should have taken place in January 2019, however, was postponed.
 
-Ferbuary 2019: TON Labs launches the first EVER blockchain with proof of authority (PoA). 
+Ferbuary 2019: EverX (ex. TON Labs) launches the first EVER blockchain with proof of authority (PoA). 
 
-July 2019: TON Labs Launch of the alpha version of TON OS.
+July 2019: EverX (ex. TON Labs) Launch of the alpha version of TON OS.
 
 On September 6, 2019, TON test portal for developers with official project specifications was opened - [https://test.ton.org/](https://test.ton.org), and on [https://test.ton.org/testnet/](https://test.ton.org/testnet/) TON network explorer was available, displaying the first hundreds of working nodes of the network. The New York Times, commenting on these events, noted that the project produces test tokens ahead of schedule, which should satisfy investors. Observers, referring to experts in crypto, also note that Durov's strategy to keep the development of TON in relative secrecy has given rise to some skepticism in the cryptographic society about the competing Libra cryptocurrency project from Facebook, but in the end, it turned out to be correct, because Facebook, after making the development of Libra transparent, immediately incurred the anger of regulators. At the same time, crypto experts such as David Gerard note that despite the TON team's efforts to meet the KYC-AML principles, the project's central risk is similar to Libra - government regulators may be afraid of losing control of the financial system [\[4\]](https://en.wikipedia.org/wiki/Telegram\_Open\_Network).  
 TON OS startup edition goes public.
 
 In October 2019, the U.S. Securities and Exchange Commission (SEC) demanded a ban on the issuance of Gram. The SEC, in its report, recognized Gram as security (not a commodity or utility token) and the Gram issue itself violated securities laws.
 
-On November 2019 TON Labs launches its own TON testnet.
+On November 2019 EverX (ex. TON Labs) launches its own TON testnet.
 
 On January 7 and 8, 2020, the SEC interrogated Pavel Durov about TON ICO. The interrogation took place in Dubai, UAE. The American regulator was trying to find out why Durov launched the ICO, how much money he spent on Telegram and TON, and why Gram token is not a security. Durov replied that the money was needed to buy equipment and maintain the blockchain platform, and Gram was a utility token, not a security.
 
 On March 25, Telegram challenged the U.S. court ban on transferring Gram tokens to investors. The court of the Southern District of New York State in a preliminary decision agreed with the SEC's opinion that the project's cryptocurrency is a security. The U.S. authorities claim that investors purchased coins to sell on the secondary market to earn money.
 
 On May 12, 2020, Pavel Durov [announced](https://t.me/durov/116) in his Telegram channel that he has closed the TON blockchain project. According to Pavel Durov, Telegram's participation in TON development is over. He urged users not to trust money or data to projects that use the name of the messenger or platform. No one from the company team participates in any of these projects, Durov said. He added that networks that use TON's developments may appear, but Telegram has nothing to do with them and is unlikely to ever support them.  
-TON Labs participates in the community launch of the Free TON blockchain as the core developer
+EverX (ex. TON Labs) participates in the community launch of the Free TON blockchain as the core developer
 
 On Thursday, May 7th, the Free TON Community (consisting of developers and potential TON users) launched the Free TON blockchain platform. Instead of Gram participants will get tokens called TON Crystal. To become a community member you need to sign Free TON Declaration of Decentralization.
 

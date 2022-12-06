@@ -155,7 +155,7 @@ For more about [Solidity](https://docs.soliditylang.org/en/v0.8.10/structure-of-
 npx everdev sol compile App.sol
 ```
 
-You are got:
+You get:
 
 - `App.abi.json` — **ABI** `*.abi.json` file — a file that describes the contract interface, the methods and parameters used to interact with it, for detail see [ABI Specification V2](https://docs.ton.dev/86757ecb2/p/40ba94-abi-specification-v2).
 - `App.tvc` — **TVC** `*.tvc` file — the compiled smart contract file. Used only when generating contract address and deploying contract code to the blockchain.
@@ -164,7 +164,7 @@ You are got:
 
 ### Generate the key pair for deploy contract
 
-Key pair file — used calculate address contracts. In `--sign` parameter the corresponding seed phrase may be used instead of it.
+Key pair file — used to calculate contract's address. In `--sign` parameter the corresponding seed phrase may be used instead of it.
 
 ```shell
 npx everdev signer generate coder
@@ -251,3 +251,11 @@ npx everdev contract run --network devnet --signer coder App touch
 </Tabs>
 
 For more details see: [Get started with Development Tools](../tools/overview.md).
+
+## Full docs
+
+See extended quick start guide for Everdev at https://docs.everos.dev/everdev/guides/quick-start
+
+Full EverDev documenation is available at https://docs.everos.dev/everdev/
+
+

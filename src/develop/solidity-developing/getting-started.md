@@ -131,7 +131,7 @@ Binary code of your contract is recorded into `WalletAddress.tvc` file, where `W
 
 ## Deploy
 
-Let's deploy the contract to TON Labs development blockchain at`net.ton.dev`.
+Let's deploy the contract to EverX development blockchain at`net.ton.dev`.
 
 1) Make sure tonos-cli is in $PATH:
 

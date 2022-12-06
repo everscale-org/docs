@@ -33,10 +33,10 @@ It is also a promising and decentralized [ecosystem](../ecosystem/explore/projec
 
 Currently available blockchain explorers for use:
 
-- [Evescan.io](https://everscan.io) by [Broxus](https://broxus.com)
 - [Ever.live](https://ever.live) by [EverX](https://everx.dev/)
+- [Evescan.io](https://everscan.io) by [Broxus](https://broxus.com)
 
-## How does Everscale works?
+## How does Everscale work?
 
 To understand the basic principles and mechanisms of Everscale, we recommend that you familiarize yourself with the following sections of the documentation:
 

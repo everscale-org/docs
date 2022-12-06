@@ -21,6 +21,8 @@ And it is their solutions and tools that you will use when developing, while you
 
 ## APIs and Client Libraries for Everscale Access
 
+- [EVER SDK](https://docs.everos.dev/ever-sdk/) (by EverX) - Core Client Library built on the EVER OS GraphQL API for Everscale DApp development
+
 - [GraphQL API](./gql-api) (by EverX) - Mainnet validating node with a GraphQL server that allows you to collect a large amount of data about the network.
 *Suitable for integration by exchanges and other platforms.
 
