@@ -99,5 +99,3 @@ const client = new TonClient({
 See original guide at https://docs.everos.dev/ever-platform/reference/graphql-api/quick-start
 
 Full GraphQL API documenation is available at https://docs.everos.dev/ever-platform/reference/graphql-api
-​
-
