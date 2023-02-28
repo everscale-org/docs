@@ -5,6 +5,7 @@ This website is built using [Docusaurus 2](https://docusaurus.io/), a modern sta
 ### Installation
 
 ```shell
+$ nvm use
 $ yarn
 ```
 
@@ -36,4 +37,10 @@ $ export SITE_URL=https://%USER%.github.io
 $ export SITE_BASE_URL=/docs/
 $ git remote add gh-pages git@github.com:%USER%/docs.git
 $ yarn deploy-gh-pages
+```
+
+### Upgrades packages
+
+```shell
+yarn upgrade --latest
 ```
