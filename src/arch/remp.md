@@ -491,7 +491,7 @@ Here, it turns out that remp_catchain::rmq_catchain - is an abstraction level. W
 
 
 remp_catchain::process_blocks -> read remp_catchain::pending_messages_queue_receiver -> catchain::processed_block
- - отправка сообщений в catchain из pending_messages_queue 
+ - sending messages to catchain from pending_messages_queue 
 
 When does this happen?
  
