@@ -235,24 +235,24 @@ All possible REMP massage stages with all data fields:
 
 **Other statuses**
 
-The statuses listed above are the most common. However, in REMP, core statuses are pairs of two parameters: ”**level**” - the node component that processed the message and “**status**” - the outcome of the message processing. There are also some out-of-the-order statuses. In JSON, both level and status are combined into a “**kind**” field. The table below shows how each level and status mixes are called in JSON. The main statuses listed above are marked <span style="color:green">green</span>, while the statuses you can get in special situations are marked <span style="color:orange">orange</span>. The **empty cell** means you will never get such a mix of parameters. 
+The statuses listed above are the most common. However, in REMP, core statuses are pairs of two parameters: ”**level**” - the node component that processed the message and “**status**” - the outcome of the message processing. There are also some out-of-the-order statuses. In JSON, both level and status are combined into a “**kind**” field. The table below shows how each level and status mixes are called in JSON. The main statuses listed above are marked <font color="green">green</font>, while the statuses you can get in special situations are marked <font color="orange">orange</font>. The **empty cell** means you will never get such a mix of parameters. 
 
 | ↓ status \| level → | Full node              | Quenue          | Collator                               | Shard chain               | Master chain         |
 |:-------------------:|------------------------|-----------------|----------------------------------------|---------------------------|----------------------|
-| Accepted            |                        |                 | <span style="color:green">IncludedIntoBlock(optimistic finality)</span>. | <span style="color:green">IncludedIntoAcceptedBlock</span> | <span style="color:blue">Finalized !!! +5-25s</span> |
-| Ignored             |                        | <span style="color:orange">IgnoredByQueue</span>  | <span style="color:orange">IgnoredByCollator</span>                      | <span style="color:orange">IgnoredByShardchain</span>       | <span style="color:orange">IgnoredByMasterchain</span> |
-| Rejected            | <span style="color:red">RejectedByFullnode +0s</span> |                 | <span style="color:orange">RejectedByCollator</span>                     | <span style="color:red">RejectedbyShardchain</span>      |                      |
-| SentToValidators    | <span style="color:green">SentToValidators</span>       |                 |                                        |                           |                      |
-| New                 |                        | <span style="color:green">PutIntoQueue</span>    |                                        |                           |                      |
-| Duplicate           |                        | <span style="color:orange">Duplicate</span>       |                                        |                           |                      |
-| Timeout             |                        | <span style="color:red">Timeout + 4 min</span> |                                        |                           |                      |
+| Accepted            |                        |                 | <font color="green">IncludedIntoBlock(optimistic finality)</font>. | <font color="green">IncludedIntoAcceptedBlock</font> | <font color="blue">Finalized !!! +5-25s</font> |
+| Ignored             |                        | <font color="orange">IgnoredByQueue</font>  | <font color="orange">IgnoredByCollator</font>                      | <font color="orange">IgnoredByShardchain</font>       | <font color="orange">IgnoredByMasterchain</font> |
+| Rejected            | <font color="red">RejectedByFullnode +0s</font> |                 | <font color="orange">RejectedByCollator</font>                     | <font color="red">RejectedbyShardchain</font>      |                      |
+| SentToValidators    | <font color="green">SentToValidators</font>       |                 |                                        |                           |                      |
+| New                 |                        | <font color="green">PutIntoQueue</font>    |                                        |                           |                      |
+| Duplicate           |                        | <font color="orange">Duplicate</font>       |                                        |                           |                      |
+| Timeout             |                        | <font color="red">Timeout + 4 min</font> |                                        |                           |                      |
 |                     |                        |                 |                                        |                           |                      |
 
-- <span style="color:green">green</span> status means right sequence of events
-- <span style="color:orange">orange</span> status means non critical errors or warnings
-- <span style="color:red">red</span> status means critical error - the message will never be included into blockchain
-- <span style="color:blue">blue</span> status means successful - the message was included into blockchain
-- Optimistic finality is <span style="color:green">IncludedIntoBlock</span>.
+- <font color="green">green</font> status means right sequence of events
+- <font color="orange">orange</font> status means non critical errors or warnings
+- <font color="red">red</font> status means critical error - the message will never be included into blockchain
+- <font color="blue">blue</font> status means successful - the message was included into blockchain
+- Optimistic finality is <font color="green">IncludedIntoBlock</font>.
 
 When a message is sent via REMP, it passes through several software components, performing on different computers. Each component has a level of message processing and each level has a number assigned to it.
 
