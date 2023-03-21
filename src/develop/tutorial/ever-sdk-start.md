@@ -6,7 +6,7 @@ description: Get started by creating a new DApp using EVER SDK
 # EVER SDK Quick Start
 
 This is a guide that will help you quickly familiarize yourself with the main toold and features of EVER SDK. You will create your first DApp and run it on local blockchain
-​
+
 ## Prerequisites
 
 Node.js latest version installed [Docker](https://www.docker.com/get-started) latest version installed
@@ -107,7 +107,8 @@ The script implements the following logic:
 1. Links the project with Node.js [Ever-SDK](https://github.com/tonlabs/ever-sdk) binary. If you plan to use JS SDK in Web, link it with Wasm binary. Read more [here](https://github.com/tonlabs/ever-sdk-js).
 2. `TONClient` instance is created and initialized with [Evernode SE](https://github.com/tonlabs/evernode-se) ("[http://localhost](http://localhost)", local blockchain) endpoint. See the list of other available [endpoints](https://docs.everos.dev/ever-platform/reference/graphql-api/networks).
 3. Future address is calculated from the code and data of the contract (data includes signing keys)
-4. &#x20;Flag `useGiver: true` allows to sponsor deploy with Evernode SE giver that is hard coded as the default Account giver. [You can re-assign it to your own giver](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/deploy#transfer-funds-to-the-future-address).
+4. Flag `useGiver: true` allows to sponsor deploy with Evernode SE giver that is hard coded as the default Account giver. [You can re-assign it to your own giver](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/deploy#transfer-funds-to-the-future-address).
+
 
 ## Source code
 
@@ -115,18 +116,9 @@ You can find source code of this sample here
 
 [https://github.com/tonlabs/sdk-samples/tree/master/demo/hello-wallet](https://github.com/tonlabs/sdk-samples/tree/master/demo/hello-wallet)
 
-
 ## Full docs
 
 See original guide at https://docs.everos.dev/ever-sdk/quick_start
 
 Full EVER SDK documenation is available at https://docs.everos.dev/ever-sdk/
-​
-​
-​
-​
-​
-​
-​
-​
-​
+

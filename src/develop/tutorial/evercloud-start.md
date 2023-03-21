@@ -446,6 +446,3 @@ https://docs.everos.dev/ever-platform/samples/graphql-samples
 See original guide at https://docs.everos.dev/ever-platform/products/evercloud/get-started
 
 Full Evercloud documenation is available at https://docs.everos.dev/ever-platform/products/evercloud
-​
-​
-​

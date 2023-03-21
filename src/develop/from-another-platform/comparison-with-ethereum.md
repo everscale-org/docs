@@ -44,7 +44,7 @@ That is, in order for the validator from shard X to maintain the current state o
 
 In case there are too many transactions in the last N block of some particular shard, then we simply divide this shard into two. This is done in accordance to the address range of smart contracts, with some transactions going to one shard, and some to the another. The resulting shards, in turn, can also be divided into two more. 
 
-In order for this to work, Everscale also decided to abandon the idea of ​​​​radical decentralization. The number of validators in the network will be in the number of thousands, not hundreds of thousands like on Ethereum network. These validators are professional players with big stakes and expensive servers. Currently, the validator requirements are: 48 CPUs, 128 RAM and 1TB SDD + 1 GB network bandwidth.
+In order for this to work, Everscale also decided to abandon the idea of radical decentralization. The number of validators in the network will be in the number of thousands, not hundreds of thousands like on Ethereum network. These validators are professional players with big stakes and expensive servers. Currently, the validator requirements are: 48 CPUs, 128 RAM and 1TB SDD + 1 GB network bandwidth.
 
 Having such sharding capabilities, Everscale achieves a huge network bandwidth. Importantly, this is accomplished without any damages to customer satisfaction. That is to say, the customer does not have to switch between shards himself, or constantly transfer his money from one rollup to another. 
 
@@ -69,7 +69,7 @@ Thus, shard validators never know who and how many other validators will validat
 
 ## Large amount of data and its long tail issue
 
-The original idea of ​​the blockchain was that there is a chain of blocks from the very beginning (genesis) to the latest block. And there is always the possibility to synchronize from the genesis block to the latest one, to check that everything runs well. 
+The original idea of the blockchain was that there is a chain of blocks from the very beginning (genesis) to the latest block. And there is always the possibility to synchronize from the genesis block to the latest one, to check that everything runs well. 
 
 Already for a long time on the Ethereum network, full-nodes begin to synchronize with some kind of snapshot from the recent past, and not from the genesis block. 
 
