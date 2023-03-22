@@ -15,6 +15,7 @@
     "build-favicons": "node favicons",
     "cname": "echo docs.everscale.network > build/CNAME",
     "build-after": "node script/sitmap",
+    "build-docs": "yarn swizzle docusaurus-lunr-search SearchBar -- --eject --danger",
     "build-before": "yarn build-favicons && yarn build-pdf",
     "build-pdf": "bash script/build-pdf.sh",
     "build": "yarn build-before && docusaurus build && yarn build-after",
