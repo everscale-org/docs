@@ -12,13 +12,13 @@ REMP is a protocol that adds some additional guarantees/features for external me
 
    If a message is processed and added into an accepted block, then the same message **(that is, the message with the same hash)** will not be collated for some time period. If the message has some expiration time (corresponding to the time period), then this effectively makes efficient replay protection.
 
-**2. A message may be sent only once**
+**2. No messages are lost**
 
-If there will be a possibility to accept it and add it to a block, then it will be done. No messages are lost — except for blockchain overloading reasons.
+You only need to send the message once. If there will be a possibility to accept it and add it to a block, then it will be done. Message loss may occur only for blockchain overloading reasons.
 
 **3. One can trace the message processing.**
 
-There are several checkpoints on the message processing path (when validators received the message, when message was added to a block, when the block was finalized, etc) — and depending on the message importance one may trade efficiency for reliability in its software. The authors believe that most messages could be considered processed when validators acknowledge that messages were received (this happens in 100-200 ms; after that it’s highly unlikely that the message is declined). On the other hand, if your transaction is really important, then you can wait till the block with the transaction result is issued.
+There are several checkpoints on the message processing path (when validators received the message, when message was added to a block, when the block was finalized, etc). Upon reaching certain checkpoints one can predict that the message will be successfully processed with a high accuracy - most messages can be considered to be processed when validators acknowledge that they were received (this happens in 100-200 ms; after that it’s highly unlikely that the message is declined). Thus, depending on the message importance one may trade efficiency for reliability in the software, choosing not to trace further processing results. On the other hand, if a transaction is really important, then you can wait till the block with the transaction result is issued.
 
 ## General description
 
@@ -30,7 +30,7 @@ A message from the user application is sent to a REMP Client (e.g., it could be 
 
 ### REMP Catchain
 
-The validators exchange info between them using special REMP Catchain protocol. Each validator Catchain session (protocol/data structures used for controlling consensus on block candidates) is accompanied by a REMP Catchain session (Reliable Message Queue, RMQ), which is used to store incoming messages. When validator Catchain sessions are started/stopped/split/merged/etc, the same happens with related REMP Catchain session. When the validator session expires, all messages being processed are transferred to the next REMP Catchain sessions. 
+The validators exchange info between them using a special REMP Catchain protocol. Each validator Catchain session (protocol/data structures used for controlling consensus on block candidates) is accompanied by a REMP Catchain session (Reliable Message Queue, RMQ), which is used to store incoming messages. When validator Catchain sessions are started/stopped/split/merged/etc, the same happens with related REMP Catchain session. When the validator session expires, all messages being processed are transferred to the next REMP Catchain session. 
 
 There is some significant difference between validation and REMP Catchain sessions. Validator Catchain session is shared among validators that are currently validating the given shard. REMP Catchain session is shared among validators that are currently validating the given shard and validators that validated this shard in the previous session. So number of participants in REMP Catchain session is about two times bigger than in validator Catchain session. The reason for this is the necessity to pass RMQ data between sessions with respect to practical network bandwidth. So each newly created REMP Catchain session will contain validators from previous validator Catchain session that will provide reliable RMQ data handover for validators from current validator Catchain session.
 
@@ -60,6 +60,30 @@ So, the message processing may result in three outcomes:
 
 This gives hard replay protection guarantees (if message has expiration mechanism included — making the message obsolete before two catchains are switched), and soft processing guarantees (message collation/validation attempts may be fruitless if the message is wrong, or if the blockchain is overloaded).
 
+### Replay protection in more detail
+
+Traditional approaches to replay protection in Everscale usually require some mutable structures in the contract: sequence counter (updated each time the message is sent), previous messages’ hash table, or something similar. REMP keeps track of all messages accepted by the Blockchain and avoids repeated collation, even if the message is sent several times — thus REMP replay protection mechanism is similar to hash table method, although it is transparent for user and does not consume any gas. 
+
+A bit more detail about the mechanism.
+
+- All messages from accepted blocks are parsed and their id’s are kept in Message Cache on each node (think of this as about some extended Shard State).
+- Collator requests the Cache for each message proposed for collation (and, of course, messages’ collation is refused if they were already included into some accepted block).
+- After each session all old messages (that is, messages which were added two master sessions earlier or more) are removed from the Cache.
+
+Thus, expiration time must be specified in messages, so that the messages removed from the Cache should be already invalid by that moment.
+
+And a bit more about expiration time fine-tuning.
+
+- The session lifetime is specified in Blockchain config parameter 28 (field `mc_catchain_lifetime`), traditional value for this config is 250 seconds, current value should be checked in network configuration.
+- The message is tracked by Remp during two consecutive master sessions — the session the message arrived, and the next one (exception: when master sessions are shorter than specified in config, then the message is remembered longer, until total session lifetime exceeds twice of `mc_catchain_lifetime`; such shorter sessions can happen, for example, when a keyblock is issued).
+- Sessions switch according to their own schedule. So, it is quite possible that the message arrives just seconds before the first session ends.
+    
+    ![](remp4.png)
+    
+    As shown on the diagram above, Message 1 arrives in the beginning of the first session, and Message 3 arrives just moments before session switching. So, actual time of message tracking in Remp is between `mc_catchain_lifetime` and `mc_catchain_lifteme*2`, and expiration time should not exceed `mc_catchain_lifetime`
+    
+- On another hand, according to testing on real networks, it is unreasonable to have expiration time smaller than 40 seconds (or a minute), since a message may expire too soon, before it receives a second chance for collation. The message can easily miss its first collation due to blockchain overfilling, session switching, etc.
+
 ### Message statuses
 
 During validation, a message processing passes through several stages (that is, changes some statuses), and validator sends receipts about that. Some of them are given on the diagram below (as inscriptions near arrows). The statuses that are “final” (that is, nothing is happening after it) are shown in blue. 
@@ -74,9 +98,7 @@ REMP performance toll may be split into network and processor performance toll.
 
 Processor performance influence is very limited (and may even reduce processor overloading), since a message is not processed by REMP, it only keeps track of messages. Moreover, replay protection may even reduce processor load, since messages are rejected before collation if they are processed already (thus removing necessity to execute replay protection code in contracts)
 
-Network performance, on another hand, is burdened by Catchains (remember, each Catchain is doubled), which can be expensive from network load perspective. So, in theory it may delay network up to 50%. Of course, real-life delay will be smaller.
-
-The real performance toll depends on the contracts’ details, and needs measurement in real-life conditions.
+Network performance, on another hand, is burdened by Catchains (remember, each Catchain is doubled), which can be expensive from network load perspective. The real performance toll depends on the contracts’ details, and needs measurement in real-life conditions.
 
 ## Data structures & REMP-SDK interop
 
@@ -84,7 +106,7 @@ The real performance toll depends on the contracts’ details, and needs measure
 
 ### Send REMP message
 
-REMP external messages have absolutely the same structure as regular external messages. They send requests using existing kafka topics (”requests”). 
+External messages are sent the same way, as before. Use GraphQL API's postRequests mutation for it. See [this guide](https://docs.evercloud.dev/samples/graphql-samples/send-message) for more info 
 
 ### Receive message status
 
@@ -197,6 +219,21 @@ All possible REMP massage stages with all data fields:
         "shard": "3800000000000000",
         "wc": 0,
     }
+}
+```
+
+You can receive REMP receipts via rempReceipts GraphQL subscription.
+
+See [REMP subscription guide](https://docs.evercloud.dev/samples/graphql-samples/subscribe-for-remp-receipts) for more info.
+
+```
+subscription{
+  rempReceipts(messageId: "082a5c2ab5b68b0ef9b8ced4fa865933ab19603f5171ec1190f3f45943214de0"){
+    messageId
+    timestamp
+    json
+    kind
+  }
 }
 ```
 
