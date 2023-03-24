@@ -6,7 +6,7 @@ sidebar_position: 10
 
 ## Introduction
 
-REMP is a protocol that adds some additional guarantees/features for external messages processing:
+REMP (Reliable External Messaging Protocol) is a protocol that adds some additional guarantees/features for external messages processing:
 
 **1. Replay protection**
 
