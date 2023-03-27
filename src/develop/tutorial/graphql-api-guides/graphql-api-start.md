@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 0
 description: Learn playground, documentation, make your first request and integrate
 ---
 
@@ -34,7 +34,7 @@ blockchain{
 
 Now click play button and you will see the result:
 
-![](https://github.com/tonlabs/ever-platform-docs/raw/main/.gitbook/assets/image.png)
+![](https://github.com/tonlabs/ever-platform-docs/raw/main/.gitbook/assets/image%20(2).png) 
 
 
 
