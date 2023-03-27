@@ -59,6 +59,6 @@
     ]
   },
   "devDependencies": {
-    "fast-xml-parser": "^4.0.9"
+    "fast-xml-parser": "^4.1.3"
   }
 }
