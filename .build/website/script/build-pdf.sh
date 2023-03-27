@@ -12,3 +12,4 @@ EVER_VM_REPO="https://raw.githubusercontent.com/tonlabs/ton-labs-vm"
 EVER_VM_URL="${EVER_VM_REPO}/${EVER_VM_VERSION}/doc/tvm.tex"
 wget --quiet "${EVER_VM_URL}"
 ./.bin/laton -o static/tvm.pdf tvm.tex
+rm -f tvm.tex

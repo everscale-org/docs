@@ -15,7 +15,7 @@
     "build-favicons": "node favicons",
     "cname": "echo docs.everscale.network > build/CNAME",
     "build-after": "node script/sitmap",
-    "build-docs": "yarn swizzle docusaurus-lunr-search SearchBar -- --eject --danger",
+    "build-search": "yarn swizzle docusaurus-lunr-search SearchBar -- --eject --danger",
     "build-before": "yarn build-favicons && yarn build-pdf",
     "build-pdf": "bash script/build-pdf.sh",
     "build": "yarn build-before && docusaurus build && yarn build-after",
@@ -28,11 +28,11 @@
   },
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
-    "@docusaurus/core": "^2.3.1",
-    "@docusaurus/plugin-client-redirects": "^2.3.1",
-    "@docusaurus/plugin-google-gtag": "^2.3.1",
-    "@docusaurus/plugin-sitemap": "^2.3.1",
-    "@docusaurus/preset-classic": "^2.3.1",
+    "@docusaurus/core": "^2.4.0",
+    "@docusaurus/plugin-client-redirects": "^2.4.0",
+    "@docusaurus/plugin-google-gtag": "^2.4.0",
+    "@docusaurus/plugin-sitemap": "^2.4.0",
+    "@docusaurus/preset-classic": "^2.4.0",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "docusaurus-lunr-search": "^2.1.15",
@@ -59,6 +59,6 @@
     ]
   },
   "devDependencies": {
-    "fast-xml-parser": "^4.0.9"
+    "fast-xml-parser": "^4.1.3"
   }
 }
