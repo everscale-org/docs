@@ -87,7 +87,11 @@ If no receipt was received within a timeout (5 seconds for the first receipt, an
 ```
 ## Full docs
 
-See original guides at 
+REMP Architecture documentation: 
+
+https://docs.everscale.network/arch/remp
+
+See original guides at: 
 
 https://docs.evercloud.dev/samples/graphql-samples/send-message
 

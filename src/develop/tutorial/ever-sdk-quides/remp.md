@@ -26,7 +26,7 @@ You only need to send the message once. If there will be a possibility to accept
 
 There are several checkpoints on the message processing path (when validators received the message, when message was added to a block, when the block was finalized, etc). Upon reaching certain checkpoints one can predict that the message will be successfully processed with a high accuracy - most messages can be considered to be processed when validators acknowledge that they were received (this happens in 100-200 ms; after that it’s highly unlikely that the message is declined). Thus, depending on the message importance one may trade efficiency for reliability in the software, choosing not to trace further processing results. On the other hand, if a transaction is really important, then you can wait till the block with the transaction result is issued.
 
-During validation, a message passes through several stages (that is, changes some statuses), and validator sends receipts about each.
+During validation, as the message passes through various stages (that is, changes some statuses), validator sends receipts about each.
 
 ## Prerequisites
 
@@ -172,6 +172,10 @@ Transaction id: effed4849898e08d1fe5759532d34f23dbec061c5fd666604f817be82732cfb9
 Full sample: [https://github.com/tonlabs/sdk-samples/tree/master/core-examples/node-js/remp](https://github.com/tonlabs/sdk-samples/tree/master/core-examples/node-js/remp)
 
 ## See also
+
+REMP Architecture documentation: 
+
+https://docs.everscale.network/arch/remp
 
 Guides for working with REMP in GraphQL API:
 
