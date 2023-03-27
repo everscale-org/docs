@@ -112,8 +112,6 @@ External messages are sent the same way, as before. Use GraphQL API's postReques
 
 **REMP message statuses**
 
-![](remp3.png)
-
 While REMP message is being processed, it passes through multiple phases (that is, REMP messages have different statuses). Message can be in some statuses multiple times. Possible statuses:
 
 - **SentToValidators** - message was read from kafka and successfully sent to validators
