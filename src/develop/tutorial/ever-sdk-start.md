@@ -109,6 +109,7 @@ The script implements the following logic:
 3. Future address is calculated from the code and data of the contract (data includes signing keys)
 4. Flag `useGiver: true` allows to sponsor deploy with Evernode SE giver that is hard coded as the default Account giver. [You can re-assign it to your own giver](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/deploy#transfer-funds-to-the-future-address).
 
+
 ## Source code
 
 You can find source code of this sample here
@@ -120,3 +121,4 @@ You can find source code of this sample here
 See original guide at https://docs.everos.dev/ever-sdk/quick_start
 
 Full EVER SDK documenation is available at https://docs.everos.dev/ever-sdk/
+
