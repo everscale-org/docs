@@ -1,9 +1,9 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 description: Explore guides for EVER SDK
 ---
 
-# EVER SDK Guides
+# Other EVER SDK Guides
 
 This is a list of detailed guides for EVER SDK
 
@@ -27,6 +27,7 @@ This is a list of detailed guides for EVER SDK
   * [Emulate Transaction](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/emulate_transaction)
   * [Estimate Fees](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/estimate_fees)
   * [Validate address, convert address](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/validate_address_convert_address)
+  * [Trace message processing with REMP](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/trace-message-processing-with-remp)
 * Crypto fucntions in EVER SDK
   * [Mnemonics and Keys](https://docs.everos.dev/ever-sdk/guides/crypto/mnemonics_and_keys)
 * Queries and subscriptions in EVER SDK
