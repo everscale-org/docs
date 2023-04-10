@@ -31,8 +31,8 @@ if (process.env.APP_GA_MEASUREMENT_ID) {
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Docs of Everscale',
-  url: process.env.SITE_URL || 'https://docs.everscale.network',
+  title: 'Everscale Documentation',
+  url: process.env.SITE_URL || 'https://everscale-docs-2.netlify.app',
   baseUrl: process.env.SITE_BASE_URL || '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

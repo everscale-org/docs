@@ -1,9 +1,9 @@
 {
-  "position": 11,
-  "label": "Consensus Algorithm",
+  "position": 1,
+  "label": "Consensus",
   "link": {
-    "title": "Consensus Algorithm",
-    "slug": "arch/catchain",
+    "title": "Consensus",
+    "slug": "arch/consensus",
     "type": "generated-index"
   }
 }

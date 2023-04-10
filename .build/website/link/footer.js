@@ -26,10 +26,6 @@ module.exports = [
         label: 'Visual Brand Identity',
         href: 'https://gramkit.org/en/branding',
       },
-      {
-        label: 'Subgovernances',
-        href: 'https://gov.gramkit.org/',
-      },
     ],
   },
   {
@@ -56,10 +52,6 @@ module.exports = [
         href: 'https://t.me/EverscaleIncubator',
       },
       {
-        label: 'DeBots Chat',
-        href: 'https://t.me/everscaledebots',
-      },
-      {
         label: 'SDK Chat',
         href: 'https://t.me/ever_sdk',
       },
@@ -74,7 +66,7 @@ module.exports = [
     items: [
       {
         label: 'EverDev Tutorial',
-        to: '/develop/tutorial/everdev-sc/',
+        to: '/develop/smart-contracts/',
       },
       {
         label: 'Smart contract architecture',
@@ -89,12 +81,8 @@ module.exports = [
         href: 'https://www.youtube.com/playlist?list=PLPj4C8ti8UaSPAP6afsy0wQ53lihBT5l1',
       },
       {
-        label: 'Development of DeBots',
-        href: 'https://youtu.be/vFAatJO6cBM',
-      },
-      {
         label: 'Voice Chat',
-        href: 'https://t.me/EverVoice',
+        href: 'https://t.me/Web3Voice',
       },
     ],
   },
@@ -110,20 +98,12 @@ module.exports = [
         href: 'https://github.com/tonlabs/sdk-samples',
       },
       {
-        label: 'JS Application Kit',
-        href: 'https://tonlabs.gitbook.io/appkit-js/',
-      },
-      {
         label: 'Solidity API',
         href: 'https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md',
       },
       {
         label: 'ABI Specification',
-        href: '/arch/abi/',
-      },
-      {
-        label: 'NFT',
-        href: 'https://github.com/tonlabs/True-NFT',
+        href: '/spec/abi/',
       },
       {
         label: 'CLI',
