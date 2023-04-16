@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 There are several types of things you can read from a blockchain. These are various queries to blockchain RPC node, contract get-methods and contract events.
 
-Usually you will connect your dApp to existing smart contract system, deployed on-chain by a smart-contract developer. Thus, you will have an address (a string, that usually looks like 0:abcdef…7890) and an ABI (.json file) of a contract you want to interact with.
+Usually you will connect your dApp to existing smart contract system, deployed on-chain by a smart-contract developer. Thus, you will have an address (a string, that usually looks like `0:abcdef…7890`) and an ABI (`.json` file) of a contract you want to interact with.
 
 In each example below, we will assume that you have following definitions of the address and ABI:
 

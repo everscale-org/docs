@@ -22,18 +22,7 @@ Get familiar with Everscale’s developer tools and start building. Also, please
   - [Intro](../develop/intro.md)
   - [Developer Tools Overview](../develop/tools-overview.md)
   - [Smart Contracts](../develop/smart-contracts/)
-
-### Frontend
-
-Connect your wallet and find all the information necessary to write data to the blockchain as well as read it. 
-
-- [Frontend](../develop/frontend/)
-
-### Backend
-
-Deploy smart contracts on the Everscale network and find out all common backend routines. 
-
-  - [Backend](../develop/backend/)
+  - [Recipes for Backend and Frontend devs](../develop/recipes)
 
 ## Validator and full node infrastructure 
 
