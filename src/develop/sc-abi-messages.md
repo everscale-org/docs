@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 5
 ---
 
 # Smart Conctracts, ABI and Messages
@@ -13,7 +13,7 @@ Let’s see how an ABI looks like, and what can we underfstand from it without r
 <details>
   <summary>ABI</summary>
 
-```
+```json
 {
   // Major version of ABI standart
   "ABI version": 2,
@@ -88,18 +88,16 @@ An ABI describes how we pack the data into a TOC (Tree Of Cells) - the fundament
 
 Any message have a body for the function call. Let's look at an example function from abi:
 
-```
+```json
 {
-"name": "set",
-"inputs": [{"name":"_value","type":"uint256"}],
-"outputs": []
+  "name": "set",
+  "inputs": [{"name":"_value","type":"uint256"}],
+  "outputs": []
 }
 ```
 
-We will use everscale-inpage-provider and ABI like this to interact with smart-contracts. It’s important to understand what happens under the hood, so lets summarize: we want to encode the payload, construct the message to some contract and send it over the RPC to a blockhain.
+In the Recipes section, we provide snippets for `ever-sdk-js`, `surf-keeper-provider` and `everscale-inpage-provider` libraries, where we use ABI to interact with smart-contracts. It’s important to understand what happens under the hood, so lets summarize: we want to encode the payload, construct the message to some contract and send it over the RPC to a blockhain.
 
 Usually you will connect your dApp to existing smart contract system, deployed on-chain by a smart-contract developer. We assume that you have an ABI an address of one or several contracts.
 
-In further examples we will learn how to use everscale-inpage-provider library to perform common routines. To do that, we need to connect wallet to our app.
-
-- [**Connect Wallet**](connect-wallet.md)
+In further examples we will learn how to perform common routines.

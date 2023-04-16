@@ -30,7 +30,7 @@ sidebar_position: 1
 ### Libraries for developers
 - [Javascript SDK](https://github.com/tonlabs/ever-sdk-js) ([docs](https://docs.everos.dev/ever-sdk))
 - [Rust SDK](https://github.com/tonlabs/ever-sdk)
-- [Surf Keeper Provider](https://github.com/EverSurf/surfkeeper-provider)
+- [Surf Keeper JS Provider](https://github.com/EverSurf/surfkeeper-provider)
 - [EVER Wallet JS Provider](https://github.com/broxus/everscale-inpage-provider/)
 - [Alternative NodeJS Client](https://github.com/broxus/everscale-standalone-client)
 
