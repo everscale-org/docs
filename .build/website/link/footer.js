@@ -3,32 +3,24 @@ module.exports = [
     title: 'About',
     items: [
       {
-        label: 'Event Calendar',
-        href: 'https://everscale-org.github.io/Calendar/',
-      },
-      {
         label: 'Jobs and Vacancy',
         href: 'https://github.com/everscale-org/job/issues',
       },
       {
         label: 'White Paper',
-        href: 'https://mitja.gitbook.io/everscale-white-paper/',
+        href: 'https://everscale.network/files/Everscale_Whitepaper.pdf',
       },
       {
         label: 'Lite Paper',
-        href: 'https://mitja.gitbook.io/everscale-lite-paper/',
+        href: 'https://everscale.network/files/Everscale_Litepaper.pdf',
       },
       {
-        label: 'Weekly Meetup',
-        href: 'https://www.youtube.com/c/Everscale_community/search?query=Weekly%20Meetup',
+        label: 'Digest',
+        href: 'https://www.youtube.com/@everscale.network/search?query=Digest',
       },
       {
         label: 'Visual Brand Identity',
-        href: 'https://gramkit.org/en/branding',
-      },
-      {
-        label: 'Subgovernances',
-        href: 'https://gov.gramkit.org/',
+        href: 'https://everscale.network/about/brand',
       },
     ],
   },
@@ -37,11 +29,11 @@ module.exports = [
     items: [
       {
         label: 'Grants',
-        href: 'https://everscale.network/developers/grants',
+        href: 'https://everscale.network/grants',
       },
       {
         label: 'Bounties',
-        href: 'https://github.com/EverscaleGuild/bounties/issues',
+        href: 'https://github.com/everscale-org/bounties/issues',
       },
       {
         label: 'Smart Contracts Chat',
@@ -50,10 +42,6 @@ module.exports = [
       {
         label: 'Everscale Validators Channel',
         href: 'https://t.me/ever_validators',
-      },
-      {
-        label: 'Incubator Chat',
-        href: 'https://t.me/EverscaleIncubator',
       },
       {
         label: 'DeBots Chat',
@@ -73,6 +61,10 @@ module.exports = [
     title: 'Workshop',
     items: [
       {
+        label: 'Crash Course',
+        href: 'https://everscale.guide/',
+      },
+      {
         label: 'EverDev Tutorial',
         to: '/develop/tutorial/everdev-sc/',
       },
@@ -85,16 +77,8 @@ module.exports = [
         href: 'https://youtu.be/YBIaFeaksMY',
       },
       {
-        label: 'Developer Course',
-        href: 'https://www.youtube.com/playlist?list=PLPj4C8ti8UaSPAP6afsy0wQ53lihBT5l1',
-      },
-      {
         label: 'Development of DeBots',
         href: 'https://youtu.be/vFAatJO6cBM',
-      },
-      {
-        label: 'Voice Chat',
-        href: 'https://t.me/EverVoice',
       },
     ],
   },
@@ -123,7 +107,7 @@ module.exports = [
       },
       {
         label: 'NFT',
-        href: 'https://github.com/tonlabs/True-NFT',
+        to: '/standard/TIP-4',
       },
       {
         label: 'CLI',
@@ -131,7 +115,7 @@ module.exports = [
       },
       {
         label: 'SDK',
-        href: 'https://tonlabs.gitbook.io/ton-sdk/',
+        href: 'https://docs.everos.dev/ever-sdk/',
       },
     ],
   },
