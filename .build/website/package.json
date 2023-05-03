@@ -6,7 +6,7 @@
     "node": ">=16.14"
   },
   "externalDocs": {
-    "EverVM": "1.8.127"
+    "EverVM": "1.8.136"
   },
   "scripts": {
     "emul": "yarn clear && yarn build && yarn serve",
