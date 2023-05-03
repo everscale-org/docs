@@ -41,4 +41,4 @@ Everscale, as a leading blockchain developer, never looks for easy and uncostly 
 
 Essentially, Everscale aims to be a decentralized replacement for AWS. Just as you can host your application on AWS, you can host it on Everscale. Hosting it on Everscale will not be much more expensive (if it is rarely used, it will be cheaper), but it will have maximum fault tolerance.
 
-Please follow [**this page**](../arch/10-basics.md) in order to get started with the components of the Everscale blockchain and start learning it's architecture.
+Please follow [**this page**](../arch/05-basics.md) in order to get started with the components of the Everscale blockchain and start learning it's architecture.

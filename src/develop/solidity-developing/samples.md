@@ -180,4 +180,4 @@ A contract that reserves a certain amount of EVER from the remaining balance of 
 
 ### 25. [Config](https://github.com/tonlabs/samples/blob/master/solidity/25_Config.sol): Function arguments specification
 
-Sometimes it can be not obvious in which way function arguments should be specified, especially if it is a large structure with different and complex fields. It is generally described in [abi doc](../../arch/abi/2.1.md). And this example was made to help users clear this moment.
+Sometimes it can be not obvious in which way function arguments should be specified, especially if it is a large structure with different and complex fields. It is generally described in [abi doc](../../arch/50-abi.md). And this example was made to help users clear this moment.

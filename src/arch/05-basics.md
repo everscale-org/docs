@@ -1,7 +1,6 @@
 ---
 title: Basics
 description: Introduction to understand the basic terminology and concepts
-sidebar_position: 0
 ---
 
 # Basics of Everscale Blockchain
@@ -51,7 +50,7 @@ There are several types of fees for operations with contracts.
 
 For example, commission for storage, execution, and message delivery.
 
-Please follow [this page](20-fee-calculation.md) for Fee calculation details. 
+Please follow [this page](25-fee-calculation.md) for Fee calculation details. 
 
 ### About get methods
 
@@ -75,7 +74,7 @@ External outbound messages are the events the contracts produce for the outside 
 
 For example, a simple value transfer can be initiated with an external inbound message (by developers or a service) or with an internal message from another contract. This message will produce a transaction (read below) and an internal message with value transfer.
 
-In order to learn what Messages are in detail, please follow [this page](50-message.md).
+In order to learn what Messages are in detail, please follow [this page](45-message.md).
 
 ## Transaction
 
@@ -97,12 +96,12 @@ Turing-complete virtual machine for contract code execution. It works with data 
 
 Also, TVM is used by validators together with higher level protocols, such as Transaction Executor, to additionally calculate commissions and perform other necessary checks.
 
-In order to learn what TVM is in detail, please follow [this link](tvm.md).
+In order to learn what TVM is in detail, please follow [this link](10-tvm.md).
 
 ## Transaction Executor
 
 It takes the results of TVM, calculates fees, checks balances and other things. Used by validators to validate blocks. Can also be used on the client side to debug contract execution.
 
-In order to learn what Transaction Executor is in detail, please follow [this link](60-executor.md).
+In order to learn what Transaction Executor is in detail, please follow [this link](35-executor.md).
 
 In order to understand how Everscale blockchain works please follow [this page](../develop/smart-contracts/45-blockchain.md).

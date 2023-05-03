@@ -1,7 +1,6 @@
 ---
 title: Executor
 description: Transaction executor functional specification
-sidebar_position: 6
 ---
 
 # Transaction executor
@@ -333,7 +332,7 @@ fn execute_with_libs_and_params(
 | Field        | Description                                              |
 |--------------|----------------------------------------------------------|
 | self         | Reference to the object calling the function             |
-| in_msg       | Incoming message [messages](50-message.md)                            |
+| in_msg       | Incoming message [messages](45-message.md)                            |
 | account_root | Account record serialized in a form of Cells [account](40-accounts.md) |
 | params       | Transaction Executor parameters [parameters](#parameters)           |
 
@@ -1014,7 +1013,7 @@ Both algorithms rely on executing some or all of the phases:
 Please  note that  we consider  only `ordinary`   accounts here. The algorithm  for  executing  messages   on  special  accounts  is  not considered.
 
 **_Input:_**
-- `in_msg` — incoming message, has type [Message](50-message.md)
+- `in_msg` — incoming message, has type [Message](45-message.md)
 - `account` — account, has type [Account](40-accounts.md)
 - `params` — executor parameters, has type [Parameters](#parameters)
 - `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
@@ -1054,7 +1053,7 @@ At this point, the message is known to be internal. Execute it with the given ac
 
 **_Input:_**
 
-- `in_msg` — incoming message, has type  [Message](50-message.md)
+- `in_msg` — incoming message, has type  [Message](45-message.md)
 - `account` — account, has type [Account](40-accounts.md)
 - `params` — executor parameters, has type [Parameters](#parameters)
 - `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
@@ -1232,7 +1231,7 @@ The execution of external message on the given account.
 
 **_Input:_**
 
-- `in_msg` — incoming message, has type [Message](50-message.md)
+- `in_msg` — incoming message, has type [Message](45-message.md)
 - `account` — account, has type [Account](40-accounts.md)
 - `params` — executor parameters, has type [Parameters](#parameters)
 - `config` — blockchain configuration, has type [BlockchainConfig](#blockchainconfig-parameters)
@@ -1477,7 +1476,7 @@ Execute the account smart-contract, update the state, gather generated actions t
 the next phase.
 
 **_Input:_**
-- `msg` — message, has type [Message](50-message.md)
+- `msg` — message, has type [Message](45-message.md)
 - `account` — account, has type [Account](40-accounts.md)
 - `acc_balance` — current account balance, has type `Grams`
 - `msg_balance` — message balance,has type `Grams`
@@ -1680,7 +1679,7 @@ code and data borrowed from an external message with non-empty
 
 - `account` — account structure, has type [Account](40-accounts.md)
 - `acc_balace` — current account balance, has type Uint
-- `in_msg` — message being executed, has type [Message](50-message.md)
+- `in_msg` — message being executed, has type [Message](45-message.md)
 
 *_Output_:*
 
@@ -1809,7 +1808,7 @@ based  on   an  external   message  is  located   elsewhere.   See
 
 **_Input_**
 
-- msg: incoming message being processed, has type [Message](50-message.md)
+- msg: incoming message being processed, has type [Message](45-message.md)
 - msg_remaining_balance: the current amount of coins left on the message balance, has type `Uint`
 
 **_Output_**
@@ -1856,7 +1855,7 @@ By given ordered action list, the Action phase executes each action item in  the
 
 On success, returns `Ok(phase, messages)` such that:
 - `phase` denotes the [Action Phase Descriptor](#action-phase-descriptor)
-- `messages` denotes a list of messages to be sent, has type list([Message](50-message.md))
+- `messages` denotes a list of messages to be sent, has type list([Message](45-message.md))
 
 On error, returns _Err(result_code)_, such that:
 - `result_code` describes a type of an error, see [here](#action-result-codes).
@@ -1997,7 +1996,7 @@ set.
 
 - `phase` — actual [Action Phase Descriptor](#action-phase-descriptor)
 - `mode` — flags for sending the message
-- `msg` — message being sent, has type [Message](50-message.md)
+- `msg` — message being sent, has type [Message](45-message.md)
 - `acc_balance` — actual account balance, has type UInt
 - `msg_balance` — the message balance after debt being deducted, has type Uint
 - `compute_phase_fees` — gas fees from Compute Phase
@@ -2198,7 +2197,7 @@ If error happens on the previous phases, the bounce phase takes place.
 - `remaining_msg_balance` — message balance after all previous phases executed, has type `Uint`
 - `acc_balance` — remaining account balance after all previous phases executed, has type `Uint`
 - `compute_phase_fees` — the fees of the compute phase, has type `Uint`
-- `msg` — message being processed, has type [Message](50-message.md)
+- `msg` — message being processed, has type [Message](45-message.md)
 - `tr` — transaction object, has type [Transaction](#transaction)
 
 *_Output_:*
@@ -2342,12 +2341,12 @@ mitigating the main risks, identified in the previous section.
 
 #### Compute Phase Processing
 
-- **CMP1** — If the [Compute Phase fails](60-executor.md#compute-phase-success-conditions), the execution of a message is aborted. The bounce message is not created in this case.
+- **CMP1** — If the [Compute Phase fails](35-executor.md#compute-phase-success-conditions), the execution of a message is aborted. The bounce message is not created in this case.
 - **CMP2** — After the Compute Phase, the account's balance gets decreased exactly on the amount of consumed gas.
 
 #### Action Phase Processing
 
-- **ACT1** — Each successful [SendMsg](60-executor.md#action-sendmsg) action leads to creation of a message.
+- **ACT1** — Each successful [SendMsg](35-executor.md#action-sendmsg) action leads to creation of a message.
 - **ACT2** — Successfully created message is added into the out queue exactly once.
 - **ACT3** — If the action phase fails and the incoming message has the bounce flag set, then a single bounce message is generated and put into the out queue.
 
