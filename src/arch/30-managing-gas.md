@@ -1,7 +1,6 @@
 ---
 title: Managing gas
 description: The entire state of TVM consists of the five components
-sidebar_position: 5
 ---
 
 # Managing gas

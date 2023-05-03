@@ -11,7 +11,7 @@ Here you will find answers to the most common questions that arise when getting 
 
 ## What is Everscale?
 
-**Everscale** is a peer-to-peer multi-blockchain system. It is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/00-ever-os.md).
+**Everscale** is a peer-to-peer multi-blockchain system. It is a new and unique blockchain design that proposes a scalable decentralized world computer, paired with a distributed operating system — [Ever OS](../arch/15-ever-os.md).
 
 ## Why Everscale?
 
@@ -22,7 +22,7 @@ Even at the design stage, Everscale took into account the errors and shortcoming
 Consider its main advantages:
 
 - Record speed, reliability, and thoughtful [architecture](../arch/).
-- [Smart contracts](../develop/smart-contracts/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/10-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
+- [Smart contracts](../develop/smart-contracts/) can perform operations on different nodes, which allows the blockchain to scale ([sharding](../arch/05-basics.md/#blockchain-structure)) and increases the speed of smart contract execution to an absolute record.
 - Everscale is an asynchronous blockchain that is flexible in software development and rich in languages. You can write smart contracts in C ++, Solidity, and other high-level programming languages for your projects. Everscale has already implemented wallets, bridges, decentralized bots and exchanges, NFTs.
 
 It is also a promising and decentralized [ecosystem](../ecosystem/explore/projects.md), each participant of which can offer the community an idea for development, competition, or partnership.
@@ -41,7 +41,7 @@ Currently available blockchain explorers for use:
 To understand the basic principles and mechanisms of Everscale, we recommend that you familiarize yourself with the following sections of the documentation:
 
 - [Architecture section](../arch/)
-  - ( [Blockchain basics](../arch/10-basics.md), [fee calculation](../arch/20-fee-calculation.md), [security](../arch/90-security.md), [account](../arch/40-accounts.md), [messages](../arch/50-message.md), [EVER OS](../arch/00-ever-os.md), etc.)
+  - ( [Blockchain basics](../arch/05-basics.md), [fee calculation](../arch/25-fee-calculation.md), [security](../arch/55-security.md), [account](../arch/40-accounts.md), [messages](../arch/45-message.md), [EVER OS](../arch/15-ever-os.md), etc.)
 - [Decentralization section](../learn/decentralization/)
 - [Smart Contracts section](../develop/smart-contracts/)
   - [Introduction](../develop/smart-contracts/01-introduction.md)

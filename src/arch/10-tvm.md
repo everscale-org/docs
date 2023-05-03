@@ -1,5 +1,4 @@
 ---
-sidebar_position: 1
 description: The TVM, is the virtual machine used to execute smart-contract
 ---
 

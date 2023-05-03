@@ -1,7 +1,6 @@
 ---
 title: Pseudo-code
 description: The pseudo-code language we use to define the behavior
-sidebar_position: 3
 ---
 
 # Pseudo-code Semantics
