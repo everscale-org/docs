@@ -1,7 +1,7 @@
 ---
 title: Message
 description: Smart-contracts communicate between each other
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 # Message
@@ -12,10 +12,15 @@ Technically, a message is a data structure encoding one of the following:
 - desired function call at a destination smart-contract, optionally attaching some coins.
 - event log record to signal external observers about some significant state being reached
 
-We distinguish 3 types[^1] of messages:
-- _External_ — messages sent by non-blockchain applications
-- _Internal_ — messages sent by smart-contracts between each other
-- _Event_ — a log record signaling some special state for external observers
+A message consists of: `header` and `body`. The header contains the information about the sender, receiver, value as well as the information required by the validator to apply the message to the block. The message body, in turn, comprises the payload of VM instructions that are necessary for the execution of the smart contract.
+
+There are three types of messages on Everscale:
+
+**Inbound external message** - a message sent from outside onto the Everscale blockchain. It can be sent by any actor outside the blockchain. So-called messages from nowhere. Inbound external messages initiate changes to the blockchain’s state. It is important to mention that external messages can not be value-bearing. They can only declare intent to transfer value to another account.
+
+**Internal message**: a message sent from one contract to another. Like an inbound external message, it updates the blockchain's state. Only internal messages can be value-bearing.
+
+**Outbound external message**: aka event - a message that can be emitted by a smart contract. Off-chain participants can subscribe to events within the Everscale network and receive them.
 
 ```rust
 pub struct Message {

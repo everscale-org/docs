@@ -9,7 +9,7 @@ sidebar_position: 1
 - [Ever Wallet](https://everwallet.net)
 
 ### API
-- [Evercloud](https://evercloud.dev) ([docs](https://docs.evercloud.dev))
+- [Evercloud](https://evercloud.dev) ([docs](https://docs.evercloud.dev)) - Evercloud provides TVM networks developers with scalable GraphQL endpoints. Supports Everscale mainnet, devnet, fld-testnet, TON mainnet, Venom testnet.
 
 ### Blockchain Explorers
 - [Ever Live](https://ever.live) ([devnet](https://net.ever.live) [fld](https://fld.ever.live) [rfld](https://rfld.ever.live))
