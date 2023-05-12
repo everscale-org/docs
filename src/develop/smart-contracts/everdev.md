@@ -79,6 +79,8 @@ $ everdev sol compile helloWorld.sol
 You can also use the [Solidity compiler driver](https://docs.everos.dev/everdev/command-line-interface/solidity-compiler-driver):
 
 ```bash
+$ everdev sold install
+$ export PATH="/home/<username>/.everdev/sold:$PATH"
 $ sold helloWorld.sol
 ```
 
@@ -100,7 +102,7 @@ $ everdev network default se
 
 ### Configure Giver wallet that will sponsor deploy operation
 
-Here we use address and private key of [SE High Load Giver](https://github.com/tonlabs/evernode-se/tree/master/contracts/giver\_v2).&#x20;
+Here we use address and private key of [SE High Load Giver](https://github.com/tonlabs/evernode-se/tree/master/contracts/giver_v3).
 
 Note: it may be already configured if you make a clean install of the latest Everdev. Then you can skip this step. If you are updating from some old version, it is necessary.
 
