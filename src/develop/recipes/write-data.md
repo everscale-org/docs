@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';
@@ -80,12 +80,6 @@ console.log(`Touch message was sent.`);
   ```
   </TabItem>
 
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  console.log("surf keeper");
-  ```
-  </TabItem>
 </Tabs>
 
 ## Encode and send Internal Message
@@ -98,19 +92,6 @@ console.log(`Touch message was sent.`);
   ```
   </TabItem>
 
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  console.log("surf keeper");
-  ```
-  </TabItem>
-
-  <TabItem value="ever-sdk" label="ever-sdk-js">
-
-  ```typescript
-  console.log("eversdk");
-  ```
-  </TabItem>
 </Tabs>
 
 ## Links
@@ -120,3 +101,5 @@ Explore the full guides to writing data to blockchain in Ever SDK here:
   https://docs.everos.dev/ever-sdk/guides/work_with_contracts/deploy
 
   https://docs.everos.dev/ever-sdk/guides/work_with_contracts/run_onchain
+
+  Advanced guide for working with Surf keeper provider is [here](surf-wallet-advanced.md).

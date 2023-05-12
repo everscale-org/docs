@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';
@@ -31,14 +31,6 @@ In each example below, we will assume that you have following definitions of the
   ```
   </TabItem>
 
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  import { Address } from 'surf-keeper-provider';
-  import contractABI from "path/to/Contract.abi.json";
-  const contractAddress = new Address("0:deadbeef...00");
-  ```
-  </TabItem>
 </Tabs>
 
 
@@ -94,12 +86,6 @@ In each example below, we will assume that you have following definitions of the
   ```
   </TabItem>
 
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  console.log('surf keeper');
-  ```
-  </TabItem>
 </Tabs>
 
 ## Fetch or subscribe to contract events
@@ -156,12 +142,6 @@ In each example below, we will assume that you have following definitions of the
   ```
   </TabItem>
 
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  console.log('surf keeper');
-  ```
-  </TabItem>
 </Tabs>
 
 ## Decode message
@@ -264,3 +244,5 @@ https://docs.everos.dev/ever-sdk/guides/work_with_contracts/work_with_events
 https://docs.everos.dev/ever-sdk/guides/work_with_contracts/decode_message
 
 https://docs.everos.dev/ever-sdk/guides/queries_and_subscriptions/subscribe_to_updates
+
+Advanced guide for working with Surf keeper provider is [here](surf-wallet-advanced.md).
