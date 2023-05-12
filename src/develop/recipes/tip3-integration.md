@@ -59,11 +59,11 @@ First, you need to get a key pair which will be used to govern your token operat
                 function_name: "mint",
                 input: {
                     amount: your-token-ammount,
-    								recipient: recipient-holder-address
-    								deployWalletValue: 5000000000 // 5 evers for deploy
-    								remainingGasTo: multisigOwnerAddress,
-    								notify: false
-    								payload: "te6ccgEBAQEAAgAAAA==" // empty cell
+                    recipient: recipient-holder-address
+                    deployWalletValue: 5000000000 // 5 evers for deploy
+                    remainingGasTo: multisigOwnerAddress,
+                    notify: false
+                    payload: "te6ccgEBAQEAAgAAAA==" // empty cell
                 },
             },
             is_internal: true,
@@ -74,7 +74,6 @@ First, you need to get a key pair which will be used to govern your token operat
 2. Call Owner Wallet (wallet which is the creator of TokenRoot), passing in call parameters payload of internal call, Owner Wallet ABI and TokenRoot address:
     
     ```jsx
-    
     // Prepare input parameter for 'submitTransaction' method of multisig wallet
     const sendTransactionParams = {
         dest: TokenRootAddress,
@@ -94,9 +93,9 @@ First, you need to get a key pair which will be used to govern your token operat
                   input: submitTransactionParams,
               },
               signer: {
-    						type: 'Keys'
-    						keys: ownerKeyPair
-    					}
+                type: 'Keys'
+                keys: ownerKeyPair
+              }
           },
     };
     // Call `submitTransaction` function
@@ -137,8 +136,8 @@ const { message } = await client.abi.encode_message({
   call_set: {
       function_name: totalSupply,
       input: {
-				answerId: 0
-			},
+        answerId: 0
+      },
   },
   signer: { type: 'None' },
 });
@@ -170,9 +169,9 @@ const deploy_payload = (await client.abi.encode_message_body({
         call_set: {
             function_name: "deployWallet",
             input: {
-								answer_id: 0,
-				        walletOwner: holder-wallet-address
-								deployWalletValue: deploy-value 
+              answer_id: 0,
+              walletOwner: holder-wallet-address
+              deployWalletValue: deploy-value 
             },
         },
         is_internal: true,
@@ -184,7 +183,7 @@ const deploy_payload = (await client.abi.encode_message_body({
 
 // Prepare input parameter for 'submitTransaction' method of multisig wallet
 const sendTransactionParams = {
-    dest: tip3-2-root, // отправителя
+    dest: tip3-2-root,
     value: deployWalletValue+ a bit more, // because we will use 0.5 evers for token  transfer
     bounce: true,
     flags: 3,
@@ -201,9 +200,9 @@ const process_message_params = {
               input: submitTransactionParams,
           },
           keys: {
-						type: 'keyPair',
-						keys: ownerKeyPair
-					}
+            type: 'keyPair',
+            keys: ownerKeyPair
+          }
       },
 };
 // Call `submitTransaction` function
@@ -233,7 +232,7 @@ If you need to get the address of the TIP 3 wallet belonging to a certain holder
           }
         }`
     const {result}  = await client.net.query({query})
-		const accountState = result.data.blockchain.account.info.boc
+    const accountState = result.data.blockchain.account.info.boc
 
 // Encoding message for local execution of get method. Get methods do not require
 // signature so we use signer None
@@ -246,9 +245,9 @@ const { message } = await client.abi.encode_message({
   call_set: {
       function_name: walletOf,
       input: {
-				answerId: 0,
-				walletOwner: ownerMultisigAddress
-			},
+        answerId: 0,
+        walletOwner: ownerMultisigAddress
+      },
   },
   signer: { type: 'None' },
 });
@@ -285,7 +284,7 @@ you will need to execute get methods and get the required information.
           }
         }`
     const {result}  = await client.net.query({query})
-		const accountState = result.data.blockchain.account.info.boc
+    const accountState = result.data.blockchain.account.info.boc
 
 // Encoding message for local execution of get method. Get methods do not require
 // signature so we use signer None
@@ -298,8 +297,8 @@ const { message } = await client.abi.encode_message({
   call_set: {
       function_name: balance,
       input: {
-				answerId: 0
-			},
+        answerId: 0
+      },
   },
   signer: { type: 'None' },
 });
@@ -335,11 +334,11 @@ Call Holder Wallet of the sender, passing in call parameters payload with intern
             call_set: {
                 function_name: "transferToWallet",
                 input: {
-    								amount: amount-in-units,
-    				        recipientTokenWallet: recipient-tip3-2-wallet-address
-    				        remainingGasTo: holder-wallet-address // or tip32 wallet address 
-    								notify: false
-    				        payload: "te6ccgEBAQEAAgAAAA==" // empty cell
+                  amount: amount-in-units,
+                  recipientTokenWallet: recipient-tip3-2-wallet-address
+                  remainingGasTo: holder-wallet-address // or tip32 wallet address
+                  notify: false
+                  payload: "te6ccgEBAQEAAgAAAA==" // empty cell
                 },
             },
             is_internal: true,
@@ -350,7 +349,6 @@ Call Holder Wallet of the sender, passing in call parameters payload with intern
 2. Send message with the request to transfer funds from TIP3.2 wallet to Holder Wallet:
     
     ```jsx
-    
     // Prepare input parameter for 'submitTransaction' method of multisig wallet
     const sendTransactionParams = {
         dest: tip3-2-wallet-address, // of the sender
@@ -370,9 +368,9 @@ Call Holder Wallet of the sender, passing in call parameters payload with intern
                   input: submitTransactionParams,
               },
               keys: {
-    						type: 'keyPair',
-    						keys: ownerKeyPair
-    					}
+                type: 'keyPair',
+                keys: ownerKeyPair
+              }
           },
     };
     // Call `submitTransaction` function
@@ -395,12 +393,12 @@ Call Holder Wallet of the sender, passing in call parameters payload with intern
             call_set: {
                 function_name: "transfer",
                 input: {
-    								amount: amount-in-units,
-    				        recipient: recipient-holder-address
-    								deployWalletValue: deploy-value // >0, if you want to deploy recipient wallet
-    				        remainingGasTo: holder-wallet-address // or tip32 wallet address 
-    								notify: false
-    				        payload: "te6ccgEBAQEAAgAAAA==" // empty cell
+                  amount: amount-in-units,
+                  recipient: recipient-holder-address
+                  deployWalletValue: deploy-value // >0, if you want to deploy recipient wallet
+                  remainingGasTo: holder-wallet-address // or tip32 wallet address
+                  notify: false
+                  payload: "te6ccgEBAQEAAgAAAA==" // empty cell
                 },
             },
             is_internal: true,
@@ -411,7 +409,6 @@ Call Holder Wallet of the sender, passing in call parameters payload with intern
 2. Send message with the request to transfer funds from TIP3.2 wallet to Holder Wallet:
     
     ```jsx
-    
     // Prepare input parameter for 'submitTransaction' method of multisig wallet
     const sendTransactionParams = {
         dest: tip3-2-wallet-address, // of the sender
