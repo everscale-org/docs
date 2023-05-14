@@ -20,8 +20,16 @@ module.exports = [
     to: '/arch/'
   },
   {
-    label: 'Changelog',
-    to: '/changelog/'
+    label: 'Architecture',
+    to: '/arch/'
+  },
+  {
+    label: 'Standards',
+    to: '/standard/'
+  },
+  {
+    label: 'Crash Course',
+    href: 'https://everscale.guide/',
   },
   {
     label: 'Blog',
@@ -30,7 +38,7 @@ module.exports = [
   },
   {
     label: 'Status',
-    href: 'https://everos.dev/status',
+    href: 'https://monitoring.ever.rs/',
     position: 'right',
   },
   {
