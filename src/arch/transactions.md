@@ -1,23 +1,11 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 
 # Transactions
 
 Let’s once again recall that all interactions on Evercale network are performed via messages. Messages, in turn, create transactions that modify the account's state. 
-
-## Message
-
-A message consists of: `header` and `body`. The header contains the information about the sender, receiver, value as well as the information required by the validator to apply the message to the block. The message body, in turn, comprises the payload of VM instructions that are necessary for the execution of the smart contract.
-
-There are three types of messages on Everscale:
-
-**Inbound external message** - a message sent from outside onto the Everscale blockchain. It can be sent by any actor outside the blockchain. So-called messages from nowhere. Inbound external messages initiate changes to the blockchain’s state. It is important to mention that external messages can not be value-bearing. They can only declare intent to transfer value to another account.
-
-**Internal message**: a message sent from one contract to another. Like an inbound external message, it updates the blockchain's state. Only internal messages can be value-bearing.
-
-**Outbound external message**: a message that can be emitted by a smart contract. Off-chain participants can subscribe to events within the Everscale network and receive them.
 
 ![](img/tp-1.svg)
 
@@ -44,3 +32,21 @@ A transaction is composed of several phases. Each phase may either complete succ
 ## Specification
 
 Read more about transactions execution in [Transaction executor Specification](../spec/executor.md#transaction)
+
+## How to determine a successful transaction?
+
+It depends on the account state before and after the transaction (fields `orig_status` and `end_status`):
+
+- If the account was already deployed, i.e. if `(tx.orig_status == tx.end_status == active)` then you can use `tx.aborted` field. If it is `true`, then the transaction is not successful.
+
+- If the account was not yet deployed then
+
+  -  if `(orig_status == nonExist && end_status == uninit && aborted == true)` then transaction is successful.
+
+        All the transactions executed on non-deployed accounts are aborted by definition but if we see the state has changed to `uninit`, it means that the transfer was successfully received.
+
+  - if `(orig_status == uninit && end_status == uninit && aborted == true && in_message.bounce==false)`then transaction is successful.
+
+       Non-bounced messages are successfully received by non-deployed accounts, though the transaction status is aborted.
+
+       Instead of checking `tx.in_message.bounce==false` you can check if `tx.bounce.bounce_type<2` (tx.bounce.bounce_type==2(Ok) is equal to in_message.bounce==true)
