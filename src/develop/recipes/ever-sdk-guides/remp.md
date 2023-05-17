@@ -173,9 +173,7 @@ Full sample: [https://github.com/tonlabs/sdk-samples/tree/master/core-examples/n
 
 ## See also
 
-REMP Architecture documentation: 
-
-https://docs.everscale.network/spec/remp
+[REMP Architecture documentation](../../../arch/networking/remp.md)
 
 Guides for working with REMP in GraphQL API:
 

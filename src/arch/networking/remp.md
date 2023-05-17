@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: REMP
 ---
 
@@ -24,7 +25,7 @@ There are several checkpoints on the message processing path (when validators re
 
 REMP is a set of protocols and data structures that are designed to keep trace of incoming external messages. Message flow in REMP can be seen on the following diagram:
 
-![](../img/remp1.svg)
+![](../../img/remp1.svg)
 
 A message from the user application is sent to a REMP Client (e.g., it could be some Full Node; also the user application may implement the necessary protocol by itself). The client in turn sends the message to its shard validators. The validators, aside from processing the message, gather info about message validation status and send it back to the REMP Client and then further to the user (such messages are called “receipts”).
 
@@ -78,7 +79,7 @@ And a bit more about expiration time fine-tuning.
 - The message is tracked by Remp during two consecutive master sessions — the session the message arrived, and the next one (exception: when master sessions are shorter than specified in config, then the message is remembered longer, until total session lifetime exceeds twice of `mc_catchain_lifetime`; such shorter sessions can happen, for example, when a keyblock is issued).
 - Sessions switch according to their own schedule. So, it is quite possible that the message arrives just seconds before the first session ends.
     
-    ![](../img/remp2.svg)
+    ![](../../img/remp2.svg)
     
     As shown on the diagram above, Message 1 arrives in the beginning of the first session, and Message 3 arrives just moments before session switching. So, actual time of message tracking in Remp is between `mc_catchain_lifetime` and `mc_catchain_lifteme*2`, and expiration time should not exceed `mc_catchain_lifetime`
     
@@ -88,7 +89,7 @@ And a bit more about expiration time fine-tuning.
 
 During validation, a message processing passes through several stages (that is, changes some statuses), and validator sends receipts about that. Some of them are given on the diagram below (as inscriptions near arrows). The statuses that are “final” (that is, nothing is happening after it) are shown in blue. 
 
-![](../img/remp3.svg)
+![](../../img/remp3.svg)
 
 Since message is validated by several validators simultaneously, the statuses are reported by the validators separately, so some of them can be reported several times. E.g., one validator may decide that the message should be rejected, but other validators may decide just the opposite — so the user may receive “Rejected” and then “Finalized” for its message.
 
