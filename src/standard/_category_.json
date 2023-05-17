@@ -2,8 +2,8 @@
   "position": 4,
   "label": "Standards",
   "link": {
-    "slug": "standard",
     "title": "Standards",
+    "slug": "standard",
     "type": "generated-index"
   }
 }
