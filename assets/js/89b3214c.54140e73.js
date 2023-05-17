@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[2846],{6554:e=>{e.exports=JSON.parse('{"title":"Specifications","slug":"spec","permalink":"/spec","navigation":{"previous":{"title":"Run Validator","permalink":"/validate"},"next":{"title":"ABI Specification","permalink":"/spec/abi"}}}')}}]);

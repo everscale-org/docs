@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkeverscale_docs_website=self.webpackChunkeverscale_docs_website||[]).push([[3363],{641:e=>{e.exports=JSON.parse('{"title":"Consensus","slug":"arch/consensus","permalink":"/arch/consensus","navigation":{"previous":{"title":"REMP","permalink":"/arch/networking/remp"},"next":{"title":"Introduction","permalink":"/arch/consensus/introduction"}}}')}}]);
