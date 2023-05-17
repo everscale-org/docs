@@ -1,11 +1,7 @@
 module.exports = [
   {
-    label: 'Getting Started',
-    to: '/develop/tutorial/getting-started/'
-  },
-  {
-    label: 'Learn',
-    to: '/learn/'
+    label: 'Overview',
+    to: '/overview/',
   },
   {
     label: 'Build',
@@ -16,20 +12,25 @@ module.exports = [
     to: '/validate/'
   },
   {
-    label: 'Ecosystem',
-    to: '/ecosystem/'
+    label: 'Standards',
+    to: '/standard/',
+  },
+  {
+    label: 'Specifications',
+    to: '/spec/',
   },
   {
     label: 'Architecture',
-    to: '/arch/'
-  },
-  {
-    label: 'Standards',
-    to: '/standard/'
+    to: '/arch/',
   },
   {
     label: 'Crash Course',
     href: 'https://everscale.guide/',
+  },
+  {
+    label: 'Contribute',
+    to: '/contribute/',
+    position: 'right',
   },
   {
     label: 'Blog',

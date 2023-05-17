@@ -104,4 +104,4 @@ It takes the results of TVM, calculates fees, checks balances and other things. 
 
 In order to learn what Transaction Executor is in detail, please follow [this link](35-executor.md).
 
-In order to understand how Everscale blockchain works please follow [this page](../develop/smart-contracts/45-blockchain.md).
+In order to understand how Everscale blockchain works please follow [this page](../develop/intro.md).

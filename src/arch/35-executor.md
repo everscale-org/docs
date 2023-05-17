@@ -1,5 +1,4 @@
 ---
-title: Executor
 description: Transaction executor functional specification
 ---
 
@@ -2341,12 +2340,12 @@ mitigating the main risks, identified in the previous section.
 
 #### Compute Phase Processing
 
-- **CMP1** — If the [Compute Phase fails](35-executor.md#compute-phase-success-conditions), the execution of a message is aborted. The bounce message is not created in this case.
+- **CMP1** — If the [Compute Phase fails](#compute-phase-success-conditions), the execution of a message is aborted. The bounce message is not created in this case.
 - **CMP2** — After the Compute Phase, the account's balance gets decreased exactly on the amount of consumed gas.
 
 #### Action Phase Processing
 
-- **ACT1** — Each successful [SendMsg](35-executor.md#action-sendmsg) action leads to creation of a message.
+- **ACT1** — Each successful [SendMsg](#action-sendmsg) action leads to creation of a message.
 - **ACT2** — Successfully created message is added into the out queue exactly once.
 - **ACT3** — If the action phase fails and the incoming message has the bounce flag set, then a single bounce message is generated and put into the out queue.
 
