@@ -412,7 +412,7 @@ DeBot have 3 special features:
 
 Ordinary Everscale smart contracts cannot use 1st and 2nd features because they cannot produce external inbound messages. But DeBot can, due to the fact that they are executed in DEngine, that allows DeBot to generate these kinds of messages, send them to blockchain and return results to DeBot.
 
-In terms of DeBot, all these features are implemented without [DInterfaces](40-debot-specifications.md#debot-interfaces) but in a native way, like two smart contracts communicating with each other — by sending messages directly to target address.
+In terms of DeBot, all these features are implemented without [DInterfaces](30-debot-specifications.md#debot-interfaces) but in a native way, like two smart contracts communicating with each other — by sending messages directly to target address.
 
 But with only one difference — to call a get-method or call a function onchain DeBot must generate external inbound message, while to invoke another DeBot, it should generate an internal message to the invoked DeBot address.
 
