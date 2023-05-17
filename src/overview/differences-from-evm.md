@@ -35,7 +35,7 @@ A block in Everscale is not just a list of transactions that need to be complete
 
 That is, in order for the validator from shard X to maintain the current state of shard Y, it does not need to execute all the transactions that were in the block of shard Y. It simply downloads the block and rolls up the changes that have occurred in the message queue and smart contract states.
 
-## Sharding in Everscale is not merely data sharding, but computational resources sharding​
+## Sharding in Everscale is not merely data sharding, but computational resources sharding
 
 In case there are too many transactions in the last N block of some particular shard, then the shard is simply divided into two. This is done in accordance with the address range of smart contracts, with some transactions going to one shard while the rest to the other. The resulting shards, in turn, can also be divided into two more.
 
@@ -55,7 +55,7 @@ A new consensus mechanism (SMFT) that is currently under development solves this
 - Before creating the next block, everyone reveals their guessed number and guesses a new one.
 - Thus, shard validators never know which and how many other validators will validate their block. **It is a very nice and elegant solution.**
 
-## Large amount of data and its long tail issue​
+## Large amount of data and its long tail issue
 
 The original idea of blockchain was that there is a chain of blocks from the very beginning (genesis) to the latest block. And there is always the possibility to synchronize from the genesis block to the latest one, to check that everything runs well. However, already for a long time on Ethereum, full-nodes begin to synchronize with some kind of snapshot from the recent past, and not from the genesis block. 
 

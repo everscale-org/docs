@@ -53,16 +53,6 @@ Next, we initialize the provider and retrieve its current state:
   const currentProviderState = await ever.getProviderState();
   ```
 
-  </TabItem>
-
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  ```
-
-  </TabItem>
-</Tabs>
-
 The response should look like following (the values of parameters may change depending on version and selected network):
 
 ```json
@@ -79,8 +69,39 @@ The response should look like following (the values of parameters may change dep
   "subscriptions": {}
 }
 ```
+  </TabItem>
+
+  <TabItem value="surf-keeper" label="surf-keeper-provider">
+
+  ```typescript
+  import { ProviderRpcClient } from '@eversurf/surfkeeper-provider';
+  const rpc = new ProviderRpcClient();
+
+  // To check whether api is available await for 
+  // rpc.ensureInitialized();
+  // connectStatus will return you the same result as `connect`
+  // described in the next block if connnect was already granted 
+  const connect = await rpc.connectStatus();
+  ```
+
+The response should look like following (the values of parameters may change depending on version and selected network):
+
+```json
+{
+  "isConnected": "true",
+  "address": "0x00...00",
+  "publicKey": "<pubkey>"
+}
+```
+  </TabItem>
+</Tabs>
 
 ### Login and logout
+
+Login flow is quite different for each wallet:
+
+<Tabs>
+  <TabItem value="inp-prov" label="everscale-inpage-provider">
 
 To login, we ask a user for permissions to interact with one of the accounts available in his wallet. Two permissions are supported. These are:
 
@@ -88,9 +109,6 @@ To login, we ask a user for permissions to interact with one of the accounts ava
 - `accountInteraction` - allows the page to prompt the user for transactions and perform other interactions such as signing a message.
 
 Asking the user for permission (connect the wallet):
-
-<Tabs>
-  <TabItem value="inp-prov" label="everscale-inpage-provider">
 
   ```typescript
   // Subscribe to new permissions
@@ -107,17 +125,6 @@ Asking the user for permission (connect the wallet):
   });
   ```
 
-  </TabItem>
-
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  ```
-
-  </TabItem>
-</Tabs>
-
-
 The response should look like following (may vary depending on the wallet address, public key, and wallet contract type)
 
 ```json
@@ -133,9 +140,6 @@ The response should look like following (may vary depending on the wallet addres
 
 You may want to provide “logout” and “change account” features in your app, using following interface:
 
-<Tabs>
-  <TabItem value="inp-prov" label="everscale-inpage-provider">
-
   ```typescript
   // To disconnect, you can use
   await ever.disconnect();
@@ -147,12 +151,40 @@ You may want to provide “logout” and “change account” features in your a
 
   <TabItem value="surf-keeper" label="surf-keeper-provider">
 
+To interact with one's account we request permission to connect a page to the extension. It is as simple as:
+
   ```typescript
+  const connectResponse = await rpc.connect();
   ```
+  
+  > **_NOTE:_**  By this time extension should be initialized and be logged in into user's account.
+
+  The response should look like following:
+
+```json
+{
+  "isConnected": "true",
+  "address": "0x00...00",
+  "publicKey": "<pubkey>"
+}
+```
+
+You may want to provide disconnect option in your app, using following interface:
+
+  ```typescript
+  await rpc.disconnect();
+  ```  
+  The response should look like following:
+
+```json
+{
+  "isConnected": "false",
+}
+```
 
   </TabItem>
-
 </Tabs>
+
 
 ### NetworkId check
 
@@ -184,12 +216,4 @@ Let’s assume our target contract is deployed in the testnet. We want to check 
   ```
 
   </TabItem>
-
-  <TabItem value="surf-keeper" label="surf-keeper-provider">
-
-  ```typescript
-  ```
-
-  </TabItem>
-
 </Tabs>

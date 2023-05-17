@@ -20,7 +20,7 @@ Kademlia distance = 256-bit key `XOR` 256-bit DHT node address.
 
 `S` is a small parameter, for example `S = 7`, which is required in order to improve the reliability of DHT. If we were to keep the key only on one node. The nearest one to `K`. The value of the respective key would be lost if that single node goes offline.
 
-## Kademlia routing table​
+## Kademlia routing table
 
 Each node in DHT usually keeps a Kademlia routing table. It is comprised of 256 buckets (from 0 to 255). 
 
@@ -30,7 +30,7 @@ The information includes: **DHT addresses, IP addresses and UDP ports**. Also, t
 
 When a Kademlia node learns about any other Kademlia node as a result of some query, it places it into a suitable bucket of its routing table. First, as a candidate, then, if some of the “best” nodes in that bucket fail, for instance, do not respond to ping queries for a long time, they can be replaced by some of these candidates. In this way, the Kademlia routing table stays populated.
 
-## Key-value pairs​
+## Key-value pairs
 
 Everscale DHT allows key-value pairs addition and editing.
 

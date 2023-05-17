@@ -20,7 +20,7 @@ The TIP-3 standard is made up of a set of interfaces, contracts, and utilities t
 
 - `TokenRootBase`: is an implementation of the TIP-3 Token Standard for the Everscale blockchain. It provides the minimal required functionality for a token root contract, including storing general information about the token such as name, symbol, decimals, and total supply.
 
-To get started with developing your token, you can inspect the Everscale source code for [TIP-3 token implementation here](https://github.com/broxus/tip3). Then you need to install and set up your [smart contract development environment](environment-setup.md). 
+To get started with developing your token, you can inspect the Everscale source code for [TIP-3 token implementation here](https://github.com/broxus/tip3). Then you need to install and set up your [smart contract development environment](#todo-add). 
 
 Next, you follow the steps below:
 
