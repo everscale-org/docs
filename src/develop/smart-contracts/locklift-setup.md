@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Environment setup
+# Locklift Environment setup
 
 
 ## Locklift

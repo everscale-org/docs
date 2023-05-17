@@ -103,15 +103,15 @@ The receiver must fetch the first 4 bytes, decrypt them into the length field an
 
 The first datagram in the session always goes from the server to the client. It happens after a handshake package is accepted by the server and it's actual buffer is empty. In the event of failure, the client must decrypt it and drop the connection with the server. The reason is that the server has not followed the protocol accordingly. Correspondingly, actual session keys differ on the server and client side.
 
-## Security considerations​
+## Security considerations
 
-### Handshake padding​
+### Handshake padding
 
 `aes_params` integrity is protected by a SHA-256 hash. The confidentiality, in turn, is protected by the key derived from the `secret` parameter. Possibly, it works this way due to initial TON developers thinking of migrating from AES-CTR at some point. 
 
 To do this, the specification may be extended to include a special magic value in `aes_params`, which will signal that the peer is ready to use the updated primitives. The response to such a handshake may be decrypted twice: with new and old schemes. This is needed in order to to clarify which scheme the other peer is actually using.
 
-### Session parameters encryption key derivation process​
+### Session parameters encryption key derivation process
 
 The encryption key will be static in case it is derived only from the `secret` parameter. This is due to the fact that the secret is static. To derive a new encryption key for each session, `SHA-256(aes_params)` is used. It is random if `aes_params` is random. It should be noted that the current key derivation algorithm linking different subarrays is considered poor.
 

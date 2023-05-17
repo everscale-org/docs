@@ -14,7 +14,7 @@ For public overlays you can find nodes using DHT
 
 :::
 
-## ADNL in comparison with Overlay networks​
+## ADNL in comparison with Overlay networks
 
 Everscale overlay networks usually do not send datagrams to other arbitrary nodes as happens in ADNL. Alternatively, there are some **semi-permanent links** established between certain nodes (called **neighbors**) with respect to the overlay network. The messages are usually forwarded along these links. For instance, from a node to one of its neighbors. 
 

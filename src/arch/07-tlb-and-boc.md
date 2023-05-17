@@ -90,7 +90,7 @@ There are a few predefined types:
 
 *type-expr* usually consist of optionally parametrized *Type* only as: `last_trans_lt:uint64 or _:StateInit`. Yet, it is possible that *type-expr* also contains conditions. In that case, *type-expr* consists of *ident*, `:`, *condition*, `?`, type. If a condition, which can refer to previously defined fields, renders to `false`, the corresponding field is not presented. For instance, `prev:n?^(ProofChain n)` means that `prev` field is only presented for objects when `n>0`.
 
-##### Implicit​
+##### Implicit
 
 Some fields may be implicit. Their definitions are surrounded by **curly brackets**. It indicates that the field is not actually present in the serialization. Their value must be deduced from some other data. Usually, the parameters of the type are being serialized. For instance
 
@@ -122,7 +122,7 @@ We begin with `0b1111111100101` and compare it with the constructor prefixes `0b
 
 We, therefore, recursively dive into `Unary` until we get to the `Unary ~(N-8)`. Then, we see that the rest of the slice starts from the `unary_zero` tag and thus constitutes a `Unary 0` object. Looking back, we can see that we initially had a `Unary 8` object. After the deserialization of `Unary ~N` from Slice(`0b1111111100101`) we get a `Unary 8` object and the remaining slice(`0b0101`) from which subsequent variables of the constructor can be deserialized.
 
-#### Constraints​
+#### Constraints
 
 Some implicit fields may contain constraints, for instance `{n <= m}`. It means that the previously defined variables `n` and `m` should satisfy the corresponding inequality. This inequality is an inherent property of the constructor. It should be checked during serialization and objects with variables which do not satisfy these constraints are invalid.
 
@@ -134,7 +134,7 @@ hml_long$10 {m:#} n:(#<= m) s:(n * Bit) = HmLabel ~n m;
 hml_same$11 {m:#} v:Bit n:(#<= m) = HmLabel ~n m;
 ```
 
-### Deserialization​
+### Deserialization
 
 With the help of TL-B schemes, any object can be serialized to the **builder** and deserialized from the **slice**. In particular, in order to deserialize an object, we need to start with the determination of the constructor. For this purpose we use a tag and then deserialize variables one by one from left to right. 
 
