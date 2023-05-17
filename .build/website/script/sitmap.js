@@ -15,7 +15,7 @@ function parseSitmap(sitemapPath, processorList, options = {}) {
   }
   const builder = new XMLBuilder()
   let content = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-  content += builder.build(xml).slice(15)
+  content += builder.build(xml).slice(21)
   fs.writeFileSync(sitemapPath, content)
 }
 
