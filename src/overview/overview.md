@@ -35,8 +35,8 @@ Learn about incoming external messages tracing via the REMP protocol. Also, stud
 
 - [Standards](../standard/)
 - [ABI](../spec/10-abi.md)
-- [dePool Specification](../spec/30-depool-specification.md)
-- [REMP](../spec/20-remp.md)
+- [dePool Specification](../spec/20-depool-specification.md)
+- [REMP](../arch/networking/remp.md)
 
 ## Architecture  
 
