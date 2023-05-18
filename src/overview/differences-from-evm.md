@@ -8,7 +8,7 @@ sidebar_position: 3
 
 Ethereum is a great blockchain construct that gave birth to smart contracts, which, in turn, opened the world for dApps. Unfortunately, it became hostage to its own success. Despite the fact that it was a revolution at the time of its inception, it subsequently went on a path of slow evolution, considerably hindering its advancement and losing competition with other blockchains.
 Everscale, due to its later arrival and the time lag associated with it, was able to assess the mistakes made on Ethereum. Therefore, having the expert take, community devs put the right decisions into Everscale blockchain. This was possible, among others, due to the fact that, unlike many other blockchains, Everscale has never attempted to reduce costs for blockchain development.
-In what follows we will outline some technical issues associated with Ethereum and the solutions developed by Everscale in order to overcome them. 
+In what follows we will outline some technical issues associated with Ethereum and the solutions developed by Everscale in order to overcome them.
 
 ## Sharding
 
@@ -24,12 +24,12 @@ In Everscale, the asynchronous architecture was designed from scratch. All contr
 
 Currently, Everscale is comprised of two global shards called workchains:
 
-**Master-workchain** (masterchain) for synchronization and governance, and the **main workchain** for smart contracts. 
+**Master-workchain** (masterchain) for synchronization and governance, and the **main workchain** for smart contracts.
 
-The main workchain can be partitioned into N shards (from 1 to 256 shards). Each shard has its own group of validators. This sub-group is responsible for executing transactions in its own shard. At the same time, it constantly downloads blocks from all other shards of its workchain. 
+The main workchain can be partitioned into N shards (from 1 to 256 shards). Each shard has its own group of validators. This sub-group is responsible for executing transactions in its own shard. At the same time, it constantly downloads blocks from all other shards of its workchain.
 
 A block in Everscale is not just a list of transactions that need to be completed in order to achieve changes in the state. Instead, a block is:
-- A list of messages for which transactions were executed, removing them from the incoming queue. 
+- A list of messages for which transactions were executed, removing them from the incoming queue.
 - New messages that entered the outgoing queue after message processing.
 - Changes in smart contract states that resulted from message processing.
 
@@ -45,7 +45,7 @@ Having such sharding capabilities, Everscale achieves a huge network throughput.
 
 It is important to mention that there is also a big security issue arising. As the number of shards increases, there are fewer instruments to watch over each one of them. Therefore, in the event of a high block mining rate, it may lead to the collusion of the validators of a single shard. This, in turn, could end with someone creating the original message that carries the money not belonging to the originator of the contract.
 
-A new consensus mechanism (SMFT) that is currently under development solves this issue. Basically, it takes advantage of the current architecture of Everscale where validators share computation among themselves. This way, all validators always have the data of all shards. It means that each newly issued block can be validated independently.  
+A new consensus mechanism (SMFT) that is currently under development solves this issue. Basically, it takes advantage of the current architecture of Everscale where validators share computation among themselves. This way, all validators always have the data of all shards. It means that each newly issued block can be validated independently.
 
 **Let’s see how it actually works. Please note that the text below describes the principle of work, not the exact algorithm.**
 
@@ -57,13 +57,13 @@ A new consensus mechanism (SMFT) that is currently under development solves this
 
 ## Large amount of data and its long tail issue
 
-The original idea of blockchain was that there is a chain of blocks from the very beginning (genesis) to the latest block. And there is always the possibility to synchronize from the genesis block to the latest one, to check that everything runs well. However, already for a long time on Ethereum, full-nodes begin to synchronize with some kind of snapshot from the recent past, and not from the genesis block. 
+The original idea of blockchain was that there is a chain of blocks from the very beginning (genesis) to the latest block. And there is always the possibility to synchronize from the genesis block to the latest one, to check that everything runs well. However, already for a long time on Ethereum, full-nodes begin to synchronize with some kind of snapshot from the recent past, and not from the genesis block.
 
 Many Ethereum maximalists are still not ready to accept the idea that storing the entire history of blocks is wrong. They believe that history should be stored forever. It entails that there is a need for special protocols to allow users to always check some particular piece of information from history.
 
 However, it can be argued that even the Ethereum dev team has abandoned this idea. In the Ethereum 2.0 roadmap, there is the section called “History expiry” stating that full-nodes should not store the history of blocks for more than a year.
 
-The history of blocks is critically important for rollups. That is, if a rollup operator terminates its operation, then you need the entire history of its transactions in order to withdraw your money from it, on L1. This is one of the reasons why rollups are a questionable solution. Starting with Eth 2.0, we can only say that the history of blocks is probably stored at least somewhere. 
+The history of blocks is critically important for rollups. That is, if a rollup operator terminates its operation, then you need the entire history of its transactions in order to withdraw your money from it, on L1. This is one of the reasons why rollups are a questionable solution. Starting with Eth 2.0, we can only say that the history of blocks is probably stored at least somewhere.
 
 It is assumed that the history will be stored by blockchain explorers. The Ethereum devs team are also thinking about some new techniques for storing history. So far there are none. There is also an understanding that we can only choose from one of the following two options: **high throughput or storage history**.
 
@@ -83,7 +83,7 @@ Thanks to this, Everscale achieves absolutely controlled behavior, when each sma
 
 **Some other aspects distinguishing Everscale from Ethereum**
 
-**On Everscale, in contrast to Ethereum:**     
+**On Everscale, in contrast to Ethereum:**
 
 - Calls between contracts are asynchronous and not atomic
 - Contracts cannot run getter methods on other contracts
@@ -91,4 +91,4 @@ Thanks to this, Everscale achieves absolutely controlled behavior, when each sma
 - The gas price is constant. Gas wars are impossible. However, transactions may take longer due to threads synchronization
 - There are limits on data structure size per contract, for instance, token and NFT standards
 - Everything is a smart contract, even a simple wallet. A single public key can correspond to a different wallets
-- Data structures and memory model differences. Iterable mappings and other T-Sol specific types
+- Data structures and memory model differences. Iterable mappings and other TVM specific types
