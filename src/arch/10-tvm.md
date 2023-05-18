@@ -10,6 +10,4 @@ The stack principle forms the foundation of TVM, ensuring its efficiency and eas
 
 ## Additionally
 
-You can learn more about TVM and how it works from several sources:
-
-3. [TVM Extended Instructions](https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d)
+- [TVM Extended Instructions](https://tonlabs.notion.site/tonlabs/TVM-Extended-Instructions-f22fb9a10bec4f8cadd9757e7d6df51d)
