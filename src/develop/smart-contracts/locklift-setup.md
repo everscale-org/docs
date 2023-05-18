@@ -7,12 +7,12 @@ sidebar_position: 1
 
 ## Locklift
 
-To improve the development experience, you will need tools and utilities to compile, deploy and test your Everscale contracts. 
+To improve the development experience, you will need tools and utilities to compile, deploy and test your Everscale contracts.
 
-Let's consider Locklift as an example tool. It is a development environment like Hardhat or Truffle and it uses the specified T-Sol compiler to build all project contracts.
+Let's consider Locklift as an example tool. It is a development environment like Hardhat or Truffle and it uses the specified TON Solidity Compiler to build all project contracts.
 
 With Locklift, you get:
-- Network management for working with any networks (main, test, local, ...) 
+- Network management for working with any networks (main, test, local, ...)
 - Automated contract testing
 - Handy wrappers around Everscale smart contracts
 - Custom givers support
@@ -70,7 +70,7 @@ You can see that your smart contract `Sample.tsol` appeared in the `sample-proje
 
 ## Configuration
 
-The configuration file is called `locklift.config.ts`. Here's how the basic layout for local node looks like (note, that your config may contain more networks, but the way they are configured is the same): 
+The configuration file is called `locklift.config.ts`. Here's how the basic layout for local node looks like (note, that your config may contain more networks, but the way they are configured is the same):
 
 <details>
     <summary>Default locklift.config.ts layout</summary>
@@ -136,25 +136,25 @@ const config: LockliftConfig = {
     amount: 20,
    },
   },
-  
+
   // ... (configs for other networks go here)
 ```
 
 </details>
 
-For the avoidance of doubt, it’s important that we go through each of the parameters:  
+For the avoidance of doubt, it’s important that we go through each of the parameters:
 
-`compiler.version` - the version of the solidity compiler binary 
+`compiler.version` - the version of the solidity compiler binary
 
 `linker.version` - the version of the TVM-linker binary
 
-`networks` - specify which networks are available for deployment and testing. 
+`networks` - specify which networks are available for deployment and testing.
 
 `networks.[NETWORK_NAME].keys.phrase` - if you leave this field value empty - a new random seed will be generated each time you're running locklift.
 
-Or specify it explicitly - fill the `phrase` field with a mnemonic phrase. 
+Or specify it explicitly - fill the `phrase` field with a mnemonic phrase.
 
-## Build 
+## Build
 
 You can run tests and start to develop your amazing projects. To do this, you need to run the following command. The command uses the specified TON Solidity compiler and TVM linker to build all project contracts:
 

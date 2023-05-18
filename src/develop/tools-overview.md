@@ -16,16 +16,19 @@ sidebar_position: 1
 - [Everscan](https://everscan.io) ([devnet](https://testnet.everscan.io))
 
 ### Tools for developers
+- [TON Solidity Compiler](https://github.com/tonlabs/TON-Solidity-Compiler) ([reference](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md)) - Port of the Solidity smart-contract compiler generating TVM bytecode for TON blockchain. Can be installed within Everdev or Locklift environments as well, or compiled manually.
+
 - [Everdev CLI](https://github.com/tonlabs/everdev) ([Quick start](smart-contracts/everdev.md) | [docs](https://docs.everos.dev/everdev)) - Everdev is a Node.js package with CLI interface that allows to set up developer environment and develop on TVM compatible blockchains (Everscale, Venom, TON, Gosh, etc).
+
 - [Locklift](https://github.com/broxus/locklift) - development environment, analogous to Hardhat.
+
 - [Bytie](https://ever.bytie.moe) - smart contracts interaction playground and useful devtools
-- [T-Sol compiler](https://github.com/tonlabs/TON-Solidity-Compiler) ([reference](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md)) - Solidity dialect for smart contract development. Can be installed within Locklift or Everdev environments as well
 
-### T-Sol IDE integrations
+### TON Solidity Compiler IDE integrations
 
-- [VSCode T-Sol plugin 1](https://marketplace.visualstudio.com/items?itemName=everscale.solidity-support)
-- [VSCode T-Sol plugin 2](https://marketplace.visualstudio.com/items?itemName=mytonwallet.ton-solidity-extension)
-- [JetBrains T-Sol plugin](https://plugins.jetbrains.com/plugin/20696-t-sol)
+- [VSCode TON Solidity Compiler plugin 1](https://marketplace.visualstudio.com/items?itemName=everscale.solidity-support)
+- [VSCode TON Solidity Compiler plugin 2](https://marketplace.visualstudio.com/items?itemName=mytonwallet.ton-solidity-extension)
+- [JetBrains TON Solidity Compiler plugin](https://plugins.jetbrains.com/plugin/20696-t-sol)
 
 ### Libraries for developers
 - [JavaScript Ever SDK](https://github.com/tonlabs/ever-sdk-js) ([docs](https://docs.everos.dev/ever-sdk)) - Client Library built for Everscale, Venom blockchain, TON, Gosh for Web, Node.js and React Native platforms
