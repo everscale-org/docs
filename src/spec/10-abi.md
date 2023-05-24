@@ -8,105 +8,11 @@ ABI specifies message bodies layout for client to contract and contract to contr
 
 ## Introduction
 
-Each type has max bit and max ref size:
+In Everscale client to contract and contract to contract interaction occurs through external and internal messages respectively.
 
-- `intN/uintN` — N bits, 0 refs
-- `varint16/varuint16` — 124 bits, 0 refs
-- `varint32/varuint32` — 253 bits, 0 refs
-- `address` — 591 bits, 0 refs
-- `bool` — 1 bit, 0 refs
-- `bytes/cell/string` — 0 bit, 1 ref
-- `array` — 33 bit, 1 ref
-- `mapping` — 1 bit, 1 ref
-- `optional(T)` — (1 bit, 1 ref) if `optional` is [large](#optionalinnertype). Otherwise, (`1 bit + maxBitQty(T), maxRefQty(T)`)
+ABI specification describes the structure of body of these messages. ABI stored as JSON serves as an interface for smart contracts and is used to when calling contract methods externally or on-chain.
 
-`structure (aka tuple)` type is considered as a sequence of its types when we encode the function parameters. That's why `tuple` type doesn't have max bit or max ref size. Nested `tuple`'s also are considered as a sequence of its types. For example:
-
-```solidity
-struct A {
-  uint8 a;
-  uint16 b;
-}
-
-struct B {
-  uint24 d;
-  A a;
-  uint32 d;
-}
-```
-
-structure `B` is considered as a sequence of `uint24`, `uint8`, `uint16`, `uint32` types.
-
-## Encoding the message
-
-`Message X` contains the field `body`. If encoded `body` fits in the cell, then the body is inserted in the cell (`Either X`). Otherwise, `body` is located in the reference (`Either ^X`).
-
-## Encoding the body of the message
-
-The body of the message is a tree of cells that contains the function ID and encoded function arguments. External messages body is prefixed with function header parameters.
-
-### Encoding header for external messages
-
-Function header has up to 3 optional parameters and mandatory signature. Function ID and function parameters are put after header parameters.
-
-Maximum header size is calculated as follows (no references used).
-
-```js
-maxHeader =
-  (hasSignature ? 1 + 512 : 1) +
-  defPubkey ? (hasPubkey ? 1 + 256 : 1) : 0 +
-  defTime ? (hasTime ? 64 : 64) : 0 +
-  defExpire ? (hasExpire ? 32 : 32) : 0;
-```
-
-### Encoding of function ID and its arguments
-
-Function ID and the function arguments are located in the chain of cells. The last reference of each cell (except for the last cell in the chain) refers to the next cell. After adding the current parameter in the current cell we must presume an invariant (rule that stays true for the object) for our cell: number of unassigned references in the cell must be not less than 1 because the last cell is used for storing the reference on the next cell. When we add a specific value of some function argument to the cell we assume that it takes the max bit and max ref size. Only if the current parameter (by max bit or max ref size) does not fit into the current cell then we create new cell and insert the parameter in the new cell.
-
-:::note
-**But** If current argument and all the following arguments fit into the current cell by max size then we push the parameters in the cell.
-:::
-
-In the end we connect the created cells in the chain of cells.
-
-For example:
-
-```solidity
-function f(address a, address b) public;
-```
-
-Here we create 2 cells. In the first there is function id and  `a`. There may be not more than 32+591=623 bits. It's not more than 1023. The next parameter `b` can't fit into the first cell. In the second cell there is only `b`.
-
-```solidity
-function f(mapping(uint=>uint) a, mapping(uint=>uint) b, mapping(uint=>uint) c, mapping(uint=>uint) d)
-```
-
-The first cell: function ID, `a`, `b` `c`, `d`.
-
-```solidity
-function f(string a, string b, string c, string d, uint32 e) public
-```
-
-Function ID, `a`, `b`, `c` are located in the first cell. `d` and `e` fit in the first cell by max size. That's why we push all parameter in the fist cell.
-
-```solidity
-struct A {
-  string a;
-  string b;
-  string c;
-  string d;
-}
-
-function f(A a, uint32 e) public;
-```
-
-Same as previous example, only one cell.
-
-```solidity
-function f(string a, string b, string c, string d, uint e, uint f, uint g, uint h) public
-```
-
-We use 3 cells. In the first cell there are function Id, `a`, `b,` `c`. In the second - `d`, `e`, `f`, `g`. In the third - `h`.
+The goal of the ABI specification is to design ABI types that are cheap to read to reduce gas consumption and gas costs. Some types are optimized for storing without write access.
 
 ## Message body
 
@@ -165,7 +71,7 @@ The message body signature is generated from the *representation hash* of the ba
 ## Signing Algorithm
 
 1. ABI serialization generates bag of cells containing header parameters, function ID and function parameters.
-   591 free bits are reserved in the root cell for destination address (the maximum size of internal address).
+   591 free bits are reserved in the root cell for destination address ([the maximum size of address](#address)).
 2. The root cell data is prepended with actual destination address data without padding to maximum size.
 3. *Representation hash* of the bag is signed using the *Ed25519* algorithm.
 4. Address data is removed from the root cell and replaced with bit `1` followed by 512 bits of the signature.
@@ -173,55 +79,6 @@ The message body signature is generated from the *representation hash* of the ba
 :::note
 This functionality is added since `ABI v2.3` and supported staring with [0.64.0](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/Changelog_TON.md#0640-2022-08-18) version of the Solidity compiler.
 :::
-
-## ABI JSON
-
-This section describes schema of the smart contracts ABI represented in JSON format.
-
-Full ABI schema in TypeScript notation:
-
-```typescript
-type Abi = {
-  version: string,
-  setTime?: boolean,
-  header?: Param[],
-  functions: Function[],
-  events?: Event[],
-  data?: Data[],
-  fields?: Param[],
-}
-
-type Function = {
-  name: string,
-  inputs?: Param[],
-  outputs?: Param[],
-  id?: number,
-}
-
-type Event = {
-  name: string,
-  inputs?: Param[],
-  id?: number,
-}
-
-type Data = Param & {
-  key: number,
-}
-
-type Param = {
-  name: string,
-  type: string,
-  components?: Param[],
-}
-```
-
-Where:
-
-- `version` contains string and uses semver semantics. Current version is "2.1".
-- `functions` describes all functions the smart contract can handle.
-- `events` describes all external outbound messages (events) produces by smart contract.
-- `data` describes Hashmap with public data of the smart contract.
-- `fields` describes internal structure of the smart contracts data.
 
 ## Function Signature (Function ID)
 
@@ -268,99 +125,166 @@ If a function has no input parameters or does not return any values, the corresp
 
 **Event ID** is calculated in the same way as the **function ID** except for cases when the event signature does not contain the list of return values types: `event(int64,bool)v2`
 
-## Encoding
+## Encoding the message
 
-The goal of the ABI specification is to design ABI types that are cheap to read to reduce gas consumption and gas costs. Some types are optimized for storing without write access.
+`Message X` contains the field `body`. If encoded `body` fits in the cell, then the body is inserted in the cell (`Either X`). Otherwise, `body` is located in the reference (`Either ^X`).
+
+The body of the message is a tree of cells that contains the function ID and encoded function arguments. External messages body is prefixed with function header parameters.
 
 ## Header parameter types
 
-- `time`: message creation timestamp. Used for replay attack protection, encoded as 64 bit Unix time in milliseconds.
+- [`time`](#time): message creation timestamp. Encoded as 64 bit Unix time in milliseconds.
 
-  Rule: the contract should store the timestamp of the last accepted message. The initial timestamp is 0. When a new message is received, the contract should do the following check:
+- [`expire`](#expire): Unix time (in seconds, 32 bit) after that message should not be processed by contract.
 
-  `last_time < new_time < now + interval,` where
+- [`pubkey`](#pubkey): public key from key pair used for signing the message body. This parameter is optional.
 
-  `last_time` - last accepted message timestamp (loaded from c4 register),
+**Note**: Header may also contain any of standard function parameter types described below to be used in custom checks.
 
-  `new_time` - inbound external message timestamp (loaded from message body),
+## Encoding header for external messages
 
-  `now` - current block creation time (just as `NOW` TVM primitive),
+Function header has up to 3 optional parameters and mandatory signature. Function ID and function parameters are put after header parameters.
 
-  `interval` - 30 min.
+Maximum header size is calculated as follows (no references used).
 
-  The contract should continue execution if these requirements are met. Otherwise, the inbound message should be rejected.
-
-- `expire`: Unix time (in seconds, 32 bit) after that message should not be processed by contract. It is used for indicating lost external inbound messages.
-
-  Rule:  if contract execution time is less then `expire` time, then execution is continued. Otherwise, the message is expired, and the transaction aborts itself (by `ACCEPT` primitive). The client waits for message processing until the `expire` time. If the message wasn't processed during that interval is considered to be expired
-
-- `pubkey`: public key from key pair used for signing the message body. This parameter is optional. The client decides if he needs to set the public key or not. It is encoded as bit 1 followed by 256 bit of public key if parameter provided, or by bit `0` if it is not.
-- Header may also contain any of standard ABI types used by custom checks.
-
-### Function parameter types:
-
-- `uint<M>`: unsigned `M` bit integer. Big-endian encoded unsigned integer stored in the cell-data.
-- `int<M>`: two’s complement signed `M` bit integer. Big-endian encoded signed integer stored in the cell-data.
-- `bool`: equivalent to uint1.
-- tuple `(T1, T2, ..., Tn)`: tuple that includes `T1`, ..., `Tn`, `n>=0` types encoded in the following way:
-
+```js
+maxHeader =
+  (hasSignature ? 1 + 512 : 1) +
+  defPubkey ? (hasPubkey ? 1 + 256 : 1) : 0 +
+  defTime ? (hasTime ? 64 : 64) : 0 +
+  defExpire ? (hasExpire ? 32 : 32) : 0;
 ```
-Enc(X(1)) Enc(X(2)) ..., Enc(X(n)); where X(i) is value of T(i) for i in 1..n 
-```
+
+## Function parameter types
+
+- [`int<N>`](#intn): two’s complement signed `N` bit integer. Big-endian encoded signed integer stored in the cell-data.
+- [`uint<N>`](#uintn): unsigned `N` bit integer. Big-endian encoded unsigned integer stored in the cell-data.
+- [`varint<N>`](#varintn): variable-length signed integer. Bit length is between `log2(N)` and `8 * (N-1)`, where `N` is equal to 16 or 32.
+- [`varuint<N>`](#varuintn): variable-length unsigned integer with bit length equal to 8 * N, where Nis equal to 16 or 32 e.g. Processed like `varint<N>`.
+- [`bool`](#bool): equivalent to uint1.
+- [tuple `(T1, T2, ..., Tn)`](#tuple): tuple that includes `T1`, ..., `Tn`, `n>=0` types encoded in the following way:
+
+  ```
+  Enc(X(1)) Enc(X(2)) ..., Enc(X(n)); where X(i) is value of T(i) for i in 1..n 
+  ```
 
   Tuple elements are encoded as independent values so they can be placed in different cells
 
-- `T[]` is a dynamic array of `T` type elements. It is encoded as a TVM dictionary.  `uint32` defines the array elements count placed into the cell body.  `HashmapE` (see TL-B schema in TVM spec) struct is then added (one bit as a dictionary root and one reference with data if the dictionary is not empty). The dictionary key is a serialized `uint32` index of the array element, and the value is a serialized array element as `T` type.
-- `T[k]` is a static size array of `T` type elements. Encoding is equivalent to `T[]` without elements count
-- `bytes`: an array of `uint8` type elements. The array is put into a separate cell. In the case of array overflow, the maximum cell-data size it's split into multiple sequential cells.
-    - Note: contract stores this type as-is without parsing. For high-speed decoding, cut reference from body slice as `LDREF`. This type is helpful if some raw data must be stored in the contract without write or random access to elements.
-    - Note: analog of `bytes` in Solidity. In C lang can be used as `void*`.
-- `fixedbytes<M>`: a fixed-size array of `M` `uint8` type elements. Encoding is equivalent to `bytes`
-- `map(K,V)` is a dictionary of `V` type values with `K` type key. `K` may be any of `int<M>/uint<M>` types with `M` from `1` to `1023`. Dictionary is encoded as  `HashmapE` type (one bit put into cell data as dictionary root and one reference with data is added if the dictionary is not empty).
-- `address` is an account address in TON blockchain. Encoded as `MsgAddress` struct (see TL-B schema in TON blockchain spec).
-- `cell`: a type for defining a raw tree of cells. Stored as a reference in the current cell. Must be decoded with `LDREF`  command and stored as-is.
+- [`map(K,V)`](#mapkeytypevaluetype) is a dictionary of `V` type values with `K` type key. Dictionary is encoded as  `HashmapE` type (one bit put into cell data as dictionary root and one reference with data is added if the dictionary is not empty).
+- [`cell`](#cell): a type for defining a raw tree of cells. Stored as a reference in the current cell. Must be decoded with `LDREF`  command and stored as-is.
     - Note: this type is useful to store payloads as a tree of cells analog to contract code and data in the form of `StateInit` structure of `message` structure.
+- [`address`](#address) is an account address in Everscale blockchain. Encoded as `MsgAddress` struct (see TL-B schema in blockchain [spec](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107)).
+- [`bytes`](#bytes): an array of `uint8` type elements. The array is put into a separate cell. 
+- [`fixedbytes<N>`](#fixedbytesn): a fixed-size array of `N` `uint8` type elements. Encoding is equivalent to `bytes`
+- [`string`](#string) - a type containing UTF-8 string data, encoded like `bytes`.
+- [`optional`](#optionalinnertype) - value of optional type `optional(innerType)` can store a value of `innerType` or be empty.
+- [`itemType[]`](#itemtype) is a dynamic array of `itemType` type elements. It is encoded as a TVM dictionary.  `uint32` defines the array elements count placed into the cell body.  `HashmapE` (see TL-B schema in TVM spec) struct is then added (one bit as a dictionary root and one reference with data if the dictionary is not empty). The dictionary key is a serialized `uint32` index of the array element, and the value is a serialized array element as `itemType` type.
+  - `T[k]` is a static size array of `T` type elements. Encoding is equivalent to `T[]` without elements count
 
-## Cell Data Overflow
+## Encoding of function ID and its arguments
 
-If parameter data does not fit into the available space of the current cell-data, it moves to a separate new cell. This cell is attached to the current one as a reference. The new cell then becomes the current cell.
+Function ID and the function arguments are located in the chain of cells. The last reference of each cell (except for the last cell in the chain) refers to the next cell. After adding the current parameter in the current cell we must presume an invariant (rule that stays true for the object) for our cell: number of unassigned references in the cell must be not less than 1 because the last cell is used for storing the reference on the next cell. When we add a specific value of some function argument to the cell we assume that it takes the max bit and max ref size. Only if the current parameter (by max bit or max ref size) does not fit into the current cell then we create new cell and insert the parameter in the new cell.
 
-## Cell Reference Limit Overflow
+:::note
+**But** If current argument and all the following arguments fit into the current cell by max size then we push the parameters in the cell.
+:::
 
-For simplicity, this ABI version reserves the last cell-reference spot for cell-data overflow. If the cell-reference limit in the current cell is already reached (save for the reserved spot) and a new cell is required, the current cell is considered complete, and a new one is generated. The reserved spot stores the reference to the new cell, and it continues with the new cell as a current one.
+In the end we connect the created cells in the chain of cells.
 
-The last cell reference can be used by parameter serialization which needs reference (`cell`, `bytes`, `map`, `array` types) if all the following parameters can fit into current cell.
+For example:
 
-## Contract Interface Specification
+```solidity
+function f(address a, address b) public;
+```
 
-The contract interface is stored as a JSON file called contract ABI. It includes all public functions with data described by ABI types. Below is a structure of an ABI file:
+Here we create 2 cells. In the first there is function id and  `a`. There may be not more than 32+591=623 bits (591 bits is the [maximum size of 'address'](#address)). It's not more than 1023. The next parameter `b` can't fit into the first cell. In the second cell there is only `b`.
 
-```json
-{
-  "ABI version": 2,
-  "header": [
-    ...
-  ],
-  "functions": [
-    ...  
-  ],
-  "getters": [
-    ...
-  ],
-  "events": [
-    ...  
-  ],
-  "data": [
-    ...
-  ]
+```solidity
+function f(mapping(uint=>uint) a, mapping(uint=>uint) b, mapping(uint=>uint) c, mapping(uint=>uint) d)
+```
+
+The first cell: function ID, `a`, `b` `c`, `d`.
+
+```solidity
+function f(string a, string b, string c, string d, uint32 e) public
+```
+
+Function ID, `a`, `b`, `c` are located in the first cell. `d` and `e` fit in the first cell by max size. That's why we push all parameter in the fist cell.
+
+```solidity
+struct A {
+  string a;
+  string b;
+  string c;
+  string d;
+}
+
+function f(A a, uint32 e) public;
+```
+
+Same as previous example, only one cell.
+
+```solidity
+function f(string a, string b, string c, string d, uint e, uint f, uint g, uint h) public
+```
+
+We use 3 cells. In the first cell there are function Id, `a`, `b,` `c`. In the second - `d`, `e`, `f`, `g`. In the third - `h`.
+
+
+## ABI JSON
+
+The contract interface is stored as a JSON file called contract ABI. It includes all public functions with data described by ABI types. Below is a structure of an ABI file in TypeScript notation:
+
+```typescript
+type Abi = {
+  version: string,
+  header?: Param[],
+  functions: Function[],
+  events?: Event[],
+  data?: Data[],
+  fields?: Param[],
+}
+
+type HeaderParam = {
+  Param: string
+}
+
+
+type Function = {
+  name: string,
+  inputs?: Param[],
+  outputs?: Param[],
+  id?: number,
+}
+
+type Event = {
+  name: string,
+  inputs?: Param[],
+  id?: number,
+}
+
+type Data = Param & {
+  key: number,
+}
+
+type Param = {
+  name: string,
+  type: string,
+  components?: Param[],
 }
 ```
 
-Getters is a list of get methods which might be called on local TVM.
+Where:
+
+- `version` contains string and uses semver semantics. Current version is "2.1".
+- `functions` describes all functions the smart contract can handle.
+- `events` describes all external outbound messages (events) produces by smart contract.
+- `data` describes Hashmap with public data of the smart contract.
+- `fields` describes internal structure of the smart contracts data.
 
 ### Header
 
-This section describes additional parameters of functions within the contract. Header-specific types are specified as strings with the type `name`. Other types are specified as function parameter type (see [Functions](#functions)))
+This section describes additional parameters of functions within the contract. Header-specific types are specified as strings with the type `name`. Other types are specified as function parameter type (see [Functions](#function-parameter-types)))
 
 ```json
 {
@@ -438,7 +362,7 @@ This section specifies the events used in the contract. An event is an external 
 
 ### Data
 
-This section covers the contract global public variables.
+This section covers the contract global public variables. Data is typically used when deploying multiple identical contract with the same deployer keys. It affects the contract address, and thus varying data results in unique addresses for identical contracts.
 
 ```json5
 {
@@ -454,7 +378,7 @@ This section covers the contract global public variables.
 
 ### Fields
 
-It describes internal structure of the smart contracts data. This section helps to decode contract data with TON-SDK function [decode_account_data](https://github.com/tonlabs/ever-sdk/blob/ed05ce7b9305d0e825616efb8e9295b63406b8bb/docs/reference/types-and-methods/mod_abi.md#decode_account_data)
+It describes internal structure of the smart contracts data. This section helps to decode contract data with Ever SDK function [decode_account_data](https://github.com/tonlabs/ever-sdk/blob/ed05ce7b9305d0e825616efb8e9295b63406b8bb/docs/reference/types-and-methods/mod_abi.md#decode_account_data)
 
 Structure of the smart contract data is described as a list of variables names with corresponding data types.
 It includes contract state variables and some internal contract specific hidden variables.
@@ -488,21 +412,120 @@ Fields section of the abi file:
 }
 ```
 
-### Types
+### Types Reference
+
+#### `time`
+
+*Header parameter type.*
+
+`time` is the message creation timestamp. Used for **replay attack protection**, encoded as 64 bit Unix time in milliseconds.
+
+ **Rule**: the contract should store the timestamp of the last accepted message. The initial timestamp is 0. When a new message is received, the contract should do the following check:
+
+  `last_time` < `new_time` < `now + interval`, where
+
+  `last_time` - last accepted message timestamp (loaded from c4 register),
+
+  `new_time` - inbound external message timestamp (loaded from message body),
+
+  `now` - current block creation time (just as NOW TVM primitive),
+
+  `interval` - 30 min.
+
+  The contract should continue execution if these requirements are met. Otherwise, the inbound message should be rejected.
+
+
+#### `expire`
+
+*Header parameter type.*
+
+Unix time (in seconds, 32 bit) after that message should not be processed by contract. It is used for indicating lost external inbound messages.
+
+  **Rule**:  if contract execution time is less then `expire` time, then execution is continued. Otherwise, the message is expired, and the transaction aborts itself (by `ACCEPT` primitive). The client waits for message processing until the `expire` time. If the message wasn't processed during that interval is considered to be expired
+
+
+#### `pubkey`
+
+*Header parameter type.*
+
+Public key from key pair used for signing the message body. This parameter is optional. The client decides if he needs to set the public key or not. It is encoded as bit 1 followed by 256 bit of public key if parameter provided, or by bit `0` if it is not.
+
+#### `int<N>`
+
+Fixed-sized signed integer, where `N` is a decimal bit length. Examples: `int8`, `int32`, `int256`.
+
+Max bit and max ref size for `intN` type — N bits, 0 refs
+
+| Usage          | Value                                                       | Examples              |
+|----------------|-------------------------------------------------------------|-----------------------|
+| Cell           | N bit, big endian                                           |                       |
+| JSON (returns)          | string with hex or decimal representation                              | `"0x12"`, `"100"`                |
+| JSON (accepts) | number or string with hex or decimal representation | `12`, `"0x10"`, `"100"` |
+
+#### `uint<N>`
+
+Fixed-sized unsigned integer, where N is a decimal bit length e.g., `uint8`, `uint32`, `uint256`.
+Processed like `int<N>`.
+
+Max bit and max ref size for `uintN` type — N bits, 0 refs
+
+#### `varint<N>`
+
+Variable-length signed integer. Bit length is between `log2(N)` and `8 * (N-1)`, where `N` is equal to 16 or 32, e.g. `varint16`, `varint32`.
+
+Max bit and max ref size for `varint16` type — 124 bits, 0 refs
+Max bit and max ref size for `varint32` type — 253 bits, 0 refs
+etc.
+
+| Usage          | Value                                                                                                                    | Examples              |
+|----------------|--------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| Cell           | 4 (N=16) of 5 (N=32) bits that encode byte length of the number `len`<br/>followed by `len * 8` bit number in big endian |
+| JSON (returns)          | string with hex or decimal representation                                                                                    | `"0x12"`, `"100"`                |
+| JSON (accepts) | number or string with hex or decimal representation                                                              | `12`, `"0x10"`, `"100"` |
+
+#### `varuint<N>`
+
+Variable-length unsigned integer with bit length equal to `8 * N`, where `N`is equal to 16 or 32 e.g., `varint16`, `varint32`.
+Processed like `varint<N>`.
+
+Max bit and max ref size for `varuint16` type — 124 bits, 0 refs
+Max bit and max ref size for `varuint32` type — 253 bits, 0 refs
+etc.
 
 #### `bool`
 
 Boolean type.
 
+Max bit and max ref size for `bool` type  — 1 bit, 0 refs
+
+
 | Usage          | Usage                                          | Examples               |
 |----------------|------------------------------------------------|------------------------|
 | Cell           | 1 bit, `0` or `1`                              |                        |
-| JSON           | `true`, `false`                                |                        |
+| JSON (returns)          | `true`, `false`                                |                        |
 | JSON (accepts) | `true`, `false`, `0`, `1`, `"true"`, `"false"` | `0`, `true`, `"false"` |
 
 #### `tuple`
 
 Struct type, consists of fields of different types. All fields should be specified as an array in the `components` section of the type.
+
+
+`structure (aka tuple)` type is considered as a sequence of its types when we encode the function parameters. That's why `tuple` type doesn't have max bit or max ref size. Nested `tuple`'s also are considered as a sequence of its types. For example:
+
+```solidity
+struct A {
+  uint8 a;
+  uint16 b;
+}
+
+struct B {
+  uint24 d;
+  A a;
+  uint32 d;
+}
+```
+
+structure `B` is considered as a sequence of `uint24`, `uint8`, `uint16`, `uint32` types.
 
 For example, for structure `S`:
 ```solidity
@@ -529,153 +552,39 @@ parameter `s` of type `S` would be described like:
 | Usage          | Value                                                                                                 | Examples                     |
 |----------------|-------------------------------------------------------------------------------------------------------|------------------------------|
 | Cell           | chain of cells with tuple data types encoded consistently<br/>(without splitting value between cells) |                              |
-| JSON           | dictionary of struct field names with their values                                                    | `{"a": 1, "b": 2, "c": 3}`   |
-| JSON (accepts) | mapping of struct field names with their values                                                       | `{"a": 1, "b": 2, "c": 3}`   | 
+| JSON object      | dictionary of struct field names with their values                                                    | `{"a": 1, "b": 2, "c": 3}`   |
 
-#### `int<N>`
-
-Fixed-sized signed integer, where `N` is a decimal bit length. Examples: `int8`, `int32`, `int256`.
-
-| Usage          | Value                                                       | Examples              |
-|----------------|-------------------------------------------------------------|-----------------------|
-| Cell           | N bit, big endian                                           |                       |
-| JSON           | string with hex representation                              | `0x12`                |
-| JSON (accepts) | number or string with decimal or hexadecimal representation | `12`, `0x10`, `"100"` |
-
-#### `uint<N>`
-
-Fixed-sized unsigned integer, where N is a decimal bit length e.g., `uint8`, `uint32`, `uint256`.
-Processed like `int<N>`.
-
-#### `varint<N>`
-
-*New type introduced in 2.1 version.*
-
-Variable-length signed integer. Bit length is between `log2(N)` and `8 * (N-1)`, where `N` is equal to 16 or 32, e.g. `varint16`, `varint32`.
-
-| Usage          | Value                                                                                                                    | Examples              |
-|----------------|--------------------------------------------------------------------------------------------------------------------------|-----------------------|
-| Cell           | 4 (N=16) of 5 (N=32) bits that encode byte length of the number `len`<br/>followed by `len * 8` bit number in big endian |
-| JSON           | string with hex representation                                                                                           | `0x12`                |
-| JSON (accepts) | number or string with decimal or hexadecimal representation                                                              | `12`, `0x10`, `"100"` |
-
-#### `varuint<N>`
-
-Variable-length unsigned integer with bit length equal to `8 * N`, where `N`is equal to 16 or 32 e.g., `varint16`, `varint32`.
-Processed like `varint<N>`.
 
 #### `map(<keyType>,<valueType>)`
 
-Hashtable mapping keys of `keyType` to values of the `valueType`, e.g., `map(int32, address)`.
+Hashtable mapping keys of `keyType` to values of the `valueType`, e.g., `map(int32, address)`. Key may be any of `int<N>/uint<N>` types with `N` from `1` to `1023` or address of std format.
+
+Max bit and max ref size for `map` type — 1 bit, 1 ref
 
 | Usage          | Value                                                                              | Examples                                  |
 |----------------|------------------------------------------------------------------------------------|-------------------------------------------|
 | Cell           | 1 bit (`0` - for empty mapping, otherwise `1`) and ref to the cell with dictionary |                                           |
-| JSON           | dictionary of keys and values                                                      | `{"0x1":"0x2"}`                           |
-| JSON (accepts) | dictionary of keys and values                                                      | `{"0x1":"0x2"}`, `{"2":"3","3":"55"}`     |
+| JSON object | dictionary of keys and values                                                      | `{"0x1":"0x2"}`, `{"2":"3","3":"55"}`     |
+
+There are some specifics when working with "big" structures as values in mappings. Read [below](#big-structures-as-values-in-mappings-and-arrays) how to implement them correctly.
+
 
 #### `cell`
 
 TVM Cell type.
 
+Max bit and max ref size for `cell` type — 0 bit, 1 ref
+
 | Usage          | Value                     | Examples                                     |
 |----------------|---------------------------|----------------------------------------------|
 | Cell           | stored in a ref           |                                              |
-| JSON           | binary hex data in base64 | `"te6ccgEBAQEAEgAAH/////////////////////g="` |
-| JSON (accepts) | binary hex data in base64 | `"te6ccgEBAQEAAgAAAA=="`                     |
+| JSON object           | cell serialized into boc and encoded in base64| `"te6ccgEBAQEAEgAAH/////////////////////g="` |
 
 #### `address`
 
-Contract address type `address`, consists of two parts: workchain id (wid) and address value.
+Contract address type `address`, can be any of the [existing types](../arch/40-accounts.md#account-address) (although not all may be supported by the compilator you are using).
 
-| Usage          | Value                                                                                                             | Examples                                                                 |
-|----------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| Cell           | 2 bits of address type, 1 bit of anycast, wid - 8 bit signed integer and address value - 256 bit unsigned integer |                                                                          |
-| JSON           | decimal signed integer and unsigned hexadecimal integer with leading zeros separated by `:`                       | `"123:000000000000000000000000000000000000000000000000000000000001e0f3"` |
-| JSON (accepts) | decimal signed integer and unsigned hexadecimal integer with leading zeros separated by `:`                       | `"123:000000000000000000000000000000000000000000000000000000000001e0f3"` |
-
-#### `bytes`
-
-Byte string of data.
-
-| Usage          | Value                          | Examples   |
-|----------------|--------------------------------|------------|
-| Cell           | cell with data stored in a ref |            |
-| JSON           | binary hex data                | `"313233"` |
-| JSON (accepts) | binary hex data                | `"323334"` |
-
-#### `fixedbytes<N>`
-
-Where N is a decimal byte length from 1 to 32. It is denoted in abi as `uint<M>`,
-where `M` is a bit length and `M = 8 * N`.
-Processed like `int<N>`.
-
-#### `string`
-
-New type introduced in 2.1 version.
-
-String data.
-
-| Usage           | Value                          | Examples  |
-|-----------------|--------------------------------|-----------|
-| Cell            | cell with data stored in a ref |           |
-| JSON            | string data                    | `"hello"` |
-|  JSON (accepts) | string data                    | `"hello"` |
-
-#### `optional(innerType)`
-
-*New type introduced in 2.1 version.*
-
-Value of optional type `optional(innerType)` can store a value of `innerType` of be empty.
-
-Example: `optional(string)`.
-
-| Usage          | Value                                                                                                                | Examples                          |
-|----------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Cell           | 1 bit flag (`1` - value is stored, otherwise `0`) and the value itself (according to `innerType`) if it presents |
-| JSON           | according to `innerType` or `null` if it is empty                                                                    | `"hello"`                         |
-| JSON (accepts) | according to `innerType` or `null` if it is empty                                                                    | `"hello"`                         |
-
-#### `itemType[]`
-
-Array of the `itemType` values. Example: `uint256[]`
-
-| Usage          | Value                                                                                                                                                                                       | Examples                          |
-|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Cell           | 32 unsigned bit length of the array, 1 bit flag (`0` if array is empty, otherwise `1`) and dictionary of keys and values where key is 32 unsigned bit index and value is `itemType` |                                   |
-| JSON           | list of `itemType` values in `[]`                                                                                                                                                           | `[1, 2, 3]`, `["hello", "world"]` |
-| JSON (accepts) | list of `itemType` values in `[]`                                                                                                                                                           | `[1, 2, 3]`, `["hello", "world"]` |
-
-#### Getters section
-
-Getters specification is not yet supported and this section is ignored.
-
-## Problem of mappings or arrays that contains "big" structures as values.
-
-### Introduction
-
-Several months ago we did breaking change in TVM. Opcode `DICTSET` had worked in this way: `if some_data+len(key)+len(value)` doesn't fit in one cell (`1023 bits`) then value are stored in ref of cell. Now if it doesn't fit in one cell opcode will throw exception.
-
-We haven't faced with this problem because solidity compiler doesn't support this feature (mappings or arrays that contain "big" structures as values). We are going to support it but ton-abi throws exception then it generates message.
-
-### Solving of the problem
-
-To set value in dictionaries (arrays or mappings) we will use opcode `DICTSET` or `DICTSETREF`.
-
-```
-if (12 + len(key) + maxPossibleValueLength <= 1023) then we use DICTSET.
-
-else we will use DICTSETREF.
-
-12 = 2 + 10 ≥ 2 + log2(keyLength).
-```
-
-See [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30)
-
-Max possible size of value:
-
-- **intN/uintN** - `N bit`.
-- **address** - `591 bit`. See [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107)
+Maximum size allocated for address is 591 bits: see [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107)
 
 ```TL-B
 anycast_info$_ depth:(#<= 30) { depth >= 1 }
@@ -693,11 +602,102 @@ addr_var$11 anycast:(Maybe Anycast) addr_len:(## 9)
 591
 ```
 
+| Usage          | Value                                                                                                             | Examples                                                                 |
+|----------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
+| Cell           | 2 bits of address type, 1 bit of anycast, wid - 8 bit signed integer and address value - 256 bit unsigned integer |                                                                          |
+| JSON object         | decimal signed integer and unsigned hexadecimal integer with leading zeros separated by `:`                       | `"123:000000000000000000000000000000000000000000000000000000000001e0f3"` |
+
+
+#### `bytes`
+
+An array of `uint8` type elements. The array is put into a separate cell. In the case of array overflow, the maximum cell-data size it's split into multiple sequential cells.
+
+**Note**: contract stores this type as-is without parsing. For high-speed decoding, cut reference from body slice as `LDREF`. This type is helpful if some raw data must be stored in the contract without write or random access to elements.
+
+Analog of `bytes` in Solidity. In C lang can be used as `void*`.
+
+Max bit and max ref size for `bytes` type — 0 bit, 1 ref
+
+| Usage          | Value                          | Examples   |
+|----------------|--------------------------------|------------|
+| Cell           | cell with data stored in a ref |            |
+| JSON object    | binary hex data                | `"313233"` |
+
+#### `fixedbytes<N>`
+
+Where N is a decimal byte length from 1 to 32. It is denoted in abi as `uint<M>`,
+where `M` is a bit length and `M = 8 * N`.
+Processed like `int<N>`.
+
+#### `string`
+
+UTF-8 String data. Encoded like `bytes`. In JSON is represented as a sting.
+
+Max bit and max ref size for `string` type — 0 bit, 1 ref
+
+| Usage           | Value                          | Examples  |
+|-----------------|--------------------------------|-----------|
+| Cell            | cell with data stored in a ref |           |
+| JSON object     | string data                    | `"hello"` |
+
+#### `optional(innerType)`
+
+Value of optional type `optional(innerType)` can store a value of `innerType` or be empty.
+
+Example: `optional(string)`.
+
+The optional type is a  `large` if `maxBitSize(InnerType) + 1 > 1023 || maxRefSize(InnerType) >= 4`.
+
+Large optional values are always stored as a reference. The optional bit itself is stored on the main branch.
+
+Small optional values are stored in the same cell with the optional bit.
+
+Max bit and max ref size for `optional(T)` type — (1 bit, 1 ref) if `optional` is large. Otherwise, (`1 bit + maxBitQty(T), maxRefQty(T)`)
+
+| Usage          | Value                                                                                                                | Examples                          |
+|----------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| Cell           | 1 bit flag (`1` - value is stored, otherwise `0`) and the value itself (according to `innerType`) if it presents |
+| JSON object    | according to `innerType` or `null` if it is empty                                                                    | `"hello"`                         |
+
+#### `itemType[]`
+
+Array of the `itemType` values. Example: `uint256[]`
+
+Max bit and max ref size for `array` type — 33 bit, 1 ref
+
+| Usage          | Value                                                                                                                                                                                       | Examples                          |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
+| Cell           | 32 unsigned bit length of the array, 1 bit flag (`0` if array is empty, otherwise `1`) and dictionary of keys and values where key is 32 unsigned bit index and value is `itemType` |                                   |
+| JSON object      | list of `itemType` values in `[]`                                                                                                                                                           | `[1, 2, 3]`, `["hello", "world"]` |
+
+There are some specifics when working with "big" structures as values in arrays. Read [below](#big-structures-as-values-in-mappings-and-arrays) how to implement them correctly.
+
+### "Big" structures as values in mappings and arrays
+
+When working with "big" structures opcode `DICTSET` operates this way: `if some_data+len(key)+len(value)` doesn't fit in one cell (`1023 bits`) opcode will throw exception.
+
+To set value in dictionaries (arrays or mappings) use opcode `DICTSET` or `DICTSETREF` like this:
+
+```
+if (12 + len(key) + maxPossibleValueLength <= 1023) then use DICTSET.
+
+else use DICTSETREF.
+
+12 = 2 + 10 ≥ 2 + log2(keyLength).
+```
+
+See [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30)
+
+Max possible size of value:
+
+- **intN/uintN** - `N bit`.
+- **address** - `591 bit` . See [address](#address) section.
 - **bool** - `1 bit`
 - **bytes/cell** - `0 bit`
 - **array** - `33 bit`
 - **mapping** - `1 bit`
 - **structure** = `SUM maxPosibleLenght(member)` for member in members
+
 
 ## Reference
 
