@@ -22,6 +22,6 @@ yarn build
 rm -fr "local-pages/PR-${pr}"
 mv build "local-pages/PR-${pr}"
 git -C local-pages add .
-ref=$(git -C local-pages log -n 1 --pretty=format:%h)
-git -C local-pages commit -m "up PR-${pr} by ${ref}"
+ref=$(git log -n 1 --pretty=format:%h)
+git -C local-pages commit -m "up https://github.com/everscale-org/docs/pull/${pr} by https://github.com/everscale-org/docs/commit/${ref}"
 git -C local-pages push
