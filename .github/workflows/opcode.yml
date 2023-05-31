@@ -1,0 +1,22 @@
+name: CSV to Markdown
+
+on:
+  push:
+    paths:
+      - 'src/arch/opcodes/tvm_opcodes.csv'
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        pip install pandas tabulate
+    - name: Run conversion script
+      run: python src/arch/opcodes/csv_to_md.py
