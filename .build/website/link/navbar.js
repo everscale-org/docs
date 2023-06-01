@@ -16,14 +16,6 @@ module.exports = [
     to: '/standard/',
   },
   {
-    label: 'Specifications',
-    to: '/spec/',
-  },
-  {
-    label: 'Architecture',
-    to: '/arch/',
-  },
-  {
     label: 'Crash Course',
     href: 'https://everscale.guide/',
   },
