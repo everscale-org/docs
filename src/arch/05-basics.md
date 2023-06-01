@@ -1,5 +1,6 @@
 ---
 title: Basics
+sidebar_position: 0
 description: Introduction to understand the basic terminology and concepts
 ---
 

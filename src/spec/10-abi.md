@@ -24,7 +24,7 @@ Message body with encoded function call has the following format:
 
 First comes an optional signature. It is prefixed by one bit flag that indicates the signature presence. If it is `1`, then in the next `512 bit` a signature is placed, otherwise the signature is omitted.
 
-Then сomes the encoded header parameters set  (same for all functions).
+Then comes the encoded header parameters set  (same for all functions).
 
 It is followed by ***32 bits*** of function ID identifying which contract functions are called. The `function ID` comes within the first `32 bits` of the `SHA256` hash of the function signature.
 
@@ -66,7 +66,7 @@ The message body can be protected with a cryptographic signature to identify a u
 
 If a user does not want to sign a message, bit `0` should be placed to the root cell start and signature omitted.
 
-The message body signature is generated from the *representation hash* of the bag of cells following the signature.
+The message body signature is generated from the *representation hash* of the bag of cells following the signature prepended with src address.
 
 ## Signing Algorithm
 
@@ -97,6 +97,8 @@ The function name, input and output lists are not separated and immediately foll
 
 If a function has no input parameters or does not return any values, the corresponding input or output lists are empty (empty parenthesis).
 
+ Function ID may be indicated in ABI separately. Then the first bit stays the same regardless of incoming/outgoing message.
+
 ### Function Signature Syntax
 
 `function_name(input_type1,input_type2,...,input_typeN)(output_type1,output_type2,...,output_typeM)v2`
@@ -125,12 +127,6 @@ If a function has no input parameters or does not return any values, the corresp
 
 **Event ID** is calculated in the same way as the **function ID** except for cases when the event signature does not contain the list of return values types: `event(int64,bool)v2`
 
-## Encoding the message
-
-`Message X` contains the field `body`. If encoded `body` fits in the cell, then the body is inserted in the cell (`Either X`). Otherwise, `body` is located in the reference (`Either ^X`).
-
-The body of the message is a tree of cells that contains the function ID and encoded function arguments. External messages body is prefixed with function header parameters.
-
 ## Header parameter types
 
 - [`time`](#time): message creation timestamp. Encoded as 64 bit Unix time in milliseconds.
@@ -140,20 +136,6 @@ The body of the message is a tree of cells that contains the function ID and enc
 - [`pubkey`](#pubkey): public key from key pair used for signing the message body. This parameter is optional.
 
 **Note**: Header may also contain any of standard function parameter types described below to be used in custom checks.
-
-## Encoding header for external messages
-
-Function header has up to 3 optional parameters and mandatory signature. Function ID and function parameters are put after header parameters.
-
-Maximum header size is calculated as follows (no references used).
-
-```js
-maxHeader =
-  (hasSignature ? 1 + 512 : 1) +
-  defPubkey ? (hasPubkey ? 1 + 256 : 1) : 0 +
-  defTime ? (hasTime ? 64 : 64) : 0 +
-  defExpire ? (hasExpire ? 32 : 32) : 0;
-```
 
 ## Function parameter types
 
@@ -183,33 +165,24 @@ maxHeader =
 
 ## Encoding of function ID and its arguments
 
-Function ID and the function arguments are located in the chain of cells. The last reference of each cell (except for the last cell in the chain) refers to the next cell. After adding the current parameter in the current cell we must presume an invariant (rule that stays true for the object) for our cell: number of unassigned references in the cell must be not less than 1 because the last cell is used for storing the reference on the next cell. When we add a specific value of some function argument to the cell we assume that it takes the max bit and max ref size. Only if the current parameter (by max bit or max ref size) does not fit into the current cell then we create new cell and insert the parameter in the new cell.
+Function ID and the function arguments are located in the chain of cells. The last reference of each cell (except for the last cell in the chain) refers to the next cell. After adding the current parameter in the current cell we must presume an invariant (rule that stays true for the object) for our cell: number of unassigned references in the cell must be not less than 1 because the last reference is used for storing the reference on the next cell. The last cell in the chain can use all 4 references to store argument's values.
+When we add a specific value of some function argument to the cell we assume that it takes the max bit and max ref size for a particular argument type (see [`types reference`](#types-reference) section). Only if the current parameter (by max bit or max ref size) does not fit into the current cell do we create a new cell and insert the parameter in the new cell. But if the current argument and all the following arguments fit into the current cell by max size, then we push the parameters in the cell. The serialized argument value takes up only the necessary bits and refs size without aligning to max sizes of its type.
 
-:::note
-**But** If current argument and all the following arguments fit into the current cell by max size then we push the parameters in the cell.
-:::
+In the end we connect the created cells in the chain of cells by assigning the last reference in each cell to next cell.
 
-In the end we connect the created cells in the chain of cells.
-
-For example:
+Below are some examples:
 
 ```solidity
 function f(address a, address b) public;
 ```
 
-Here we create 2 cells. In the first there is function id and  `a`. There may be not more than 32+591=623 bits (591 bits is the [maximum size of 'address'](#address)). It's not more than 1023. The next parameter `b` can't fit into the first cell. In the second cell there is only `b`.
+Here we create 2 cells. In the first cell there is function id and  `a`. There may be not more than 32+591=623 bits (591 bits is the [maximum size of 'address'](#address)). So it is not more than 1023 bits. The next parameter `b` thus can't fit into the first cell. In the second cell there is only `b`.
 
 ```solidity
 function f(mapping(uint=>uint) a, mapping(uint=>uint) b, mapping(uint=>uint) c, mapping(uint=>uint) d)
 ```
 
-The first cell: function ID, `a`, `b` `c`, `d`.
-
-```solidity
-function f(string a, string b, string c, string d, uint32 e) public
-```
-
-Function ID, `a`, `b`, `c` are located in the first cell. `d` and `e` fit in the first cell by max size. That's why we push all parameter in the fist cell.
+[map](#mapkeytypevaluetype) type takes up maximum 1 bit and 1 ref so all parameters can fit into one cell: function ID, `a`, `b` `c`, `d`.
 
 ```solidity
 struct A {
@@ -222,13 +195,50 @@ struct A {
 function f(A a, uint32 e) public;
 ```
 
-Same as previous example, only one cell.
+Same as the previous example, this fits in one cell because [string](#string) takes 32 bits and 1 ref.
+
+```solidity
+function f(string a, string b, string c, string d, uint32 e) public
+```
+
+Function ID, `a`, `b`, `c` are located in the first cell. `d` and `e` fit in the first cell by max size. That's why we push all parameters in the fist cell.
+
 
 ```solidity
 function f(string a, string b, string c, string d, uint e, uint f, uint g, uint h) public
 ```
 
-We use 3 cells. In the first cell there are function Id, `a`, `b,` `c`. In the second - `d`, `e`, `f`, `g`. In the third - `h`.
+`uint` in Solidity is equal to `uint256`. We use 3 cells. In the first cell there are function Id, `a`, `b,` `c`. In the second - `d`, `e`, `f`, `g`. In the third - `h`.
+
+
+## Encoding header for external messages
+
+External message's body contains function call header in addition to function ID and arguments. Header has up to 3 optional parameters and mandatory signature. Function ID and function parameters are put after header parameters.
+
+Maximum header size is calculated as follows (no references used).
+
+```js
+maxHeader =
+  591 +
+  (hasPubkey ? 1 + 256 : 0) +
+  (hasTime ? 64 : 0)  +
+  (hasExpire ? 32 : 0);
+```
+591 bits are reserved for message destination address to use it while [signing](#signing-algorithm) the body.
+
+Let's look at some examples of header encoding. Assume that header contains `time` and `expire` parameters. It requires `591 + 64 + 32 = 687` bits
+
+```solidity
+function f(address a, address b) public;
+```
+
+Now we have to use 3 cells. In the first cell we put header and function ID. Parameter `a` can not fit in first cell so it goes to second and `b` is put in the third cell.
+
+```solidity
+function f(mapping(uint=>uint) a, mapping(uint=>uint) b, mapping(uint=>uint) c, mapping(uint=>uint) d)
+```
+
+Here header and all arguments fit in the first cell. After signing it will contain 645 bits and 4 refs.
 
 
 ## ABI JSON
@@ -238,17 +248,14 @@ The contract interface is stored as a JSON file called contract ABI. It includes
 ```typescript
 type Abi = {
   version: string,
-  header?: Param[],
+  header?: HeaderParam[],
   functions: Function[],
   events?: Event[],
   data?: Data[],
   fields?: Param[],
 }
 
-type HeaderParam = {
-  Param: string
-}
-
+type HeaderParam = Param | string
 
 type Function = {
   name: string,
@@ -273,14 +280,6 @@ type Param = {
   components?: Param[],
 }
 ```
-
-Where:
-
-- `version` contains string and uses semver semantics. Current version is "2.1".
-- `functions` describes all functions the smart contract can handle.
-- `events` describes all external outbound messages (events) produces by smart contract.
-- `data` describes Hashmap with public data of the smart contract.
-- `fields` describes internal structure of the smart contracts data.
 
 ### Header
 
@@ -420,6 +419,10 @@ Fields section of the abi file:
 
 `time` is the message creation timestamp. Used for **replay attack protection**, encoded as 64 bit Unix time in milliseconds.
 
+| Usage          | Value    | Examples   | Max bit size | Max ref size |
+|----------------|----------|------------|--------------|--------------|
+| Cell           | 64 bit, big endian     |  | 64 bits | 0 refs|
+| JSON object    |  string with hex or decimal representation    |  `"1685634471"` | | |
  **Rule**: the contract should store the timestamp of the last accepted message. The initial timestamp is 0. When a new message is received, the contract should do the following check:
 
   `last_time` < `new_time` < `now + interval`, where
@@ -441,6 +444,11 @@ Fields section of the abi file:
 
 Unix time (in seconds, 32 bit) after that message should not be processed by contract. It is used for indicating lost external inbound messages.
 
+| Usage          | Value    | Examples   | Max bit size | Max ref size |
+|----------------|----------|------------|--------------|--------------|
+| Cell           | 32 bit, big endian     |  | 32 bits | 0 refs|
+| JSON object    |  string with hex or decimal representation    | `"3600"` | | |
+
   **Rule**:  if contract execution time is less then `expire` time, then execution is continued. Otherwise, the message is expired, and the transaction aborts itself (by `ACCEPT` primitive). The client waits for message processing until the `expire` time. If the message wasn't processed during that interval is considered to be expired
 
 
@@ -450,65 +458,54 @@ Unix time (in seconds, 32 bit) after that message should not be processed by con
 
 Public key from key pair used for signing the message body. This parameter is optional. The client decides if he needs to set the public key or not. It is encoded as bit 1 followed by 256 bit of public key if parameter provided, or by bit `0` if it is not.
 
+| Usage          | Value    | Examples   | Max bit size | Max ref size |
+|----------------|----------|------------|--------------|--------------|
+| Cell           | 1 bit, `0` or `1` + 256 bit key if if first bit=1      |  | 257 bit| 0 refs |
+| JSON object    | string hexadecimal representation of byte array       | `"33a2ed7a92bb55b3aabe1185d0107d48 faa798246c95ed76f262d857c3d1227b"` | | |
+
 #### `int<N>`
 
 Fixed-sized signed integer, where `N` is a decimal bit length. Examples: `int8`, `int32`, `int256`.
 
-Max bit and max ref size for `intN` type — N bits, 0 refs
-
-| Usage          | Value                                                       | Examples              |
-|----------------|-------------------------------------------------------------|-----------------------|
-| Cell           | N bit, big endian                                           |                       |
-| JSON (returns)          | string with hex or decimal representation                              | `"0x12"`, `"100"`                |
-| JSON (accepts) | number or string with hex or decimal representation | `12`, `"0x10"`, `"100"` |
+| Usage          | Value                                                       | Examples              | Max bit size | Max ref size |
+|----------------|--------------------|-----------------|---|---|
+| Cell           | N bit, big endian       | | N bits    |  0 refs   |
+| JSON (returns)          | string with hex or decimal representation                              | `"0x12"`, `"100"`                | | |
+| JSON (accepts) | number or string with hex or decimal representation | `12`, `"0x10"`, `"100"` | | |
 
 #### `uint<N>`
 
 Fixed-sized unsigned integer, where N is a decimal bit length e.g., `uint8`, `uint32`, `uint256`.
 Processed like `int<N>`.
 
-Max bit and max ref size for `uintN` type — N bits, 0 refs
-
 #### `varint<N>`
 
 Variable-length signed integer. Bit length is between `log2(N)` and `8 * (N-1)`, where `N` is equal to 16 or 32, e.g. `varint16`, `varint32`.
 
-Max bit and max ref size for `varint16` type — 124 bits, 0 refs
-Max bit and max ref size for `varint32` type — 253 bits, 0 refs
-etc.
-
-| Usage          | Value                                                                                                                    | Examples              |
-|----------------|--------------------------------------------------------------------------------------------------------------------------|-----------------------|
-| Cell           | 4 (N=16) of 5 (N=32) bits that encode byte length of the number `len`<br/>followed by `len * 8` bit number in big endian |
-| JSON (returns)          | string with hex or decimal representation                                                                                    | `"0x12"`, `"100"`                |
-| JSON (accepts) | number or string with hex or decimal representation                                                              | `12`, `"0x10"`, `"100"` |
+| Usage          | Value                                                                                  | Examples              | Max bit size | Max ref size |
+|----------------|---|---|--------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| Cell           | 4 (N=16) of 5 (N=32) bits that encode byte length of the number `len`<br/>followed by `len * 8` bit number in big endian |  | `varint16` type — 124 bits, `varint32` type — 253 bits, etc. | 0 refs |
+| JSON (returns)          | string with hex or decimal representation                                                                                    | `"0x12"`, `"100"`                | | |
+| JSON (accepts) | number or string with hex or decimal representation                                                              | `12`, `"0x10"`, `"100"` | | |
 
 #### `varuint<N>`
 
 Variable-length unsigned integer with bit length equal to `8 * N`, where `N`is equal to 16 or 32 e.g., `varint16`, `varint32`.
 Processed like `varint<N>`.
 
-Max bit and max ref size for `varuint16` type — 124 bits, 0 refs
-Max bit and max ref size for `varuint32` type — 253 bits, 0 refs
-etc.
-
 #### `bool`
 
 Boolean type.
 
-Max bit and max ref size for `bool` type  — 1 bit, 0 refs
-
-
-| Usage          | Usage                                          | Examples               |
-|----------------|------------------------------------------------|------------------------|
-| Cell           | 1 bit, `0` or `1`                              |                        |
-| JSON (returns)          | `true`, `false`                                |                        |
-| JSON (accepts) | `true`, `false`, `0`, `1`, `"true"`, `"false"` | `0`, `true`, `"false"` |
+| Usage          | Usage                                          | Examples               | Max bit size | Max ref size |
+|----------------|------------------------------------------------|------------------------|---|---|
+| Cell           | 1 bit, `0` or `1`                              |                        |1 bit | 0 refs |
+| JSON (returns)          | `true`, `false`                                |                        | | |
+| JSON (accepts) | `true`, `false`, `0`, `1`, `"true"`, `"false"` | `0`, `true`, `"false"` | | |
 
 #### `tuple`
 
 Struct type, consists of fields of different types. All fields should be specified as an array in the `components` section of the type.
-
 
 `structure (aka tuple)` type is considered as a sequence of its types when we encode the function parameters. That's why `tuple` type doesn't have max bit or max ref size. Nested `tuple`'s also are considered as a sequence of its types. For example:
 
@@ -559,30 +556,53 @@ parameter `s` of type `S` would be described like:
 
 Hashtable mapping keys of `keyType` to values of the `valueType`, e.g., `map(int32, address)`. Key may be any of `int<N>/uint<N>` types with `N` from `1` to `1023` or address of std format.
 
-Max bit and max ref size for `map` type — 1 bit, 1 ref
-
-| Usage          | Value                                                                              | Examples                                  |
-|----------------|------------------------------------------------------------------------------------|-------------------------------------------|
-| Cell           | 1 bit (`0` - for empty mapping, otherwise `1`) and ref to the cell with dictionary |                                           |
-| JSON object | dictionary of keys and values                                                      | `{"0x1":"0x2"}`, `{"2":"3","3":"55"}`     |
+| Usage          | Value                                                                              | Examples               | Max bit size | Max ref size |
+|----------------|------------------------------------------------------------------------------------|-------------------------------------------|---|---|
+| Cell           | 1 bit (`0` - for empty mapping, otherwise `1`) and ref to the cell with dictionary |                                           | 1 bit | 1 ref | 
+| JSON object | dictionary of keys and values          | `{"0x1":"0x2"}`, `{"2":"3","3":"55"}`     | | |
 
 There are some specifics when working with "big" structures as values in mappings. Read [below](#big-structures-as-values-in-mappings-and-arrays) how to implement them correctly.
-
 
 #### `cell`
 
 TVM Cell type.
 
-Max bit and max ref size for `cell` type — 0 bit, 1 ref
-
-| Usage          | Value                     | Examples                                     |
-|----------------|---------------------------|----------------------------------------------|
-| Cell           | stored in a ref           |                                              |
-| JSON object           | cell serialized into boc and encoded in base64| `"te6ccgEBAQEAEgAAH/////////////////////g="` |
+| Usage          | Value                     | Examples                 | Max bit size | Max ref size |
+|----------------|---------------------------|----------|---|---|
+| Cell           | stored in a ref|          | 0 bit | 1 ref | 
+| JSON object           | cell serialized into boc and encoded in base64| `"te6ccgEBAQEAEgAAH/////////////////////g="` | | |
 
 #### `address`
 
-Contract address type `address`, can be any of the [existing types](../arch/40-accounts.md#account-address) (although not all may be supported by the compilator you are using).
+Contract address in type `address`, can be any of the [existing variants](../arch/40-accounts.md#account-address) (although not all may be supported by the compilator you are using).
+
+**Important notes:**
+
+1. All hexadecimal values represented in **lower case**.
+2. Bitstrings are represented in hexadecimal variable length form with `_` suffix if length is not multiple of 4. When length is multiple of 4 bitstring is always encoded **without** `_` suffix.
+
+**Format**
+
+```jsx
+"" // None
+":A...A" // External
+"[N..N:]W:A...A" // Internal
+```
+
+where:
+
+- `W` is a decimal signed representation for workchain_id.
+- `A...A` is a string representation of bitstring (see important nodes above);
+- `N...N` is a string representation of bitstring with anycast rewrite prefix.
+
+**Serialization**
+
+Internal addresses are serialised as:
+
+- `std` when workchain id is 8-bit and address is 256-bit
+- `var` otherwise.
+
+**Size**
 
 Maximum size allocated for address is 591 bits: see [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L107)
 
@@ -602,10 +622,10 @@ addr_var$11 anycast:(Maybe Anycast) addr_len:(## 9)
 591
 ```
 
-| Usage          | Value                                                                                                             | Examples                                                                 |
-|----------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| Cell           | 2 bits of address type, 1 bit of anycast, wid - 8 bit signed integer and address value - 256 bit unsigned integer |                                                                          |
-| JSON object         | decimal signed integer and unsigned hexadecimal integer with leading zeros separated by `:`                       | `"123:000000000000000000000000000000000000000000000000000000000001e0f3"` |
+| Usage       | Value      | Examples    | Max bit size | Max ref size |
+|----------------|---------------------|---------|---|---|
+| Cell           | 2 bits of address type, 1 bit of anycast, wid - 8 bit signed integer and address value - 256 bit unsigned integer |                                                                          | 591 bits | 0 refs |
+| JSON object         | string                       | `"123:000000000000000000000000000000 000000000000000000000000000001e0f3"` | | |
 
 
 #### `bytes`
@@ -616,12 +636,10 @@ An array of `uint8` type elements. The array is put into a separate cell. In the
 
 Analog of `bytes` in Solidity. In C lang can be used as `void*`.
 
-Max bit and max ref size for `bytes` type — 0 bit, 1 ref
-
-| Usage          | Value                          | Examples   |
-|----------------|--------------------------------|------------|
-| Cell           | cell with data stored in a ref |            |
-| JSON object    | binary hex data                | `"313233"` |
+| Usage          | Value                          | Examples   | Max bit size | Max ref size |
+|----------------|--------------------------------|------------|---|---|
+| Cell           | cell with data stored in a ref |            | 0 bit | 1 ref |
+| JSON object    | binary daya represented as hex string | `"313233"` | | |
 
 #### `fixedbytes<N>`
 
@@ -633,12 +651,10 @@ Processed like `int<N>`.
 
 UTF-8 String data. Encoded like `bytes`. In JSON is represented as a sting.
 
-Max bit and max ref size for `string` type — 0 bit, 1 ref
-
-| Usage           | Value                          | Examples  |
-|-----------------|--------------------------------|-----------|
-| Cell            | cell with data stored in a ref |           |
-| JSON object     | string data                    | `"hello"` |
+| Usage           | Value                          | Examples  | Max bit size | Max ref size |
+|-----------------|--------------------------------|-----------|--|--|
+| Cell            | cell with data stored in a ref |           | 0 bit | 1 ref |
+| JSON object     | string data                    | `"hello"` | | |
 
 #### `optional(innerType)`
 
@@ -652,52 +668,35 @@ Large optional values are always stored as a reference. The optional bit itself 
 
 Small optional values are stored in the same cell with the optional bit.
 
-Max bit and max ref size for `optional(T)` type — (1 bit, 1 ref) if `optional` is large. Otherwise, (`1 bit + maxBitQty(T), maxRefQty(T)`)
-
-| Usage          | Value                                                                                                                | Examples                          |
-|----------------|----------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Cell           | 1 bit flag (`1` - value is stored, otherwise `0`) and the value itself (according to `innerType`) if it presents |
-| JSON object    | according to `innerType` or `null` if it is empty                                                                    | `"hello"`                         |
+| Usage          | Value      | Examples    | Max bit size | Max ref size |
+|----------------|---------------|-------------------|---|---|
+| Cell           | 1 bit flag (`1` - value is stored, otherwise `0`) and the value itself (according to `innerType`) if it presents | | 1 bit if `optional` is large, `1 bit + maxBitQty(T), maxRefQty(T)` otherwise | 1 ref if `optional` is large, 0 refs otherwise | 
+| JSON object    | according to `innerType` or `null` if it is empty                                                                    | `"hello"`   | | |
 
 #### `itemType[]`
 
 Array of the `itemType` values. Example: `uint256[]`
 
-Max bit and max ref size for `array` type — 33 bit, 1 ref
-
-| Usage          | Value                                                                                                                                                                                       | Examples                          |
-|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|
-| Cell           | 32 unsigned bit length of the array, 1 bit flag (`0` if array is empty, otherwise `1`) and dictionary of keys and values where key is 32 unsigned bit index and value is `itemType` |                                   |
-| JSON object      | list of `itemType` values in `[]`                                                                                                                                                           | `[1, 2, 3]`, `["hello", "world"]` |
+| Usage          | Value       | Examples      | Max bit size | Max ref size |
+|----------------|-------------|---------------|---|---|
+| Cell           | 32 unsigned bit length of the array, 1 bit flag (`0` if array is empty, otherwise `1`) and dictionary of keys and values where key is 32 unsigned bit index and value is `itemType` |                                   | 33 bit | 1 ref|
+| JSON object      | list of `itemType` values in `[]`  | `[1, 2, 3]`, `["hello", "world"]` | | |
 
 There are some specifics when working with "big" structures as values in arrays. Read [below](#big-structures-as-values-in-mappings-and-arrays) how to implement them correctly.
 
 ### "Big" structures as values in mappings and arrays
 
-When working with "big" structures opcode `DICTSET` operates this way: `if some_data+len(key)+len(value)` doesn't fit in one cell (`1023 bits`) opcode will throw exception.
-
-To set value in dictionaries (arrays or mappings) use opcode `DICTSET` or `DICTSETREF` like this:
+When working with "big" structures in mappings and arrays data may be written differently - either into cell or into reference, depending on the size:
 
 ```
-if (12 + len(key) + maxPossibleValueLength <= 1023) then use DICTSET.
+if (12 + len(key) + maxValueBitLength <= 1023) then write data into cell
 
-else use DICTSETREF.
+else write data to reference.
 
 12 = 2 + 10 ≥ 2 + log2(keyLength).
 ```
 
 See [https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30](https://github.com/ton-blockchain/ton/blob/master/crypto/block/block.tlb#L30)
-
-Max possible size of value:
-
-- **intN/uintN** - `N bit`.
-- **address** - `591 bit` . See [address](#address) section.
-- **bool** - `1 bit`
-- **bytes/cell** - `0 bit`
-- **array** - `33 bit`
-- **mapping** - `1 bit`
-- **structure** = `SUM maxPosibleLenght(member)` for member in members
-
 
 ## Reference
 
