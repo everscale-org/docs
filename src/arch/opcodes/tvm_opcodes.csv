@@ -1,4 +1,4 @@
-name,alias,tlb,category,opcode,fift_asm,stack,gas,desc,tvm_asm
+name,alias,tlb,category,opcode,fift_asm,stack,gas,description,tvm_asm
 NOP,,#00,stack_basic,00,NOP,-,18,Does nothing.,
 SWAP,XCHG_0I,#01,stack_basic,01,SWAP,x y - y x,18,Same as `s1 XCHG0`.,
 XCHG_0I,,#0 i:(## 4) {1 <= i},stack_basic,0i,s[i] XCHG0,,18,"Interchanges `s0` with `s[i]`, `1 <= i <= 15`.",
