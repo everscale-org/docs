@@ -4,6 +4,7 @@ from tabulate import tabulate
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = os.path.join(script_dir, "tvm_opcodes.csv")
+md_file_path = os.path.join(script_dir, "tvm_instructions.csv")
 
 def csv_to_md(csv_file):
     # Read the CSV data
@@ -13,7 +14,7 @@ def csv_to_md(csv_file):
     markdown_table = tabulate(data, headers='keys', tablefmt='pipe')
 
     # Write the markdown table to a file
-    with open('tvm_instructions.md', 'w') as f:
+    with open(md_file_path, 'w') as f:
         f.write(markdown_table)
 
 # Use the function
