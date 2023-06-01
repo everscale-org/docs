@@ -15,7 +15,8 @@ Since you landed on this page you most likely want to learn Everscale’s tech a
 
 1. **Create a Wallet** 
 
-[https://everwallet.net/](https://everwallet.net/) 
+- [https://everwallet.net/](https://everwallet.net/)
+- [https://ever.surf/](https://ever.surf/)
 
 This is the place where you will store your EVER tokens while interacting with Everscale.
 
@@ -31,15 +32,16 @@ One window for all DEX and CEX platforms where EVER token is listed on.
 [https://flatqube.io/](https://flatqube.io/) 
 
 
-With FlatQube you can easily exchange your tokens or use a multitude of earning opportunities, including liquid stacking.
+With FlatQube you can easily exchange your tokens or use a multitude of earning opportunities, including liquid staking.
 
 4. **Track transactions**
 
 
-[https://everscan.io/](https://everscan.io/) 
+- [https://everscan.io/](https://everscan.io/) 
+- [https://ever.live](https://ever.live)
 
 
-With the help of Everscan, you can search and view all transactions, addresses, tokens and other activities on the Everscale blockchain.
+With the help of these explorers, you can search and view all transactions, addresses, tokens and other activities on the Everscale blockchain and its test networks.
 
 5. **Move tokens across chains**
 
