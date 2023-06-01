@@ -40,5 +40,7 @@ $ yarn deploy-gh-pages
 or 
 
 ```shell
+cd .build/website
+yarn install
 bash preview.sh <PR_ID>
 ```

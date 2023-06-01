@@ -1,28 +1,60 @@
 module.exports = {
   redirects: [
+    {
+      from: '/develop/tools',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/develop/tutorial/getting-started',
+      to: '/contribute/getting-started/',
+    },
+    {
+      from: '/develop/debots',
+      to: '/spec/debot-specifications/',
+    },
+    {
+      from: '/develop/integrate/tutorial/add-everscale-to-your-exchange',
+      to: '/develop/recipes/backend-integration/',
+    },
+    {
+      from: '/develop/client-api/overview',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/develop/solidity-developing/samples',
+      to: '/develop/',
+    },
+    {
+      from: '/develop/tutorial/smart-digital-assets',
+      to: '/develop/smart-contracts/use-fungible-tokens/',
+    },
+    {
+      from: '/integrate/products-api',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/develop/tools',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/arch/ever-os',
+      to: '/arch/',
+    },
+    {
+      from: '/develop/tutorial/everdev-sc',
+      to: '/develop/smart-contracts/everdev/',
+    },
+    {
+      from: '/learn/overview',
+      to: '/overview/',
+    },
+    {
+      from: '/develop/multisignature-wallet',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/validate/staking',
+      to: '/spec/depool-specification/',
+    },
   ],
-  createRedirects(existingPath) {
-    if (existingPath.includes('/ecosystem/contribute')) {
-      return [existingPath.replace('/ecosystem/contribute', '/contribute'),];
-    }
-    if (existingPath.includes('/ecosystem/explore')) {
-      return [
-        existingPath.replace('/ecosystem/explore', '/learn/everscale-overview'),
-        existingPath.replace('/ecosystem/explore', '/learn/tutorial'),
-      ];
-    }
-    if (existingPath.includes('/learn/everscale-overview')) {
-      return [existingPath.replace('/learn/everscale-overview', '/learn'),];
-    }
-    if (existingPath.includes('/develop/tools')) {
-      return [existingPath.replace('/develop/tools', '/develop/api-tools'),];
-    }
-    if (existingPath.includes('/develop/smart-contracts')) {
-      return [existingPath.replace('/develop/smart-contracts', '/develop/smart-contract/learn'),];
-    }
-    if (existingPath.includes('/develop')) {
-      return [existingPath.replace('/develop', '/develop/smart-contract'),];
-    }
-    return undefined
-  }
 }
