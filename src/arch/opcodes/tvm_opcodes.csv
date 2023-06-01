@@ -49,7 +49,7 @@ PU2XC,,#546 i:uint4 j:uint4 k:uint4,stack_complex,546ijk,s[i] s[j-1] s[k-2] PU2X
 s2 = parse_stack_register_u4_minus_one;
 s3 = parse_stack_register_u4_minus_two                                        
      => 0x54, 0x60 | s1, (s2 << 4) | s3"
-PUSH3,,#547 i:uint4 j:uint4 k:uint4,stack_complex,547ijk,s[i] s[j] s[k] PUSH3,,34,Equivalent to `s[i] PUSH` `s[j+1] s[k+1] PUSH2`.,"0x , 0x"
+PUSH3,,#547 i:uint4 j:uint4 k:uint4,stack_complex,547ijk,s[i] s[j] s[k] PUSH3,,34,Equivalent to `s[i] PUSH` `s[j+1] s[k+1] PUSH2`.,
 BLKSWAP,,#55 i:uint4 j:uint4,stack_complex,55ij,[i+1] [j+1] BLKSWAP,,26,"Permutes two blocks `s[j+i+1] … s[j+1]` and `s[j] … s0`.
 `0 <= i,j <= 15`
 Equivalent to `[i+1] [j+1] REVERSE` `[j+1] 0 REVERSE` `[i+j+2] 0 REVERSE`.","c1 = parse_const_u4_plus_one;
@@ -67,7 +67,7 @@ Equivalent to `[i+1] 1 BLKSWAP`.","c = parse_const_u4_plus_one
 PUSH_LONG,,#56 ii:uint8,stack_complex,56ii,[ii] s() PUSH,,26,"Pushes a copy of the old `s[ii]` into the stack.
 `0 <= ii <= 255`",
 POP_LONG,,#57 ii:uint8,stack_complex,57ii,[ii] s() POP,,26,"Pops the old `s0` value into the old `s[ii]`.
-`0 <= ii <= 255`","0x , 0x"
+`0 <= ii <= 255`",
 ROT,,#58,stack_complex,58,ROT,a b c - b c a,18,Equivalent to `1 2 BLKSWAP` or to `s2 s1 XCHG2`.,0x58
 ROTREV,,#59,stack_complex,59,"ROTREV
 -ROT",a b c - c a b,18,Equivalent to `2 1 BLKSWAP` or to `s2 s2 XCHG2`.,0x59
@@ -169,6 +169,14 @@ INDEXVARQ,,#6F86,tuple,6F86,INDEXVARQ,t k - x,26,"Similar to `n INDEXQ`, but wit
 SETINDEXVARQ,,#6F87,tuple,6F87,SETINDEXVARQ,t x k - t',26+|t’|,"Similar to `k SETINDEXQ`, but with `0 <= k <= 254` taken from the stack.","0x6F , 0x87"
 TLEN,,#6F88,tuple,6F88,TLEN,t - n,26,Returns the length of a _Tuple_.,"0x6F , 0x88"
 QTLEN,,#6F89,tuple,6F89,QTLEN,t - n or -1,26,"Similar to `TLEN`, but returns `-1` if `t` is not a _Tuple_.","0x6F , 0x89"
+ZEROSWAPIF,,#6F90,tuple,6F90,ZEROSWAPIF,x - x or 0 x,26,"Pushes a Zero under the topmost Integer x, but only if x != 0.","0x6F, 0x90"
+ZEROSWAPIFNOT,,#6F91,tuple,6F91,ZEROSWAPIFNOT,x – x or 0 x,26,"Pushes a Zero under the topmost Integer x, but only if x = 0.","0x6F, 0x91"
+ZEROROTRIF,,#6F92,tuple,6F92,ZEROROTRIF,x y – x y or 0 x,26,"Pushes a Zero under the second stack entry from the top, but only if the topmost Integer y is non-zero.","0x6F, 0x92"
+ZEROROTRIFNOT,,#6F93,tuple,6F93,ZEROROTRIFNOT,x y – x y or 0 x y,26,"Pushes a Zero under the second stack entry from the top, but only if the topmost Integer y is zero.","0x6F, 0x93"
+ZEROSWAPIF2,,#6F94,tuple,6F94,ZEROSWAPIF2,x – x or 0 0 x,26,"Pushes two Zeros under the topmost Integer x, but only if x != 0. Equivalent to ZEROSWAPIF; ZEROSWAPIF.","0x6F, 0x94"
+ZEROSWAPIFNOT2,,#6F95,tuple,6F95,ZEROSWAPIFNOT2,x – x or 0 0 x,26,"Pushes two Zeros under the topmost Integer x, but only if x = 0. Equivalent to ZEROSWAPIFNOT; ZEROSWAPIFNOT.","0x6F, 0x95"
+ZEROROTRIF2,,#6F96,tuple,6F96,ZEROROTRIF2,x y – x y or 0 0 x y,26,"Pushes two Zeros under the second stack entry from the top, but only if the topmost Integer y is non-zero. Equivalent to ZEROROTRIF; ZEROROTRIF.","0x6F, 0x96"
+ZEROROTRIFNOT2,,#6F97,tuple,6F97,ZEROROTRIFNOT2,x y – x y or 0 0 x y,26,"Pushes two Zeros under the second stack entry from the top, but only if the topmost Integer y is zero. Equivalent to ZEROROTRIFNOT; ZEROROTRIFNOT.","0x6F, 0x97"
 ISTUPLE,,#6F8A,tuple,6F8A,ISTUPLE,t - ?,26,Returns `-1` or `0` depending on whether `t` is a _Tuple_.,"0x6F , 0x8A"
 LAST,,#6F8B,tuple,6F8B,LAST,t - x,26,Returns the last element of a non-empty _Tuple_ `t`.,"0x6F , 0x8B"
 TPUSH,,#6F8C,tuple,6F8C,"TPUSH
@@ -426,18 +434,18 @@ SDCNTLEAD0,,#C710,compare_other,C710,SDCNTLEAD0,s - n,26,Returns the number of l
 SDCNTLEAD1,,#C711,compare_other,C711,SDCNTLEAD1,s - n,26,Returns the number of leading ones in `s`.,"0xC7, 0x11"
 SDCNTTRAIL0,,#C712,compare_other,C712,SDCNTTRAIL0,s - n,26,Returns the number of trailing zeroes in `s`.,"0xC7, 0x12"
 SDCNTTRAIL1,,#C713,compare_other,C713,SDCNTTRAIL1,s - n,26,Returns the number of trailing ones in `s`.,"0xC7, 0x13"
-DIFF,,#C714,diff_operation,C714,DIFF,c c - c,,Calculates diff between first and second parameters and returns it as cell.,
-DIFF_PATCH,,#C715,diff_operation,C715,DIFF_PATCH,c c - c,,"Takes the first parameter as document, the second parameter as patch, received on DIFF command, applies patch and saves result document to cell.",
-ZIP,,#C716,diff_operation,C716,ZIP,c - c,,Zip string to cell,
-UNZIP,,#C717,diff_operation,C717,UNZIP,c - c,,Unzip cell to string,
-DIFF_ZIP,,#C718,diff_operation,C718,DIFF_ZIP,c c - c,,like `DIFF` but unzip parameters before operation and zip to cell after operation.,
-DIFF_PATCH_ZIP,,#C719,diff_operation,C719,DIFF_PATCH_ZIP,c c - c,,like `DIFF_PATCH` but unzip parameters before operation and zip to cell after operation.,
-DIFF_PATCH_Q,,#C720,diff_operation,C720,DIFF_PATCH_Q,c c - c,,quiet version of `DIFF_PATCH`,
-DIFF_PATCH_ZIPQ,,#C721,diff_operation,C721,DIFF_PATCH_ZIPQ,c c - c,,quiet version of `DIFF_PATCH_ZIP`,
-DIFF_PATCH_BINARY,,#C722,diff_operation,C722,DIFF_PATCH_BINARY,c c - c,,like `DIFF_PATCH` but takes and returns binary arrays instead of string.,
-DIFF_PATCH_BINARY_ZIP,,#C723,diff_operation,C723,DIFF_PATCH_BINARY_ZIP,c c - c,,like `DIFF_PATCH_ZIP` but takes and returns binary arrays instead of string.,
-DIFF_PATCH_BINARYQ,,#C724,diff_operation,C724,DIFF_PATCH_BINARYQ,c c - c,,like `DIFF_PATCHQ` but takes and returns binary arrays instead of string.,
-DIFF_PATCH_BINARY_ZIPQ,,#C725,diff_operation,C725,DIFF_PATCH_BINARY_ZIPQ,c c - c,,like `DIFF_PATCH_ZIPQ` but takes and returns binary arrays instead of string.,
+DIFF,,#C714,diff_operation,C714,DIFF,c c - c,26,Calculates diff between first and second parameters and returns it as cell.,"0xC7, 0x14"
+DIFF_PATCH,,#C715,diff_operation,C715,DIFF_PATCH,c c - c,26,"Takes the first parameter as document, the second parameter as patch, received on DIFF command, applies patch and saves result document to cell.","0xC7, 0x15"
+ZIP,,#C716,diff_operation,C716,ZIP,c - c,26,Zip string to cell,"0xC7, 0x16"
+UNZIP,,#C717,diff_operation,C717,UNZIP,c - c,26,Unzip cell to string,"0xC7, 0x17"
+DIFF_ZIP,,#C718,diff_operation,C718,DIFF_ZIP,c c - c,26,like `DIFF` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x18"
+DIFF_PATCH_ZIP,,#C719,diff_operation,C719,DIFF_PATCH_ZIP,c c - c,26,like `DIFF_PATCH` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x19"
+DIFF_PATCH_Q,,#C720,diff_operation,C720,DIFF_PATCH_Q,c c - c,26,quiet version of `DIFF_PATCH`,"0xC7, 0x20"
+DIFF_PATCH_ZIPQ,,#C721,diff_operation,C721,DIFF_PATCH_ZIPQ,c c - c,26,quiet version of `DIFF_PATCH_ZIP`,"0xC7, 0x21"
+DIFF_PATCH_BINARY,,#C722,diff_operation,C722,DIFF_PATCH_BINARY,c c - c,26,like `DIFF_PATCH` but takes and returns binary arrays instead of string.,"0xC7, 0x22"
+DIFF_PATCH_BINARY_ZIP,,#C723,diff_operation,C723,DIFF_PATCH_BINARY_ZIP,c c - c,26,like `DIFF_PATCH_ZIP` but takes and returns binary arrays instead of string.,"0xC7, 0x23"
+DIFF_PATCH_BINARYQ,,#C724,diff_operation,C724,DIFF_PATCH_BINARYQ,c c - c,26,like `DIFF_PATCHQ` but takes and returns binary arrays instead of string.,"0xC7, 0x24"
+DIFF_PATCH_BINARY_ZIPQ,,#C725,diff_operation,C725,DIFF_PATCH_BINARY_ZIPQ,c c - c,26,like `DIFF_PATCH_ZIPQ` but takes and returns binary arrays instead of string.,"0xC7, 0x25"
 NEWC,,#C8,cell_build,C8,NEWC,- b,18,Creates a new empty _Builder_.,0xC8
 ENDC,,#C9,cell_build,C9,ENDC,b - c,518,Converts a _Builder_ into an ordinary _Cell_.,0xC9
 STI,,#CA cc:uint8,cell_build,CAcc,[cc+1] STI,x b - b',26,"Stores a signed `cc+1`-bit integer `x` into _Builder_ `b` for `0 <= cc <= 255`, throws a range check exception if `x` does not fit into `cc+1` bits.","z = parse_const_u8_plus_one
@@ -577,6 +585,8 @@ SDSUBSTR,,#D724,cell_parse,D724,SDSUBSTR,s l l' - s',26,"Returns `0 <= l' <= 102
 SDBEGINSX,,#D726,cell_parse,D726,SDBEGINSX,s s' - s'',26,"Checks whether `s` begins with (the data bits of) `s'`, and removes `s'` from `s` on success. On failure throws a cell deserialization exception. Primitive `SDPFXREV` can be considered a quiet version of `SDBEGINSX`.","0xD7, 0x26"
 SDBEGINSXQ,,#D727,cell_parse,D727,SDBEGINSXQ,s s' - s'' -1 or s 0,26,A quiet version of `SDBEGINSX`.,"0xD7, 0x27"
 SDBEGINS,,#D72A_ x:(## 7) sss:((8 * x + 3) * Bit),cell_parse,D72A_xsss,[slice] SDBEGINS,s - s'',31,"Checks whether `s` begins with constant bitstring `sss` of length `8x+3` (with continuation bit assumed), where `0 <= x <= 127`, and removes `sss` from `s` on success.",
+SDBEGINS_0,,#D72802,cell_parse,D72802,[0] SDBEGINS,s - s'',31,Checks whether `s` begins with a binary zero.,
+SDBEGINS_1,,#D72806,cell_parse,D72802,[1] SDBEGINS,s - s'',31,Checks whether `s` begins with a binary one.,
 SDBEGINSQ,,#D72E_ x:(## 7) sss:((8 * x + 3) * Bit),cell_parse,D72E_xsss,[slice] SDBEGINSQ,s - s'' -1 or s 0,31,A quiet version of `SDBEGINS`.,
 SCUTFIRST,,#D730,cell_parse,D730,SCUTFIRST,s l r - s',26,Returns the first `0 <= l <= 1023` bits and first `0 <= r <= 4` references of `s`.,"0xD7, 0x30"
 SSKIPFIRST,,#D731,cell_parse,D731,SSKIPFIRST,s l r - s',26,Returns all but the first `l` bits of `s` and `r` references of `s`.,"0xD7, 0x31"
@@ -622,6 +632,7 @@ LDONES,,#D761,cell_parse,D761,LDONES,s - n s',26,"Returns the count `n` of leadi
 LDSAME,,#D762,cell_parse,D762,LDSAME,s x - n s',26,"Returns the count `n` of leading bits equal to `0 <= x <= 1` in `s`, and removes these bits from `s`.","0xD7, 0x62"
 SDEPTH,,#D764,cell_parse,D764,SDEPTH,s - x,26,"Returns the depth of _Slice_ `s`. If `s` has no references, then `x=0`; otherwise `x` is one plus the maximum of depths of cells referred to from `s`.","0xD7, 0x64"
 CDEPTH,,#D765,cell_parse,D765,CDEPTH,c - x,26,"Returns the depth of _Cell_ `c`. If `c` has no references, then `x=0`; otherwise `x` is one plus the maximum of depths of cells referred to from `c`. If `c` is a _Null_ instead of a _Cell_, returns zero.","0xD7, 0x65"
+LDCONT,,#D766,cell_parse,D766,LDCONT,s - cont s',26,Loads a continuation `cont` from `s`.,"0xD7, 0x66"
 EXECUTE,,#D8,cont_basic,D8,"EXECUTE
 CALLX",c -,18,"_Calls_, or _executes_, continuation `c`.",0xD8
 JMPX,,#D9,cont_basic,D9,JMPX,c -,18,"_Jumps_, or transfers control, to continuation `c`.
@@ -1003,6 +1014,9 @@ SUBDICTURPGET,,#F4B7,dict_sub,F4B7,SUBDICTURPGET,x l D n - D',,"Variant of `SUBD
 ACCEPT,,#F800,app_gas,F800,ACCEPT,-,26,"Sets current gas limit `g_l` to its maximal allowed value `g_m`, and resets the gas credit `g_c` to zero, decreasing the value of `g_r` by `g_c` in the process.
 In other words, the current smart contract agrees to buy some gas to finish the current transaction. This action is required to process external messages, which bring no value (hence no gas) with themselves.","0xF8, 0x00"
 SETGASLIMIT,,#F801,app_gas,F801,SETGASLIMIT,g -,26,"Sets current gas limit `g_l` to the minimum of `g` and `g_m`, and resets the gas credit `g_c` to zero. If the gas consumed so far (including the present instruction) exceeds the resulting value of `g_l`, an (unhandled) out of gas exception is thrown before setting new gas limits. Notice that `SETGASLIMIT` with an argument `g >= 2^63-1` is equivalent to `ACCEPT`.","0xF8, 0x01"
+BUYGAS,,#F802,app_gas,F802,BUYGAS,x -,26,"Computes the amount of gas that can be bought for `x` nanograms, and sets `g_l` accordingly in the same way as `SETGASLIMIT`.","0xF8, 0x02"
+GRAMTOGAS,,#F804,app_gas,F804,GRAMTOGAS,x - g,,"Computes the amount of gas that can be bought for `x` nanograms. If `x` is negative, returns 0. If `g` exceeds 2^63 - 1, it is replaced with this value.","0xF8, 0x04"
+GASTOGRAM,,#F805,app_gas,F805,GASTOGRAM,g - x,,Computes the price of `g` gas in nanograms.,"0xF8, 0x05"
 COMMIT,,#F80F,app_gas,F80F,COMMIT,-,26,Commits the current state of registers `c4` (“persistent data'') and `c5` (“actions'') so that the current execution is considered “successful'' with the saved values even if an exception is thrown later.,"0xF8, 0x0F"
 RANDU256,,#F810,app_rnd,F810,RANDU256,- x,26+|c7|+|c1_1|,"Generates a new pseudo-random unsigned 256-bit _Integer_ `x`. The algorithm is as follows: if `r` is the old value of the random seed, considered as a 32-byte array (by constructing the big-endian representation of an unsigned 256-bit integer), then its `sha512(r)` is computed; the first 32 bytes of this hash are stored as the new value `r'` of the random seed, and the remaining 32 bytes are returned as the next random value `x`.","0xF8, 0x10"
 RAND,,#F811,app_rnd,F811,RAND,y - z,26+|c7|+|c1_1|,"Generates a new pseudo-random integer `z` in the range `0...y-1` (or `y...-1`, if `y<0`). More precisely, an unsigned random value `x` is generated as in `RAND256U`; then `z:=floor(x*y/2^256)` is computed.
@@ -1027,6 +1041,14 @@ Note that `RAW` primitives such as `SENDRAWMSG` do not update this field.","0xF8
 MYADDR,GETPARAM,#F828,app_config,F828,MYADDR,- s,26,"Returns the internal address of the current smart contract as a _Slice_ with a `MsgAddressInt`. If necessary, it can be parsed further using primitives such as `PARSEMSGADDR` or `REWRITESTDADDR`.
 Equivalent to `8 GETPARAM`.","0xF8, 0x28"
 CONFIGROOT,GETPARAM,#F829,app_config,F829,CONFIGROOT,- D,26,Returns the _Maybe Cell_ `D` with the current global configuration dictionary. Equivalent to `9 GETPARAM `.,"0xF8, 0x29"
+MYCODE,GETPARAM,#F82A,app_config,F82A,MYCODE,- s,26,"Returns the Cell with the current code of the smart contract. Smart contract has own code, the cell representation of which can be obtained by this instruction.
+Equivalent to `10 GETPARAM`","0xF8, 0x2A"
+INITCODEHASH,GETPARAM,#F82B,app_config,F82B,INITCODEHASH,- x,26,"Returns the integer represented 256 bit hash of code cell with which the contract was deployed.
+Equivalent to `11 GETPARAM`.","0xF8, 0x2B"
+STORAGEFEE,,#F82C,app_config,F82C,STORAGEFEE,- x,26,"Returns the `Integer` with collected storage fee from account in this transaction. 
+Equivalent to `12 GETPARAM`.","0xF8, 0x2C"
+SEQNO,,#F82D,app_config,F82D,SEQNO,- x,26,"returns the `Integer` with current sequence number of collating block. 
+Equivalent to `13 GETPARAM`.","0xF8, 0x2D"
 CONFIGDICT,,#F830,app_config,F830,CONFIGDICT,- D 32,26,"Returns the global configuration dictionary along with its key length (32).
 Equivalent to `CONFIGROOT` `32 PUSHINT`.","0xF8, 0x30"
 CONFIGPARAM,,#F832,app_config,F832,CONFIGPARAM,i - c -1 or 0,,"Returns the value of the global configuration parameter with integer index `i` as a _Cell_ `c`, and a flag to indicate success.
@@ -1054,6 +1076,10 @@ CDATASIZEQ,,#F940,app_misc,F940,CDATASIZEQ,c n - x y z -1 or 0,,"Recursively com
 CDATASIZE,,#F941,app_misc,F941,CDATASIZE,c n - x y z,,A non-quiet version of `CDATASIZEQ` that throws a cell overflow exception (8) on failure.,"0xF9, 0x41"
 SDATASIZEQ,,#F942,app_misc,F942,SDATASIZEQ,s n - x y z -1 or 0,,"Similar to `CDATASIZEQ`, but accepting a _Slice_ `s` instead of a _Cell_. The returned value of `x` does not take into account the cell that contains the slice `s` itself; however, the data bits and the cell references of `s` are accounted for in `y` and `z`.","0xF9, 0x42"
 SDATASIZE,,#F943,app_misc,F943,SDATASIZE,s n - x y z,,A non-quiet version of `SDATASIZEQ` that throws a cell overflow exception (8) on failure.,"0xF9, 0x43"
+FIND_BY_INIT_CODE_HASH,,#F944,app_misc,F944,FIND_BY_INIT_CODE_HASH,s - t,,Returns the list of accounts with initial code hash specified in 256 bit of _Slice_ `s`.,"0xF9, 0x44"
+FIND_BY_CODE_HASH,,#F945,app_misc,F945,FIND_BY_CODE_HASH,s - t,,Returns the list of accounts with code hash specified in 256 bit of _Slice_ `s`.,"0xF9, 0x45"
+FIND_BY_DATA_HASH,,#F946,app_misc,F946,FIND_BY_DATA_HASH,s - t,,Returns the list of accounts with data hash specified in 256 bit of _Slice_ `s`.,"0xF9, 0x46"
+TRYELECT,,#F950,app_misc,F950,TRYELECT,D - c c' D' x x',,"Executes try_elect method for accounts got by config param 30. D is the input Hashmap with credits, c - contains serialized validator set, c' is the HashmapE with frozen stakes, D' is the HashmapE with credits, x is the integer with total stake, x' is the integer with total weight.",
 LDGRAMS,,#FA00,app_currency,FA00,"LDGRAMS
 LDVARUINT16",s - x s',26,"Loads (deserializes) a `Gram` or `VarUInteger 16` amount from _Slice_ `s`, and returns the amount as _Integer_ `x` along with the remainder `s'` of `s`. The expected serialization of `x` consists of a 4-bit unsigned big-endian integer `l`, followed by an `8l`-bit unsigned big-endian representation of `x`.
 The net effect is approximately equivalent to `4 LDU` `SWAP` `3 LSHIFT#` `LDUX`.","0xFA, 0x00"
@@ -1062,6 +1088,10 @@ Approximately equivalent to `4 LDU` `SWAP` `3 LSHIFT#` `LDIX`.","0xFA, 0x01"
 STGRAMS,,#FA02,app_currency,FA02,"STGRAMS
 STVARUINT16",b x - b',26,"Stores (serializes) an _Integer_ `x` in the range `0...2^120-1` into _Builder_ `b`, and returns the resulting _Builder_ `b'`. The serialization of `x` consists of a 4-bit unsigned big-endian integer `l`, which is the smallest integer `l>=0`, such that `x<2^(8l)`, followed by an `8l`-bit unsigned big-endian representation of `x`. If `x` does not belong to the supported range, a range check exception is thrown.","0xFA, 0x02"
 STVARINT16,,#FA03,app_currency,FA03,STVARINT16,b x - b',26,"Similar to `STVARUINT16`, but serializes a _signed_ _Integer_ `x` in the range `-2^119...2^119-1`.","0xFA, 0x03"
+LDVARUINT32,,#FA04,app_currency,FA04,LDVARUINT32,s - x s',,"Loads (deserializes) a `VarUInteger 32` from _CellSlice_`s`, and returns the deserialized value as an _Integer_ 0 <= x<2^248. The expected serialization of x consists of a 5-bit unsigned big-endian integer `l`, followed by an 8l-bit unsigned big-endian representation of `x`. The net effect is approximately equivalent to `LDU 5`; `SWAP`; `SHIFT 3`; `LDUX`.","0xFA, 0x04"
+LDVARINT32,,#FA05,app_currency,FA05,LDVARINT32,s - x s',,"Deserializes a `VarInteger 32` from _CellSlice_`s`, and returns the deserialized value as an _Integer_-2^247 <= x<2^247.","0xFA, 0x05"
+STVARUINT32,,#FA06,app_currency,FA06,STVARUINT32,b x - b',26,Serializes an _Integer_  0<=x<2^248 as a `VarUInteger 32`.,"0xFA, 0x06"
+STVARINT32,,#FA07,app_currency,FA07,STVARINT32,b x - b',26,serializes an _Integer_ -2^247<=x<2^{247} as a `VarInteger 32`.,"0xFA, 0x07"
 LDMSGADDR,,#FA40,app_addr,FA40,LDMSGADDR,s - s' s'',26,"Loads from _Slice_ `s` the only prefix that is a valid `MsgAddress`, and returns both this prefix `s'` and the remainder `s''` of `s` as slices.","0xFA, 0x40"
 LDMSGADDRQ,,#FA41,app_addr,FA41,LDMSGADDRQ,s - s' s'' -1 or s 0,26,"A quiet version of `LDMSGADDR`: on success, pushes an extra `-1`; on failure, pushes the original `s` and a zero.","0xFA, 0x41"
 PARSEMSGADDR,,#FA42,app_addr,FA42,PARSEMSGADDR,s - t,26,"Decomposes _Slice_ `s` containing a valid `MsgAddress` into a _Tuple_ `t` with separate fields of this `MsgAddress`. If `s` is not a valid `MsgAddress`, a cell deserialization exception is thrown.","0xFA, 0x42"
@@ -1076,6 +1106,7 @@ RAWRESERVEX,,#FB03,app_actions,FB03,RAWRESERVEX,x D y -,526,"Similar to `RAWRESE
 SETCODE,,#FB04,app_actions,FB04,SETCODE,c -,526,Creates an output action that would change this smart contract code to that given by _Cell_ `c`. Notice that this change will take effect only after the successful termination of the current run of the smart contract.,"0xFB, 0x04"
 SETLIBCODE,,#FB06,app_actions,FB06,SETLIBCODE,c x -,526,"Creates an output action that would modify the collection of this smart contract libraries by adding or removing library with code given in _Cell_ `c`. If `x=0`, the library is actually removed if it was previously present in the collection (if not, this action does nothing). If `x=1`, the library is added as a private library, and if `x=2`, the library is added as a public library (and becomes available to all smart contracts if the current smart contract resides in the masterchain); if the library was present in the collection before, its public/private status is changed according to `x`. Values of `x` other than `0...2` are invalid.","0xFB, 0x06"
 CHANGELIB,,#FB07,app_actions,FB07,CHANGELIB,h x -,526,"Creates an output action similarly to `SETLIBCODE`, but instead of the library code accepts its hash as an unsigned 256-bit integer `h`. If `x!=0` and the library with hash `h` is absent from the library collection of this smart contract, this output action will fail.","0xFB, 0x07"
+COPYLEFT,,#FB0A,app_actions,FB0A,COPYLEFT,s x -,526,"Where `s` - is slice of 256-bit AccountId and `x` - is type of license. Add license payment to code creator. The license payment calculates from compute _phase_fees taking the appropriate percentage. If summary payment is less than license _payment_threshold, then value saves in unsplit_shard_state of masterblock. If summary payment in unsplit_shard_state is more than license_payment_threshold then node sends internal message to account address in masterchain, specified in slice s. The instruction return an error on contracts in masterchain.","0xFB, 0x0A"
 DEBUG,,#FE nn:(#<= 239),debug,FEnn,{nn} DEBUG,-,26,`0 <= nn < 240`,"z = parse_const_u8_240
       => 0xFE, z"
 DEBUGSTR,,#FEF n:(## 4) ssss:((n * 8 + 8) * Bit),debug,FEFnssss,"{string} DEBUGSTR
@@ -1085,22 +1116,26 @@ DEBUGSTR,,#FEF n:(## 4) ssss:((n * 8 + 8) * Bit),debug,FEFnssss,"{string} DEBUGS
 `DEBUGSTRI`: `ssss` is one-byte integer `0 <= x <= 255` followed by the given string.","z = parse_const_u8_setcp
        => 0xFF, z"
 DUMPSTK,DEBUG,#FE00,debug,FE00,DUMPSTK,-,26,Dumps the stack (at most the top 255 values) and shows the total stack depth.,"0xFE, 0x00"
+DUMPSTKTOP,,#FE0 n:(## 4),debug,FE0n,{n} DUMPSTKTOP,-,26,"1<=n<15, dumps the top `n` values from the stack, starting from the deepest of them. If there are d<n values available, dumps only `d` values.","z = parse_const_u4_1_14
+   => 0xFE, z"
+HEXDUMP,,#FE10,debug,FE10,HEXDUMP,-,26,"Dumps s0 in hexadecimal form, be it a _Slice_ or an _Integer_.","0xFE, 0x10"
+HEXPRINT,,#FE11,debug,FE11,HEXPRINT,-,26,"Similar to `HEXDUMP`, except the hexadecimal representation of s0 is not immediately output, but rather concatenated to an output text buffer.","0xFE, 0x11"
+BINDUMP,,#FE12,debug,FE12,BINDUMP,-,26,"Dumps s0 in binary form, similarly to `HEXDUMP`.","0xFE, 0x12"
+BINPRINT,,#FE13,debug,FE13,BINPRINT,-,26,Outputs the binary representation of `s0` to a text buffer.,"0xFE, 0x13"
+STRDUMP,,#FE14,debug,FE14,STRDUMP,-,26,Dumps the _Slice_ at `s0` as an UTF-8 string.,"0xFE, 0x14"
+STRPRINT,,#FE15,debug,FE15,STRPRINT,-,26,"Similar to `STRDUMP`, but outputs the string into a text buffer (without carriage return).","0xFE, 0x15"
+DEBUGOFF,,#FE1E,debug,FE1E,DEBUGOFF,-,26,"Disables all debug output until it is re-enabled by a `DEBUGON`. More precisely, this primitive increases an internal counter, which disables all debug operations (except `DEBUGOFF` and `DEBUGON`) when strictly positive.","0xFE, 0x1E"
+DEBUGON,,#FE1F,debug,FE1F,DEBUGON,-,26,Enables debug output (in a debug version of TVM).,"0xFE, 0x1F"
 DUMP,DEBUG,#FE2 i:uint4,debug,FE2i,s[i] DUMP,-,26,Dumps `s[i]`.,"z = parse_const_u4_14
       => 0xFE, 0x20 | z"
+PRINT,,#FE3 n:uint4,debug,FE3i,s[n] PRINT,-,26,"0<=n<15, concatenates the text representation of s(n) (without any leading or trailing spaces or carriage returns) to a text buffer which will be output before the output of any other debug operation.","z = parse_const_u4_14
+          => 0xFE, 0x30 | z"
+DUMPTOSFMT,,#FEF n:(## 4) ssss:((n * 8 + 8) * Bit),debug,FEFnssss,[ssss]DUMPTOSFMT,-,26,"Dumps s0 formatted according to the (n+1)-byte string `ssss`. This string might contain (a prefix of) the name of a TL-B type supported by the debugger. If the string begins with a zero byte, simply outputs it (without the first byte) into the debug log. If the string begins with a byte equal to one, concatenates it to a buffer, which will be output before the output of any other debug operation (effectively outputs a string without a carriage return).",
+LOGSTR,,#FEF n:(## 4) 00 ssss:((n * 8 + 8) * Bit),debug,FEFn00ssss,[ssss]LOGSTR,-,26,String `ssss` is `n` bytes long.,
+LOGFLUSH,,#FEF000,debug,FEF000,LOGFLUSH,-,26,Flushes all pending debug output from the buffer into the debug log.,"0xFE, 0xF0, 0x00"
+PRINTSTR,,#FEF n:(## 4) 01 ssss:((n * 8 + 8) * Bit),debug,FEFn01ssss,[ssss]PRINTSTR,-,26,String `ssss` is `n` bytes long.,
 SETCP,,,codepage,FFnn,[nn] SETCP,-,26,"Selects TVM codepage `0 <= nn < 240`. If the codepage is not supported, throws an invalid opcode exception.","z = parse_const_u8_setcp
        => 0xFF, z"
 SETCP0,SETCP,#FF nn:(#<= 239),codepage,FF00,SETCP0,-,26,Selects TVM (test) codepage zero as described in this document.,"0xFF, 0x00"
 SETCP_SPECIAL,,#FFF z:(## 4) {1 <= z},codepage,FFFz,[z-16] SETCP,-,26,"Selects TVM codepage `z-16` for `1 <= z <= 15`. Negative codepages `-13...-1` are reserved for restricted versions of TVM needed to validate runs of TVM in other codepages. Negative codepage `-14` is reserved for experimental codepages, not necessarily compatible between different TVM implementations, and should be disabled in the production versions of TVM.",
 SETCPX,,#FFF0,codepage,FFF0,SETCPX,c -,26,Selects codepage `c` with `-2^15 <= c < 2^15` passed in the top of the stack.,"0xFF, 0xF0"
-MYCODE,GETPARAM,#F82A,app_config,F82A,MYCODE,- s,26,"Returns the Cell with the current code of the smart contract. Smart contract has own code, the cell representation of which can be obtained by this instruction.
-Equivalent to `10 GETPARAM`","0xF8, 0x2A"
-INITCODEHASH,GETPARAM,#F82B,app_config,F82B,INITCODEHASH,- x,26,"Returns the integer represented 256 bit hash of code cell with which the contract was deployed.
-Equivalent to `11 GETPARAM`.","0xF8, 0x2B"
-ZEROSWAPIF,,#6F90,tuple,6F90,ZEROSWAPIF,x - x or 0 x,26,"Pushes a Zero under the topmost Integer x, but only if x != 0.","0x6F, 0x90"
-ZEROSWAPIFNOT,,#6F91,tuple,6F91,ZEROSWAPIFNOT,x – x or 0 x,26,"Pushes a Zero under the topmost Integer x, but only if x = 0.","0x6F, 0x91"
-ZEROROTRIF,,#6F92,tuple,6F92,ZEROROTRIF,x y – x y or 0 x,26,"Pushes a Zero under the second stack entry from the top, but only if the topmost Integer y is non-zero.","0x6F, 0x92"
-ZEROROTRIFNOT,,#6F93,tuple,6F93,ZEROROTRIFNOT,x y – x y or 0 x y,26,"Pushes a Zero under the second stack entry from the top, but only if the topmost Integer y is zero.","0x6F, 0x93"
-ZEROSWAPIF2,,#6F94,tuple,6F94,ZEROSWAPIF2,x – x or 0 0 x,26,"Pushes two Zeros under the topmost Integer x, but only if x != 0. Equivalent to ZEROSWAPIF; ZEROSWAPIF.","0x6F, 0x94"
-ZEROSWAPIFNOT2,,#6F95,tuple,6F95,ZEROSWAPIFNOT2,x – x or 0 0 x,26,"Pushes two Zeros under the topmost Integer x, but only if x = 0. Equivalent to ZEROSWAPIFNOT; ZEROSWAPIFNOT.","0x6F, 0x95"
-ZEROROTRIF2,,#6F96,tuple,6F96,ZEROROTRIF2,x y – x y or 0 0 x y,26,"Pushes two Zeros under the second stack entry from the top, but only if the topmost Integer y is non-zero. Equivalent to ZEROROTRIF; ZEROROTRIF.","0x6F, 0x96"
-ZEROROTRIFNOT2,,#6F97,tuple,6F97,ZEROROTRIFNOT2,x y – x y or 0 0 x y,26,"Pushes two Zeros under the second stack entry from the top, but only if the topmost Integer y is zero. Equivalent to ZEROROTRIFNOT; ZEROROTRIFNOT.","0x6F, 0x97"
