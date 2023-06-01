@@ -11,59 +11,29 @@ OVER,PUSH,#21,stack_basic,21,OVER,x y - x y x,18,Same as `s1 PUSH`.,0x21
 POP,,#3 i:uint4,stack_basic,3i,s[i] POP,,18,Pops the old `s0` value into the old `s[i]`.,
 DROP,POP,#30,stack_basic,30,DROP,x -,18,"Same as `s0 POP`, discards the top-of-stack value.",0x30
 NIP,POP,#31,stack_basic,31,NIP,x y - y,18,Same as `s1 POP`.,0x31
-XCHG3,,#4 i:uint4 j:uint4 k:uint4,stack_complex,4ijk,s[i] s[j] s[k] XCHG3,,26,Equivalent to `s2 s[i] XCHG` `s1 s[j] XCHG` `s[k] XCHG0`.,"s1 = parse_stack_register_u4
-s2 = parse_stack_register_u4;
-s3 = parse_stack_register_u4     
-     => 0x40 | s1, (s2 << 4) | s3"
-XCHG2,,#50 i:uint4 j:uint4,stack_complex,50ij,s[i] s[j] XCHG2,,26,Equivalent to `s1 s[i] XCHG` `s[j] XCHG0`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4 
-     => 0x50, (s1 << 4) | s2"
-XCPU,,#51 i:uint4 j:uint4,stack_complex,51ij,s[i] s[j] XCPU,,26,Equivalent to `s[i] XCHG0` `s[j] PUSH`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4     
-     => 0x51, (s1 << 4) | s2"
-PUXC,,#52 i:uint4 j:uint4,stack_complex,52ij,s[i] s[j-1] PUXC,,26,Equivalent to `s[i] PUSH` `SWAP` `s[j] XCHG0`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4_minus_one
-                                             => 0x52, (s1 << 4) | s2"
-PUSH2,,#53 i:uint4 j:uint4,stack_complex,53ij,s[i] s[j] PUSH2,,26,Equivalent to `s[i] PUSH` `s[j+1] PUSH`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4
-     => 0x53, (s1 << 4) | s2"
-XCHG3_ALT,,#540 i:uint4 j:uint4 k:uint4,stack_complex,540ijk,s[i] s[j] s[k] XCHG3_l,,34,Long form of `XCHG3`.,"0x , 0x"
-XC2PU,,#541 i:uint4 j:uint4 k:uint4,stack_complex,541ijk,s[i] s[j] s[k] XC2PU,,34,Equivalent to `s[i] s[j] XCHG2` `s[k] PUSH`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4;
-s3 = parse_stack_register_u4
-     => 0x54, 0x10 | s1, (s2 << 4) | s3"
-XCPUXC,,#542 i:uint4 j:uint4 k:uint4,stack_complex,542ijk,s[i] s[j] s[k-1] XCPUXC,,34,Equivalent to `s1 s[i] XCHG` `s[j] s[k-1] PUXC`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4;
-s3 = parse_stack_register_u4_minus_one                                            
-      => 0x54, 0x20 | s1, (s2 << 4) | s3"
-XCPU2,,#543 i:uint4 j:uint4 k:uint4,stack_complex,543ijk,s[i] s[j] s[k] XCPU2,,34,Equivalent to `s[i] XCHG0` `s[j] s[k] PUSH2`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4;
-s3 = parse_stack_register_u4
-     => 0x54, 0x30 | s1, (s2 << 4) | s3"
-PUXC2,,#544 i:uint4 j:uint4 k:uint4,stack_complex,544ijk,s[i] s[j-1] s[k-1] PUXC2,,34,Equivalent to `s[i] PUSH` `s2 XCHG0` `s[j] s[k] XCHG2`.,"0x , 0x"
-PUXCPU,,#545 i:uint4 j:uint4 k:uint4,stack_complex,545ijk,s[i] s[j-1] s[k-1] PUXCPU,,34,Equivalent to `s[i] s[j-1] PUXC` `s[k] PUSH`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4_minus_one;
-s3 = parse_stack_register_u4_minus_one
-     => 0x54, 0x50 | s1, (s2 << 4) | s3"
-PU2XC,,#546 i:uint4 j:uint4 k:uint4,stack_complex,546ijk,s[i] s[j-1] s[k-2] PU2XC,,34,Equivalent to `s[i] PUSH` `SWAP` `s[j] s[k-1] PUXC`.,"s1 = parse_stack_register_u4;
-s2 = parse_stack_register_u4_minus_one;
-s3 = parse_stack_register_u4_minus_two                                        
-     => 0x54, 0x60 | s1, (s2 << 4) | s3"
+XCHG3,,#4 i:uint4 j:uint4 k:uint4,stack_complex,4ijk,s[i] s[j] s[k] XCHG3,,26,Equivalent to `s2 s[i] XCHG` `s1 s[j] XCHG` `s[k] XCHG0`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] [s3 = parse_stack_register_u4] 0x40 | s1, (s2 << 4) | s3"
+XCHG2,,#50 i:uint4 j:uint4,stack_complex,50ij,s[i] s[j] XCHG2,,26,Equivalent to `s1 s[i] XCHG` `s[j] XCHG0`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] 0x50, (s1 << 4) | s2"
+XCPU,,#51 i:uint4 j:uint4,stack_complex,51ij,s[i] s[j] XCPU,,26,Equivalent to `s[i] XCHG0` `s[j] PUSH`.,"[s1 = parse_stack_register_u4][s2 = parse_stack_register_u4] 0x51, (s1 << 4) | s2"
+PUXC,,#52 i:uint4 j:uint4,stack_complex,52ij,s[i] s[j-1] PUXC,,26,Equivalent to `s[i] PUSH` `SWAP` `s[j] XCHG0`.,"[s1 = parse_stack_register_u4][s2 = parse_stack_register_u4_minus_one] 0x52, (s1 << 4) | s2"
+PUSH2,,#53 i:uint4 j:uint4,stack_complex,53ij,s[i] s[j] PUSH2,,26,Equivalent to `s[i] PUSH` `s[j+1] PUSH`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] 0x53, (s1 << 4) | s2"
+XCHG3_ALT,,#540 i:uint4 j:uint4 k:uint4,stack_complex,540ijk,s[i] s[j] s[k] XCHG3_l,,34,Long form of `XCHG3`.,
+XC2PU,,#541 i:uint4 j:uint4 k:uint4,stack_complex,541ijk,s[i] s[j] s[k] XC2PU,,34,Equivalent to `s[i] s[j] XCHG2` `s[k] PUSH`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] [s3 = parse_stack_register_u4] 0x54, 0x10 | s1, (s2 << 4) | s3"
+XCPUXC,,#542 i:uint4 j:uint4 k:uint4,stack_complex,542ijk,s[i] s[j] s[k-1] XCPUXC,,34,Equivalent to `s1 s[i] XCHG` `s[j] s[k-1] PUXC`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] [s3 = parse_stack_register_u4_minus_one] 0x54, 0x20 | s1, (s2 << 4) | s3"
+XCPU2,,#543 i:uint4 j:uint4 k:uint4,stack_complex,543ijk,s[i] s[j] s[k] XCPU2,,34,Equivalent to `s[i] XCHG0` `s[j] s[k] PUSH2`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4] [s3 = parse_stack_register_u4] 0x54, 0x30 | s1, (s2 << 4) | s3"
+PUXC2,,#544 i:uint4 j:uint4 k:uint4,stack_complex,544ijk,s[i] s[j-1] s[k-1] PUXC2,,34,Equivalent to `s[i] PUSH` `s2 XCHG0` `s[j] s[k] XCHG2`.,
+PUXCPU,,#545 i:uint4 j:uint4 k:uint4,stack_complex,545ijk,s[i] s[j-1] s[k-1] PUXCPU,,34,Equivalent to `s[i] s[j-1] PUXC` `s[k] PUSH`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4_minus_one] [s3 = parse_stack_register_u4_minus_one] 0x54, 0x50 | s1, (s2 << 4) | s3"
+PU2XC,,#546 i:uint4 j:uint4 k:uint4,stack_complex,546ijk,s[i] s[j-1] s[k-2] PU2XC,,34,Equivalent to `s[i] PUSH` `SWAP` `s[j] s[k-1] PUXC`.,"[s1 = parse_stack_register_u4] [s2 = parse_stack_register_u4_minus_one] [s3 = parse_stack_register_u4_minus_two] 0x54, 0x60 | s1, (s2 << 4) | s3"
 PUSH3,,#547 i:uint4 j:uint4 k:uint4,stack_complex,547ijk,s[i] s[j] s[k] PUSH3,,34,Equivalent to `s[i] PUSH` `s[j+1] s[k+1] PUSH2`.,
 BLKSWAP,,#55 i:uint4 j:uint4,stack_complex,55ij,[i+1] [j+1] BLKSWAP,,26,"Permutes two blocks `s[j+i+1] … s[j+1]` and `s[j] … s0`.
 `0 <= i,j <= 15`
-Equivalent to `[i+1] [j+1] REVERSE` `[j+1] 0 REVERSE` `[i+j+2] 0 REVERSE`.","c1 = parse_const_u4_plus_one;
-c2 = parse_const_u4_plus_one 
-     => 0x55, (c1 << 4) | c2"
+Equivalent to `[i+1] [j+1] REVERSE` `[j+1] 0 REVERSE` `[i+j+2] 0 REVERSE`.","[c1 = parse_const_u4_plus_one] [c2 = parse_const_u4_plus_one] => 0x55, (c1 << 4) | c2"
 ROT2,BLKSWAP,#5513,stack_complex,5513,"ROT2
 2ROT",a b c d e f - c d e f a b,26,Rotates the three topmost pairs of stack entries.,"0x55, 0x13"
 ROLL,BLKSWAP,#550 i:uint4,stack_complex,550i,[i+1] ROLL,,26,"Rotates the top `i+1` stack entries.
-Equivalent to `1 [i+1] BLKSWAP`.","c = parse_const_u4_plus_one  
-   => 0x55, c"
+Equivalent to `1 [i+1] BLKSWAP`.","[c = parse_const_u4_plus_one] 0x55, c"
 ROLLREV,BLKSWAP,#55 i:uint4 zero:(## 4) {zero = 0},stack_complex,55i0,"[i+1] -ROLL
 [i+1] ROLLREV",,26,"Rotates the top `i+1` stack entries in the other direction.
-Equivalent to `[i+1] 1 BLKSWAP`.","c = parse_const_u4_plus_one
-   => 0x55, c << 4"
+Equivalent to `[i+1] 1 BLKSWAP`.","[c = parse_const_u4_plus_one] 0x55, c << 4"
 PUSH_LONG,,#56 ii:uint8,stack_complex,56ii,[ii] s() PUSH,,26,"Pushes a copy of the old `s[ii]` into the stack.
 `0 <= ii <= 255`",
 POP_LONG,,#57 ii:uint8,stack_complex,57ii,[ii] s() POP,,26,"Pops the old `s0` value into the old `s[ii]`.
@@ -79,15 +49,10 @@ DUP2,,#5C,stack_complex,5C,"DUP2
 2DUP",a b - a b a b,18,Equivalent to `s1 s0 PUSH2`.,0x5C
 OVER2,,#5D,stack_complex,5D,"OVER2
 2OVER",a b c d - a b c d a b,18,Equivalent to `s3 s2 PUSH2`.,0x5D
-REVERSE,,#5E i:uint4 j:uint4,stack_complex,5Eij,[i+2] [j] REVERSE,,26,Reverses the order of `s[j+i+1] … s[j]`.,"c1 = parse_const_u4_plus_two;
-c2 = parse_const_u4
-        => 0x5E, (c1 << 4) | c2"
-BLKDROP,,#5F0 i:uint4,stack_complex,5F0i,[i] BLKDROP,,26,Equivalent to `DROP` performed `i` times.,"c = parse_const_u4
-      => 0x5F, c"
+REVERSE,,#5E i:uint4 j:uint4,stack_complex,5Eij,[i+2] [j] REVERSE,,26,Reverses the order of `s[j+i+1] … s[j]`.,"[c1 = parse_const_u4_plus_two] [c2 = parse_const_u4] 0x5E, (c1 << 4) | c2"
+BLKDROP,,#5F0 i:uint4,stack_complex,5F0i,[i] BLKDROP,,26,Equivalent to `DROP` performed `i` times.,"[c = parse_const_u4] 0x5F, c"
 BLKPUSH,,#5F i:(## 4) j:uint4 {1 <= i},stack_complex,5Fij,[i] [j] BLKPUSH,,26,"Equivalent to `PUSH s(j)` performed `i` times.
-`1 <= i <= 15`, `0 <= j <= 15`.","c1 = parse_const_u4_nonzero;
-c2 = parse_const_u4
-        => 0x5F, (c1 << 4) | c2"
+`1 <= i <= 15`, `0 <= j <= 15`.","[c1 = parse_const_u4_nonzero] [c2 = parse_const_u4] 0x5F, (c1 << 4) | c2"
 PICK,,#60,stack_complex,60,"PICK
 PUSHX",,18,"Pops integer `i` from the stack, then performs `s[i] PUSH`.",0x60
 ROLLX,,#61,stack_complex,61,ROLLX,,18,"Pops integer `i` from the stack, then performs `1 [i] BLKSWAP`.",0x61
@@ -104,58 +69,48 @@ ONLYTOPX,,#6A,stack_complex,6A,ONLYTOPX,,18,"Pops integer `i` from the stack, th
 ONLYX,,#6B,stack_complex,6B,ONLYX,,18,"Pops integer `i` from the stack, then leaves only the bottom `i` elements. Approximately equivalent to `DEPTH` `SWAP` `SUB` `DROPX`.",0x6B
 BLKDROP2,,#6C i:(## 4) j:uint4 {1 <= i},stack_complex,6Cij,[i] [j] BLKDROP2,,26,"Drops `i` stack elements under the top `j` elements.
 `1 <= i <= 15`, `0 <= j <= 15`
-Equivalent to `[i+j] 0 REVERSE` `[i] BLKDROP` `[j] 0 REVERSE`.","c1 = parse_const_u4_nonzero;
-c2 = parse_const_u4
-        => 0x6C, (c1 << 4) | c2"
+Equivalent to `[i+j] 0 REVERSE` `[i] BLKDROP` `[j] 0 REVERSE`.","[c1 = parse_const_u4_nonzero] [c2 = parse_const_u4] 0x6C, (c1 << 4) | c2"
 NULL,,#6D,tuple,6D,"NULL
 PUSHNULL",- null,18,Pushes the only value of type _Null_.,0x6D
 ISNULL,,#6E,tuple,6E,ISNULL,x - ?,18,"Checks whether `x` is a _Null_, and returns `-1` or `0` accordingly.",0x6E
 TUPLE,,#6F0 n:uint4,tuple,6F0n,[n] TUPLE,x_1 ... x_n - t,26+n,"Creates a new _Tuple_ `t=(x_1, … ,x_n)` containing `n` values `x_1`,..., `x_n`.
-`0 <= n <= 15`","s = parse_const_u4
-      => 0x6F, s"
+`0 <= n <= 15`","[s = parse_const_u4] 0x6F, s"
 NIL,TUPLE,#6F00,tuple,6F00,NIL,- t,26,Pushes the only _Tuple_ `t=()` of length zero.,"0x6F, 0x00"
 SINGLE,TUPLE,#6F01,tuple,6F01,SINGLE,x - t,27,"Creates a singleton `t:=(x)`, i.e., a _Tuple_ of length one.","0x6F, 0x01"
 PAIR,TUPLE,#6F02,tuple,6F02,"PAIR
 CONS",x y - t,28,"Creates pair `t:=(x,y)`.","0x6F, 0x02"
 TRIPLE,TUPLE,#6F03,tuple,6F03,TRIPLE,x y z - t,29,"Creates triple `t:=(x,y,z)`.","0x6F, 0x03"
 INDEX,,#6F1 k:uint4,tuple,6F1k,[k] INDEX,t - x,26,"Returns the `k`-th element of a _Tuple_ `t`.
-`0 <= k <= 15`.","c = parse_const_u4
-      => 0x6F, 0x10 | c"
+`0 <= k <= 15`.","[c = parse_const_u4] 0x6F, 0x10 | c"
 FIRST,INDEX,#6F10,tuple,6F10,"FIRST
 CAR",t - x,26,Returns the first element of a _Tuple_.,"0x6F, 0x10"
 SECOND,INDEX,#6F11,tuple,6F11,"SECOND
 CDR",t - y,26,Returns the second element of a _Tuple_.,"0x6F, 0x11"
 THIRD,INDEX,#6F12,tuple,6F12,THIRD,t - z,26,Returns the third element of a _Tuple_.,"0x6F, 0x12"
 UNTUPLE,,#6F2 n:uint4,tuple,6F2n,[n] UNTUPLE,t - x_1 ... x_n,26+n,"Unpacks a _Tuple_ `t=(x_1,...,x_n)` of length equal to `0 <= n <= 15`.
-If `t` is not a _Tuple_, or if `|t| != n`, a type check exception is thrown.","c = parse_const_u4
-      => 0x6F, 0x20 | c"
+If `t` is not a _Tuple_, or if `|t| != n`, a type check exception is thrown.","[c = parse_const_u4] 0x6F, 0x20 | c"
 UNSINGLE,UNTUPLE,#6F21,tuple,6F21,UNSINGLE,t - x,27,Unpacks a singleton `t=(x)`.,"0x6F, 0x21"
 UNPAIR,UNTUPLE,#6F22,tuple,6F22,"UNPAIR
 UNCONS",t - x y,28,"Unpacks a pair `t=(x,y)`.","0x6F, 0x22"
 UNTRIPLE,UNTUPLE,#6F23,tuple,6F23,UNTRIPLE,t - x y z,29,"Unpacks a triple `t=(x,y,z)`.","0x6F, 0x23"
 UNPACKFIRST,,#6F3 k:uint4,tuple,6F3k,[k] UNPACKFIRST,t - x_1 ... x_k,26+k,"Unpacks first `0 <= k <= 15` elements of a _Tuple_ `t`.
-If `|t|<k`, throws a type check exception.","c = parse_const_u4
-      => 0x6F, 0x30 | c"
+If `|t|<k`, throws a type check exception.","[c = parse_const_u4] 0x6F, 0x30 | c"
 CHKTUPLE,UNPACKFIRST,#6F30,tuple,6F30,CHKTUPLE,t -,26,"Checks whether `t` is a _Tuple_. If not, throws a type check exception.","0x6F, 0x30"
-EXPLODE,,#6F4 n:uint4,tuple,6F4n,[n] EXPLODE,t - x_1 ... x_m m,26+m,"Unpacks a _Tuple_ `t=(x_1,...,x_m)` and returns its length `m`, but only if `m <= n <= 15`. Otherwise throws a type check exception.","c = parse_const_u4
-      => 0x6F, 0x40 | c"
+EXPLODE,,#6F4 n:uint4,tuple,6F4n,[n] EXPLODE,t - x_1 ... x_m m,26+m,"Unpacks a _Tuple_ `t=(x_1,...,x_m)` and returns its length `m`, but only if `m <= n <= 15`. Otherwise throws a type check exception.","[c = parse_const_u4] 0x6F, 0x40 | c"
 SETINDEX,,#6F5 k:uint4,tuple,6F5k,[k] SETINDEX,t x - t',26+|t|,"Computes _Tuple_ `t'` that differs from `t` only at position `t'_{k+1}`, which is set to `x`.
 `0 <= k <= 15`
-If `k >= |t|`, throws a range check exception.","c = parse_const_u4
-      => 0x6F, 0x50 | c"
+If `k >= |t|`, throws a range check exception.","[c = parse_const_u4] 0x6F, 0x50 | c"
 SETFIRST,SETINDEX,#6F50,tuple,6F50,SETFIRST,t x - t',26+|t|,Sets the first component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F, 0x50"
 SETSECOND,SETINDEX,#6F51,tuple,6F51,SETSECOND,t x - t',26+|t|,Sets the second component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F, 0x51"
 SETTHIRD,SETINDEX,#6F52,tuple,6F52,SETTHIRD,t x - t',26+|t|,Sets the third component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F, 0x52"
-INDEXQ,,#6F6 k:uint4,tuple,6F6k,[k] INDEXQ,t - x,26,"Returns the `k`-th element of a _Tuple_ `t`, where `0 <= k <= 15`. In other words, returns `x_{k+1}` if `t=(x_1,...,x_n)`. If `k>=n`, or if `t` is _Null_, returns a _Null_ instead of `x`.","c = parse_const_u4
-      => 0x6F, 0x60 | c"
+INDEXQ,,#6F6 k:uint4,tuple,6F6k,[k] INDEXQ,t - x,26,"Returns the `k`-th element of a _Tuple_ `t`, where `0 <= k <= 15`. In other words, returns `x_{k+1}` if `t=(x_1,...,x_n)`. If `k>=n`, or if `t` is _Null_, returns a _Null_ instead of `x`.","[c = parse_const_u4] 0x6F, 0x60 | c"
 FIRSTQ,INDEXQ,#6F60,tuple,6F60,"FIRSTQ
 CARQ",t - x,26,Returns the first element of a _Tuple_.,"0x6F, 0x60"
 SECONDQ,INDEXQ,#6F61,tuple,6F61,"SECONDQ
 CDRQ",t - y,26,Returns the second element of a _Tuple_.,"0x6F, 0x61"
 THIRDQ,INDEXQ,#6F62,tuple,6F62,THIRDQ,t - z,26,Returns the third element of a _Tuple_.,"0x6F, 0x62"
 SETINDEXQ,,#6F7 k:uint4,tuple,6F7k,[k] SETINDEXQ,t x - t',26+|t’|,"Sets the `k`-th component of _Tuple_ `t` to `x`, where `0 <= k < 16`, and returns the resulting _Tuple_ `t'`.
-If `|t| <= k`, first extends the original _Tuple_ to length `n’=k+1` by setting all new components to _Null_. If the original value of `t` is _Null_, treats it as an empty _Tuple_. If `t` is not _Null_ or _Tuple_, throws an exception. If `x` is _Null_ and either `|t| <= k` or `t` is _Null_, then always returns `t'=t` (and does not consume tuple creation gas).","c = parse_const_u4
-      => 0x6F, 0x70 | c"
+If `|t| <= k`, first extends the original _Tuple_ to length `n’=k+1` by setting all new components to _Null_. If the original value of `t` is _Null_, treats it as an empty _Tuple_. If `t` is not _Null_ or _Tuple_, throws an exception. If `x` is _Null_ and either `|t| <= k` or `t` is _Null_, then always returns `t'=t` (and does not consume tuple creation gas).","[c = parse_const_u4] 0x6F, 0x70 | c"
 SETFIRSTQ,SETINDEXQ,#6F70,tuple,6F70,SETFIRSTQ,t x - t',26+|t’|,Sets the first component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F , 0x70"
 SETSECONDQ,SETINDEXQ,#6F71,tuple,6F71,SETSECONDQ,t x - t',26+|t’|,Sets the second component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F , 0x71"
 SETTHIRDQ,SETINDEXQ,#6F72,tuple,6F72,SETTHIRDQ,t x - t',26+|t’|,Sets the third component of _Tuple_ `t` to `x` and returns the resulting _Tuple_ `t'`.,"0x6F , 0x72"
@@ -195,17 +150,12 @@ Equivalent to `NULLROTRIF` `NULLROTRIF`.","0x6F , 0xA6"
 NULLROTRIFNOT2,,#6FA7,tuple,6FA7,NULLROTRIFNOT2,x y - x y or null null x y,26,"Pushes two nulls under the second stack entry from the top, but only if the topmost _Integer_ `y` is zero.
 Equivalent to `NULLROTRIFNOT` `NULLROTRIFNOT`.","0x6F , 0xA7"
 INDEX2,,#6FB i:uint2 j:uint2,tuple,6FBij,[i] [j] INDEX2,t - x,26,"Recovers `x=(t_{i+1})_{j+1}` for `0 <= i,j <= 3`.
-Equivalent to `[i] INDEX` `[j] INDEX`.","i = parse_const_u2;
-j = parse_const_u2
-     => 0x6F, 0xB0 | (i << 2) | j"
+Equivalent to `[i] INDEX` `[j] INDEX`.","[i = parse_const_u2] [j = parse_const_u2] 0x6F, 0xB0 | (i << 2) | j"
 CADR,INDEX2,#6FB4,tuple,6FB4,CADR,t - x,26,Recovers `x=(t_2)_1`.,"0x6F, 0xB4"
 CDDR,INDEX2,#6FB5,tuple,6FB5,CDDR,t - x,26,Recovers `x=(t_2)_2`.,"0x6F, 0xB5"
 INDEX3,,#6FE_ i:uint2 j:uint2 k:uint2,tuple,6FE_ijk,[i] [j] [k] INDEX3,t - x,26,"Recovers `x=t_{i+1}_{j+1}_{k+1}`.
 `0 <= i,j,k <= 3`
-Equivalent to `[i] [j] INDEX2` `[k] INDEX`.","i = parse_const_u2;
-j = parse_const_u2;
-k = parse_const_u2
-      => 0x6F, 0xC0 | (i << 4) | (j << 2) | k"
+Equivalent to `[i] [j] INDEX2` `[k] INDEX`.","[i = parse_const_u2] [j = parse_const_u2] [k = parse_const_u2] 0x6F, 0xC0 | (i << 4) | (j << 2) | k"
 CADDR,INDEX3,#6FD4,tuple,6FD4,CADDR,t - x,26,Recovers `x=t_2_2_1`.,"0x6F, 0xD4"
 CDDDR,INDEX3,#6FD5,tuple,6FD5,CDDDR,t - x,26,Recovers `x=t_2_2_2`.,"0x6F, 0xD5"
 PUSHINT_4,,#7 i:uint4,const_int,7i,"[x] PUSHINT
@@ -227,13 +177,10 @@ PUSHINT_LONG,,#82 l:(## 5) xxx:(int (8 * l + 19)),const_int,82lxxx,"[xxx] PUSHIN
 _Details:_ 5-bit `0 <= l <= 30` determines the length `n=8l+19` of signed big-endian integer `xxx`.
 The total length of this instruction is `l+4` bytes or `n+13=8l+32` bits.",
 PUSHPOW2,,#83 xx:uint8,const_int,83xx,[xx+1] PUSHPOW2,- 2^(xx+1),26,"(Quietly) pushes `2^(xx+1)` for `0 <= xx <= 255`.
-`2^256` is a `NaN`.","s1 = parse_const_u8_plus_one
-        => 0x83, s1"
+`2^256` is a `NaN`.","[s1 = parse_const_u8_plus_one] 0x83, s1"
 PUSHNAN,PUSHPOW2,#83FF,const_int,83FF,PUSHNAN,- NaN,26,Pushes a `NaN`.,"0x83, 0xFF"
-PUSHPOW2DEC,,#84 xx:uint8,const_int,84xx,[xx+1] PUSHPOW2DEC,- 2^(xx+1)-1,26,Pushes `2^(xx+1)-1` for `0 <= xx <= 255`.,"s1 = parse_const_u8_plus_one
-        => 0x84, s1"
-PUSHNEGPOW2,,#85 xx:uint8,const_int,85xx,[xx+1] PUSHNEGPOW2,- -2^(xx+1),26,Pushes `-2^(xx+1)` for `0 <= xx <= 255`.,"s1 = parse_const_u8_plus_one
-        => 0x85, s1"
+PUSHPOW2DEC,,#84 xx:uint8,const_int,84xx,[xx+1] PUSHPOW2DEC,- 2^(xx+1)-1,26,Pushes `2^(xx+1)-1` for `0 <= xx <= 255`.,"[s1 = parse_const_u8_plus_one] 0x84, s1"
+PUSHNEGPOW2,,#85 xx:uint8,const_int,85xx,[xx+1] PUSHNEGPOW2,- -2^(xx+1),26,Pushes `-2^(xx+1)` for `0 <= xx <= 255`.,"[s1 = parse_const_u8_plus_one] 0x85, s1"
 PUSHREF,,#88 c:^Cell,const_data,88,[ref] PUSHREF,- c,18,"Pushes the reference `ref` into the stack.
 _Details:_ Pushes the first reference of `cc.code` into the stack as a _Cell_ (and removes this reference from the current continuation).",
 PUSHREFSLICE,,#89 c:^Cell,const_data,89,[ref] PUSHREFSLICE,- s,118/43,"Similar to `PUSHREF`, but converts the cell into a _Slice_.",
@@ -284,11 +231,10 @@ DEC,,#A5,arithm_basic,A5,DEC,x - x-1,18,Equivalent to `-1 ADDCONST`.,0xA5
 ADDCONST,,#A6 cc:int8,arithm_basic,A6cc,"[cc] ADDCONST
 [cc] ADDINT
 [-cc] SUBCONST
-[-cc] SUBINT",x - x+cc,26,`-128 <= cc <= 127`.,"z = parse_const_i8 
-      => 0xA6, z"
+[-cc] SUBINT",x - x+cc,26,`-128 <= cc <= 127`.,"[z = parse_const_i8] 0xA6, z
+"
 MULCONST,,#A7 cc:int8,arithm_basic,A7cc,"[cc] MULCONST
-[cc] MULINT",x - x*cc,26,`-128 <= cc <= 127`.,"z = parse_const_i8
-      => 0xA7, z"
+[cc] MULINT",x - x*cc,26,`-128 <= cc <= 127`.,"[z = parse_const_i8] 0xA7, z"
 MUL,,#A8,arithm_basic,A8,MUL,x y - x*y,18,,0xA8
 DIV_BASE,,#A9 m:uint1 s:uint2 cdft:(Either [ d:uint2 f:uint2 ] [ d:uint2 f:uint2 tt:uint8 ]),arithm_div,A9mscdf,,,26,"This is the general encoding of division, with an optional pre-multiplication and an optional replacement of the division or multiplication by a shift. Variable fields are as follows:
 `0 <= m <= 1`  -  Indicates whether there is pre-multiplication (`MULDIV` and its variants), possibly replaced by a left shift.
@@ -338,11 +284,10 @@ OR,,#B1,arithm_logical,B1,OR,x y - x|y,18,Bitwise or of two integers.,0xB1
 XOR,,#B2,arithm_logical,B2,XOR,x y - x xor y,18,Bitwise xor of two integers.,0xB2
 NOT,,#B3,arithm_logical,B3,NOT,x - ~x,26,Bitwise not of an integer.,0xB3
 FITS,,#B4 cc:uint8,arithm_logical,B4cc,[cc+1] FITS,x - x,26/76,"Checks whether `x` is a `cc+1`-bit signed integer for `0 <= cc <= 255` (i.e., whether `-2^cc <= x < 2^cc`).
-If not, either triggers an integer overflow exception, or replaces `x` with a `NaN` (quiet version).","z = parse_const_u8_plus_one
-      => 0xB4, z"
+If not, either triggers an integer overflow exception, or replaces `x` with a `NaN` (quiet version).","[z = parse_const_u8_plus_one] 0xB4, z"
 CHKBOOL,FITS,#B400,arithm_logical,B400,CHKBOOL,x - x,26/76,"Checks whether `x` is a “boolean value'' (i.e., either 0 or -1).","0xB4, 0x00"
-UFITS,,#B5 cc:uint8,arithm_logical,B5cc,[cc+1] UFITS,x - x,26/76,"Checks whether `x` is a `cc+1`-bit unsigned integer for `0 <= cc <= 255` (i.e., whether `0 <= x < 2^(cc+1)`).","z = parse_const_u8_plus_one
-      => 0xB5, z"
+UFITS,,#B5 cc:uint8,arithm_logical,B5cc,[cc+1] UFITS,x - x,26/76,"Checks whether `x` is a `cc+1`-bit unsigned integer for `0 <= cc <= 255` (i.e., whether `0 <= x < 2^(cc+1)`).","[z = parse_const_u8_plus_one] 0xB5, z
+"
 CHKBIT,UFITS,#B500,arithm_logical,B500,CHKBIT,x - x,26/76,"Checks whether `x` is a binary digit (i.e., zero or one).","0xB5, 0x00"
 FITSX,,#B600,arithm_logical,B600,FITSX,x c - x,26/76,Checks whether `x` is a `c`-bit signed integer for `0 <= c <= 1023`.,"0xB6, 0x00"
 UFITSX,,#B601,arithm_logical,B601,UFITSX,x c - x,26/76,Checks whether `x` is a `c`-bit unsigned integer for `0 <= c <= 1023`.,"0xB6, 0x01"
@@ -377,10 +322,9 @@ QAND,,#B7B0,arithm_quiet,B7B0,QAND,x y - x&y,26,"Bitwise and (similar to AND), b
 QOR,,#B7B1,arithm_quiet,B7B1,QOR,x y - x|y,26,"Bitwise or. If x = -1 or y = -1, the result is always -1, even if the other argument is a NaN.","0xB7, 0xB1"
 QXOR,,#B7B2,arithm_quiet,B7B2,QXOR,x y - x xor y,26,,"0xB7, 0xB2"
 QNOT,,#B7B3,arithm_quiet,B7B3,QNOT,x - ~x,26,,"0xB7, 0xB3"
-QFITS,,#B7B4 cc:uint8,arithm_quiet,B7B4cc,[cc+1] QFITS,x - x,34,"Replaces `x` with a `NaN` if x is not a `cc+1`-bit signed integer, leaves it intact otherwise.","z = parse_const_u8_plus_one
-      => 0xB7, 0xB4, z"
-QUFITS,,#B7B5 cc:uint8,arithm_quiet,B7B5cc,[cc+1] QUFITS,x - x,34,"Replaces `x` with a `NaN` if x is not a `cc+1`-bit unsigned integer, leaves it intact otherwise.","z = parse_const_u8_plus_one
-      => 0xB7, 0xB5, z"
+QFITS,,#B7B4 cc:uint8,arithm_quiet,B7B4cc,[cc+1] QFITS,x - x,34,"Replaces `x` with a `NaN` if x is not a `cc+1`-bit signed integer, leaves it intact otherwise.","[z = parse_const_u8_plus_one] 0xB7, 0xB4, z"
+QUFITS,,#B7B5 cc:uint8,arithm_quiet,B7B5cc,[cc+1] QUFITS,x - x,34,"Replaces `x` with a `NaN` if x is not a `cc+1`-bit unsigned integer, leaves it intact otherwise.","[z = parse_const_u8_plus_one] 0xB7, 0xB5, z
+"
 QUFITS_8,,#B7B507,arithm_quiet,B7B507,[8] QUFITS,x - x',34,"Checks whether x is an unsigned byte (i.e., whether 0 <= x < 2^8), and replaces x with a NaN if this is not the case; leaves x intact otherwise (i.e., if x is an unsigned byte).",
 QFITSX,,#B7B600,arithm_quiet,B7B600,QFITSX,x c - x,34,"Replaces `x` with a `NaN` if x is not a c-bit signed integer, leaves it intact otherwise.","0xB7, 0xB6, 0x00"
 QUFITSX,,#B7B601,arithm_quiet,B7B601,QUFITSX,x c - x,34,"Replaces `x` with a `NaN` if x is not a c-bit unsigned integer, leaves it intact otherwise.","0xB7, 0xB6, 0x01"
@@ -396,24 +340,24 @@ CMP,,#BF,compare_int,BF,CMP,x y - sgn(x-y),18,"Computes the sign of `x-y`:
 `-1` if `x<y`, `0` if `x=y`, `1` if `x>y`.
 No integer overflow can occur here unless `x` or `y` is a `NaN`.",0xBF
 EQINT,,#C0 yy:int8,compare_int,C0yy,[yy] EQINT,x - x=yy,26,"Returns `-1` if `x=yy`, `0` otherwise.
-`-2^7 <= yy < 2^7`.","z = parse_const_i8
-      => 0xC0, z"
+`-2^7 <= yy < 2^7`.","[z = parse_const_i8] 0xC0, z
+"
 ISZERO,EQINT,#C000,compare_int,C000,ISZERO,x - x=0,26,Checks whether an integer is zero. Corresponds to Forth's `0=`.,"0xC0, 0x00"
 LESSINT,,#C1 yy:int8,compare_int,C1yy,"[yy] LESSINT
 [yy-1] LEQINT",x - x<yy,26,"Returns `-1` if `x<yy`, `0` otherwise.
-`-2^7 <= yy < 2^7`.","z = parse_const_i8
-      => 0xC1, z"
+`-2^7 <= yy < 2^7`.","[z = parse_const_i8] 0xC1, z
+"
 ISNEG,LESSINT,#C100,compare_int,C100,ISNEG,x - x<0,26,Checks whether an integer is negative. Corresponds to Forth's `0<`.,"0xC1, 0x00"
 ISNPOS,LESSINT,#C101,compare_int,C101,ISNPOS,x - x<=0,26,Checks whether an integer is non-positive.,"0xC1, 0x01"
 GTINT,,#C2 yy:int8,compare_int,C2yy,"[yy] GTINT
 [yy+1] GEQINT",x - x>yy,26,"Returns `-1` if `x>yy`, `0` otherwise.
-`-2^7 <= yy < 2^7`.","z = parse_const_i8
-      => 0xC2, z"
+`-2^7 <= yy < 2^7`.","[z = parse_const_i8] 0xC2, z
+"
 ISPOS,GTINT,#C200,compare_int,C200,ISPOS,x - x>0,26,Checks whether an integer is positive. Corresponds to Forth's `0>`.,"0xC2, 0x00"
 ISNNEG,GTINT,#C2FF,compare_int,C2FF,ISNNEG,x - x >=0,26,Checks whether an integer is non-negative.,"0xC2, 0xFF"
 NEQINT,,#C3 yy:int8,compare_int,C3yy,[yy] NEQINT,x - x!=yy,26,"Returns `-1` if `x!=yy`, `0` otherwise.
-`-2^7 <= yy < 2^7`.","z = parse_const_i8
-      => 0xC3, z"
+`-2^7 <= yy < 2^7`.","[z = parse_const_i8] 0xC3, z
+"
 ISNAN,,#C4,compare_int,C4,ISNAN,x - x=NaN,18,Checks whether `x` is a `NaN`.,0xC4
 CHKNAN,,#C5,compare_int,C5,CHKNAN,x - x,18/68,Throws an arithmetic overflow exception if `x` is a `NaN`.,0xC5
 SEMPTY,,#C700,compare_other,C700,SEMPTY,s - ?,26,"Checks whether a _Slice_ `s` is empty (i.e., contains no bits of data and no cell references).","0xC7, 0x00"
@@ -448,10 +392,10 @@ DIFF_PATCH_BINARYQ,,#C724,diff_operation,C724,DIFF_PATCH_BINARYQ,c c - c,26,like
 DIFF_PATCH_BINARY_ZIPQ,,#C725,diff_operation,C725,DIFF_PATCH_BINARY_ZIPQ,c c - c,26,like `DIFF_PATCH_ZIPQ` but takes and returns binary arrays instead of string.,"0xC7, 0x25"
 NEWC,,#C8,cell_build,C8,NEWC,- b,18,Creates a new empty _Builder_.,0xC8
 ENDC,,#C9,cell_build,C9,ENDC,b - c,518,Converts a _Builder_ into an ordinary _Cell_.,0xC9
-STI,,#CA cc:uint8,cell_build,CAcc,[cc+1] STI,x b - b',26,"Stores a signed `cc+1`-bit integer `x` into _Builder_ `b` for `0 <= cc <= 255`, throws a range check exception if `x` does not fit into `cc+1` bits.","z = parse_const_u8_plus_one
-      => 0xCA, z"
-STU,,#CB cc:uint8,cell_build,CBcc,[cc+1] STU,x b - b',26,Stores an unsigned `cc+1`-bit integer `x` into _Builder_ `b`. In all other respects it is similar to `STI`.,"z = parse_const_u8_plus_one
-      => 0xCB, z"
+STI,,#CA cc:uint8,cell_build,CAcc,[cc+1] STI,x b - b',26,"Stores a signed `cc+1`-bit integer `x` into _Builder_ `b` for `0 <= cc <= 255`, throws a range check exception if `x` does not fit into `cc+1` bits.","[z = parse_const_u8_plus_one] 0xCA, z
+"
+STU,,#CB cc:uint8,cell_build,CBcc,[cc+1] STU,x b - b',26,Stores an unsigned `cc+1`-bit integer `x` into _Builder_ `b`. In all other respects it is similar to `STI`.,"[z = parse_const_u8_plus_one] 0xCB, z
+"
 STREF,,#CC,cell_build,CC,STREF,c b - b',18,Stores a reference to _Cell_ `c` into _Builder_ `b`.,0xCC
 STBREFR,,#CD,cell_build,CD,"STBREFR
 ENDCST",b b'' - b,518,Equivalent to `ENDC` `SWAP` `STREF`.,0xCD
@@ -469,18 +413,18 @@ STIXRQ,,#CF06,cell_build,CF06,STIXRQ,b x l - b x f or b' 0,26,A quiet version of
 STUXRQ,,#CF07,cell_build,CF07,STUXRQ,b x l - b x f or b' 0,26,A quiet version of `STUXR`.,"0xCF, 0x07"
 STI_ALT,,#CF08 cc:uint8,cell_build,CF08cc,[cc+1] STI_l,x b - b',34,A longer version of `[cc+1] STI`.,
 STU_ALT,,#CF09 cc:uint8,cell_build,CF09cc,[cc+1] STU_l,x b - b',34,A longer version of `[cc+1] STU`.,
-STIR,,#CF0A cc:uint8,cell_build,CF0Acc,[cc+1] STIR,b x - b',34,Equivalent to `SWAP` `[cc+1] STI`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0A, z"
-STUR,,#CF0B cc:uint8,cell_build,CF0Bcc,[cc+1] STUR,b x - b',34,Equivalent to `SWAP` `[cc+1] STU`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0B, z"
-STIQ,,#CF0C cc:uint8,cell_build,CF0Ccc,[cc+1] STIQ,x b - x b f or b' 0,34,A quiet version of `STI`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0C, z"
-STUQ,,#CF0D cc:uint8,cell_build,CF0Dcc,[cc+1] STUQ,x b - x b f or b' 0,34,A quiet version of `STU`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0D, z"
-STIRQ,,#CF0E cc:uint8,cell_build,CF0Ecc,[cc+1] STIRQ,b x - b x f or b' 0,34,A quiet version of `STIR`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0E, z"
-STURQ,,#CF0F cc:uint8,cell_build,CF0Fcc,[cc+1] STURQ,b x - b x f or b' 0,34,A quiet version of `STUR`.,"z = parse_const_u8_plus_one
-      => 0xCF, 0x0F, z"
+STIR,,#CF0A cc:uint8,cell_build,CF0Acc,[cc+1] STIR,b x - b',34,Equivalent to `SWAP` `[cc+1] STI`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0A, z
+"
+STUR,,#CF0B cc:uint8,cell_build,CF0Bcc,[cc+1] STUR,b x - b',34,Equivalent to `SWAP` `[cc+1] STU`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0B, z
+"
+STIQ,,#CF0C cc:uint8,cell_build,CF0Ccc,[cc+1] STIQ,x b - x b f or b' 0,34,A quiet version of `STI`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0C, z
+"
+STUQ,,#CF0D cc:uint8,cell_build,CF0Dcc,[cc+1] STUQ,x b - x b f or b' 0,34,A quiet version of `STU`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0D, z
+"
+STIRQ,,#CF0E cc:uint8,cell_build,CF0Ecc,[cc+1] STIRQ,b x - b x f or b' 0,34,A quiet version of `STIR`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0E, z
+"
+STURQ,,#CF0F cc:uint8,cell_build,CF0Fcc,[cc+1] STURQ,b x - b x f or b' 0,34,A quiet version of `STUR`.,"[z = parse_const_u8_plus_one] 0xCF, 0x0F, z
+"
 STREF_ALT,,#CF10,cell_build,CF10,STREF_l,c b - b',26,A longer version of `STREF`.,"0xCF, 0x10"
 STBREF,,#CF11,cell_build,CF11,STBREF,b' b - b'',526,Equivalent to `SWAP` `STBREFR`.,"0xCF, 0x11"
 STSLICE_ALT,,#CF12,cell_build,CF12,STSLICE_l,s b - b',26,A longer version of `STSLICE`.,"0xCF, 0x12"
@@ -536,12 +480,12 @@ STONE,STSLICECONST,#CF83,cell_build,CF83,STONE,b - b',24,Stores one binary one.,
 CTOS,,#D0,cell_parse,D0,CTOS,c - s,118/43,"Converts a _Cell_ into a _Slice_. Notice that `c` must be either an ordinary cell, or an exotic cell which is automatically _loaded_ to yield an ordinary cell `c'`, converted into a _Slice_ afterwards.",0xD0
 ENDS,,#D1,cell_parse,D1,ENDS,s -,18/68,"Removes a _Slice_ `s` from the stack, and throws an exception if it is not empty.",0xD1
 LDI,,#D2 cc:uint8,cell_parse,D2cc,[cc+1] LDI,s - x s',26,"Loads (i.e., parses) a signed `cc+1`-bit integer `x` from _Slice_ `s`, and returns the remainder of `s` as `s'`.",
-LDU,,#D3 cc:uint8,cell_parse,D3cc,[cc+1] LDU,s - x s',26,Loads an unsigned `cc+1`-bit integer `x` from _Slice_ `s`.,"cc = parse_const_u8_plus_one
-        => 0xD2, cc"
+LDU,,#D3 cc:uint8,cell_parse,D3cc,[cc+1] LDU,s - x s',26,Loads an unsigned `cc+1`-bit integer `x` from _Slice_ `s`.,"[cc = parse_const_u8_plus_one] 0xD2, cc
+"
 LDREF,,#D4,cell_parse,D4,LDREF,s - c s',18,Loads a cell reference `c` from `s`.,0xD4
 LDREFRTOS,,#D5,cell_parse,D5,LDREFRTOS,s - s' s'',118/43,Equivalent to `LDREF` `SWAP` `CTOS`.,0xD5
-LDSLICE,,#D6 cc:uint8,cell_parse,D6cc,[cc+1] LDSLICE,s - s'' s',26,Cuts the next `cc+1` bits of `s` into a separate _Slice_ `s''`.,"cc = parse_const_u8_plus_one
-        => 0xD6, cc"
+LDSLICE,,#D6 cc:uint8,cell_parse,D6cc,[cc+1] LDSLICE,s - s'' s',26,Cuts the next `cc+1` bits of `s` into a separate _Slice_ `s''`.,"[cc = parse_const_u8_plus_one] 0xD6, cc
+"
 LDIX,,#D700,cell_parse,D700,LDIX,s l - x s',26,"Loads a signed `l`-bit (`0 <= l <= 257`) integer `x` from _Slice_ `s`, and returns the remainder of `s` as `s'`.","0xD7, 0x00"
 LDUX,,#D701,cell_parse,D701,LDUX,s l - x s',26,"Loads an unsigned `l`-bit integer `x` from (the first `l` bits of) `s`, with `0 <= l <= 256`.","0xD7, 0x01"
 PLDIX,,#D702,cell_parse,D702,PLDIX,s l - x,26,"Preloads a signed `l`-bit integer from _Slice_ `s`, for `0 <= l <= 257`.","0xD7, 0x02"
@@ -552,31 +496,31 @@ PLDIXQ,,#D706,cell_parse,D706,PLDIXQ,s l - x -1 or 0,26,Quiet version of `PLDIX`
 PLDUXQ,,#D707,cell_parse,D707,PLDUXQ,s l - x -1 or 0,26,Quiet version of `PLDUX`.,"0xD7, 0x08"
 LDI_ALT,,#D708 cc:uint8,cell_parse,D708cc,[cc+1] LDI_l,s - x s',34,A longer encoding for `LDI`.,
 LDU_ALT,,#D709 cc:uint8,cell_parse,D709cc,[cc+1] LDU_l,s - x s',34,A longer encoding for `LDU`.,
-PLDI,,#D70A cc:uint8,cell_parse,D70Acc,[cc+1] PLDI,s - x,34,Preloads a signed `cc+1`-bit integer from _Slice_ `s`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0A, cc"
-PLDU,,#D70B cc:uint8,cell_parse,D70Bcc,[cc+1] PLDU,s - x,34,Preloads an unsigned `cc+1`-bit integer from `s`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0B, cc"
-LDIQ,,#D70C cc:uint8,cell_parse,D70Ccc,[cc+1] LDIQ,s - x s' -1 or s 0,34,A quiet version of `LDI`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0C, cc"
-LDUQ,,#D70D cc:uint8,cell_parse,D70Dcc,[cc+1] LDUQ,s - x s' -1 or s 0,34,A quiet version of `LDU`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0D, cc"
-PLDIQ,,#D70E cc:uint8,cell_parse,D70Ecc,[cc+1] PLDIQ,s - x -1 or 0,34,A quiet version of `PLDI`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0E, cc"
-PLDUQ,,#D70F cc:uint8,cell_parse,D70Fcc,[cc+1] PLDUQ,s - x -1 or 0,34,A quiet version of `PLDU`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x0F, cc"
-PLDUZ,,#D714_ c:uint3,cell_parse,D714_c,[32(c+1)] PLDUZ,s - s x,26,"Preloads the first `32(c+1)` bits of _Slice_ `s` into an unsigned integer `x`, for `0 <= c <= 7`. If `s` is shorter than necessary, missing bits are assumed to be zero. This operation is intended to be used along with `IFBITJMP` and similar instructions.","c = parse_plduz_parameter
-      => 0xD7, 0x10 | c"
+PLDI,,#D70A cc:uint8,cell_parse,D70Acc,[cc+1] PLDI,s - x,34,Preloads a signed `cc+1`-bit integer from _Slice_ `s`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0A, cc
+"
+PLDU,,#D70B cc:uint8,cell_parse,D70Bcc,[cc+1] PLDU,s - x,34,Preloads an unsigned `cc+1`-bit integer from `s`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0B, cc
+"
+LDIQ,,#D70C cc:uint8,cell_parse,D70Ccc,[cc+1] LDIQ,s - x s' -1 or s 0,34,A quiet version of `LDI`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0C, cc
+"
+LDUQ,,#D70D cc:uint8,cell_parse,D70Dcc,[cc+1] LDUQ,s - x s' -1 or s 0,34,A quiet version of `LDU`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0D, cc
+"
+PLDIQ,,#D70E cc:uint8,cell_parse,D70Ecc,[cc+1] PLDIQ,s - x -1 or 0,34,A quiet version of `PLDI`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0E, cc
+"
+PLDUQ,,#D70F cc:uint8,cell_parse,D70Fcc,[cc+1] PLDUQ,s - x -1 or 0,34,A quiet version of `PLDU`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x0F, cc
+"
+PLDUZ,,#D714_ c:uint3,cell_parse,D714_c,[32(c+1)] PLDUZ,s - s x,26,"Preloads the first `32(c+1)` bits of _Slice_ `s` into an unsigned integer `x`, for `0 <= c <= 7`. If `s` is shorter than necessary, missing bits are assumed to be zero. This operation is intended to be used along with `IFBITJMP` and similar instructions.","[c = parse_plduz_parameter] 0xD7, 0x10 | c
+"
 LDSLICEX,,#D718,cell_parse,D718,LDSLICEX,s l - s'' s',26,"Loads the first `0 <= l <= 1023` bits from _Slice_ `s` into a separate _Slice_ `s''`, returning the remainder of `s` as `s'`.","0xD7, 0x18"
 PLDSLICEX,,#D719,cell_parse,D719,PLDSLICEX,s l - s'',26,Returns the first `0 <= l <= 1023` bits of `s` as `s''`.,"0xD7, 0x19"
 LDSLICEXQ,,#D71A,cell_parse,D71A,LDSLICEXQ,s l - s'' s' -1 or s 0,26,A quiet version of `LDSLICEX`.,"0xD7, 0x1A"
 PLDSLICEXQ,,#D71B,cell_parse,D71B,PLDSLICEXQ,s l - s' -1 or 0,26,A quiet version of `LDSLICEXQ`.,"0xD7, 0x1B"
 LDSLICE_ALT,,#D71C cc:uint8,cell_parse,D71Ccc,[cc+1] LDSLICE_l,s - s'' s',34,A longer encoding for `LDSLICE`.,
-PLDSLICE,,#D71D cc:uint8,cell_parse,D71Dcc,[cc+1] PLDSLICE,s - s'',34,Returns the first `0 < cc+1 <= 256` bits of `s` as `s''`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x1D, cc"
-LDSLICEQ,,#D71E cc:uint8,cell_parse,D71Ecc,[cc+1] LDSLICEQ,s - s'' s' -1 or s 0,34,A quiet version of `LDSLICE`.,"cc = parse_const_u8_plus_one 
-        => 0xD7, 0x1E, cc"
-PLDSLICEQ,,#D71F cc:uint8,cell_parse,D71Fcc,[cc+1] PLDSLICEQ,s - s'' -1 or 0,34,A quiet version of `PLDSLICE`.,"cc = parse_const_u8_plus_one
-        => 0xD7, 0x1F, cc"
+PLDSLICE,,#D71D cc:uint8,cell_parse,D71Dcc,[cc+1] PLDSLICE,s - s'',34,Returns the first `0 < cc+1 <= 256` bits of `s` as `s''`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x1D, cc
+"
+LDSLICEQ,,#D71E cc:uint8,cell_parse,D71Ecc,[cc+1] LDSLICEQ,s - s'' s' -1 or s 0,34,A quiet version of `LDSLICE`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x1E, cc
+"
+PLDSLICEQ,,#D71F cc:uint8,cell_parse,D71Fcc,[cc+1] PLDSLICEQ,s - s'' -1 or 0,34,A quiet version of `PLDSLICE`.,"[cc = parse_const_u8_plus_one] 0xD7, 0x1F, cc
+"
 SDCUTFIRST,,#D720,cell_parse,D720,SDCUTFIRST,s l - s',26,Returns the first `0 <= l <= 1023` bits of `s`. It is equivalent to `PLDSLICEX`.,"0xD7, 0x20"
 SDSKIPFIRST,,#D721,cell_parse,D721,SDSKIPFIRST,s l - s',26,Returns all but the first `0 <= l <= 1023` bits of `s`. It is equivalent to `LDSLICEX` `NIP`.,"0xD7, 0x21"
 SDCUTLAST,,#D722,cell_parse,D722,SDCUTLAST,s l - s',26,Returns the last `0 <= l <= 1023` bits of `s`.,"0xD7, 0x22"
@@ -608,8 +552,8 @@ PLDREFVAR,,#D748,cell_parse,D748,PLDREFVAR,s n - c,26,Returns the `n`-th cell re
 SBITS,,#D749,cell_parse,D749,SBITS,s - l,26,Returns the number of data bits in _Slice_ `s`.,"0xD7, 0x49"
 SREFS,,#D74A,cell_parse,D74A,SREFS,s - r,26,Returns the number of references in _Slice_ `s`.,"0xD7, 0x4A"
 SBITREFS,,#D74B,cell_parse,D74B,SBITREFS,s - l r,26,Returns both the number of data bits and the number of references in `s`.,"0xD7, 0x4B"
-PLDREFIDX,,#D74E_ n:uint2,cell_parse,D74E_n,[n] PLDREFIDX,s - c,26,"Returns the `n`-th cell reference of _Slice_ `s`, where `0 <= n <= 3`.","n = parse_const_u2
-      => 0xD7, 0x4C | n"
+PLDREFIDX,,#D74E_ n:uint2,cell_parse,D74E_n,[n] PLDREFIDX,s - c,26,"Returns the `n`-th cell reference of _Slice_ `s`, where `0 <= n <= 3`.","[n = parse_const_u2] 0xD7, 0x4C | n
+"
 PLDREF,PLDREFIDX,#D74C,cell_parse,D74C,PLDREF,s - c,26,Preloads the first cell reference of a _Slice_.,"0xD7, 0x4C"
 LDILE4,,#D750,cell_parse,D750,LDILE4,s - x s',26,Loads a little-endian signed 32-bit integer.,"0xD7, 0x50"
 LDULE4,,#D751,cell_parse,D751,LDULE4,s - x s',26,Loads a little-endian unsigned 32-bit integer.,"0xD7, 0x51"
@@ -640,10 +584,10 @@ The remainder of the previous current continuation `cc` is discarded.",0xD9
 CALLXARGS,,#DA p:uint4 r:uint4,cont_basic,DApr,[p] [r] CALLXARGS,c -,26,"_Calls_ continuation `c` with `p` parameters and expecting `r` return values
 `0 <= p <= 15`, `0 <= r <= 15`",
 CALLXARGS_VAR,,#DB0 p:uint4,cont_basic,DB0p,[p] -1 CALLXARGS,c -,26,"_Calls_ continuation `c` with `0 <= p <= 15` parameters, expecting an arbitrary number of return values.",
-JMPXARGS,,#DB1 p:uint4,cont_basic,DB1p,[p] JMPXARGS,c -,26,"_Jumps_ to continuation `c`, passing only the top `0 <= p <= 15` values from the current stack to it (the remainder of the current stack is discarded).","p = parse_const_u4
-      => 0xDB, 0x10 | p"
-RETARGS,,#DB2 r:uint4,cont_basic,DB2r,[r] RETARGS,,26,"_Returns_ to `c0`, with `0 <= r <= 15` return values taken from the current stack.","r = parse_const_u4
-      => 0xDB, 0x20 | r"
+JMPXARGS,,#DB1 p:uint4,cont_basic,DB1p,[p] JMPXARGS,c -,26,"_Jumps_ to continuation `c`, passing only the top `0 <= p <= 15` values from the current stack to it (the remainder of the current stack is discarded).","[p = parse_const_u4] 0xDB, 0x10 | p
+"
+RETARGS,,#DB2 r:uint4,cont_basic,DB2r,[r] RETARGS,,26,"_Returns_ to `c0`, with `0 <= r <= 15` return values taken from the current stack.","[r = parse_const_u4] 0xDB, 0x20 | r
+"
 RET,,#DB30,cont_basic,DB30,"RET
 RETTRUE",,26,"_Returns_ to the continuation at `c0`. The remainder of the current continuation `cc` is discarded.
 Approximately equivalent to `c0 PUSHCTR` `JMPX`.","0xDB, 0x30"
@@ -654,9 +598,8 @@ BRANCH,,#DB32,cont_basic,DB32,"BRANCH
 RETBOOL",f -,26,"Performs `RETTRUE` if integer `f!=0`, or `RETFALSE` if `f=0`.","0xDB, 0x32"
 CALLCC,,#DB34,cont_basic,DB34,CALLCC,c -,26,"_Call with current continuation_, transfers control to `c`, pushing the old value of `cc` into `c`'s stack (instead of discarding it or writing it into new `c0`).","0xDB, 0x34"
 JMPXDATA,,#DB35,cont_basic,DB35,JMPXDATA,c -,26,"Similar to `CALLCC`, but the remainder of the current continuation (the old value of `cc`) is converted into a _Slice_ before pushing it into the stack of `c`.","0xDB, 0x35"
-CALLCCARGS,,#DB36 p:uint4 r:uint4,cont_basic,DB36pr,[p] [r] CALLCCARGS,c -,34,"Similar to `CALLXARGS`, but pushes the old value of `cc` (along with the top `0 <= p <= 15` values from the original stack) into the stack of newly-invoked continuation `c`, setting `cc.nargs` to `-1 <= r <= 14`.","c1 = parse_const_u4;
-c2 = parse_const_i4
-        => 0xDB, 0x36, (c1 << 4) | c2"
+CALLCCARGS,,#DB36 p:uint4 r:uint4,cont_basic,DB36pr,[p] [r] CALLCCARGS,c -,34,"Similar to `CALLXARGS`, but pushes the old value of `cc` (along with the top `0 <= p <= 15` values from the original stack) into the stack of newly-invoked continuation `c`, setting `cc.nargs` to `-1 <= r <= 14`.","[c1 = parse_const_u4] [c2 = parse_const_i4] 0xDB, 0x36, (c1 << 4) | c2
+"
 CALLXVARARGS,,#DB38,cont_basic,DB38,CALLXVARARGS,c p r -,26,"Similar to `CALLXARGS`, but takes `-1 <= p,r <= 254` from the stack. The next three operations also take `p` and `r` from the stack, both in the range `-1...254`.","0xDB, 0x38"
 RETVARARGS,,#DB39,cont_basic,DB39,RETVARARGS,p r -,26,Similar to `RETARGS`.,"0xDB, 0x39"
 JMPXVARARGS,,#DB3A,cont_basic,DB3A,JMPXVARARGS,c p r -,26,Similar to `JMPXARGS`.,"0xDB, 0x3A"
@@ -694,14 +637,14 @@ IFNOTRETALT,,#E309,cont_conditional,E309,IFNOTRETALT,f -,26,Performs `RETALT` if
 IFREFELSE,,#E30D c:^Cell,cont_conditional,E30D,[ref] IFREFELSE,f c -,26/126/51,"Equivalent to `PUSHREFCONT` `SWAP` `IFELSE`, with the optimization that the cell reference is not actually loaded into a _Slice_ and then converted into an ordinary _Continuation_ if `f=0`. Similar remarks apply to the next two primitives: cells are converted into continuations only when necessary.",
 IFELSEREF,,#E30E c:^Cell,cont_conditional,E30E,[ref] IFELSEREF,f c -,26/126/51,Equivalent to `PUSHREFCONT` `IFELSE`.,
 IFREFELSEREF,,#E30F c1:^Cell c2:^Cell,cont_conditional,E30F,[ref] [ref] IFREFELSEREF,f -,126/51,Equivalent to `PUSHREFCONT` `PUSHREFCONT` `IFELSE`.,
-IFBITJMP,,#E39_ n:uint5,cont_conditional,E39_n,[n] IFBITJMP,x c - x,26,"Checks whether bit `0 <= n <= 31` is set in integer `x`, and if so, performs `JMPX` to continuation `c`. Value `x` is left in the stack.","n = parse_const_u5
-       => 0xE3, 0x80 | n"
-IFNBITJMP,,#E3B_ n:uint5,cont_conditional,E3B_n,[n] IFNBITJMP,x c - x,26,Jumps to `c` if bit `0 <= n <= 31` is not set in integer `x`.,"n = parse_const_u5
-      => 0xE3, 0xA0 | n"
-IFBITJMPREF,,#E3D_ n:uint5 c:^Cell,cont_conditional,E3D_n,[ref] [n] IFBITJMPREF,x - x,126/51,Performs a `JMPREF` if bit `0 <= n <= 31` is set in integer `x`.,"n = parse_const_u5
-      => 0xE3, 0xC0 | n"
-IFNBITJMPREF,,#E3F_ n:uint5 c:^Cell,cont_conditional,E3F_n,[ref] [n] IFNBITJMPREF,x - x,126/51,Performs a `JMPREF` if bit `0 <= n <= 31` is not set in integer `x`.,"n = parse_const_u5
-      => 0xE3, 0xE0 | n"
+IFBITJMP,,#E39_ n:uint5,cont_conditional,E39_n,[n] IFBITJMP,x c - x,26,"Checks whether bit `0 <= n <= 31` is set in integer `x`, and if so, performs `JMPX` to continuation `c`. Value `x` is left in the stack.","[n = parse_const_u5] 0xE3, 0x80 | n
+"
+IFNBITJMP,,#E3B_ n:uint5,cont_conditional,E3B_n,[n] IFNBITJMP,x c - x,26,Jumps to `c` if bit `0 <= n <= 31` is not set in integer `x`.,"[n = parse_const_u5] 0xE3, 0xA0 | n
+"
+IFBITJMPREF,,#E3D_ n:uint5 c:^Cell,cont_conditional,E3D_n,[ref] [n] IFBITJMPREF,x - x,126/51,Performs a `JMPREF` if bit `0 <= n <= 31` is set in integer `x`.,"[n = parse_const_u5] 0xE3, 0xC0 | n
+"
+IFNBITJMPREF,,#E3F_ n:uint5 c:^Cell,cont_conditional,E3F_n,[ref] [n] IFNBITJMPREF,x - x,126/51,Performs a `JMPREF` if bit `0 <= n <= 31` is not set in integer `x`.,"[n = parse_const_u5] 0xE3, 0xE0 | n
+"
 REPEAT,,#E4,cont_loops,E4,REPEAT,n c -,18,"Executes continuation `c` `n` times, if integer `n` is non-negative. If `n>=2^31` or `n<-2^31`, generates a range check exception.
 Notice that a `RET` inside the code of `c` works as a `continue`, not as a `break`. One should use either alternative (experimental) loops or alternative `RETALT` (along with a `SETEXITALT` before the loop) to `break` out of a loop.",0xE4
 ,,,cont_loops,E4,"REPEAT:<{ code }>
@@ -737,11 +680,11 @@ AGAINBRK,,#E31A,cont_loops,E31A,AGAINBRK,c -,26,"Similar to `AGAIN`, but also mo
 AGAINENDBRK,,#E31B,cont_loops,E31B,"AGAINENDBRK
 AGAINBRK:",-,26,Equivalent to `SAMEALTSAVE` `AGAINEND`.,"0xE3, 0x1B"
 SETCONTARGS_N,,#EC r:uint4 n:(#<= 14),cont_stack,ECrn,[r] [n] SETCONTARGS,x_1 x_2...x_r c - c',26+s”,"Similar to `[r] -1 SETCONTARGS`, but sets `c.nargs` to the final size of the stack of `c'` plus `n`. In other words, transforms `c` into a _closure_ or a _partially applied function_, with `0 <= n <= 14` arguments missing.",
-SETNUMARGS,SETCONTARGS_N,#EC0 n:(#<= 14),cont_stack,EC0n,[n] SETNUMARGS,c - c',26,"Sets `c.nargs` to `n` plus the current depth of `c`'s stack, where `0 <= n <= 14`. If `c.nargs` is already set to a non-negative value, does nothing.","c = parse_const_u4_14
-      => 0xEC, c"
+SETNUMARGS,SETCONTARGS_N,#EC0 n:(#<= 14),cont_stack,EC0n,[n] SETNUMARGS,c - c',26,"Sets `c.nargs` to `n` plus the current depth of `c`'s stack, where `0 <= n <= 14`. If `c.nargs` is already set to a non-negative value, does nothing.","[c = parse_const_u4_14] 0xEC, c
+"
 SETCONTARGS,,#EC r:uint4 n:(## 4) {n = 15},cont_stack,ECrF,[r] -1 SETCONTARGS,x_1 x_2...x_r c - c',26+s”,"Pushes `0 <= r <= 15` values `x_1...x_r` into the stack of (a copy of) the continuation `c`, starting with `x_1`. If the final depth of `c`'s stack turns out to be greater than `c.nargs`, a stack overflow exception is generated.",
-RETURNARGS,,#ED0 p:uint4,cont_stack,ED0p,[p] RETURNARGS,-,26+s”,"Leaves only the top `0 <= p <= 15` values in the current stack (somewhat similarly to `ONLYTOPX`), with all the unused bottom values not discarded, but saved into continuation `c0` in the same way as `SETCONTARGS` does.","c = parse_const_u4
-      => 0xED, c"
+RETURNARGS,,#ED0 p:uint4,cont_stack,ED0p,[p] RETURNARGS,-,26+s”,"Leaves only the top `0 <= p <= 15` values in the current stack (somewhat similarly to `ONLYTOPX`), with all the unused bottom values not discarded, but saved into continuation `c0` in the same way as `SETCONTARGS` does.","[c = parse_const_u4] 0xED, c
+"
 RETURNVARARGS,,#ED10,cont_stack,ED10,RETURNVARARGS,p -,26+s”,"Similar to `RETURNARGS`, but with Integer `0 <= p <= 255` taken from the stack.","0xED, 0x10"
 SETCONTVARARGS,,#ED11,cont_stack,ED11,SETCONTVARARGS,x_1 x_2...x_r c r n - c',26+s”,"Similar to `SETCONTARGS`, but with `0 <= r <= 255` and `-1 <= n <= 255` taken from the stack.","0xED, 0x11"
 SETNUMVARARGS,,#ED12,cont_stack,ED12,SETNUMVARARGS,c n - c',26,"`-1 <= n <= 255`
@@ -751,41 +694,40 @@ BLESS,,#ED1E,cont_create,ED1E,BLESS,s - c,26,"Transforms a _Slice_ `s` into a si
 BLESSVARARGS,,#ED1F,cont_create,ED1F,BLESSVARARGS,x_1...x_r s r n - c,26+s”,Equivalent to `ROT` `BLESS` `ROTREV` `SETCONTVARARGS`.,"0xED, 0x1F"
 BLESSARGS,,#EE r:uint4 n:uint4,cont_create,EErn,[r] [n] BLESSARGS,x_1...x_r s - c,26,"`0 <= r <= 15`, `-1 <= n <= 14`
 Equivalent to `BLESS` `[r] [n] SETCONTARGS`.
-The value of `n` is represented inside the instruction by the 4-bit integer `n mod 16`.","c1 = parse_const_u4;
-c2 = parse_const_i4
-        => 0xEE, (c1 << 4) | c2"
-BLESSNUMARGS,BLESSARGS,#EE0 n:uint4,cont_create,EE0n,[n] BLESSNUMARGS,s - c,26,"Also transforms a _Slice_ `s` into a _Continuation_ `c`, but sets `c.nargs` to `0 <= n <= 14`.","c = parse_const_u4_14
-      => 0xEE, c"
+The value of `n` is represented inside the instruction by the 4-bit integer `n mod 16`.","[c1 = parse_const_u4] [c2 = parse_const_i4] 0xEE, (c1 << 4) | c2
+"
+BLESSNUMARGS,BLESSARGS,#EE0 n:uint4,cont_create,EE0n,[n] BLESSNUMARGS,s - c,26,"Also transforms a _Slice_ `s` into a _Continuation_ `c`, but sets `c.nargs` to `0 <= n <= 14`.","[c = parse_const_u4_14] 0xEE, c
+"
 PUSHCTR,,#ED4 i:uint4,cont_registers,ED4i,"c[i] PUSHCTR
-c[i] PUSH",- x,26,"Pushes the current value of control register `c(i)`. If the control register is not supported in the current codepage, or if it does not have a value, an exception is triggered.","z = parse_control_register
-      => 0xED, 0x40 | z"
+c[i] PUSH",- x,26,"Pushes the current value of control register `c(i)`. If the control register is not supported in the current codepage, or if it does not have a value, an exception is triggered.","[z = parse_control_register] 0xED, 0x40 | z
+"
 PUSHROOT,PUSHCTR,#ED44,cont_registers,ED44,"c4 PUSHCTR
 c4 PUSH",- x,26,"Pushes the “global data root'' cell reference, thus enabling access to persistent smart-contract data.","0xED, 0x44"
 POPCTR,,#ED5 i:uint4,cont_registers,ED5i,"c[i] POPCTR
-c[i] POP",x -,26,"Pops a value `x` from the stack and stores it into control register `c(i)`, if supported in the current codepage. Notice that if a control register accepts only values of a specific type, a type-checking exception may occur.","z = parse_control_register
-      => 0xED, 0x50 | z"
+c[i] POP",x -,26,"Pops a value `x` from the stack and stores it into control register `c(i)`, if supported in the current codepage. Notice that if a control register accepts only values of a specific type, a type-checking exception may occur.","[z = parse_control_register] 0xED, 0x50 | z
+"
 POPROOT,POPCTR,#ED54,cont_registers,ED54,"c4 POPCTR
 c4 POP",x -,26,"Sets the “global data root'' cell reference, thus allowing modification of persistent smart-contract data.","0xED, 0x54"
 SETCONTCTR,,#ED6 i:uint4,cont_registers,ED6i,"c[i] SETCONT
-c[i] SETCONTCTR",x c - c',26,"Stores `x` into the savelist of continuation `c` as `c(i)`, and returns the resulting continuation `c'`. Almost all operations with continuations may be expressed in terms of `SETCONTCTR`, `POPCTR`, and `PUSHCTR`.","z = parse_control_register
-      => 0xED, 0x60 | z"
-SETRETCTR,,#ED7 i:uint4,cont_registers,ED7i,c[i] SETRETCTR,x -,26,Equivalent to `c0 PUSHCTR` `c[i] SETCONTCTR` `c0 POPCTR`.,"z = parse_control_register
-      => 0xED, 0x70 | z"
-SETALTCTR,,#ED8 i:uint4,cont_registers,ED8i,c[i] SETALTCTR,x -,26,Equivalent to `c1 PUSHCTR` `c[i] SETCONTCTR` `c0 POPCTR`.,"z = parse_control_register
-      => 0xED, 0x80 | z"
+c[i] SETCONTCTR",x c - c',26,"Stores `x` into the savelist of continuation `c` as `c(i)`, and returns the resulting continuation `c'`. Almost all operations with continuations may be expressed in terms of `SETCONTCTR`, `POPCTR`, and `PUSHCTR`.","[z = parse_control_register] 0xED, 0x60 | z
+"
+SETRETCTR,,#ED7 i:uint4,cont_registers,ED7i,c[i] SETRETCTR,x -,26,Equivalent to `c0 PUSHCTR` `c[i] SETCONTCTR` `c0 POPCTR`.,"[z = parse_control_register] 0xED, 0x70 | z
+"
+SETALTCTR,,#ED8 i:uint4,cont_registers,ED8i,c[i] SETALTCTR,x -,26,Equivalent to `c1 PUSHCTR` `c[i] SETCONTCTR` `c0 POPCTR`.,"[z = parse_control_register] 0xED, 0x80 | z
+"
 POPSAVE,,#ED9 i:uint4,cont_registers,ED9i,"c[i] POPSAVE
 c[i] POPCTRSAVE",x -,26,"Similar to `c[i] POPCTR`, but also saves the old value of `c[i]` into continuation `c0`.
-Equivalent (up to exceptions) to `c[i] SAVECTR` `c[i] POPCTR`.","z = parse_control_register
-      => 0xED, 0x90 | z"
+Equivalent (up to exceptions) to `c[i] SAVECTR` `c[i] POPCTR`.","[z = parse_control_register] 0xED, 0x90 | z
+"
 SAVE,,#EDA i:uint4,cont_registers,EDAi,"c[i] SAVE
-c[i] SAVECTR",,26,"Saves the current value of `c(i)` into the savelist of continuation `c0`. If an entry for `c[i]` is already present in the savelist of `c0`, nothing is done. Equivalent to `c[i] PUSHCTR` `c[i] SETRETCTR`.","z = parse_control_register
-      => 0xED, 0xA0 | z"
+c[i] SAVECTR",,26,"Saves the current value of `c(i)` into the savelist of continuation `c0`. If an entry for `c[i]` is already present in the savelist of `c0`, nothing is done. Equivalent to `c[i] PUSHCTR` `c[i] SETRETCTR`.","[z = parse_control_register] 0xED, 0xA0 | z
+"
 SAVEALT,,#EDB i:uint4,cont_registers,EDBi,"c[i] SAVEALT
-c[i] SAVEALTCTR",,26,"Similar to `c[i] SAVE`, but saves the current value of `c[i]` into the savelist of `c1`, not `c0`.","z = parse_control_register
-      => 0xED, 0xB0 | z"
+c[i] SAVEALTCTR",,26,"Similar to `c[i] SAVE`, but saves the current value of `c[i]` into the savelist of `c1`, not `c0`.","[z = parse_control_register] 0xED, 0xB0 | z
+"
 SAVEBOTH,,#EDC i:uint4,cont_registers,EDCi,"c[i] SAVEBOTH
-c[i] SAVEBOTHCTR",,26,Equivalent to `DUP` `c[i] SAVE` `c[i] SAVEALT`.,"z = parse_control_register
-      => 0xED, 0xC0 | z"
+c[i] SAVEBOTHCTR",,26,Equivalent to `DUP` `c[i] SAVE` `c[i] SAVEALT`.,"[z = parse_control_register] 0xED, 0xC0 | z
+"
 PUSHCTRX,,#EDE0,cont_registers,EDE0,PUSHCTRX,i - x,26,"Similar to `c[i] PUSHCTR`, but with `i`, `0 <= i <= 255`, taken from the stack.
 Notice that this primitive is one of the few “exotic'' primitives, which are not polymorphic like stack manipulation primitives, and at the same time do not have well-defined types of parameters and return values, because the type of `x` depends on `i`.","0xED, 0xE0"
 POPCTRX,,#EDE1,cont_registers,EDE1,POPCTRX,x i -,26,"Similar to `c[i] POPCTR`, but with `0 <= i <= 255` from the stack.","0xED, 0xE1"
@@ -820,20 +762,21 @@ Approximately equivalent to `n PUSHINT` `c3 PUSHCTR` `JMPX`.",
 PREPAREDICT,,#F1A_ n:uint14,cont_dict,F1A_n,"[n] PREPARE
 [n] PREPAREDICT",- n c,,"Equivalent to `n PUSHINT` `c3 PUSHCTR`, for `0 <= n < 2^14`.
 In this way, `[n] CALL` is approximately equivalent to `[n] PREPARE` `EXECUTE`, and `[n] JMP` is approximately equivalent to `[n] PREPARE` `JMPX`.
-One might use, for instance, `CALLXARGS` or `CALLCC` instead of `EXECUTE` here.","n = parse_const_u14
-      => 0xF1, 0x80 | ((n / 256) as u8), ((n % 256) as u8)"
+One might use, for instance, `CALLXARGS` or `CALLCC` instead of `EXECUTE` here.","[n = parse_const_u14] 0xF1, 0x80 | ((n / 256) as u8), ((n % 256) as u8)
+"
 THROW_SHORT,,#F22_ n:uint6,exceptions,F22_n,[n] THROW,- 0 n,76,"Throws exception `0 <= n <= 63` with parameter zero.
 In other words, it transfers control to the continuation in `c2`, pushing `0` and `n` into its stack, and discarding the old stack altogether.",
 THROWIF_SHORT,,#F26_ n:uint6,exceptions,F26_n,[n] THROWIF,f -,26/76,Throws exception `0 <= n <= 63` with  parameter zero only if integer `f!=0`.,
 THROWIFNOT_SHORT,,#F2A_ n:uint6,exceptions,F2A_n,[n] THROWIFNOT,f -,26/76,Throws exception `0 <= n <= 63` with parameter zero only if integer `f=0`.,
 THROW,,#F2C4_ n:uint11,exceptions,F2C4_n,[n] THROW,- 0 nn,84,"For `0 <= n < 2^11`, an encoding of `[n] THROW` for larger values of `n`.",
-THROWARG,,#F2CC_ n:uint11,exceptions,F2CC_n,[n] THROWARG,x - x nn,84,"Throws exception `0 <= n <  2^11` with parameter `x`, by copying `x` and `n` into the stack of `c2` and transferring control to `c2`.","n = parse_const_u11
-         => 0xF2, 0xC8 | ((n / 256) as u8), ((n % 256) as u8)"
+THROWARG,,#F2CC_ n:uint11,exceptions,F2CC_n,[n] THROWARG,x - x nn,84,"Throws exception `0 <= n <  2^11` with parameter `x`, by copying `x` and `n` into the stack of `c2` and transferring control to `c2`.","[n = parse_const_u11] 0xF2, 0xC8 | ((n / 256) as u8), ((n % 256) as u8)
+"
 THROWIF,,#F2D4_ n:uint11,exceptions,F2D4_n,[n] THROWIF,f -,34/84,"For `0 <= n < 2^11`, an encoding of `[n] THROWIF` for larger values of `n`.",
-THROWARGIF,,#F2DC_ n:uint11,exceptions,F2DC_n,[n] THROWARGIF,x f -,34/84,Throws exception `0 <= nn < 2^11` with parameter `x` only if integer `f!=0`.,"n = parse_const_u11
-       => 0xF2, 0xD8 | ((n / 256) as u8), ((n % 256) as u8)"
+THROWARGIF,,#F2DC_ n:uint11,exceptions,F2DC_n,[n] THROWARGIF,x f -,34/84,Throws exception `0 <= nn < 2^11` with parameter `x` only if integer `f!=0`.,"[n = parse_const_u11] 0xF2, 0xD8 | ((n / 256) as u8), ((n % 256) as u8)
+"
 THROWIFNOT,,#F2E4_ n:uint11,exceptions,F2E4_n,[n] THROWIFNOT,f -,34/84,"For `0 <= n < 2^11`, an encoding of `[n] THROWIFNOT` for larger values of `n`.",
-THROWARGIFNOT,,#F2EC_ n:uint11,exceptions,F2EC_n,[n] THROWARGIFNOT,x f -,34/84,Throws exception `0 <= n < 2^11` with parameter `x` only if integer `f=0`.,"n = parse_const_u11    => 0xF2, 0xE8 | ((n / 256) as u8), ((n % 256) as u8)"
+THROWARGIFNOT,,#F2EC_ n:uint11,exceptions,F2EC_n,[n] THROWARGIFNOT,x f -,34/84,Throws exception `0 <= n < 2^11` with parameter `x` only if integer `f=0`.,"[n = parse_const_u11] 0xF2, 0xE8 | ((n / 256) as u8), ((n % 256) as u8)
+"
 THROWANY,,#F2F0,exceptions,F2F0,THROWANY,n - 0 n,76,"Throws exception `0 <= n < 2^16` with parameter zero.
 Approximately equivalent to `ZERO` `SWAP` `THROWARGANY`.","0xF2, 0xF0"
 THROWARGANY,,#F2F1,exceptions,F2F1,THROWARGANY,x n - x n,76,"Throws exception `0 <= n < 2^16` with parameter `x`, transferring control to the continuation in `c2`.
@@ -845,9 +788,8 @@ THROWARGANYIFNOT,,#F2F5,exceptions,F2F5,THROWARGANYIFNOT,x n f -,26/76,Throws ex
 TRY,,#F2FF,exceptions,F2FF,TRY,c c' -,26,"Sets `c2` to `c'`, first saving the old value of `c2` both into the savelist of `c'` and into the savelist of the current continuation, which is stored into `c.c0` and `c'.c0`. Then runs `c` similarly to `EXECUTE`. If `c` does not throw any exceptions, the original value of `c2` is automatically restored on return from `c`. If an exception occurs, the execution is transferred to `c'`, but the original value of `c2` is restored in the process, so that `c'` can re-throw the exception by `THROWANY` if it cannot handle it by itself.","0xF2, 0xFF"
 ,,,exceptions,F2FF,TRY:<{ code1 }>CATCH<{ code2 }>,-,,Equivalent to `<{ code1 }> CONT` `<{ code2 }> CONT` `TRY`.,
 TRYARGS,,#F3 p:uint4 r:uint4,exceptions,F3pr,[p] [r] TRYARGS,c c' -,26,"Similar to `TRY`, but with `[p] [r] CALLXARGS` internally used instead of `EXECUTE`.
-In this way, all but the top `0 <= p <= 15` stack elements will be saved into current continuation's stack, and then restored upon return from either `c` or `c'`, with the top `0 <= r <= 15` values of the resulting stack of `c` or `c'` copied as return values.","s1 = parse_const_u4;
-s2 = parse_const_u4
-        => 0xF3, (s1 << 4 | s2)"
+In this way, all but the top `0 <= p <= 15` stack elements will be saved into current continuation's stack, and then restored upon return from either `c` or `c'`, with the top `0 <= r <= 15` values of the resulting stack of `c` or `c'` copied as return values.","[s1 = parse_const_u4] [s2 = parse_const_u4] 0xF3, (s1 << 4 | s2)
+"
 NEWDICT,NULL,#6D,dict_create,6D,NEWDICT,- D,18,"Returns a new empty dictionary.
 It is an alternative mnemonics for `PUSHNULL`.",0x6D
 DICTEMPTY,ISNULL,#6E,dict_create,6E,DICTEMPTY,D - ?,18,"Checks whether dictionary `D` is empty, and returns `-1` or `0` accordingly.
@@ -992,15 +934,15 @@ DICTIGETJMP,,#F4A0,dict_special,F4A0,DICTIGETJMP,i D n -,,"Similar to `DICTIGET`
 DICTUGETJMP,,#F4A1,dict_special,F4A1,DICTUGETJMP,i D n -,,"Similar to `DICTIGETJMP`, but performs `DICTUGET` instead of `DICTIGET`.","0xF4, 0xA1"
 DICTIGETEXEC,,#F4A2,dict_special,F4A2,DICTIGETEXEC,i D n -,,"Similar to `DICTIGETJMP`, but with `EXECUTE` instead of `JMPX`.","0xF4, 0xA2"
 DICTUGETEXEC,,#F4A3,dict_special,F4A3,DICTUGETEXEC,i D n -,,"Similar to `DICTUGETJMP`, but with `EXECUTE` instead of `JMPX`.","0xF4, 0xA3"
-DICTPUSHCONST,,#F4A6_ d:^Cell n:uint10,dict_special,F4A6_n,[ref] [n] DICTPUSHCONST,- D n,34,"Pushes a non-empty constant dictionary `D` (as a `Cell^?`) along with its key length `0 <= n <= 1023`, stored as a part of the instruction. The dictionary itself is created from the first of remaining references of the current continuation. In this way, the complete `DICTPUSHCONST` instruction can be obtained by first serializing `xF4A4_`, then the non-empty dictionary itself (one `1` bit and a cell reference), and then the unsigned 10-bit integer `n` (as if by a `STU 10` instruction). An empty dictionary can be pushed by a `NEWDICT` primitive instead.","n = parse_const_u10
-    => 0xF4, 0xA4 | (n >> 8) as u8, n as u8"
+DICTPUSHCONST,,#F4A6_ d:^Cell n:uint10,dict_special,F4A6_n,[ref] [n] DICTPUSHCONST,- D n,34,"Pushes a non-empty constant dictionary `D` (as a `Cell^?`) along with its key length `0 <= n <= 1023`, stored as a part of the instruction. The dictionary itself is created from the first of remaining references of the current continuation. In this way, the complete `DICTPUSHCONST` instruction can be obtained by first serializing `xF4A4_`, then the non-empty dictionary itself (one `1` bit and a cell reference), and then the unsigned 10-bit integer `n` (as if by a `STU 10` instruction). An empty dictionary can be pushed by a `NEWDICT` primitive instead.","[n = parse_const_u10] 0xF4, 0xA4 | (n >> 8) as u8, n as u8
+"
 PFXDICTGETQ,,#F4A8,dict_special,F4A8,PFXDICTGETQ,s D n - s' x s'' -1 or s 0,,"Looks up the unique prefix of _Slice_ `s` present in the prefix code dictionary represented by `Cell^?` `D` and `0 <= n <= 1023`. If found, the prefix of `s` is returned as `s'`, and the corresponding value (also a _Slice_) as `x`. The remainder of `s` is returned as a _Slice_ `s''`. If no prefix of `s` is a key in prefix code dictionary `D`, returns the unchanged `s` and a zero flag to indicate failure.","0xF4, 0xA8"
 PFXDICTGET,,#F4A9,dict_special,F4A9,PFXDICTGET,s D n - s' x s'',,"Similar to `PFXDICTGET`, but throws a cell deserialization failure exception on failure.","0xF4, 0xA9"
 PFXDICTGETJMP,,#F4AA,dict_special,F4AA,PFXDICTGETJMP,s D n - s' s'' or s,,"Similar to `PFXDICTGETQ`, but on success `BLESS`es the value `x` into a _Continuation_ and transfers control to it as if by a `JMPX`. On failure, returns `s` unchanged and continues execution.","0xF4, 0xAA"
 PFXDICTGETEXEC,,#F4AB,dict_special,F4AB,PFXDICTGETEXEC,s D n - s' s'',,"Similar to `PFXDICTGETJMP`, but `EXEC`utes the continuation found instead of jumping to it. On failure, throws a cell deserialization exception.","0xF4, 0xAB"
 PFXDICTCONSTGETJMP,,#F4AE_ d:^Cell n:uint10,dict_special,F4AE_n,"[ref] [n] PFXDICTCONSTGETJMP
-[ref] [n] PFXDICTSWITCH",s - s' s'' or s,,Combines `[n] DICTPUSHCONST` for `0 <= n <= 1023` with `PFXDICTGETJMP`.,"n = parse_const_u10
-   => 0xF4, 0xAC | (n >> 8) as u8, n as u8"
+[ref] [n] PFXDICTSWITCH",s - s' s'' or s,,Combines `[n] DICTPUSHCONST` for `0 <= n <= 1023` with `PFXDICTGETJMP`.,"[n = parse_const_u10] 0xF4, 0xAC | (n >> 8) as u8, n as u8
+"
 DICTIGETJMPZ,,#F4BC,dict_special,F4BC,DICTIGETJMPZ,i D n - i or nothing,,A variant of `DICTIGETJMP` that returns index `i` on failure.,"0xF4, 0xBC"
 DICTUGETJMPZ,,#F4BD,dict_special,F4BD,DICTUGETJMPZ,i D n - i or nothing,,A variant of `DICTUGETJMP` that returns index `i` on failure.,"0xF4, 0xBD"
 DICTIGETEXECZ,,#F4BE,dict_special,F4BE,DICTIGETEXECZ,i D n - i or nothing,,A variant of `DICTIGETEXEC` that returns index `i` on failure.,"0xF4, 0xBE"
@@ -1025,8 +967,8 @@ SETRAND,,#F814,app_rnd,F814,SETRAND,x -,26+|c7|+|c1_1|,Sets the random seed to u
 ADDRAND,,#F815,app_rnd,F815,"ADDRAND
 RANDOMIZE",x -,26,"Mixes unsigned 256-bit _Integer_ `x` into the random seed `r` by setting the random seed to `Sha` of the concatenation of two 32-byte strings: the first with the big-endian representation of the old seed `r`, and the second with the big-endian representation of `x`.","0xF8, 0x15"
 GETPARAM,,#F82 i:uint4,app_config,F82i,[i] GETPARAM,- x,26,"Returns the `i`-th parameter from the _Tuple_ provided at `c7` for `0 <= i <= 15`. Equivalent to `c7 PUSHCTR` `FIRST` `[i] INDEX`.
-If one of these internal operations fails, throws an appropriate type checking or range checking exception.","c = parse_const_u4
-      => 0xF8, 0x20 | c"
+If one of these internal operations fails, throws an appropriate type checking or range checking exception.","[c = parse_const_u4] 0xF8, 0x20 | c
+"
 NOW,GETPARAM,#F823,app_config,F823,NOW,- x,26,"Returns the current Unix time as an _Integer_. If it is impossible to recover the requested value starting from `c7`, throws a type checking or range checking exception as appropriate.
 Equivalent to `3 GETPARAM`.","0xF8, 0x23"
 BLOCKLT,GETPARAM,#F824,app_config,F824,BLOCKLT,- x,26,"Returns the starting logical time of the current block.
@@ -1058,13 +1000,13 @@ Equivalent to `CONFIGDICT` `DICTIGETOPTREF`.","0xF8, 0x33"
 GETGLOBVAR,,#F840,app_global,F840,GETGLOBVAR,k - x,26,"Returns the `k`-th global variable for `0 <= k < 255`.
 Equivalent to `c7 PUSHCTR` `SWAP` `INDEXVARQ`.","0xF8, 0x40"
 GETGLOB,,#F85_ k:(## 5) {1 <= k},app_global,F85_k,[k] GETGLOB,- x,26,"Returns the `k`-th global variable for `1 <= k <= 31`.
-Equivalent to `c7 PUSHCTR` `[k] INDEXQ`.","k = parse_const_u5
-      => 0xF8, 0x40 | k"
+Equivalent to `c7 PUSHCTR` `[k] INDEXQ`.","[k = parse_const_u5] 0xF8, 0x40 | k
+"
 SETGLOBVAR,,#F860,app_global,F860,SETGLOBVAR,x k -,26+|c7’|,"Assigns `x` to the `k`-th global variable for `0 <= k < 255`.
 Equivalent to `c7 PUSHCTR` `ROTREV` `SETINDEXVARQ` `c7 POPCTR`.","0xF8, 0x60"
 SETGLOB,,#F87_ k:(## 5) {1 <= k},app_global,F87_k,[k] SETGLOB,x -,26+|c7’|,"Assigns `x` to the `k`-th global variable for `1 <= k <= 31`.
-Equivalent to `c7 PUSHCTR` `SWAP` `k SETINDEXQ` `c7 POPCTR`.","k = parse_const_u5
-      => 0xF8, 0x60 | k"
+Equivalent to `c7 PUSHCTR` `SWAP` `k SETINDEXQ` `c7 POPCTR`.","[k = parse_const_u5] 0xF8, 0x60 | k
+"
 HASHCU,,#F900,app_crypto,F900,HASHCU,c - x,26,Computes the representation hash of a _Cell_ `c` and returns it as a 256-bit unsigned integer `x`. Useful for signing and checking signatures of arbitrary entities represented by a tree of cells.,"0xF9, 0x00"
 HASHSU,,#F901,app_crypto,F901,HASHSU,s - x,526,Computes the hash of a _Slice_ `s` and returns it as a 256-bit unsigned integer `x`. The result is the same as if an ordinary cell containing only data and references from `s` had been created and its hash computed by `HASHCU`.,"0xF9, 0x01"
 SHA256U,,#F902,app_crypto,F902,SHA256U,s - x,26,"Computes `Sha` of the data bits of _Slice_ `s`. If the bit length of `s` is not divisible by eight, throws a cell underflow exception. The hash value is returned as a 256-bit unsigned integer `x`.","0xF9, 0x02"
@@ -1107,17 +1049,14 @@ SETCODE,,#FB04,app_actions,FB04,SETCODE,c -,526,Creates an output action that wo
 SETLIBCODE,,#FB06,app_actions,FB06,SETLIBCODE,c x -,526,"Creates an output action that would modify the collection of this smart contract libraries by adding or removing library with code given in _Cell_ `c`. If `x=0`, the library is actually removed if it was previously present in the collection (if not, this action does nothing). If `x=1`, the library is added as a private library, and if `x=2`, the library is added as a public library (and becomes available to all smart contracts if the current smart contract resides in the masterchain); if the library was present in the collection before, its public/private status is changed according to `x`. Values of `x` other than `0...2` are invalid.","0xFB, 0x06"
 CHANGELIB,,#FB07,app_actions,FB07,CHANGELIB,h x -,526,"Creates an output action similarly to `SETLIBCODE`, but instead of the library code accepts its hash as an unsigned 256-bit integer `h`. If `x!=0` and the library with hash `h` is absent from the library collection of this smart contract, this output action will fail.","0xFB, 0x07"
 COPYLEFT,,#FB0A,app_actions,FB0A,COPYLEFT,s x -,526,"Where `s` - is slice of 256-bit AccountId and `x` - is type of license. Add license payment to code creator. The license payment calculates from compute _phase_fees taking the appropriate percentage. If summary payment is less than license _payment_threshold, then value saves in unsplit_shard_state of masterblock. If summary payment in unsplit_shard_state is more than license_payment_threshold then node sends internal message to account address in masterchain, specified in slice s. The instruction return an error on contracts in masterchain.","0xFB, 0x0A"
-DEBUG,,#FE nn:(#<= 239),debug,FEnn,{nn} DEBUG,-,26,`0 <= nn < 240`,"z = parse_const_u8_240
-      => 0xFE, z"
+DEBUG,,#FE nn:(#<= 239),debug,FEnn,{nn} DEBUG,-,26,`0 <= nn < 240`,"[z = parse_const_u8_240] 0xFE, z"
 DEBUGSTR,,#FEF n:(## 4) ssss:((n * 8 + 8) * Bit),debug,FEFnssss,"{string} DEBUGSTR
 {string} {x} DEBUGSTRI",-,26,"`0 <= n < 16`. Length of `ssss` is `n+1` bytes.
 `{string}` is a [string literal](https://github.com/Piterden/TON-docs/blob/master/Fift.%20A%20Brief%20Introduction.md#user-content-29-string-literals).
 `DEBUGSTR`: `ssss` is the given string.
-`DEBUGSTRI`: `ssss` is one-byte integer `0 <= x <= 255` followed by the given string.","z = parse_const_u8_setcp
-       => 0xFF, z"
+`DEBUGSTRI`: `ssss` is one-byte integer `0 <= x <= 255` followed by the given string.","[z = parse_const_u8_setcp] 0xFF, z"
 DUMPSTK,DEBUG,#FE00,debug,FE00,DUMPSTK,-,26,Dumps the stack (at most the top 255 values) and shows the total stack depth.,"0xFE, 0x00"
-DUMPSTKTOP,,#FE0 n:(## 4),debug,FE0n,{n} DUMPSTKTOP,-,26,"1<=n<15, dumps the top `n` values from the stack, starting from the deepest of them. If there are d<n values available, dumps only `d` values.","z = parse_const_u4_1_14
-   => 0xFE, z"
+DUMPSTKTOP,,#FE0 n:(## 4),debug,FE0n,{n} DUMPSTKTOP,-,26,"1<=n<15, dumps the top `n` values from the stack, starting from the deepest of them. If there are d<n values available, dumps only `d` values.","[z = parse_const_u4_1_14] 0xFE, z"
 HEXDUMP,,#FE10,debug,FE10,HEXDUMP,-,26,"Dumps s0 in hexadecimal form, be it a _Slice_ or an _Integer_.","0xFE, 0x10"
 HEXPRINT,,#FE11,debug,FE11,HEXPRINT,-,26,"Similar to `HEXDUMP`, except the hexadecimal representation of s0 is not immediately output, but rather concatenated to an output text buffer.","0xFE, 0x11"
 BINDUMP,,#FE12,debug,FE12,BINDUMP,-,26,"Dumps s0 in binary form, similarly to `HEXDUMP`.","0xFE, 0x12"
@@ -1126,16 +1065,16 @@ STRDUMP,,#FE14,debug,FE14,STRDUMP,-,26,Dumps the _Slice_ at `s0` as an UTF-8 str
 STRPRINT,,#FE15,debug,FE15,STRPRINT,-,26,"Similar to `STRDUMP`, but outputs the string into a text buffer (without carriage return).","0xFE, 0x15"
 DEBUGOFF,,#FE1E,debug,FE1E,DEBUGOFF,-,26,"Disables all debug output until it is re-enabled by a `DEBUGON`. More precisely, this primitive increases an internal counter, which disables all debug operations (except `DEBUGOFF` and `DEBUGON`) when strictly positive.","0xFE, 0x1E"
 DEBUGON,,#FE1F,debug,FE1F,DEBUGON,-,26,Enables debug output (in a debug version of TVM).,"0xFE, 0x1F"
-DUMP,DEBUG,#FE2 i:uint4,debug,FE2i,s[i] DUMP,-,26,Dumps `s[i]`.,"z = parse_const_u4_14
-      => 0xFE, 0x20 | z"
-PRINT,,#FE3 n:uint4,debug,FE3i,s[n] PRINT,-,26,"0<=n<15, concatenates the text representation of s(n) (without any leading or trailing spaces or carriage returns) to a text buffer which will be output before the output of any other debug operation.","z = parse_const_u4_14
-          => 0xFE, 0x30 | z"
+DUMP,DEBUG,#FE2 i:uint4,debug,FE2i,s[i] DUMP,-,26,Dumps `s[i]`.,"[z = parse_const_u4_14] 0xFE, 0x20 | z
+"
+PRINT,,#FE3 n:uint4,debug,FE3i,s[n] PRINT,-,26,"0<=n<15, concatenates the text representation of s(n) (without any leading or trailing spaces or carriage returns) to a text buffer which will be output before the output of any other debug operation.","[z = parse_const_u4_14] 0xFE, 0x30 | z
+"
 DUMPTOSFMT,,#FEF n:(## 4) ssss:((n * 8 + 8) * Bit),debug,FEFnssss,[ssss]DUMPTOSFMT,-,26,"Dumps s0 formatted according to the (n+1)-byte string `ssss`. This string might contain (a prefix of) the name of a TL-B type supported by the debugger. If the string begins with a zero byte, simply outputs it (without the first byte) into the debug log. If the string begins with a byte equal to one, concatenates it to a buffer, which will be output before the output of any other debug operation (effectively outputs a string without a carriage return).",
 LOGSTR,,#FEF n:(## 4) 00 ssss:((n * 8 + 8) * Bit),debug,FEFn00ssss,[ssss]LOGSTR,-,26,String `ssss` is `n` bytes long.,
 LOGFLUSH,,#FEF000,debug,FEF000,LOGFLUSH,-,26,Flushes all pending debug output from the buffer into the debug log.,"0xFE, 0xF0, 0x00"
 PRINTSTR,,#FEF n:(## 4) 01 ssss:((n * 8 + 8) * Bit),debug,FEFn01ssss,[ssss]PRINTSTR,-,26,String `ssss` is `n` bytes long.,
-SETCP,,,codepage,FFnn,[nn] SETCP,-,26,"Selects TVM codepage `0 <= nn < 240`. If the codepage is not supported, throws an invalid opcode exception.","z = parse_const_u8_setcp
-       => 0xFF, z"
+SETCP,,,codepage,FFnn,[nn] SETCP,-,26,"Selects TVM codepage `0 <= nn < 240`. If the codepage is not supported, throws an invalid opcode exception.","[z = parse_const_u8_setcp] 0xFF, z
+"
 SETCP0,SETCP,#FF nn:(#<= 239),codepage,FF00,SETCP0,-,26,Selects TVM (test) codepage zero as described in this document.,"0xFF, 0x00"
 SETCP_SPECIAL,,#FFF z:(## 4) {1 <= z},codepage,FFFz,[z-16] SETCP,-,26,"Selects TVM codepage `z-16` for `1 <= z <= 15`. Negative codepages `-13...-1` are reserved for restricted versions of TVM needed to validate runs of TVM in other codepages. Negative codepage `-14` is reserved for experimental codepages, not necessarily compatible between different TVM implementations, and should be disabled in the production versions of TVM.",
 SETCPX,,#FFF0,codepage,FFF0,SETCPX,c -,26,Selects codepage `c` with `-2^15 <= c < 2^15` passed in the top of the stack.,"0xFF, 0xF0"
