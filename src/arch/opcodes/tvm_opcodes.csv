@@ -1,4 +1,4 @@
-name,alias,tlb,category,opcode,fift_asm,stack,gas,description,tvm_asm,extra_col_1,extra_col_2
+name,alias,tlb,category,opcode,fift_asm,stack,gas,descrip,tvm_asm,extra_col_1,extra_col_2
 NOP,,#00,stack_basic,00,NOP,-,18,Does nothing.,,Basically does nothing.,Look at compile_XHIG in ever-assembler for more stacks info
 SWAP,XCHG_0I,#01,stack_basic,01,SWAP,x y - y x,18,Same as `s1 XCHG0`.,,Do nonsense,Really nonsense
 XCHG_0I,,#0 i:(## 4) {1 <= i},stack_basic,0i,s[i] XCHG0,,18,"Interchanges `s0` with `s[i]`, `1 <= i <= 15`.",,,How to calculate the tvm_asm?
