@@ -10,7 +10,7 @@ ABI specifies message bodies layout for client to contract and contract to contr
 
 In Everscale client to contract and contract to contract interaction occurs through external and internal messages respectively.
 
-ABI specification describes the structure of body of these messages. ABI stored as JSON serves as an interface for smart contracts and is used to when calling contract methods externally or on-chain.
+ABI specification describes the structure of body of these messages. ABI stored as JSON serves as an interface for smart contracts and is used when calling contract methods externally or on-chain.
 
 The goal of the ABI specification is to design ABI types that are cheap to read to reduce gas consumption and gas costs. Some types are optimized for storing without write access.
 
@@ -30,7 +30,7 @@ It is followed by ***32 bits*** of function ID identifying which contract functi
 
 The highest bit is set to `0` for function ID in external inbound messages, and to `1` for external outbound messages.
 
-Function parameters are next. They are encoded in compliance with the present specification and stored either to the root cell or the next one in the chain.
+Function parameters are next. They are encoded in compliance with the present specification and stored either in the root cell or the next one in the chain.
 
 :::note
 An encoded parameter cannot be split between different cells
@@ -161,11 +161,12 @@ If a function has no input parameters or does not return any values, the corresp
 - [`string`](#string) - a type containing UTF-8 string data, encoded like `bytes`.
 - [`optional`](#optionalinnertype) - value of optional type `optional(innerType)` can store a value of `innerType` or be empty.
 - [`itemType[]`](#itemtype) is a dynamic array of `itemType` type elements. It is encoded as a TVM dictionary.  `uint32` defines the array elements count placed into the cell body.  `HashmapE` (see TL-B schema in TVM spec) struct is then added (one bit as a dictionary root and one reference with data if the dictionary is not empty). The dictionary key is a serialized `uint32` index of the array element, and the value is a serialized array element as `itemType` type.
-  - `T[k]` is a static size array of `T` type elements. Encoding is equivalent to `T[]` without elements count
+  - `T[k]` is a static size array of `T` type elements. Encoding is equivalent to `T[]` without elements count.
 
 ## Encoding of function ID and its arguments
 
 Function ID and the function arguments are located in the chain of cells. The last reference of each cell (except for the last cell in the chain) refers to the next cell. After adding the current parameter in the current cell we must presume an invariant (rule that stays true for the object) for our cell: number of unassigned references in the cell must be not less than 1 because the last reference is used for storing the reference on the next cell. The last cell in the chain can use all 4 references to store argument's values.
+
 When we add a specific value of some function argument to the cell we assume that it takes the max bit and max ref size for a particular argument type (see [`types reference`](#types-reference) section). Only if the current parameter (by max bit or max ref size) does not fit into the current cell do we create a new cell and insert the parameter in the new cell. But if the current argument and all the following arguments fit into the current cell by max size, then we push the parameters in the cell. The serialized argument value takes up only the necessary bits and refs size without aligning to max sizes of its type.
 
 In the end we connect the created cells in the chain of cells by assigning the last reference in each cell to next cell.
@@ -361,7 +362,7 @@ This section specifies the events used in the contract. An event is an external 
 
 ### Data
 
-This section covers the contract global public variables. Data is typically used when deploying multiple identical contract with the same deployer keys. It affects the contract address, and thus varying data results in unique addresses for identical contracts.
+This section covers the contract global public variables. Data is typically used when deploying multiple identical contracts with the same deployer keys. It affects the contract address, and thus varying data results in unique addresses for identical contracts.
 
 ```json5
 {
@@ -377,9 +378,9 @@ This section covers the contract global public variables. Data is typically used
 
 ### Fields
 
-It describes internal structure of the smart contracts data. This section helps to decode contract data with Ever SDK function [decode_account_data](https://github.com/tonlabs/ever-sdk/blob/ed05ce7b9305d0e825616efb8e9295b63406b8bb/docs/reference/types-and-methods/mod_abi.md#decode_account_data)
+This section describes internal structure of the smart contracts data.
 
-Structure of the smart contract data is described as a list of variables names with corresponding data types.
+Data structure is described as a list of variables' names with corresponding data types.
 It includes contract state variables and some internal contract specific hidden variables.
 They are listed in the order in which they are stored in the data field of the contract.
 Example for a Solidity contract [BankClient](https://github.com/tonlabs/samples/blob/master/solidity/5_BankClient.sol):
@@ -442,32 +443,32 @@ Fields section of the abi file:
 
 *Header parameter type.*
 
-Unix time (in seconds, 32 bit) after that message should not be processed by contract. It is used for indicating lost external inbound messages.
+Unix time (in seconds, 32 bit) after which message should not be processed by contract. It is used for indicating lost external inbound messages.
 
 | Usage          | Value    | Examples   | Max bit size | Max ref size |
 |----------------|----------|------------|--------------|--------------|
 | Cell           | 32 bit, big endian     |  | 32 bits | 0 refs|
 | JSON object    |  string with hex or decimal representation    | `"3600"` | | |
 
-  **Rule**:  if contract execution time is less then `expire` time, then execution is continued. Otherwise, the message is expired, and the transaction aborts itself (by `ACCEPT` primitive). The client waits for message processing until the `expire` time. If the message wasn't processed during that interval is considered to be expired
+  **Rule**:  if contract execution time is less then `expire` time, then execution is continued. Otherwise, the message is expired, and the transaction aborts itself (by `ACCEPT` primitive). The client waits for message processing until the `expire` time. If the message wasn't processed during that interval it is considered to be expired.
 
 
 #### `pubkey`
 
 *Header parameter type.*
 
-Public key from key pair used for signing the message body. This parameter is optional. The client decides if he needs to set the public key or not. It is encoded as bit 1 followed by 256 bit of public key if parameter provided, or by bit `0` if it is not.
+Public key from key pair used for signing the message body. This parameter is optional. The client decides if they need to set the public key or not. It is encoded as bit 1 followed by 256 bit of public key if parameter provided, or by bit `0` if it is not.
 
 | Usage          | Value    | Examples   | Max bit size | Max ref size |
 |----------------|----------|------------|--------------|--------------|
-| Cell           | 1 bit, `0` or `1` + 256 bit key if if first bit=1      |  | 257 bit| 0 refs |
+| Cell           | 1 bit, `0` or `1` + 256 bit key if if first bit=1     |  | 257 bit| 0 refs |
 | JSON object    | string hexadecimal representation of byte array       | `"33a2ed7a92bb55b3aabe1185d0107d48 faa798246c95ed76f262d857c3d1227b"` | | |
 
 #### `int<N>`
 
 Fixed-sized signed integer, where `N` is a decimal bit length. Examples: `int8`, `int32`, `int256`.
 
-| Usage          | Value                                                       | Examples              | Max bit size | Max ref size |
+| Usage          | Value    | Examples              | Max bit size | Max ref size |
 |----------------|--------------------|-----------------|---|---|
 | Cell           | N bit, big endian       | | N bits    |  0 refs   |
 | JSON (returns)          | string with hex or decimal representation                              | `"0x12"`, `"100"`                | | |
@@ -482,8 +483,8 @@ Processed like `int<N>`.
 
 Variable-length signed integer. Bit length is between `log2(N)` and `8 * (N-1)`, where `N` is equal to 16 or 32, e.g. `varint16`, `varint32`.
 
-| Usage          | Value                                                                                  | Examples              | Max bit size | Max ref size |
-|----------------|---|---|--------------------------------------------------------------------------------------------------------------------------|-----------------------|
+| Usage          | Value        | Examples              | Max bit size | Max ref size |
+|----------------|---|---|------------------------------------------------------------|-----------------------|
 | Cell           | 4 (N=16) of 5 (N=32) bits that encode byte length of the number `len`<br/>followed by `len * 8` bit number in big endian |  | `varint16` type — 124 bits, `varint32` type — 253 bits, etc. | 0 refs |
 | JSON (returns)          | string with hex or decimal representation                                                                                    | `"0x12"`, `"100"`                | | |
 | JSON (accepts) | number or string with hex or decimal representation                                                              | `12`, `"0x10"`, `"100"` | | |
@@ -686,7 +687,7 @@ There are some specifics when working with "big" structures as values in arrays.
 
 ### "Big" structures as values in mappings and arrays
 
-When working with "big" structures in mappings and arrays data may be written differently - either into cell or into reference, depending on the size:
+When working with "big" structures in mappings and arrays data may be written in two possible ways - either into cell or into reference, depending on the size:
 
 ```
 if (12 + len(key) + maxValueBitLength <= 1023) then write data into cell
