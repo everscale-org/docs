@@ -3,6 +3,7 @@ name: CSV to Markdown
 on:
   push:
     branches:
+      - main
       - tvm_opcodes
     paths:
       - 'src/arch/opcodes/tvm_opcodes.csv'
