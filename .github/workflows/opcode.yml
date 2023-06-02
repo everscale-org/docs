@@ -31,7 +31,7 @@ jobs:
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git add .
-        git commit -m "Update TVM Instructions Markdown"
+        git commit -m "Update TVM Instructions markdown"
     - name: Push changes
       run: git push
       env:
