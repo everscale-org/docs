@@ -2,15 +2,20 @@ name: CSV to Markdown
 
 on:
   push:
+    branches:
+      - tvm_opcodes
     paths:
       - 'src/arch/opcodes/tvm_opcodes.csv'
+
+permissions:
+  contents: write
 
 jobs:
   convert:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -25,8 +30,8 @@ jobs:
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git add .
-        git commit -m "Update TMV Instructions Markdown"
+        git commit -m "Update TVM Instructions Markdown"
     - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
+      run: git push
+      env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
