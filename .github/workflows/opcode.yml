@@ -20,3 +20,13 @@ jobs:
         pip install pandas tabulate
     - name: Run conversion script
       run: python src/arch/opcodes/csv_to_md.py
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add .
+        git commit -m "Update TMV Instructions Markdown"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
