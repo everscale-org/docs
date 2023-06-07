@@ -25,7 +25,7 @@ This is the place where you will store your EVER tokens while interacting with E
 
 One window for all DEX and CEX platforms where EVER token is listed on. 
 
-[https://everkit.org/ru/coin](https://everkit.org/ru/coin) 
+[https://everkit.org/ru/coin](https://everkit.org/en/coin) 
 
 3. **Exchange tokens**
 
