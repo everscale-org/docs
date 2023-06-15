@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Smart Conctracts, ABI and Messages
+# Smart Contracts, ABI and Messages
 
 Frontend developers used to build a UI around some machinery called “backend”, that can be accessed via an API. The common practice in software development is to have some schema definitions, usually built with tool called swagger.
 
