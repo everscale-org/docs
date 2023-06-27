@@ -76,7 +76,13 @@ console.log(`Touch message was sent.`);
   <TabItem value="inp-prov" label="everscale-inpage-provider">
 
   ```typescript
-  console.log("inpage-provider");
+    // Create Contract wrapper using ABI and an address
+    const example = new provider.Contract(contractABI, contractAddress);
+    // Send the external message `touch` to the contract
+    await example.methods.touch({}).sendExternal({
+      publicKey: `0x...` // you can get the pubkey from keystore, which is set up either manually or provided by the browser extension
+    });
+    console.log('Message sent');
   ```
   </TabItem>
 
@@ -88,7 +94,14 @@ console.log(`Touch message was sent.`);
   <TabItem value="inp-prov" label="everscale-inpage-provider">
 
   ```typescript
-  console.log("inpage-provider");
+    // Create Contract wrapper using ABI and an address
+    const example = new provider.Contract(contractABI, contractAddress);
+    // Send the external message `touch` to the contract
+    await example.methods.touch({}).send({
+      address: <Address object>, // you can get the address from AccountStorage, which is set up either manually or provided by the browser extension
+      amount: <nanotokens> // you should attach non-zero value of native currency to pay at least foraward, compute and storage fees of destination contract.
+    });
+    console.log('Message sent');
   ```
   </TabItem>
 
@@ -103,3 +116,8 @@ Explore the full guides to writing data to blockchain in Ever SDK here:
   https://docs.everos.dev/ever-sdk/guides/work_with_contracts/run_onchain
 
   Advanced guide for working with Surf keeper provider is [here](surf-wallet-advanced.md).
+
+
+If you use `everscale-inpage-provider`, see more docs and guides here:
+
+https://docs.broxus.com

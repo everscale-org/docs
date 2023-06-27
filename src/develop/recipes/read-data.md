@@ -26,7 +26,8 @@ In each example below, we will assume that you have following definitions of the
 
   ```typescript
   import { Address } from 'everscale-inpage-provider';
-  import contractABI from "path/to/Contract.abi.json";
+  // Note that it is important to use `as const` when exporting the ABI constant
+  import contractABI from "path/to/Contract.ts";
   const contractAddress = new Address("0:deadbeef...00");
   ```
   </TabItem>
@@ -82,7 +83,11 @@ In each example below, we will assume that you have following definitions of the
   <TabItem value="inp-prov" label="everscale-inpage-provider">
 
   ```typescript
-  console.log('inpage provider');
+    // Create Contract wrapper using ABI and an address
+    const example = new provider.Contract(contractABI, contractAddress);
+    // Execute the get method `getTimestamp` on the latest account's state
+    const response = await example.methods.getTimestamp({}).call();
+    console.log('Contract reacted to your getTimestamp:', response);
   ```
   </TabItem>
 
@@ -138,7 +143,19 @@ In each example below, we will assume that you have following definitions of the
   <TabItem value="inp-prov" label="everscale-inpage-provider">
 
   ```typescript
-  console.log('inpage provider');
+    // Create a subscriber
+    const subscriber = new provider.Subscriber();
+
+    // Subscribe to contract events
+    const contractEvents = example.events(subscriber);
+
+    // Listen to contract events
+    contractEvents.on(event => {
+        console.log('contractEvent', event);
+    });
+
+    // Unsubscribe from contract events
+    contractEvents.unsubscribe();
   ```
   </TabItem>
 
@@ -246,3 +263,8 @@ https://docs.everos.dev/ever-sdk/guides/work_with_contracts/decode_message
 https://docs.everos.dev/ever-sdk/guides/queries_and_subscriptions/subscribe_to_updates
 
 Advanced guide for working with Surf keeper provider is [here](surf-wallet-advanced.md).
+
+
+If you use `everscale-inpage-provider`, see more docs and guides here:
+
+https://docs.broxus.com
