@@ -17,21 +17,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - uses: actions/setup-node@v2
       with:
-        python-version: '3.x'
+        node-version: '16.x'
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
     - name: Install dependencies
       run: |
-        pip install pandas tabulate
+        npm install csv-parser@3.0.0
     - name: Run conversion script
-      run: python src/arch/opcodes/csv_to_md.py
+      run: node src/arch/opcodes/csv_to_md.js tvm_opcodes.csv instructions_template.md tvm_instructions.md
     - name: Commit changes
       run: |
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         git add .
-        git commit -m "Update TVM Instructions markdown"
+        git commit -m "Update TVM instructions markdown"
     - name: Push changes
       run: git push
       env:

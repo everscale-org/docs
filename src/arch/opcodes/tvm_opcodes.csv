@@ -1,4 +1,4 @@
-name,alias,tlb,category,opcode,fift_asm,stack,gas,desc,tvm_asm,extra_col_1,extra_col_2
+name,alias,tlb,category,opcode,fift_asm,stack,gas,description,tvm_asm,extra_col_1,extra_col_2
 NOP,,#00,stack_basic,00,NOP,-,18,Does nothing.,,Basically does nothing.,Look at compile_XHIG in ever-assembler for more stacks info
 SWAP,XCHG_0I,#01,stack_basic,01,SWAP,x y - y x,18,Same as `s1 XCHG0`.,,Do nonsense,Really nonsense
 XCHG_0I,,#0 i:(## 4) {1 <= i},stack_basic,0i,s[i] XCHG0,,18,"Interchanges `s0` with `s[i]`, `1 <= i <= 15`.",,,How to calculate the tvm_asm?
@@ -378,18 +378,18 @@ SDCNTLEAD0,,#C710,compare_other,C710,SDCNTLEAD0,s - n,26,Returns the number of l
 SDCNTLEAD1,,#C711,compare_other,C711,SDCNTLEAD1,s - n,26,Returns the number of leading ones in `s`.,"0xC7, 0x11",,
 SDCNTTRAIL0,,#C712,compare_other,C712,SDCNTTRAIL0,s - n,26,Returns the number of trailing zeroes in `s`.,"0xC7, 0x12",,
 SDCNTTRAIL1,,#C713,compare_other,C713,SDCNTTRAIL1,s - n,26,Returns the number of trailing ones in `s`.,"0xC7, 0x13",,
-DIFF,,#C714,diff_operation,C714,DIFF,c c - c,26,Calculates diff between first and second parameters and returns it as cell.,"0xC7, 0x14",,
-DIFF_PATCH,,#C715,diff_operation,C715,DIFF_PATCH,c c - c,26,"Takes the first parameter as document, the second parameter as patch, received on DIFF command, applies patch and saves result document to cell.","0xC7, 0x15",,
-ZIP,,#C716,diff_operation,C716,ZIP,c - c,26,Zip string to cell,"0xC7, 0x16",,
-UNZIP,,#C717,diff_operation,C717,UNZIP,c - c,26,Unzip cell to string,"0xC7, 0x17",,
-DIFF_ZIP,,#C718,diff_operation,C718,DIFF_ZIP,c c - c,26,like `DIFF` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x18",,
-DIFF_PATCH_ZIP,,#C719,diff_operation,C719,DIFF_PATCH_ZIP,c c - c,26,like `DIFF_PATCH` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x19",,
-DIFF_PATCH_Q,,#C720,diff_operation,C720,DIFF_PATCH_Q,c c - c,26,quiet version of `DIFF_PATCH`,"0xC7, 0x20",,
-DIFF_PATCH_ZIPQ,,#C721,diff_operation,C721,DIFF_PATCH_ZIPQ,c c - c,26,quiet version of `DIFF_PATCH_ZIP`,"0xC7, 0x21",,
-DIFF_PATCH_BINARY,,#C722,diff_operation,C722,DIFF_PATCH_BINARY,c c - c,26,like `DIFF_PATCH` but takes and returns binary arrays instead of string.,"0xC7, 0x22",,
-DIFF_PATCH_BINARY_ZIP,,#C723,diff_operation,C723,DIFF_PATCH_BINARY_ZIP,c c - c,26,like `DIFF_PATCH_ZIP` but takes and returns binary arrays instead of string.,"0xC7, 0x23",,
-DIFF_PATCH_BINARYQ,,#C724,diff_operation,C724,DIFF_PATCH_BINARYQ,c c - c,26,like `DIFF_PATCHQ` but takes and returns binary arrays instead of string.,"0xC7, 0x24",,
-DIFF_PATCH_BINARY_ZIPQ,,#C725,diff_operation,C725,DIFF_PATCH_BINARY_ZIPQ,c c - c,26,like `DIFF_PATCH_ZIPQ` but takes and returns binary arrays instead of string.,"0xC7, 0x25",,
+DIFF,,#C714,gosh,C714,DIFF,c c - c,26,Calculates diff between first and second parameters and returns it as cell.,"0xC7, 0x14",,
+DIFF_PATCH,,#C715,gosh,C715,DIFF_PATCH,c c - c,26,"Takes the first parameter as document, the second parameter as patch, received on DIFF command, applies patch and saves result document to cell.","0xC7, 0x15",,
+ZIP,,#C716,gosh,C716,ZIP,c - c,26,Zip string to cell,"0xC7, 0x16",,
+UNZIP,,#C717,gosh,C717,UNZIP,c - c,26,Unzip cell to string,"0xC7, 0x17",,
+DIFF_ZIP,,#C718,gosh,C718,DIFF_ZIP,c c - c,26,like `DIFF` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x18",,
+DIFF_PATCH_ZIP,,#C719,gosh,C719,DIFF_PATCH_ZIP,c c - c,26,like `DIFF_PATCH` but unzip parameters before operation and zip to cell after operation.,"0xC7, 0x19",,
+DIFF_PATCH_Q,,#C720,gosh,C720,DIFF_PATCH_Q,c c - c,26,quiet version of `DIFF_PATCH`,"0xC7, 0x20",,
+DIFF_PATCH_ZIPQ,,#C721,gosh,C721,DIFF_PATCH_ZIPQ,c c - c,26,quiet version of `DIFF_PATCH_ZIP`,"0xC7, 0x21",,
+DIFF_PATCH_BINARY,,#C722,gosh,C722,DIFF_PATCH_BINARY,c c - c,26,like `DIFF_PATCH` but takes and returns binary arrays instead of string.,"0xC7, 0x22",,
+DIFF_PATCH_BINARY_ZIP,,#C723,gosh,C723,DIFF_PATCH_BINARY_ZIP,c c - c,26,like `DIFF_PATCH_ZIP` but takes and returns binary arrays instead of string.,"0xC7, 0x23",,
+DIFF_PATCH_BINARYQ,,#C724,gosh,C724,DIFF_PATCH_BINARYQ,c c - c,26,like `DIFF_PATCHQ` but takes and returns binary arrays instead of string.,"0xC7, 0x24",,
+DIFF_PATCH_BINARY_ZIPQ,,#C725,gosh,C725,DIFF_PATCH_BINARY_ZIPQ,c c - c,26,like `DIFF_PATCH_ZIPQ` but takes and returns binary arrays instead of string.,"0xC7, 0x25",,
 NEWC,,#C8,cell_build,C8,NEWC,- b,18,Creates a new empty _Builder_.,0xC8,,
 ENDC,,#C9,cell_build,C9,ENDC,b - c,518,Converts a _Builder_ into an ordinary _Cell_.,0xC9,,
 STI,,#CA cc:uint8,cell_build,CAcc,[cc+1] STI,x b - b',26,"Stores a signed `cc+1`-bit integer `x` into _Builder_ `b` for `0 <= cc <= 255`, throws a range check exception if `x` does not fit into `cc+1` bits.","[z = parse_const_u8_plus_one] 0xCA, z
