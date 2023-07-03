@@ -50,6 +50,7 @@ const makeTable = (cat) => {
 
     if (tvm_asm !== '') {
       tvm_asm = tvm_asm.split('\n').map((s) => `\`${s.trim()}\``).join('<br/>');
+      tvm_asm = tvm_asm.replace(/\|/g, '\｜');
     }
 
     if (stack !== '') {
@@ -66,7 +67,7 @@ const makeTable = (cat) => {
     }
 
     description = genLinks(description);
-    description = `<div id='${nameToId(row.name)}'>` + description;
+    description = `<div id='${nameToId(row.name)}'>` + description + `</div>`;
 
     table.push(`| ${opcode} | ${fift_asm} | ${tvm_asm} | ${stack} | ${description} | ${gas} |`);
   }
@@ -98,8 +99,11 @@ fs.createReadStream(args[0])
     }
   })
   .on('end', () => {
-    const doc = docTemplate.replace(/{{ *Table: *([a-zA-Z0-9_-]+) *}}/g,
+    let doc = docTemplate.replace(/{{ *Table: *([a-zA-Z0-9_-]+) *}}/g,
       (match, group1) => makeTable(group1));
+
+    doc = doc.replace(/{{ *Template *}}/g,
+      'TVM Instructions');
 
     fs.writeFileSync(args[2], doc);
   });

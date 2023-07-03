@@ -1,9 +1,0 @@
-{
-    "position": 8,
-    "label": "Opcodes",
-    "link": {
-      "title": "TVM Instructions",
-      "slug": "arch/opcodes",
-      "type": "generated-index"
-    }
-}

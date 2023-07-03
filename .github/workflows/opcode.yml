@@ -26,7 +26,7 @@ jobs:
       run: |
         npm install csv-parser@3.0.0
     - name: Run conversion script
-      run: cd src/arch/opcodes/ && node csv_to_md.js tvm_opcodes.csv instructions_template.md tvm_instructions.md
+      run: cd src/arch/opcodes/ && node csv_to_md.js tvm_opcodes.csv ../instructions_template.md ../10-tvm.md
     - name: Commit changes
       run: |
         git config --local user.email "actions@github.com"

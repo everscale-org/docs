@@ -1,4 +1,4 @@
-# Template
+# {{ Template }}
 
 ## Contents
 1. [**Introduction**](#_1-introduction)
@@ -56,8 +56,9 @@
     9. [**Outbound message and output action primitives**](#_119-outbound-message-and-output-action-primitives)
 12. [**Debug primitives**](#_12-debug-primitives)
 13. [**Codepage primitives**](#_13-codepage-primitives)
+14. [**Gosh Network**](#_14-gosh-network)
 
-## 1. Introduction
+## 1 Introduction
 This document provides a list of TVM instrucions, their opcodes and mnemonics.
 
 [Here](https://ton-blockchain.github.io/docs/tvm.pdf) is a description of TVM.
@@ -82,9 +83,9 @@ The gas price of each instruction is specified in this document. The basic gas p
 6. _Moving stack elements between continuations_: **1 gas unit** per element, however first 32 elements moving is free.
 
 ### 1.2 CSV table
-Machine-readable list of TVM instructions is available [here](tvm_opcodes.csv).
+Machine-readable list of TVM instructions is available [here](./opcodes/tvm_opcodes.csv).
 
-## 2. Stack manipulation primitives
+## 2 Stack manipulation primitives
 Here `0 <= i,j,k <= 15` if not stated otherwise.
 
 ### 2.1 Basic stack manipulation primitives
@@ -92,16 +93,16 @@ Here `0 <= i,j,k <= 15` if not stated otherwise.
 ### 2.2 Complex stack manipulation primitives
 {{Table: stack_complex}}
 
-## 3. Tuple, List, and Null primitives
+## 3 Tuple, List, and Null primitives
 {{Table: tuple}}
 
-## 4. Constant, or literal primitives
+## 4 Constant, or literal primitives
 ### 4.1 Integer and boolean constants
 {{Table: const_int}}
 ### 4.2 Constant slices, continuations, cells, and references
 {{Table: const_data}}
 
-## 5. Arithmetic primitives
+## 5 Arithmetic primitives
 ### 5.1 Addition, subtraction, multiplication
 {{Table: arithm_basic}}
 ### 5.2 Division
@@ -115,18 +116,13 @@ Quiet versions of integer comparison primitives are also available (`QUIET SGN`,
 
 {{Table: arithm_quiet}}
 
-## 6. Comparison primitives
+## 6 Comparison primitives
 ### 6.1 Integer comparison
 {{Table: compare_int}}
 ### 6.2 Other comparison
 Most of these "other comparison" primitives actually compare the data portions of _Slices_ as bitstrings (ignoring references if not stated otherwise).
 
 {{Table: compare_other}}
-
-### 6.3 Special: Gosh Network
-This part was implemented in Gosh network
-
-{{Table: gosh}}
 
 ## 7 Cell primitives
 ### 7.1 Cell serialization primitives
@@ -209,7 +205,7 @@ These primitives are completely similar to their non-prefix code counterparts (`
 ### 11.9 Outbound message and output action primitives
 {{Table: app_actions}}
 
-## 12. Debug primitives
+## 12 Debug primitives
 Opcodes beginning with `FE` are reserved for the debug primitives. These primitives have known fixed operation length, and behave as (multibyte) `NOP` operations.
 
 However, when invoked in a TVM instance with debug mode enabled, these primitives can produce specific output into the text debug log of the TVM instance, never affecting the TVM state.
@@ -219,5 +215,10 @@ Other primitives listed here have opcodes from the same set. When debug is enabl
 
 {{Table: debug}}
 
-## 13. Codepage primitives
+## 13 Codepage primitives
 {{Table: codepage}}
+
+## 14 Gosh Network
+This part was implemented in the Gosh network
+
+{{Table: gosh}}

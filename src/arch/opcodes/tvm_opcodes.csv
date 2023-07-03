@@ -1,6 +1,6 @@
 name,alias,tlb,category,opcode,fift_asm,stack,gas,description,tvm_asm,extra_col_1,extra_col_2
 NOP,,#00,stack_basic,00,NOP,-,18,Does nothing.,,Basically does nothing.,Look at compile_XHIG in ever-assembler for more stacks info
-SWAP,XCHG_0I,#01,stack_basic,01,SWAP,x y - y x,18,Same as `s1 XCHG0`.,,,
+SWAP,XCHG_0I,#01,stack_basic,01,SWAP,x y - y x,18,Same as `s1 XCHG0`.,yo,,
 XCHG_0I,,#0 i:(## 4) {1 <= i},stack_basic,0i,s[i] XCHG0,,18,"Interchanges `s0` with `s[i]`, `1 <= i <= 15`.",,,
 XCHG_IJ,,#10 i:(## 4) j:(## 4) {1 <= i} {i + 1 <= j},stack_basic,10ij,s[i] s[j] XCHG,,26,"Interchanges `s[i]` with `s[j]`, `1 <= i < j <= 15`.",,,
 XCHG_0I_LONG,,#11 ii:uint8,stack_basic,11ii,s0 [ii] s() XCHG,,26,"Interchanges `s0` with `s[ii]`, `0 <= ii <= 255`.",,,
