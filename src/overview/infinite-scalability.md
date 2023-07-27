@@ -20,7 +20,7 @@ Everscale scales the network via a combination of both data sharding (workchains
 
 The Everscale network is split into data shards called workchains. Each election cycle, the global set of validators rotate and are assigned to a workchain. Validators store data and process transactions only for their assigned workchain. As long as validators download blocks of other workchains and update their state based on the changes that occurred, all workchains can run in conjunction.
 
-As of now, Everscale is comprised of two global shards: the **masterchain** and the **main workchain**. Everscale’s architecture can potentially accommodate up to 232 workchains. Each newly created workchain can have its own configuration parameters, virtual machine and native currency,
+As of now, Everscale is comprised of two global shards: the **masterchain** and the **main workchain**. Everscale’s architecture can potentially accommodate up to 2^32 workchains. Each newly created workchain can have its own configuration parameters, virtual machine and native currency,
 
 ![](img/network-architecture.gif)
 
