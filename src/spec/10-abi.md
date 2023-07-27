@@ -297,7 +297,7 @@ type Data = Param & {
 type Param = {
   name: string,
   type: string,
-  static: boolean,
+  init: boolean,
   components?: Param[],
 }
 ```
@@ -382,25 +382,23 @@ This section specifies the events used in the contract. An event is an external 
 
 ### Fields
 
-This section describes  persistent smart-contract data of the smart contract.
+This section describes persistent smart contract data. Data structure is described as a list of variables names with corresponding data types and init flag. They are listed in the order in which they are stored in the smart contract data.
 
-Data structure is described as a list of variables' names with corresponding data types.
-It includes contract state variables and some internal contract specific hidden variables.
-They are listed in the order in which they are stored in the data field of the contract.
+Fields that are `init = true` are recommended to be specified as initial data during deploy for correct contract behaviour. Tools and SDK, that responsible for encoding of this section should raise errors when a developer attempts to set a non-init (`init = false`) variable, requiring the specification of all init variables and filling non-init variables with [default values](#default-values-for-parameter-types).
 
-Tools and SDK, that responsible for encoding of this section should raise errors when a developer attempts to set a non-static variable, requiring the specification of all static variables and filling non-static variables with [default values](#default-values-for-parameter-types).
+:::note
+In case of [Solidity Compiler implementation for TVM](https://github.com/tonlabs/TON-Solidity-Compiler/tree/master) fields with `init = true` contain Solidity static variables and some specific internal Solidity variables that are required for smart contract deploy by the compiler, for example, `_pubkey`.
+:::
 
-Example for a Solidity contract [BankClient](https://github.com/tonlabs/samples/blob/master/solidity/5_BankClient.sol):
-
-Contract state variables:
+Solidity contract state variables example:
 
 ```solidity
-contract BankClient {
-  uint public creditLimit = 0;  // allowed credit limit;
-  uint public totalDebt = 0;    // contract total debt;
-  uint public balance = 0;      // contract balance;
-  uint public value = 0;        // inbound message value.
-  uint static seqno;
+contract Bank {
+  uint256 creditLimit;
+  uint256 totalDebt;
+  uint256 balance;
+  uint256 value;
+  uint256 static seqno;
 }
 ```
 
@@ -409,14 +407,14 @@ Fields section of the abi file. In this case the developer will need to explicit
 ```json
 {
   "fields": [
-    {"name":"_pubkey","type":"uint256","static": true},
-    {"name":"_timestamp","type":"uint64","static": false},
-    {"name":"_constructorFlag","type":"bool","static": false},
-    {"name":"creditLimit","type":"uint256","static": false},
-    {"name":"totalDebt","type":"uint256","static": false},
-    {"name":"balance","type":"uint256","static": false},
-    {"name":"value","type":"uint256","static": false},
-    {"name":"seqno","type":"uint256","static": true}
+    {"name":"_pubkey","type":"uint256","init": true},
+    {"name":"_timestamp","type":"uint64","init": false},
+    {"name":"_constructorFlag","type":"bool","init": false},
+    {"name":"creditLimit","type":"uint256","init": false},
+    {"name":"totalDebt","type":"uint256","init": false},
+    {"name":"balance","type":"uint256","init": false},
+    {"name":"value","type":"uint256","init": false},
+    {"name":"seqno","type":"uint256","init": true}
   ]
 }
 ```
