@@ -8,6 +8,8 @@ While it might seem more convenient and simple, this is a sub-optimal practice. 
 
 [GraphQL Blockchain API](https://docs.evercloud.dev/reference/graphql-api/blockchain) was developed for this exact reason - to provide a reliable way of blockchain data pagination and prevent any potential data inconsistencies regardless of network load.
 
+**Note**: With [GraphQL API 1.0](https://docs.evercloud.dev/reference/breaking-changes/migration-guides/graphql-api-1.0-migration) update by default Blockchain API provides only data for the past 7 days. For use cases where earlier data is needed make sure to use the 'archive: true' flag in blockchain query filters, as shown in the samples below. Do not however use it, if archive data isn't required, as it will generate unnecessary load.
+
 **Note**: Query Collections are a supported instrument and will remain so. However, they are intended and optimized primarily for tasks that are not critically dependent on data completeness, such as analytics.
 
 ## Blocks Pagination with Blockchain API
@@ -28,6 +30,7 @@ query {
                 end: 2670661
             }
             workchain: 0
+            archive: true
         ) {
             edges {
                 node {
@@ -115,6 +118,7 @@ query {
             after: "52899360053806ff11d"
             first: 10
             workchain: 0
+            archive: true
         ) {
             edges {
                 node {
@@ -205,6 +209,7 @@ query {
                 end: 2670661
             }
             workchain: 0
+            archive: true
         ) {
             edges {
                 node {
@@ -278,6 +283,7 @@ query {
             after: "528be5b005381da811c00"
             first: 10
             workchain: 0
+            archive: true
         ) {
             edges {
                 node {
