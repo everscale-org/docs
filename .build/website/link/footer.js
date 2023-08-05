@@ -66,7 +66,7 @@ module.exports = [
       },
       {
         label: 'EverDev Tutorial',
-        to: '/develop/tutorial/everdev-sc/',
+        to: '/develop/smart-contracts/',
       },
       {
         label: 'Smart contract architecture',
@@ -94,20 +94,16 @@ module.exports = [
         href: 'https://github.com/tonlabs/sdk-samples',
       },
       {
-        label: 'JS Application Kit',
-        href: 'https://tonlabs.gitbook.io/appkit-js/',
-      },
-      {
         label: 'Solidity API',
         href: 'https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/API.md',
       },
       {
         label: 'ABI Specification',
-        href: '/arch/abi/',
+        href: '/spec/abi/',
       },
       {
         label: 'NFT',
-        to: '/standard/TIP-4',
+        to: '/standard/TIP-4/',
       },
       {
         label: 'CLI',

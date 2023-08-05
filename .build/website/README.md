@@ -37,3 +37,10 @@ $ export SITE_BASE_URL=/docs/
 $ git remote add gh-pages git@github.com:%USER%/docs.git
 $ yarn deploy-gh-pages
 ```
+or 
+
+```shell
+cd .build/website
+yarn install
+bash preview.sh <PR_ID>
+```

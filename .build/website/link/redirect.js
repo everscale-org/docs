@@ -1,64 +1,60 @@
 module.exports = {
   redirects: [
     {
-      to: '/ecosystem/explore/wallets',
-      from: '/learn/everscale-overview/exchangewallets',
+      from: '/develop/tools',
+      to: '/develop/tools-overview/',
     },
     {
-      to: '/develop/tools/everdev/command-line-interface/cpp',
-      from: '/develop/tools/everdev/command-line-interface/c',
+      from: '/develop/tutorial/getting-started',
+      to: '/contribute/getting-started/',
     },
     {
-      to: '/develop/client-api/js-api/ever-sdk-js',
-      from: '/develop/client-api/js-api/ever-sdk-js/samples',
+      from: '/develop/debots',
+      to: '/spec/debot-specifications/',
     },
     {
-      to: '/develop/tutorial/everdev-sc',
-      from: '/develop/smart-contract/getting-started',
+      from: '/develop/integrate/tutorial/add-everscale-to-your-exchange',
+      to: '/develop/recipes/backend-integration/',
     },
     {
-      to: '/develop/tutorial/smart-digital-assets',
-      from: '/develop/smart-digital-assets',
+      from: '/develop/client-api/overview',
+      to: '/develop/tools-overview/',
     },
     {
-      to: '/ecosystem/explore/projects',
-      from: '/learn/everscale-overview/ecosystem',
+      from: '/develop/solidity-developing/samples',
+      to: '/develop/',
     },
     {
-      to: '/gs/welcome',
-      from: '/learn/welcome',
+      from: '/develop/tutorial/smart-digital-assets',
+      to: '/develop/smart-contracts/use-fungible-tokens/',
     },
     {
-      to: '/develop/debots',
-      from: '/smart-contract/debots',
+      from: '/integrate/products-api',
+      to: '/develop/tools-overview/',
     },
     {
-      to: '/validate/getting-started',
-      from: '/validate/tutorial/getting-started',
+      from: '/develop/tools',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/arch/ever-os',
+      to: '/arch/',
+    },
+    {
+      from: '/develop/tutorial/everdev-sc',
+      to: '/develop/smart-contracts/everdev/',
+    },
+    {
+      from: '/learn/overview',
+      to: '/overview/',
+    },
+    {
+      from: '/develop/multisignature-wallet',
+      to: '/develop/tools-overview/',
+    },
+    {
+      from: '/validate/staking',
+      to: '/spec/depool-specification/',
     },
   ],
-  createRedirects(existingPath) {
-    if (existingPath.includes('/ecosystem/contribute')) {
-      return [existingPath.replace('/ecosystem/contribute', '/contribute'),];
-    }
-    if (existingPath.includes('/ecosystem/explore')) {
-      return [
-        existingPath.replace('/ecosystem/explore', '/learn/everscale-overview'),
-        existingPath.replace('/ecosystem/explore', '/learn/tutorial'),
-      ];
-    }
-    if (existingPath.includes('/learn/everscale-overview')) {
-      return [existingPath.replace('/learn/everscale-overview', '/learn'),];
-    }
-    if (existingPath.includes('/develop/tools')) {
-      return [existingPath.replace('/develop/tools', '/develop/api-tools'),];
-    }
-    if (existingPath.includes('/develop/smart-contracts')) {
-      return [existingPath.replace('/develop/smart-contracts', '/develop/smart-contract/learn'),];
-    }
-    if (existingPath.includes('/develop')) {
-      return [existingPath.replace('/develop', '/develop/smart-contract'),];
-    }
-    return undefined
-  }
 }
