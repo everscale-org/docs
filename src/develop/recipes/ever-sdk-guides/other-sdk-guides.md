@@ -27,6 +27,7 @@ This is a list of detailed guides for EVER SDK
   * [Emulate Transaction](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/emulate_transaction)
   * [Estimate Fees](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/estimate_fees)
   * [Validate address, convert address](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/validate_address_convert_address)
+  * [Monitor messages](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/monitor-messages)
   * [Trace message processing with REMP](https://docs.everos.dev/ever-sdk/guides/work_with_contracts/trace-message-processing-with-remp)
 * Crypto fucntions in EVER SDK
   * [Mnemonics and Keys](https://docs.everos.dev/ever-sdk/guides/crypto/mnemonics_and_keys)
