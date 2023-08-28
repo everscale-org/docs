@@ -39,6 +39,12 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'everscale-docs',
   projectName: 'docs',
+  markdown: {
+    mermaid: true,
+  },
+  themes: [
+    '@docusaurus/theme-mermaid',
+  ],
   scripts: [
   ],
   plugins,
