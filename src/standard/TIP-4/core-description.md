@@ -39,6 +39,13 @@ Using the Storage contract, you can store NFT-related bytes in blockchain. [TIP-
 ##  (Status:Draft) [Don't Be Evil NFT licensing (TIP-4.5)](./../TIP-4/5.md)
 The standard adds the support of [Can't Be Evil NFT licenses](https://github.com/a16z/a16z-contracts) [introduced](https://a16zcrypto.com/introducing-nft-licenses/) by [Andreessen.Horowitz](https://a16z.com). [TIP-4.5](./../TIP-4/5.md) is optional, but can be used for clarifying the legal basis of NFT usage by the owner.
 
+##  (Status:Draft) [Upgradeable NFT (TIP-4.6)](./../TIP-4/6.md)
+The standard describes the operation of upgradeable NFT contracts. [TIP-4.6](./../TIP-4/6.md) is optional, but can be used for changing NFT code in case an error is found in it or there is a need to add new functionality.
+
+**Implementation**
+
+[grandbazar.io](https://github.com/grandbazar-io/everscale-tip4.6-contracts) implementation
+
 
 ## Authors
 | Author                                          | Command                                  |
