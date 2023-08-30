@@ -150,4 +150,4 @@ Interesting fact – this complicated data storage scheme helps to scale the net
 
 In the Everscale Blockchain, we typically, pay for storage, transfering, and any operations with cells (such as loading them). Hence, it's crucial to consider this when developing your smart contracts. The code and data of smart contracts executed in TVM are also represented in the tree of cells.
 
-Read more about bag of cells in the [tvm.pdf](https://ton.org/tvm.pdf) and [tblkch.pdf](https://ton.org/tblkch.pdf) documents.
+Read more about bag of cells in the [tvm.pdf](https://docs.everscale.network/tvm.pdf) document.
