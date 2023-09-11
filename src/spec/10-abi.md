@@ -4,13 +4,13 @@ title: ABI Specification
 
 # Smart Contracts ABI v2.3 Specification
 
-ABI specifies message bodies layout for client to contract and contract to contract interaction.
+ABI specifies message body layout for client-to-contract and contract-to-contract interactions.
 
 ## Introduction
 
-In Everscale client to contract and contract to contract interaction occurs through external and internal messages respectively.
+In Everscale, client-to-contract and contract-to-contract interaction occurs through external and internal messages respectively.
 
-ABI specification describes the structure of body of these messages. ABI stored as JSON serves as an interface for smart contracts and is used when calling contract methods externally or on-chain.
+ABI specification describes the structure of the body of these messages. ABI stored as JSON serves as an interface for smart contracts and is used when calling contract methods externally or on-chain.
 
 The goal of the ABI specification is to design ABI types that are cheap to read to reduce gas consumption and gas costs. Some types are optimized for storing without write access.
 
@@ -22,7 +22,7 @@ Message body with encoded function call has the following format:
 
 `Maybe(Signature)` +  `Enc(Header)` +`Function ID` +  `Enc(Arguments)`
 
-First comes an optional signature. It is prefixed by one bit flag that indicates the signature presence. If it is `1`, then in the next `512 bit` a signature is placed, otherwise the signature is omitted.
+First comes an optional signature. It is prefixed by a one-bit flag that indicates the signature presence. If it is `1`, then in the next `512 bit` a signature is placed, otherwise, the signature is omitted.
 
 Then comes the encoded header parameters set  (same for all functions).
 
@@ -50,7 +50,7 @@ Events are encoded as follows:
 
 `Event ID` + `Enc(event args)`
 
-`Event ID` - 32 bits of SHA256 hash of the event function signature with highest bit set to `0`.
+`Event ID` - 32 bits of SHA256 hash of the event function signature with the highest bit set to `0`.
 
 ### Internal Messages
 
@@ -58,7 +58,7 @@ Internal messages are used for contract-to-contract interaction; they have the f
 
 `Function ID` + `Enc(Arguments)`
 
-`Function ID` - 32 bits function id calculated as first 32 bits SHA256 hash of the function signature. The highest bit of function ID is `0`. Internal messages contain only function calls and no responses.
+`Function ID` - 32 bits functionID calculated as the first 32 bits SHA256 hash of the function signature. The highest bit of function ID is `0`. Internal messages contain only function calls and no responses.
 
 ## Message Body Signing
 
@@ -66,18 +66,18 @@ The message body can be protected with a cryptographic signature to identify a u
 
 If a user does not want to sign a message, bit `0` should be placed to the root cell start and signature omitted.
 
-The message body signature is generated from the *representation hash* of the bag of cells following the signature prepended with src address.
+The message body signature is generated from the *representation hash* of the bag of cells following the signature prepended with the source address.
 
 ## Signing Algorithm
 
-1. ABI serialization generates bag of cells containing header parameters, function ID and function parameters.
-   591 free bits are reserved in the root cell for destination address ([the maximum size of address](#address)).
+1. ABI serialization generates a bag of cells containing header parameters, function ID, and function parameters.
+   591 free bits are reserved in the root cell for the destination address ([the maximum size of address](#address)).
 2. The root cell data is prepended with actual destination address data without padding to maximum size.
 3. *Representation hash* of the bag is signed using the *Ed25519* algorithm.
 4. Address data is removed from the root cell and replaced with bit `1` followed by 512 bits of the signature.
 
 :::note
-This functionality is added since `ABI v2.3` and supported staring with [0.64.0](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/Changelog_TON.md#0640-2022-08-18) version of the Solidity compiler.
+This functionality has been added since `ABI v2.3` and supported starting with [0.64.0](https://github.com/tonlabs/TON-Solidity-Compiler/blob/master/Changelog.md#0640-2022-08-18) version of the Solidity compiler.
 :::
 
 ## Function Signature (Function ID)
