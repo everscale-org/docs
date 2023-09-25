@@ -1,0 +1,39 @@
+name: CSV to Markdown
+
+on:
+  push:
+    branches:
+      - main
+      - tvm_opcodes
+    paths:
+      - 'src/arch/opcodes/tvm_opcodes.csv'
+
+permissions:
+  contents: write
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+    - name: Install dependencies
+      run: |
+        npm install csv-parser@3.0.0
+    - name: Run conversion script
+      run: cd src/arch/opcodes/ && node csv_to_md.js tvm_opcodes.csv ../instructions_template.md ../10-tvm.md
+    - name: Commit changes
+      run: |
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git add .
+        git commit -m "Update TVM instructions markdown"
+    - name: Push changes
+      run: git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
