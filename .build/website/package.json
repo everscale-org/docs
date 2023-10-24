@@ -6,7 +6,7 @@
     "node": ">=16.14"
   },
   "externalDocs": {
-    "EverVM": "1.8.127"
+    "EverVM": "1.8.136"
   },
   "scripts": {
     "emul": "yarn clear && yarn build && yarn serve",
@@ -28,11 +28,12 @@
   },
   "dependencies": {
     "@akebifiky/remark-simple-plantuml": "^1.0.2",
-    "@docusaurus/core": "^2.4.0",
-    "@docusaurus/plugin-client-redirects": "^2.4.0",
-    "@docusaurus/plugin-google-gtag": "^2.4.0",
-    "@docusaurus/plugin-sitemap": "^2.4.0",
-    "@docusaurus/preset-classic": "^2.4.0",
+    "@docusaurus/core": "^2.4.1",
+    "@docusaurus/plugin-client-redirects": "^2.4.1",
+    "@docusaurus/plugin-google-gtag": "^2.4.1",
+    "@docusaurus/plugin-sitemap": "^2.4.1",
+    "@docusaurus/preset-classic": "^2.4.1",
+    "@docusaurus/theme-mermaid": "^2.4.1",
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "docusaurus-lunr-search": "^2.1.15",

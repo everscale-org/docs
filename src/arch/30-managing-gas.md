@@ -1,10 +1,9 @@
 ---
-title: Managing gas
+title: Gas Calculation
 description: The entire state of TVM consists of the five components
-sidebar_position: 5
 ---
 
-# Managing gas
+# Gas Calculation for Processing
 
 ## Gas calculation basics
 

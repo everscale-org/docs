@@ -2,11 +2,7 @@ module.exports = {
   first: [
     {
       title: 'Welcome to Everscale!',
-      link: '/gs/welcome/',
-    },
-    {
-      title: '🪤 Everscale Tutorial - 5min ⏱️',
-      link: '/develop/tutorial/everdev-sc/',
+      link: '/welcome/',
     },
   ],
   feature: [

@@ -1,7 +1,6 @@
 ---
 title: Accounts
 description: The information storage entity is an account
-sidebar_position: 7
 ---
 
 # Accounts

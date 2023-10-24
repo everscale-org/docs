@@ -1,11 +1,7 @@
 module.exports = [
   {
-    label: 'Getting Started',
-    to: '/gs/'
-  },
-  {
-    label: 'Learn',
-    to: '/learn/'
+    label: 'Overview',
+    to: '/overview/',
   },
   {
     label: 'Build',
@@ -16,12 +12,17 @@ module.exports = [
     to: '/validate/'
   },
   {
-    label: 'Ecosystem',
-    to: '/ecosystem/'
+    label: 'Standards',
+    to: '/standard/',
   },
   {
-    label: 'Changelog',
-    to: '/changelog/'
+    label: 'Crash Course',
+    href: 'https://everscale.guide/',
+  },
+  {
+    label: 'Contribute',
+    to: '/contribute/',
+    position: 'right',
   },
   {
     label: 'Blog',
@@ -30,7 +31,7 @@ module.exports = [
   },
   {
     label: 'Status',
-    href: 'https://everos.dev/status',
+    href: 'https://monitoring.ever.rs/',
     position: 'right',
   },
   {
