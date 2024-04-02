@@ -20,8 +20,22 @@ Each TIP should have the following parts (which are heavily copy-pasted from BIP
 - Rationale — The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work. The rationale should provide evidence of consensus within the community and discuss important objections or concerns raised during discussion;
 - Backwards compatibility — All TIPs that introduce backwards incompatibilities must include a section describing these incompatibilities and their severity. The TIP must explain how the author proposes to deal with these incompatibilities;
 
+## Workflow
+
 Each TIP should pass the following process of acceptance:
 
-`Proposal` → `Discussion` → `Community Voting` → `Reference Implementations Contest` → `Final TIP with Reference Implementations`
+**Reference Implementation** — The reference implementation must be completed before any TIP is given status `Review`, but it need not be completed before the TIP is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code. The final implementation must include test code and documentation appropriate for the Everscale protocol.
 
-- Reference implementation — The reference implementation must be completed before any TIP is given status `Final`, but it need not be completed before the TIP is accepted. It is better to finish the specification and rationale first and reach consensus on it before writing code. The final implementation must include test code and documentation appropriate for the Everscale protocol.
+```mermaid
+stateDiagram-v2
+    Idea --> Draft: Reference Implementation
+    Draft --> Proposal: Pull Request in ready\nfor review and conversation
+    Proposal --> Draft: Pull Request in draft\nfor resolve request changes
+    Proposal --> Review: Approving and merge Pull Request
+    Review --> Stagnant: If inactive for a period\nof greater 6 months
+    Stagnant --> Review
+    Review --> Withdrawn: The author have withdrawn
+    Review --> Living: The has integration\nof more one of ecosystem projects
+    Living --> Finalization: This is the final review for an TIP\nbefore moving to Final
+    Finalization --> Final
+```
