@@ -71,7 +71,7 @@ contract Tokensale {
         _rate = rate;
         _supply = supply;
 
-        // fundamental mechanic of dapps working with tip3 - deploy it's own wallet to operate with. check tip3 specs for more info
+        // fundamental mechanic of dapps working with tip3 - deploy its own wallet to operate with. check tip3 specs for more info
         ITokenRoot(distributedTokenRoot).deployWallet {
             value: 0.2 ever,
             flag: 1,
@@ -157,7 +157,7 @@ That's all. When we deploy the `Tokensale` contract, `deployWallet` will be call
                 ITokenWallet(_distributedTokenWallet).transfer{ value: 0, flag: 128 }(
                     purchase,
                     msg.sender,
-                    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be payed by user)
+                    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be paid by user)
                     msg.sender,
                     false,
                     empty
@@ -177,7 +177,7 @@ The next mechanic is already familiar to you. Tokensale just calls its own deplo
 ITokenWallet(_distributedTokenWallet).transfer{ value: 0, flag: 128 }(
     purchase,
     msg.sender,
-    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be payed by user)
+    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be paid by user)
     msg.sender,
     false,
     empty
@@ -220,7 +220,7 @@ contract Tokensale {
         _rate = rate;
         _supply = supply;
 
-        // fundamental mechanic of dapps working with tip3 - deploy it's own wallet to operate with. check tip3 specs for more info
+        // fundamental mechanic of dapps working with tip3 - deploy its own wallet to operate with. check tip3 specs for more info
         ITokenRoot(distributedTokenRoot).deployWallet {
             value: 0.2 ever,
             flag: 1,
@@ -259,7 +259,7 @@ contract Tokensale {
                 ITokenWallet(_distributedTokenWallet).transfer{ value: 0, flag: 128 }(
                     purchase,
                     msg.sender,
-                    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be payed by user)
+                    0.1 ever, // this parameter allows to deploy wallet for user, if it's not deployed yet. (fee takes from message so will be paid by user)
                     msg.sender,
                     false,
                     empty

@@ -371,4 +371,4 @@ Where
 3. If you want to explore the GraphQL API more, [here is the documentation](https://docs.evercloud.dev/reference/graphql-api)!
 4. If you are an exchange - check out our [exchange guide](https://docs.everos.dev/ever-sdk/add_to_exchange)!
 
-We hope this guide was helpful to you! If you have any difficulties/questions/suggestions/etc. please write to out [telegram channel](https://t.me/ever_sdk).
+We hope this guide was helpful to you! If you have any difficulties/questions/suggestions/etc. please write to our [telegram channel](https://t.me/ever_sdk).

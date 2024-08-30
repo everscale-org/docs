@@ -94,7 +94,7 @@ const config: LockliftConfig = {
   // path: "/mnt/o/projects/broxus/TON-Solidity-Compiler/build/solc/solc",
   // Or specify version of compiler
   version: "0.62.0",
-  // Specify config for extarnal contracts as in exapmple
+  // Specify config for external contracts as in example
   // externalContracts: {
   //  "node_modules/broxus-ton-tokens-contracts/build": ['TokenRoot', 'TokenWallet']
   // }
@@ -174,7 +174,7 @@ npx locklift test -n local
 
 ## Invoke Scripts
 
-There is a common practice to keep various scripts within the same environment where the samrt contracts and tests live. Such scripts may perform deployment, configuration, data collection or and smart-contract upgrade routines.
+There is a common practice to keep various scripts within the same environment where the smart contracts and tests live. Such scripts may perform deployment, configuration, data collection or and smart-contract upgrade routines.
 
 Let's run the sample deployment script within locklift environment (make sure your local node container is up and running)
 
